@@ -1,0 +1,413 @@
+
+.card-donate-btn-container{
+  display: flex;
+  justify-content:center;
+  align-items:center;
+  .card-donate-btn{
+    background-color: $logo_orange !important;
+    width:100px !important;
+    color:#fff !important;
+  }
+}
+.shipping-btn{
+  background-color: $logo_orange !important;
+  padding:9px 5px 9px 5px !important;
+  width:200px !important;
+  color:#fff !important;
+}
+.billing-btn{
+  background-color: $logo_orange !important;
+  padding:9px 5px 9px 5px !important;
+  width:200px !important;
+  color:#fff !important;
+}
+.edit-btn{
+  background-color: $logo_green !important;
+  color:#fff !important;
+}
+.top-nav-btn{
+  background-color: $logo_orange !important;
+  padding:11px !important;
+  width:197px !important;
+  color:#fff !important;
+}
+.auth-btn{
+  background-color: $logo_orange !important;
+  padding:11px !important;
+  width:140px !important;
+  color:#fff !important;
+  border-radius: 20px !important;
+  background-color: #e65100 !important;
+  letter-spacing: 1px !important;
+  text-transform: uppercase !important;
+  transition: transform 80ms ease-in !important;
+  &:active {
+    transform: scale(0.95) !important;
+  }  
+}
+
+.raise-fund-button{
+  background-color: $logo_orange !important;
+  width:100px !important;
+  color:#fff !important;
+}
+
+.nav-btn{
+  background-color: $logo_orange !important;
+  padding-left:7px !important;
+  padding-right:7px !important;
+  width:100% !important;
+}
+
+
+.side-nav-btn{
+  background-color: $logo_orange !important;
+  padding-left:7px !important;
+  padding-right:7px !important;
+  width:100% !important;
+}
+
+
+.slider-btn{
+  background-color: $logo_orange !important;
+  color:#fff !important;
+  @media screen and (max-width:745px){
+    margin-top:5px;
+  }
+  @media(min-width:321px) and (max-width:450px){
+    margin-top:5px;
+  }
+}
+
+.card-campaign-btn{
+  background-color: $logo_orange !important;
+  width:60% !important;
+  color:#fff !important;
+  padding:11px !important;
+}
+.card-share-btn{
+  background-color: $logo_green !important;
+  width:60% !important;
+  color:#fff !important;
+  padding:11px !important;
+}
+.read-btn{
+  background-color: $logo_orange !important;
+  padding:11px !important;
+  width:140px !important;
+  color:#fff !important;
+}
+.get-userType-button{
+  background-color: $logo_orange !important;
+  padding:11px !important;
+  width:140px !important;
+  color:#fff !important;
+}
+.fund-raise-category{
+  position:relative;
+  .start-fund-raise-btn-container{
+     position: absolute;
+     top: 330px;
+     padding-left:15px;
+     padding-right:15px;
+     width:100%;
+     @media(min-width:768px) and (max-width:991px){
+        top: 200px;
+     }
+     @media(min-width:576px) and (max-width:767.99px){
+      top: 230px;
+     }
+     @media(min-width:576px) and (max-width:767.99px){
+      top: 230px;
+     }
+     @media(max-width:575.99px){
+      top: 240px;
+     }
+     @media(max-width:440px){
+      top: 250px;
+     }
+     @media(max-width:373px){
+      top: 300px;
+     }
+     @media(max-width:300px){
+      top: 320px;
+     }
+     .start-raise-fund-sub-container{
+      @media(min-width:1200px){
+            max-width:1120px;     
+            margin-right:auto;
+            margin-left: auto;
+    }
+     @media(min-width:992px) and (max-width:1199px){
+        max-width:930px;
+        margin-right:auto;
+        margin-left: auto;
+       }  
+     @media(min-width:768px) and (max-width:991px){
+         max-width:700px;
+         margin-right:auto;
+         margin-left: auto;
+    }
+       @media(min-width:576px) and (max-width:767px){
+             max-width:520px;
+             margin-right:auto;
+             margin-left: auto;
+    } 
+     }
+    & .start-fund-raise-btn{ 
+      background-color: $logo_green !important;
+      color:$white !important;
+      width:150px;
+      padding:8px 0 8px 0  !important;
+    }  
+  }
+}
+
+.market-place-btn{
+  background-color: $logo_orange !important;
+  color:#fff !important;
+  padding:10px !important;
+  width:150px !important;
+  font-size:1.3rem !important;
+  &:hover{
+    background-color: $logo_green !important;
+  }
+}
+.more-market-support{
+  padding-left:15px;
+  padding-right:15px;
+  margin:0 auto;
+  width:100%;
+  display:flex;
+  justify-content: flex-end;
+  @media(min-width:1200px){
+   max-width:1160px;
+}
+@media(min-width:992px) and (max-width:1199px){
+   max-width:960px;
+}
+@media(min-width:768px) and (max-width:991px){
+  
+   max-width:720px;
+}
+@media(min-width:568) and (max-width:767px){
+
+      max-width:540px;
+} 
+}
+
+// auth buttons
+@mixin auth-buttons {
+  border-radius: 20px;
+  border: 1px solid #e65100;
+  background-color: #e65100;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 12px 45px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: transform 80ms ease-in;
+  &:active {
+    transform: scale(0.95);
+  }
+  &:focus {
+    outline: none;
+  }
+}
+.auth-button {
+  @include auth-buttons;
+  cursor:pointer;
+  @media screen and (max-width:669px) {
+    width:150px !important;
+  }
+}
+.verify-btn{
+  background-color: $logo_orange !important;
+  color:#fff !important;
+  padding:10px !important;
+  width:120px !important;
+}
+
+.green-btn{
+  background-color:$logo_green;
+  outline:none !important;
+  border:none !important;
+  &:focus{
+      outline:none !important;
+      border:none !important;
+  }
+}
+
+.orange-btn{
+  background-color:$logo_orange !important;
+  outline:none !important;
+  border:none !important;
+}
+
+.personal-form-but{
+  background-color:$logo_orange !important;
+  outline:none !important;
+  border:none !important;
+  color:#fff !important;
+  padding:7px 15px;
+  border-radius:4px;
+  &:hover{
+    cursor:pointer !important;
+    background-color:$logo_green !important;
+  }
+}
+.profile-form-but{
+  background-color:$logo_orange !important;
+  outline:none !important;
+  border:none !important;
+  color:#fff !important;
+  padding:7px 15px;
+  border-radius:4px;
+  &:hover{
+    cursor:pointer !important;
+    background-color:$logo_green !important;
+  }
+}
+.coorporate-form-but{
+  background-color:$logo_orange !important;
+  outline:none !important;
+  border:none !important;
+  color:#fff !important;
+  padding:7px 15px;
+  border-radius:4px;
+  &:hover{
+    cursor:pointer !important;
+    background-color:$logo_green !important;
+  }
+}
+
+
+
+// 
+.donate-cash-submit{
+	width: 100px;
+	background:$logo_green;
+	font-weight: bold;
+	color:#fff;
+	border: 0 none;
+	border-radius: 1px;
+	cursor: pointer;
+	padding: 10px 5px;
+	margin: 10px 5px;
+  &:hover{
+    box-shadow: 0 0 0 2px white, 0 0 0 3px $logo_green;
+  }
+}
+
+.previous-action-button{
+	width: 75px;
+	background:$logo_green;
+	color:#fff;
+	border: 0 none;
+	border-radius: 3px;
+	cursor: pointer;
+	padding: 7px 5px;
+  &:hover{
+    box-shadow: 0 0 0 2px white, 0 0 0 3px $logo_green;
+  }
+}
+
+
+// mui linear tab button
+.MuiAppBar-colorPrimary{
+  color:#000 !important;
+  box-shadow: none !important;
+  background-color: #fff !important;
+}
+// mi lineaer
+.MuiLinearProgress-barColorPrimary{
+  background-color: $logo_green !important;
+}
+// swiper bullet
+.swiper-pagination-bullet-active{
+  background:$logo_orange !important;
+  margin-top:150px;
+}
+.swiper-pagination-bullet{
+  margin-top:200px;
+}
+
+.MuiStepIcon-root.MuiStepIcon-active{
+  color:#F58502 !important;
+}
+
+.MuiStepIcon-root.MuiStepIcon-completed{
+  color: $logo_green !important;
+}
+.swiper-container-horizontal > .swiper-pagination-bullets, .swiper-pagination-bullet{
+  // margin-top:400px;    
+}
+
+.MuiButton-containedPrimary {
+  background-color: $logo_green !important;
+}
+.MuiButton-textPrimary{
+  color:#000 !important;
+}
+.MuiSnackbarContent-root{
+  background-color:#F58502 !important;
+} 
+
+
+.MuiTab-root{
+  background:none !important;
+}
+
+.add_cart_btn{
+  background-color: $logo_orange !important;
+  width:125px !important;
+  color:#fff !important;
+  &:hover{
+    opacity:.8;
+  }
+}
+.back_product{
+  background-color: $logo_green !important;
+  width:195px !important;
+  color:#fff !important;
+}
+
+
+
+.PrivateTabIndicator-colorSecondary-3 {
+  border-bottom: 2px solid #C75A00 !important;
+}
+
+.btn-bidding{
+  width: 180px;
+  height: 40px;
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+   color: #C75A00;
+   outline: 2px solid #C75A00;
+   border:none;
+   background-color:#fff;
+   &:hover{
+       color:#0F6929;
+   }
+ }
+.cart-paybtn{
+  width: 180px;
+  height: 40px;
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+  font-size:1rem;
+   color: #C75A00;
+   outline: 2px solid #C75A00;
+   border:none;
+   background-color:#fff;
+   &:hover{
+       color:#0F6929;
+   }
+ }
+

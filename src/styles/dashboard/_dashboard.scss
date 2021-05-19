@@ -1,0 +1,26 @@
+.c-subheader-nav-link{
+    text-decoration: none;
+    color:inherit;
+    &:hover{
+        text-decoration: none;
+        color:inherit;
+    }
+}
+
+.c-sidebar{
+background-color:#0F6929 !important;
+}
+
+ .c-sidebar-nav-dropdown-toggle{
+    background-color:#0F6929 !important;
+}
+
+.icon-position {
+    margin-top:-18px;
+}
+
+  .c-sidebar-nav-link{
+  &:hover{
+    background-color:#C75A00 !important;
+  }
+}

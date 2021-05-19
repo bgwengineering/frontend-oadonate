@@ -1,0 +1,2 @@
+(this.webpackJsonpogadonate=this.webpackJsonpogadonate||[]).push([[8],{1125:function(e,a,s){"use strict";s.r(a);s(3);var t=s(407),c=s(424),n=s(1);a.default=function(){return Object(n.jsxs)("div",{className:"mb-5",children:[Object(n.jsx)(t.a,{}),Object(n.jsx)(c.a,{className:"market-place-btn",children:"see more"})]})}}}]);
+//# sourceMappingURL=8.dbfdb207.chunk.js.map

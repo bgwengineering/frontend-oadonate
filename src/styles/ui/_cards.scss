@@ -1,0 +1,42 @@
+    .card{
+        .card-img-top{
+            height:170px;
+            z-index:300 !important;
+        }
+        .card-title{
+            &:hover{
+                cursor:pointer;
+            }
+        }
+        .contributed-progress-view{
+         height:17px;
+        }
+        .donated-ws{
+            justify-content:space-between;
+        }
+        .fund-category{
+            width:80% !important;
+        }
+        .ai-outline{
+            margin-top:-1px;
+        }
+        .truncate{
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+     
+    // .card-feature{
+    //     transition:transform 1s;
+    //     transform: scale(.9);
+    //     // z-index:0 !important;
+    //     &:hover {
+    //         transform: scale(1);
+    //     }
+    // }
+  
+    #share-modal{
+        z-index:2300 !important
+    }
+

@@ -1,0 +1,117 @@
+import React, { useState, useEffect } from "react";
+import DonateCardImport from "../campaign/CampaignCardImport";
+import SearchSvg from "components/ui/Svg/SearchSvg";
+import ArrowSvg from "components/ui/Svg/ArrowSvg";
+import axios from 'axios'
+import AllDonateItemCards from "./AllDonateItemCards"
+
+
+const DonateItem = () => {
+ const [data, setData] = useState({
+   loading: false,
+   error: null,
+   result: [],
+ })
+const [searchValue, setSearchValue] = useState('')
+const [filteredData, setFilteredData] = useState([]);
+
+
+ useEffect(() => {
+   const handleCampaignData = async () =>{
+     setData({
+       ...data,
+       loading:true,
+       error:null,
+       result:[]
+     })
+     setFilteredData([])
+
+     try{
+       const searchUrl = 'https://ogadonate-api.herokuapp.com/api/campaign/fundraise'
+          const res = await axios.get(searchUrl)
+           setData({
+             ...data,
+             loading:false,
+             error:null,
+             result:res.data
+           })
+           setFilteredData(res.data)
+           console.error(filteredData);
+     }catch(err){
+         setData({
+           ...data,
+           loading: false,
+           result: [],
+           error: err.message,
+         })
+         setFilteredData([])
+     }
+
+   } 
+   handleCampaignData()
+ }, [])
+
+ const handleSearchValue = e => {
+   setSearchValue(e.target.value)
+   let inputValue = e.target.value;
+   let filteredInput = inputValue.length > 0 && data.result.filter(campaigns=>(campaigns.fund_title.toLowerCase() === inputValue.toLowerCase()))
+   if (inputValue === "") {
+    setFilteredData(data.result);
+  } else {
+    setFilteredData(filteredInput);
+  }
+  }
+  
+
+  return (
+    <>
+      <div className="viewport">
+        <div className="viewport__body">
+
+          {/* search */}
+          <div className="btn-container">
+            <div className="btn-container__search">
+              <span>Search</span>
+              <input
+                className='search_input'
+                type="text"
+                name="search-query"
+                placeholder="search"
+                onChange={handleSearchValue}
+                value={searchValue}
+              />
+              <SearchSvg />
+            </div>
+
+            {/* filter */}
+            <div className="btn-container__filter">
+              <div className="filter-label">
+                <span className="filter-text">Filter by...</span>
+              </div>
+              <span>Filter</span>
+              <div className="filter-button">
+                <ArrowSvg />
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+     {/*    
+      {filteredData.map(filters=>{
+        return(
+          <li>{filters.fund_title}</li>
+        )
+      })
+      } */}
+      <div>
+      <h4 className="text-uppercase text-center">
+        Find an item cause to donate to
+      </h4>
+      <AllDonateItemCards />
+      </div>
+    </>
+  );
+};
+
+export default DonateItem;

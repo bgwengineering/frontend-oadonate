@@ -1,0 +1,2 @@
+1. Style password reset
+2. submit and update billing and shipping  form
