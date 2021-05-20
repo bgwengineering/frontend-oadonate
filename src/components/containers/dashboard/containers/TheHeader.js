@@ -25,7 +25,7 @@ import {
   TheHeaderDropdown,
   TheHeaderDropdownMssg,
   TheHeaderDropdownNotif,
-  TheHeaderDropdownTasks
+
 } from "./index";
 
 const TheHeader = () => {
@@ -62,7 +62,6 @@ const TheHeader = () => {
       </CHeaderNav>
       <CHeaderNav className="px-3">
         <TheHeaderDropdownNotif />
-        <TheHeaderDropdownTasks />
         <TheHeaderDropdownMssg />
         <TheHeaderDropdown />
       </CHeaderNav>

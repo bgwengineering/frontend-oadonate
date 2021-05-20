@@ -24,6 +24,16 @@
 .edit-btn{
   background-color: $logo_green !important;
   color:#fff !important;
+  &:hover{
+     background-color: $logo_orange !important;
+  }
+}
+.profile-sbm-btn{
+   background-color: $logo_orange !important;
+  color:#fff !important;
+   &:hover{
+      background-color: $logo_green !important;
+  }
 }
 .top-nav-btn{
   background-color: $logo_orange !important;
@@ -267,6 +277,18 @@
   &:hover{
     cursor:pointer !important;
     background-color:$logo_green !important;
+  }
+}
+.cancel-btn{
+  background-color:$logo_green !important;
+  outline:none !important;
+  border:none !important;
+  color:#fff !important;
+  padding:7px 15px;
+  border-radius:4px;
+  &:hover{
+    cursor:pointer !important;
+    background-color:$logo_orange !important;
   }
 }
 .coorporate-form-but{

@@ -5,7 +5,6 @@
 // import { validateBilling, renderField } from '../../util/RenderValidate';
 // import PropTypes from "prop-types";
 
-
 // const Billing = ({ nextPage, handleSubmit, pristine, submitting,singleAddress, history}) => {
 //   const reduxState = useSelector((state) => state.authReducer);
 //   const user = reduxState.isAuthenticatedl;
@@ -16,7 +15,7 @@
 // //   useEffect(() => {
 // //     dispatch(getSingleBillngAddress(`${id}`));
 // //   }, []);
- 
+
 // //   const updateBilling = (formValues) => {
 // //     const _id = id
 // //     dispatch(updateBillingAddress(id,formValues));
@@ -38,7 +37,7 @@
 //               placeholder="First Name"
 //               className="input-firstname"
 //               />
-              
+
 //             <Field
 //               type="text"
 //               name="last_name"
@@ -47,7 +46,7 @@
 //               className="input-lastname"
 //             />
 //             </div>
-            
+
 //         <div className="address">
 //           <label className="label"> Address * </label>
 //           <Field
@@ -105,7 +104,7 @@
 //             name="none"
 //           />
 //         </div>
-         
+
 //         <div className="store-title">
 //           <label> Soupe Store Close You * </label>
 //         </div>
@@ -144,57 +143,56 @@
 //     {getSingleBillngAddress, updateBillingAddress }
 // )(reduxForm({ form: "billing", enableReinitialize: true ,validateBilling})(Billing));
 
-
-
-
-
 import React, { useEffect, useState } from "react";
-import { connect, useDispatch,useSelector } from "react-redux";
-import { reduxForm,Field } from "redux-form";
-import {  saveBillingAddress } from "store/actions/auth/Dashboard";
-import { validateBilling, renderField, checkoutRenderField } from 'util/RenderValidate';
+import { connect, useDispatch, useSelector } from "react-redux";
+import { reduxForm, Field } from "redux-form";
+import { saveBillingAddress } from "store/actions/auth/Dashboard";
+import {
+  validateBilling,
+  renderField,
+  checkoutRenderField
+} from "util/RenderValidate";
 import PropTypes from "prop-types";
 
-
-const DashboardBilling = ({ handleSubmit, pristine, submitting}) => {
+const DashboardBilling = ({ handleSubmit, pristine, submitting }) => {
   const dispatch = useDispatch();
-  const onSubmit = (formValues)=>{
-    dispatch(saveBillingAddress(formValues))
-  }
-    return (
-      <>
-        <form className="checkout-billing-form" onSubmit={handleSubmit(onSubmit)}>
-          <div className="form-body">
-            <div className="checkout-billing-header">
-              <p className="billing-header">Billing Details</p>
-            </div>
-            
-            {/* username */}
-            <div className="username-container">
+  const onSubmit = formValues => {
+    dispatch(saveBillingAddress(formValues));
+  };
+  return (
+    <>
+      <form className="checkout-billing-form" onSubmit={handleSubmit(onSubmit)}>
+        <div className="form-body">
+          <div className="checkout-billing-header">
+            <p className="billing-header">Billing Details</p>
+          </div>
+
+          {/* username */}
+          <div className="username-container">
             <div>
-            <Field
-              type="text"
-              name="first_name"
-              component={checkoutRenderField}
-              placeholder="First Name"
-              className='billing-input-fields'
-            />
+              <Field
+                type="text"
+                name="first_name"
+                component={checkoutRenderField}
+                placeholder="First Name"
+                className="billing-input-fields"
+              />
             </div>
             <div>
-            <Field
-              type="text"
-              name="last_name"
-              component={checkoutRenderField}
-              placeholder="Last Name"
-              className='billing-input-fields' 
-                />
+              <Field
+                type="text"
+                name="last_name"
+                component={checkoutRenderField}
+                placeholder="Last Name"
+                className="billing-input-fields"
+              />
             </div>
-            </div>
-            
+          </div>
+
           {/* address */}
-       
+
           <div>
-          <label className="label"> Address * </label>
+            <label className="label"> Address * </label>
           </div>
           <Field
             type="text"
@@ -204,69 +202,69 @@ const DashboardBilling = ({ handleSubmit, pristine, submitting}) => {
           />
 
           {/* town */}
-        <div>
-          <label className="label"> Town / City * </label>
           <div>
-            <Field
-              type="text"
-              placeholder="town/city"
-              name="city_name"
-              component={checkoutRenderField}
-            />
-            <Field
-              type="text"
-              placeholder="Postcode/Zip"
-              component={checkoutRenderField}
-              name="zip"
-            />
-          </div>
-        </div>
-          
-            {/* state */}
-            <div className="state-label">
-             <label> State * </label>
+            <label className="label"> Town / City * </label>
+            <div>
+              <Field
+                type="text"
+                placeholder="town/city"
+                name="city_name"
+                component={checkoutRenderField}
+              />
+              <Field
+                type="text"
+                placeholder="Postcode/Zip"
+                component={checkoutRenderField}
+                name="zip"
+              />
             </div>
-            
-        <Field
+          </div>
+
+          {/* state */}
+          <div className="state-label">
+            <label> State * </label>
+          </div>
+
+          <Field
             type="text"
             placeholder="hello"
             component={checkoutRenderField}
             disabled
             name="state_name"
           />
-        <div className="phone-email">
-          <Field
-            type="text"
-            placeholder="Phone Number"
-            component={checkoutRenderField}
-            name="phone"
-          />
+          <div className="phone-email">
+            <Field
+              type="text"
+              placeholder="Phone Number"
+              component={checkoutRenderField}
+              name="phone"
+            />
+          </div>
+
+          <div className="store-title">
+            <label> Soupe Store Close You * </label>
+          </div>
+          <div className="store-close">
+            <Field
+              type="text"
+              placeholder="hello"
+              component={checkoutRenderField}
+              disabled
+              name="store_name"
+            />
+          </div>
         </div>
-         
-        <div className="store-title">
-          <label> Soupe Store Close You * </label>
-        </div>
-        <div className="store-close">
-           <Field
-            type="text"
-            placeholder="hello"
-            component={checkoutRenderField}
-            disabled
-            name="store_name"
-          />
-        </div>
-        </div>
-          
+
         <div className="next-prev">
           <button className="next-submit-btn" type="submit">
             Save
           </button>
         </div>
-        </form>
-      </>
-    );
-}
- 
+      </form>
+    </>
+  );
+};
 
-
-export default reduxForm({ form: "billing",onBlur:true, validateBilling})(DashboardBilling);
+export default reduxForm({ form: "billing", onBlur: true, validateBilling })(
+  DashboardBilling
+);
