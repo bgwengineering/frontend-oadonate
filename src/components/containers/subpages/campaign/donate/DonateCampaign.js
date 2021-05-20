@@ -5,40 +5,41 @@ import { useSelector, useDispatch } from "react-redux";
 import DonateCashForm from "components/ui/Forms/DonateCashForm";
 import DonateItemForm from "components/ui/Forms/DonateItemForm";
 import DonatePrompt from "./DonatePrompt";
-import { fetchSingleCampaign} from "store/actions/fund_donate/FundDonate";
-import {ReactComponent as LoaderSpinn} from 'assets/images/244.svg'
+import { fetchSingleCampaign } from "store/actions/fund_donate/FundDonate";
+import { ReactComponent as LoaderSpinn } from 'assets/images/244.svg'
 
 const DonateCampaign = ({ match }) => {
-  const dispatch = useDispatch();
-  
-  useEffect(() => {
-    dispatch(fetchSingleCampaign(match.params.id)); 
-  }, []);
+    const dispatch = useDispatch();
 
-  const isAuthenticated = useSelector(state => state.authReducer.isAuthenticated);
-  const isLoading = useSelector(state => state.fundDonateReducer.loading);
-  
-  const singleCampaign = useSelector(
-    state => state.fundDonateReducer.singleCampaign
-  );
+    useEffect(() => {
+        dispatch(fetchSingleCampaign(match.params.id));
+    }, []);
 
-  const { fund_img, fund_purpose, id } = singleCampaign;
+    const isAuthenticated = useSelector(state => state.authReducer.isAuthenticated);
+    const isLoading = useSelector(state => state.fundDonateReducer.loading);
 
-  const [currentOpenForm, setCurrentOpenForm] = useState(null);
-  const [isDonateCardButtonsOpen, setIsDonateCardButtonsOpen] = useState(false);
+    const singleCampaign = useSelector(
+        state => state.fundDonateReducer.singleCampaign
+    );
 
-  const handleSwitchCurrentForm = (formToShow) => {
-    setCurrentOpenForm(formToShow);
-  };
-  const shareUrl = window.location.href;
+    const { fund_img, fund_purpose, id } = singleCampaign;
 
-  return (
-    <>
-      {isLoading ? <div className='d-flex justify-content-center'><LoaderSpinn  />
+    const [currentOpenForm, setCurrentOpenForm] = useState(null);
+    const [isDonateCardButtonsOpen, setIsDonateCardButtonsOpen] = useState(false);
+
+    const handleSwitchCurrentForm = (formToShow) => {
+        setCurrentOpenForm(formToShow);
+    };
+    const shareUrl = window.location.href;
+
+    return ( <
+        >
+        {
+            isLoading ? <div className='d-flex justify-content-center'><LoaderSpinn  />
         <LoaderSpinn />
-        <LoaderSpinn /></div>
-        : null}
-      <div className="container-fluid">
+        <LoaderSpinn /></div> : null
+        }
+        <div className="container-fluid">
         <div className="row">
           <div className="col-md-6 col-lg-6 mt-5">
             <img
@@ -110,9 +111,8 @@ const DonateCampaign = ({ match }) => {
             />
           </div>
         </div>
-      </div>
-    </>
-  );
+      </div> < />
+    );
 };
 
 

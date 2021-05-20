@@ -21,17 +21,12 @@ import PaymentCancel from "util/PaymentCancel";
 import MarketIndex from './containers/subpages/buytosupport/MarketIndex';
 import CheckoutPage from "./containers/pages/CheckoutPage";
 
-   const loading = (
-  <div className="pt-3 text-center">
-    <div className="sk-spinner sk-spinner-pulse"></div>
-  </div>
-)
+
 const MainApp = () => {
 
-   return (
-
-   <BrowserRouter>
-      <React.Suspense fallback={loading}>
+  return (
+      <>
+        <BrowserRouter>
       <Switch>         
         <Route path="/auth" component={AuthMain} />
         <Route path="/activate/:uid/:token" component={Activate} />
@@ -58,8 +53,9 @@ const MainApp = () => {
         />
       </Layout>
       </Switch>
-      </React.Suspense>
   </BrowserRouter>
-   )}
+  </>
+    );
+};
 
 export default MainApp;

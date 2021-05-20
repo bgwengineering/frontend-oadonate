@@ -11,12 +11,12 @@ const GetUserType = () => {
                     <p className='text-center'>Choose below and fill in the information</p>  
 
                     <div className='user-type-row'>    
-                    <Link to='/dashboard/profile/personal' className='main-link'>
+                    <Link to='/dashboard/profile' className='main-link'>
                       <Button className="get-userType-button" id="personal">
                           Personal
                        </Button>
                     </Link>
-                      <Link to='/dashboard/profile/Coorporate' className='main-link'>
+                      <Link to='/dashboard/profile' className='main-link'>
                       <Button className="get-userType-button  ml-4" id="company">
                         Corporate
                       </Button> 

@@ -1,21 +1,21 @@
-import React, { useState,useEffect } from "react";
-import { useDispatch} from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
-import { reduxForm,Field } from "redux-form";
-import { createShippingAddress} from "store/actions/auth/Dashboard";
-import {validateShipping, renderField} from 'util/RenderValidate'
+import { reduxForm, Field } from "redux-form";
+import { createShippingAddress } from "store/actions/auth/Dashboard";
+import { validateShipping, renderField } from 'util/RenderValidate'
 
 
 const Shipping = ({ handleSubmit, pristine, submitting, }) => {
-  const dispatch = useDispatch();
- const [checked, setChecked] = useState(false);
+    const dispatch = useDispatch();
+    const [checked, setChecked] = useState(false);
 
- const createShipping = (formValues) => {
-  dispatch(createShippingAddress(formValues));
-};
-  
-  return (
-    <>
+    const createShipping = (formValues) => {
+        dispatch(createShippingAddress(formValues));
+    };
+
+    return ( <
+        >
         <form className="checkout-shipping-form" onSubmit={handleSubmit(createShipping)}>
           <div className="form-body">
             <div className="checkout-shipping-header">
@@ -80,9 +80,9 @@ const Shipping = ({ handleSubmit, pristine, submitting, }) => {
               SAVE
             </button>
         </div>
-      </form>
-    </>
-  );
+      </form> <
+        />
+    );
 };
 
-export default reduxForm({ form: "shipping",validateShipping})(Shipping);
+export default reduxForm({ form: "shipping", validateShipping })(Shipping);

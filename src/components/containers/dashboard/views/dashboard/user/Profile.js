@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import { Button } from '@material-ui/core'
 import {Link} from 'react-router-dom'
 import {useSelector, useDispatch} from 'react-redux'
@@ -9,7 +9,10 @@ import {
  import {
    personalProfile
 } from "store/actions/auth/Dashboard";
-
+import {
+  fetchCompanyProfile,
+  fetchPersonalProfile,
+} from 'store/actions/auth/Dashboard'
 
 const Profile = ({
     handleSubmit,
@@ -21,6 +24,10 @@ const Profile = ({
     const Submit = (formValues) => {
       dispatch(personalProfile(formValues));
     };
+    useEffect(() => {
+      dispatch(fetchPersonalProfile());
+      dispatch(fetchCompanyProfile());
+    }, [])
   const profileState= useSelector((state) => state.userTypeReducer);
       const {profile_user} = profileState   
     return (
@@ -137,7 +144,9 @@ const Profile = ({
                               <Field name = "address"
                               component = "input"
                               type = "text"
-                              className = 'field-inputs' / >
+                              className = 'field-inputs'
+                              
+                               / >
                             </div>
                           </div>
                         </div>
@@ -145,18 +154,33 @@ const Profile = ({
                           <div className="col-lg-4">
                             <div className="form-group focused">
                               <label className="profile-control-label" for="input-city">City</label>
-                              <input type="text" id="input-city" className="form-control form-control-alternative" placeholder="City" value={city}/>
+                              <Field component = "input" type="text" id="input-city" className="form-control form-control-alternative" placeholder="City" value={city}/>
                             </div>
                           </div>
                           <div className="col-lg-4">
                             <div className="form-group focused">
                               <label className="profile-control-label" for="input-country">Country</label>
-                              <input type="text" id="input-country" className="form-control form-control-alternative" placeholder='country' value={country}/>
+                              < Field component = "input"
+                              type = "text"
+                              id = "input-country"
+                              className = "form-control form-control-alternative"
+                              placeholder = 'country'
+                              value = {
+                                country
+                              }
+                              />
                             </div>
                           </div>
                           <div className="col-lg-4">
                             <div className="form-group">
                               <label className="profile-control-label" for="input-country">Contact Method</label>
+                              <Field
+                              name = "contact_method"
+                              component = "input"
+                              type = "radio"
+                              value = "Phone Call"
+                              className = 'field-inputs mr-2 ' /
+                                >
                               <Field
                               name = "contact_method"
                               component = "input"
@@ -175,7 +199,7 @@ const Profile = ({
                       <div className="pl-lg-4">
                         <div className="form-group focused">
                           <label>About Me</label>
-                          <textarea rows="4" className="form-control form-control-alternative about_textarea" placeholder="A few words about you ..."></textarea>
+                          <Field  component = "textarea" rows="4" className="form-control form-control-alternative about_textarea" placeholder="A few words about you ..."/>
                         </div>
                       </div>
                       <button>Submit</button>
