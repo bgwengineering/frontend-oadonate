@@ -2,30 +2,30 @@ import React from "react";
 import { connect } from "react-redux";
 // import { placeOrder, removeCartItems } from "../../actions/cart/actions";
 
-import { placeOrder, removeItem } from './../../store/actions/cart/cart.actions';
+// import { placeOrder, removeItem } from './../../store/actions/cart/cart.actions';
 import  _ from "lodash";
 
-const OrderPreview = ({cartItems, placeOrder,nextPage, previousPage, history}) => {
+const OrderPreview = ({nextPage, previousPage, history}) => {
   let subtotal = 0;
-  let orders = _.map(cartItems, (cartItem) => {
-    subtotal += cartItem.product.price * cartItem.quantity
-   return <ul key={cartItem.id} className="order-details">
-      <div className="order-product-details">
-        <li>
-          <p>{cartItem.quantity}</p>
-        </li>
-        <p>x</p>
-        <li>
-          <p>{cartItem.product.item}</p>
-        </li>
-      </div>
-      <br />
-      <li className="order-subtotal-price">
-        <p>{cartItem.product.price}</p>
-      </li>
-    </ul>;
+  // let orders = _.map(cartItems, (cartItem) => {
+  //   subtotal += cartItem.product.price * cartItem.quantity
+  //  return <ul key={cartItem.id} className="order-details">
+  //     <div className="order-product-details">
+  //       <li>
+  //         <p>{cartItem.quantity}</p>
+  //       </li>
+  //       <p>x</p>
+  //       <li>
+  //         <p>{cartItem.product.item}</p>
+  //       </li>
+  //     </div>
+  //     <br />
+  //     <li className="order-subtotal-price">
+  //       <p>{cartItem.product.price}</p>
+  //     </li>
+  //   </ul>;
     
-  })
+  // })
   return (
     <div className="orderpreview">
       <div className="preview">
@@ -33,7 +33,6 @@ const OrderPreview = ({cartItems, placeOrder,nextPage, previousPage, history}) =
         <p className="order-product">Product</p>
         <p className="order-subtotal">Subtotal</p>
       </div>
-      {orders}
       <ul className="order-subtitle">
         <li className="order-subtext">Subtotal</li>
         <li className="order-subprice">₦{(subtotal).toFixed(2)}</li>
@@ -80,7 +79,7 @@ const OrderPreview = ({cartItems, placeOrder,nextPage, previousPage, history}) =
           <span className="approval-note">terms and conditions *</span>
         </p>
       </div>
-      <button onClick={() => {placeOrder(cartItems); history.push('/')}} className="order-payment-button">
+      <button onClick={() => { history.push('/')}} className="order-payment-button">
         Pay now
       </button>
       {/* </form> */}
@@ -102,4 +101,4 @@ const OrderPreview = ({cartItems, placeOrder,nextPage, previousPage, history}) =
   );
 };
 
-export default connect(null, { placeOrder, removeItem })(OrderPreview);
+export default OrderPreview;
