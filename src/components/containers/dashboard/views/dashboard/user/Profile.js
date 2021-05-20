@@ -186,10 +186,7 @@ const Profile = ({ handleSubmit, pristine, reset, submitting }) => {
                         <div className="row">
                           <div className="col-md-12">
                             <div className="form-group focused">
-                              <label
-                                className="profile-control-label"
-                                for="input-address"
-                              >
+                              <label className="profile-control-label" for="input-address">
                                 Address
                               </label>
                               <Field
@@ -319,5 +316,5 @@ const Profile = ({ handleSubmit, pristine, reset, submitting }) => {
 };
 
 export default reduxForm({
-  form: "personalForm"
+  form: "personalForm",
 })(Profile);

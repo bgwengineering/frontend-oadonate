@@ -3,11 +3,11 @@ import { Route, Redirect } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const PrivateRoute = ({ render: Component, ...rest }) => {
-  const authState = useSelector(state => state.authReducer);
+  const authState = useSelector((state) => state.authReducer);
   const { access } = authState;
   return (
     <Route
-      render={props => {
+      render={(props) => {
         if (!access) {
           return (
             <Redirect
