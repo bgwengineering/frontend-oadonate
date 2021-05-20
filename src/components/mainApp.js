@@ -24,8 +24,8 @@ import CheckoutPage from "./containers/pages/CheckoutPage";
 
 const MainApp = () => {
 
-   return (
-   <BrowserRouter>
+    return (
+        <BrowserRouter>
       <Switch>         
         <Route path="/auth" component={AuthMain} />
         <Route path="/activate/:uid/:token" component={Activate} />
@@ -53,6 +53,7 @@ const MainApp = () => {
       </Layout>
       </Switch>
   </BrowserRouter>
-   )}
+    )
+}
 
 export default MainApp;
