@@ -1,49 +1,29 @@
 import React, { useState,useEffect } from "react";
-import { connect, useDispatch,useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import PropTypes from "prop-types";
 import { reduxForm,Field } from "redux-form";
-import { updateShippingAddress, singleShippingAddress } from "../../store/actions/auth/Dashboard";
-import {validateShipping, renderField} from '../../util/RenderValidate'
+import { createShippingAddress} from "store/actions/auth/Dashboard";
+import {validateShipping, renderField} from 'util/RenderValidate'
 
 
-const Shipping = ({ nextPage, previousPage, history, handleSubmit, pristine, submitting, }) => {
-  const reduxState = useSelector((state) => state.authReducer);
-  const id = reduxState.isAuthenticated
-  // const id = reduxState.shippingAddress.map(_id=> _id.id);
+const Shipping = ({ handleSubmit, pristine, submitting, }) => {
   const dispatch = useDispatch();
-  useEffect(() => {
-   dispatch(singleShippingAddress(`${id}`))
-  }, [])
  const [checked, setChecked] = useState(false);
 
- const updateShipping = (formValues) => {
-  dispatch(updateShippingAddress(id,formValues));
-  nextPage()
+ const createShipping = (formValues) => {
+  dispatch(createShippingAddress(formValues));
 };
-  const ToggleSwitch = ({ checked, onChange, id }) => (
-    <div>
-      <input
-        type="checkbox"
-        checked={checked}
-        onChange={(e) => onChange(e.target.checked)}
-        id={id}
-      />
-    </div>
-  );
+  
   return (
     <>
-        <form className="checkout-shipping-form" onSubmit={handleSubmit(updateShipping)}>
+        <form className="checkout-shipping-form" onSubmit={handleSubmit(createShipping)}>
           <div className="form-body">
             <div className="checkout-shipping-header">
               <p className="shipping-header">Shipping Details</p>
             </div>
-            <div className="shipping-show">
-              <ToggleSwitch checked={checked} id="form" onChange={setChecked} />
-              <span className="shipping-msg">Ship to a different address?</span>
-            </div>
-            {checked ? (
-              <>
+
                 <div className="user-names">
+                <label className="label"> Names* </label>
                 <Field type="text" name="first_name" component={renderField} className="input-first" />
                 <Field type="text" name="last_name" component={renderField} className="input-last" />
                 </div>
@@ -54,7 +34,7 @@ const Shipping = ({ nextPage, previousPage, history, handleSubmit, pristine, sub
               placeholder="House number and Street name"
               component={renderField}
               className="input-address"
-              name="street_address"
+              name="address"
             />
           </div>
           <div className="city-zip">
@@ -77,16 +57,14 @@ const Shipping = ({ nextPage, previousPage, history, handleSubmit, pristine, sub
           </div>
         </div>
                 <div className="state-label"> State * </div>
-                <Field className="select-state" name="state_name" component="select">
-          <option> Select State</option>
-          <option value="lagos"> Lagos </option>
-          <option value="ogun"> Ogun </option>
-          <option value="oyo"> Oyo </option>
-          <option value="kebbi"> Kebbi </option>
-        </Field>
-              </>
-            ) : null}
-            <input
+          <Field
+              className="zip"
+              type="text"
+              placeholder="State"
+              component={renderField}
+              name="state_name"
+            />
+            <Field
               className="ordernote"
               type="textarea"
               placeholder="Order Notes:Notes about your order e.g. special notes for delivery"
@@ -106,19 +84,5 @@ const Shipping = ({ nextPage, previousPage, history, handleSubmit, pristine, sub
     </>
   );
 };
-Shipping.propTypes = {
-  nextPage: PropTypes.func.isRequired,
-  previousPage: PropTypes.func.isRequired,
-};
 
-function mapStateToProps(state) {
-  const { singleAddress} = state.authReducer;
-  return {
-      initialValues: singleAddress,
-  }
-}
-
-export default connect(
-    mapStateToProps,
-    {updateShippingAddress, singleShippingAddress }
-)(reduxForm({ form: "shipping", enableReinitialize: true ,validateShipping})(Shipping));
+export default reduxForm({ form: "shipping",validateShipping})(Shipping);
