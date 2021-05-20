@@ -179,11 +179,13 @@ export const fetchAddressBook = () => async (dispatch, getState) => {
 export const createShippingAddress = (address) => async (dispatch, getState) => {
   dispatch(setLoading())
   try {
-    const res = await axiosInstance.post("buy-to-support/shipping", address, tokenConfig(getState));
+    const res = await axiosInstance.post("buy-to-support/shipping", {...address}, tokenConfig(getState));
     dispatch({ type: actionTypes.CREATE_SHIPPING_ADDRESS_SUCCESS, payload: res.data });
     dispatch(reset("shipping"));
   } catch (error) {
     dispatch({ type: actionTypes.CREATE_SHIPPING_ADDRESS_FAILS, payload: error.message });
+    dispatch(offLoading());
+    dispatch(stopSubmit("shipping"));
   }
 };
 
