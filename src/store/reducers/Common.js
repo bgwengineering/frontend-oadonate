@@ -1,7 +1,9 @@
 import {
    SHOW_SUCCESS_MESSAGE,
     HIDE_MESSAGE,
-    SHOW_ERROR_MESSAGE
+    SHOW_ERROR_MESSAGE,
+    OFF_LOADING,
+    LOADING
   } from "../actions/ActionTypes";
   
   const initialState = {
@@ -26,6 +28,14 @@ import {
         case HIDE_MESSAGE:
         return {
             ...state, showMessage: false, Message: " ", loading:false
+        }
+        case LOADING:
+        return {
+            ...state, loading:true
+        }
+        case OFF_LOADING:
+        return {
+            ...state, loading:false
         }
     
         default:

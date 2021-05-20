@@ -1,88 +1,144 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
-import PropTypes from "prop-types";
+import { Button } from "@material-ui/core";
 import { reduxForm, Field } from "redux-form";
 import { createShippingAddress } from "store/actions/auth/Dashboard";
-import { validateShipping, renderField } from 'util/RenderValidate'
+import { validateShipping } from "util/RenderValidate";
 
+const Shipping = ({ handleSubmit, pristine, submitting }) => {
+  const dispatch = useDispatch();
 
-const Shipping = ({ handleSubmit, pristine, submitting, }) => {
-    const dispatch = useDispatch();
-    const [checked, setChecked] = useState(false);
-
-    const createShipping = (formValues) => {
-        dispatch(createShippingAddress(formValues));
-    };
-
-    return ( <
-        >
-        <form className="checkout-shipping-form" onSubmit={handleSubmit(createShipping)}>
-          <div className="form-body">
-            <div className="checkout-shipping-header">
-              <p className="shipping-header">Shipping Details</p>
-            </div>
-
-                <div className="user-names">
-                <label className="label"> Names* </label>
-                <Field type="text" name="first_name" component={renderField} className="input-first" />
-                <Field type="text" name="last_name" component={renderField} className="input-last" />
+  const createShipping = (formValues) => {
+    dispatch(createShippingAddress(formValues));
+  };
+  return (
+    <div className="container-fluid mt--7">
+      <div className="row">
+        <div className="col-xl-12 order-xl-1">
+          <div className="card shadow">
+            <div className="card-header bg-white border-0"></div>
+            <div className="card-body">
+              <h6 className="heading-small text-muted all-heading mb-4">Shipping information</h6>
+              <hr className="my-4" />
+              <form onSubmit={handleSubmit(createShipping)}>
+                <div className="pl-lg-4">
+                  <div className="row">
+                    <div className="col-lg-6">
+                      <div className="form-group">
+                        <label className="profile-control-label" for="input-first_name">
+                          First Name<span>*</span>
+                        </label>
+                        <Field
+                          component="input"
+                          type="text"
+                          id="input-first_name"
+                          name="first_name"
+                          className="form-control form-control-alternative"
+                        />
+                      </div>
+                    </div>
+                    <div className="col-lg-6">
+                      <div className="form-group">
+                        <label className="profile-control-label" for="input-first_name">
+                          Last Name<span>*</span>
+                        </label>
+                        <Field
+                          component="input"
+                          type="text"
+                          id="input-first_name"
+                          name="last_name"
+                          className="form-control form-control-alternative"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-md-12">
+                      <div className="form-group focused">
+                        <label className="profile-control-label" for="input-address">
+                          Address<span>*</span>
+                        </label>
+                        <Field
+                          name="address"
+                          component="input"
+                          type="text"
+                          className="form-control form-control-alternative"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-lg-4">
+                      <div className="form-group focused">
+                        <label className="profile-control-label" for="input-city">
+                          City<span>*</span>
+                        </label>
+                        <Field
+                          component="input"
+                          type="text"
+                          id="input-city"
+                          name="city_name"
+                          className="form-control form-control-alternative"
+                        />
+                      </div>
+                    </div>
+                    <div className="col-lg-4">
+                      <div className="form-group focused">
+                        <label className="profile-control-label" for="input-state">
+                          State<span>*</span>
+                        </label>
+                        <Field
+                          component="input"
+                          type="text"
+                          id="input-state"
+                          name="state_name"
+                          className="form-control form-control-alternative"
+                        />
+                      </div>
+                    </div>
+                    <div className="col-lg-4">
+                      <div className="form-group focused">
+                        <label className="profile-control-label" for="input-country">
+                          Country<span>*</span>
+                        </label>
+                        <Field
+                          component="input"
+                          type="text"
+                          id="input-country"
+                          name="country"
+                          className="form-control form-control-alternative"
+                        />
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div className="address">
-            <label className="label"> State address * </label>
-            <Field
-              type="text"
-              placeholder="House number and Street name"
-              component={renderField}
-              className="input-address"
-              name="address"
-            />
-          </div>
-          <div className="city-zip">
-          <label className="label"> Town / City * </label>
-          <div className="inputs">
-            <Field
-              className="city"
-              type="text"
-              placeholder="town/city"
-              name="city_name"
-              component={renderField}
-            />
-            <Field
-              className="zip"
-              type="text"
-              placeholder="Postcode/Zip"
-              component={renderField}
-              name="zip"
-            />
+                <div className="pl-lg-4">
+                  <div className="form-group focused">
+                    <label>
+                      Shipping Note<span>*</span>
+                    </label>
+                    <Field
+                      component="textarea"
+                      rows="4"
+                      name="note"
+                      className="form-control form-control-alternative about_textarea"
+                      placeholder="Order Notes:Notes about your order e.g. special notes for delivery..."
+                    />
+                  </div>
+                </div>
+                <hr className="profile_hr my-4" />
+                <div className="d-flex flex-end">
+                  <Button className="shipping-btn" type="submit" disabled={pristine || submitting}>
+                    Save Address
+                  </Button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
-                <div className="state-label"> State * </div>
-          <Field
-              className="zip"
-              type="text"
-              placeholder="State"
-              component={renderField}
-              name="state_name"
-            />
-            <Field
-              className="ordernote"
-              type="textarea"
-              placeholder="Order Notes:Notes about your order e.g. special notes for delivery"
-              component="textarea"
-              name="note"
-            />
-          </div>
-        <div className="next-prev-cart">
-            <button
-              className="next-submit-btn"
-              type="submit"
-            >
-              SAVE
-            </button>
-        </div>
-      </form> <
-        />
-    );
+      </div>
+    </div>
+  );
 };
 
 export default reduxForm({ form: "shipping", validateShipping })(Shipping);
