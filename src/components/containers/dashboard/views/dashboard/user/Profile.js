@@ -1,16 +1,28 @@
 import React from 'react'
 import { Button } from '@material-ui/core'
 import {Link} from 'react-router-dom'
-import {useSelector} from 'react-redux'
+import {useSelector, useDispatch} from 'react-redux'
+import {
+  Field,
+  reduxForm
+} from "redux-form";
+ import {
+   personalProfile
+} from "store/actions/auth/Dashboard";
 
-// import {Shipping} from '../../../../../checkout/Shipping'
- 
 
-
-const Profile = () => { 
+const Profile = ({
+    handleSubmit,
+    pristine,
+    reset,
+    submitting
+  }) => {
+    const dispatch = useDispatch();
+    const Submit = (formValues) => {
+      dispatch(personalProfile(formValues));
+    };
   const profileState= useSelector((state) => state.userTypeReducer);
-      const {profile_user} = profileState
-        
+      const {profile_user} = profileState   
     return (
       <>
          {profile_user.map(personal=>{
@@ -78,8 +90,7 @@ const Profile = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="card-body">
-                    <form>
+                  <div className="card-body">          
                       <h6 className="heading-small text-muted mb-4">User information</h6>
                       <div className="pl-lg-4">
                         <div className="row">
@@ -111,14 +122,22 @@ const Profile = () => {
                           </div>
                         </div>
                       </div>
-                      <hr className="my-4"/>
-                      <h6 className="heading-small text-muted all-heading mb-4">Contact information</h6>
+                       <hr className="my-4" />
+
+                       {/* contact information */}
+                       <h6 className="heading-small text-muted all-heading mb-4">Contact information</h6>
+                       <form onSubmit = {
+                         handleSubmit(Submit)
+                       }>
                       <div className="pl-lg-4">
                         <div className="row">
                           <div className="col-md-12">
                             <div className="form-group focused">
                               <label className="profile-control-label" for="input-address">Address</label>
-                              <input id="input-address" className="form-control form-control-alternative" placeholder="Address" value={address} type="text"/>
+                              <Field name = "address"
+                              component = "input"
+                              type = "text"
+                              className = 'field-inputs' / >
                             </div>
                           </div>
                         </div>
@@ -138,7 +157,13 @@ const Profile = () => {
                           <div className="col-lg-4">
                             <div className="form-group">
                               <label className="profile-control-label" for="input-country">Contact Method</label>
-                              <input type="text" id="input-postal-code" className="form-control form-control-alternative" placeholder="contact method" value={contact_method}/>
+                              <Field
+                              name = "contact_method"
+                              component = "input"
+                              type = "radio"
+                              value = "Phone Call"
+                              className = 'field-inputs mr-2 ' /
+                                >
                             </div>
                           </div>
                         </div>
@@ -153,6 +178,7 @@ const Profile = () => {
                           <textarea rows="4" className="form-control form-control-alternative about_textarea" placeholder="A few words about you ..."></textarea>
                         </div>
                       </div>
+                      <button>Submit</button>
                     </form>
                   </div>
                 </div>
@@ -166,4 +192,6 @@ const Profile = () => {
       
 }
 
-export default Profile
+export default reduxForm({
+    form: "personalForm",
+  })(Profile)

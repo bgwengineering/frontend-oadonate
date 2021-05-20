@@ -29,19 +29,16 @@ const CheckoutForm = ({ currentUser, cartItems, }) => {
   const showStep = () => {
     switch (page) {
       case 1:
-        return <Billing nextPage={nextPage} previousPage={previousPage} />;
-      case 2:
         return (
           <Shipping
             nextPage={nextPage}
             previousPage={previousPage}
           />
-        );
-      case 3:
+        );  
+      case 2:
         return (
           <OrderPreview nextPage={nextPage} previousPage={previousPage} cartItems={cartItems} />
         );
-
       default:
         return;
     }

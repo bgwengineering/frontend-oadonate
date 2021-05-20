@@ -5,8 +5,8 @@ const Personal = () => {
     return (
         <div>
             <PersonalForm/>
-        </div>
+        </div>  
     )
 }
 
-export default Personal
+export default  Personal

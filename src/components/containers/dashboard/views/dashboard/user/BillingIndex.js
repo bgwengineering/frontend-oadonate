@@ -10,4 +10,4 @@ const BillingDashboardForm = () => {
   )
 }
 
-export default  BillingDashboardForm
+export default BillingDashboardForm;
