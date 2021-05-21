@@ -4,3 +4,4 @@
 4. restyle shipping and orderpreview(remove onfocus blue to green)
 5. change cartBasket to onhover show not onclick
 6. display firstname and lastname initials only (Henry.U)
+7. no item render for buy-to-support(check mapping)

@@ -1,7 +1,8 @@
 import * as actionTypes from "../actions/ActionTypes";
 
 const initialState = {
-  profile_user: null,
+  profile_user: [],
+  singleProfile: [],
   company_user: null,
   shippingAddress: [],
   user_donations_received: [],
@@ -38,6 +39,11 @@ const dashboard = (state = initialState, action) => {
       return {
         ...state,
         singleAddress: payload.res.data,
+      };
+    case actionTypes.FETCH_SINGLE_PERSONAL_PROFILE_SUCCESS:
+      return {
+        ...state,
+        singleProfile: payload.res.data,
       };
     case actionTypes.GET_USER_DONATIONS_RECEIVED:
       return {

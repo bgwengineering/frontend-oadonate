@@ -4,8 +4,8 @@ import EditProfile from "./EditProfile";
 import NewProfile from "./NewProfile";
 
 const ProfilePrompt = () => {
-  const profileState = useSelector(state => state.userTypeReducer.profile_user);
-  const id = profileState;
+  const profileState = useSelector(state => state.userTypeReducer);
+  const id = profileState.profile_user.map(_id=>_id.id);
   console.log(id);
   
   return (

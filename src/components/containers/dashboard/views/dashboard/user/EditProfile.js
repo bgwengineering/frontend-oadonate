@@ -136,12 +136,12 @@ const EditProfile = ({ handleSubmit, pristine, submitting, id }) => {
 
 
 function mapStateToProps(state) {
-    const { profile_user } = state.userTypeReducer;
+    const { singleProfile } = state.userTypeReducer;
     return {
-      initialValues: profile_user,
+      initialValues: singleProfile,
     };
   }
   
-  export default connect(mapStateToProps, {  })(
+  export default connect(mapStateToProps, {singlePersonalProfile,updatePersonalProfile })(
     reduxForm({ form: "shipping", enableReinitialize: true})(EditProfile));
   
