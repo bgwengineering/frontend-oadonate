@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { connect, useDispatch} from "react-redux";
 import PropTypes from "prop-types";
@@ -179,4 +180,3 @@ function mapStateToProps(state) {
 
 export default connect(mapStateToProps, { updateShippingAddress, singleShippingAddress })(
   reduxForm({ form: "shipping", enableReinitialize: true, validateShipping })(EditShipping)
-);

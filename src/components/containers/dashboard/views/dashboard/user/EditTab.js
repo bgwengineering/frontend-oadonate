@@ -26,12 +26,12 @@ const EditTabs = ({ pristine, reset, submitting, handleSubmit, history }) => {
         <form onSubmit={handleSubmit(editProfileSubmit)}>
         <div>
           <label className="mt-3">Current Password</label>
-          <div className="profile-reg-fields">
+          <div className="profile-reg-fields ">
             <Field
               name="password"
               component="input"
               type="password"
-              className="field-inputs"
+              className="password-inputs"
             />
           </div>
         </div>
@@ -42,7 +42,7 @@ const EditTabs = ({ pristine, reset, submitting, handleSubmit, history }) => {
               name="new_password"
               component="input"
               type="password"
-              className="field-inputs"
+              className="password-inputs "
             />
           </div>
         </div>
@@ -50,7 +50,7 @@ const EditTabs = ({ pristine, reset, submitting, handleSubmit, history }) => {
           <button
             disabled={pristine || submitting}
             onClick={reset}
-            className="profile-form-but mr-3"
+            className="cancel-btn mr-2"
             >
               <Link className='link-router-inverted' to='/dashboard/profile'>
             Cancel

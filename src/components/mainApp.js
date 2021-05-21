@@ -20,6 +20,8 @@ import PaymentSuccess from "util/PaymentSuccess";
 import PaymentCancel from "util/PaymentCancel";
 import MarketIndex from './containers/subpages/buytosupport/MarketIndex';
 import CheckoutPage from "./containers/pages/CheckoutPage";
+import Affiliate from './containers/pages/Affiliate/Affiliate';
+import SignupAffiliate from './containers/pages/Affiliate/SignupAffiliate';
 
 
 const MainApp = () => {
@@ -46,6 +48,9 @@ const MainApp = () => {
         <Route path='/checkout' component={CheckoutPage} />
         <Route path='/payment-success/' component={PaymentSuccess} />
         <Route path='/payment-cancel/' component={PaymentCancel} />
+        <Route path='/affiliate' component={Affiliate} />
+        <Route path='/affiliate-signup' component={SignupAffiliate} />
+
         <Route
           exact
           path="/password/reset/confirm/:uid/:token"

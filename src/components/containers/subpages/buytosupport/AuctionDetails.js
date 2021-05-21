@@ -37,13 +37,12 @@ const a11yProps = (index) => {
   };
 }
 
+
 const AuctionDetails = ({ match }) => {  
   const [value, setValue] = React.useState(0);
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
-  
 
   const [bidAmount, setBidAmount] = useState(400 + 1)
   const handleSetBidAmountIncrease = () => {
@@ -65,17 +64,10 @@ const AuctionDetails = ({ match }) => {
     const productState = useSelector(state=>state.marketPlaceReducer)
     const {singleCollections} = productState
     const {donate_item_img, donate_mkt_price, donate_mkt_bid, donate_item_name, donate_currency, id, donate_item_condition} = singleCollections
-  
   return ( 
-    <>
-   <div className = "auction-container py-3">
+  <>
+   <div className = "auction-container">
       {/* title */}
-   <div className="row">
-   <div className="col-10 text-center text-slanted text-blue">
-   <h1>{donate_item_name}</h1> 
-   </div>
-   </div>
-
     <div className="row">    
      <div className = "auction-image-container col-md-4 col-lg-4 mr-5 my-3 text-capitalize">
        <img src={cart} className="img-fluid auction-image" alt="img_product"/>
@@ -116,32 +108,33 @@ const AuctionDetails = ({ match }) => {
           
       </div>
       </div>
-      {/* tab section */}
-    <div>
+
+    {/* tab section */}
+    <div className="auction-tab">
       <AppBar position="static">
         <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
           <Tab label="DESCRIPTION" {...a11yProps(0)} />
           <Tab label="MORE INFORMATION" {...a11yProps(1)} />
           <Tab label="REVIEWS" {...a11yProps(2)} />
         </Tabs>
-      </AppBar>
+        </AppBar>
+         
       <TabPanel value={value} index={0}>
-      <div>
+        <div>
         <div className="col-lg-8">
-    </div>
-    </div>
+      </div>
+     </div>
       </TabPanel>
       <TabPanel value={value} index={1}>
       <div>
         <div className="col-lg-8">
-  </div>
-   </div>
+       </div>
+    </div>
       </TabPanel>
       <TabPanel value={value} index={2}>
       <div>
         <div className="col-lg-8">
-        <p>
-        </p>  
+      
         </div>
         </div>
       </TabPanel>

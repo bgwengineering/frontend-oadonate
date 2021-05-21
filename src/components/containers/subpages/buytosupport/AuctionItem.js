@@ -41,36 +41,52 @@ const AuctionItem = () => {
           return (
             <div className="col-md-6 col-lg-3 my-3" key={id}>
               <div className="card market-card">
-                <div className="img-container p-5">
-                  <Link to={`marketplace/auction/${id}/details`}>
-                    <img src={donate_item_img} alt="product" className="card-img-top mb-3" />
+                <div className="img-container">
+                  <Link
+                    to={`marketplace/auction/${id}/details`}
+                    className="link-router-inverted"
+                  >
+                    <img
+                      src={donate_item_img}
+                      alt="product"
+                      className="card-img-top mb-3"
+                    />
                   </Link>
+                  <div className="bid-btn-container">
+                    <div className="bid-btn-subdiv">
+                      <Button className="card-text bid_btn">
+                        <Link
+                          className="link-router-inverted"
+                          to={`marketplace/auction/${id}/details`}
+                        >
+                          Bid Now
+                        </Link>
+                      </Button>
+                    </div>
+                  </div>
                 </div>
-                <div className='d-flex justify-content-between'>
-                  <div>
+
+                <p className="align-self-center mb-0">{donate_item_name}</p>
+
+                <div>
+                  <div className='text-center'>
                     <AiOutlineFolderOpen />
-                    <span className="card-text text-muted ml-1">
+                    <span className="card-text align-self-center text-muted ml-1">
                       {donate_item_condition}
                     </span>
                   </div>
-                  <Button className="card-text add_cart_btn" onClick={() => { dispatch(addItem(itemValues)); setOpen(true); setCount(count + 1) }}>
-                    Bid Now
-                  </Button>
                 </div>
 
                 {/*card footer */}
-                <div className="card-footer d-flex justify-content-between">
-                  <p className="align-self-center mb-0">{donate_item_name}</p>
+                <div className="card-footer mt-5">
                   <h5 className="text-blue font-italic mb-0">
-                    {donate_mkt_price}
+                    Starting-bid:{donate_mkt_price}
                   </h5>
-                  <h5 className="text-blue font-italic mb-0">
-                    Expires on:
-                  </h5>
+                  <h5 className="text-blue font-italic mt-2 mb-0">Expires on:</h5>
                 </div>
               </div>
             </div>
-          )
+          );
         }
  
         }) : <h4 className='text-center'>no available item for sale</h4>}

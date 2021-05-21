@@ -15,7 +15,6 @@ const withdrawal = React.lazy(()=> import('./views/dashboard/withdrawal/Withdraw
 const shipping = React.lazy(()=> import('./views/dashboard/user/ShippingIndex'))
 
 
-
 const routes = [
   { path: '/', 
   exact: true, 
