@@ -29,7 +29,7 @@ const Dashboard = () => {
     <>
       <div id="dashboard-view">
         <WidgetsDropdown />
-        {profile_user.length >= 1 || company_user.length >= 1 ? (
+        {profile_user && profile_user.length >= 1 || company_user && company_user.length >= 1 ? (
           <h4>Graph display</h4>
         ) : (
           <GetUserType />
