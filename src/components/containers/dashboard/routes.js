@@ -1,5 +1,5 @@
 import React from 'react';
-import {useDispatch} from 'react-redux'
+
 
 const Dashboard = React.lazy(() => import('./views/dashboard/main/Dashboard'));
 const allCampaign = React.lazy(() => import('./views/dashboard/donation/donationCampaigns'));
@@ -7,7 +7,6 @@ const raiseCash = React.lazy(() => import('./views/dashboard/funds/raiseCash/rai
 const raiseItem = React.lazy(() => import('./views/dashboard/funds/raiseItem/raiseItem'));
 const Profile = React.lazy(() => import('./views/dashboard/user/Profile'))
 const editProfile = React.lazy(() => import('./views/dashboard/user/Edit'))
-const Personal = React.lazy(() => import('./views/dashboard/user/Personal'))
 const Coorporate = React.lazy(() => import('./views/dashboard/user/Coorporate'));
 const donationReceived = React.lazy(() => import('./views/dashboard/donation/donationReceived/DonationReceived'))
 const cashDistribution = React.lazy(() => import('./views/dashboard/funds/yourFunds/cashDistribution'));
@@ -28,9 +27,7 @@ const routes = [
   { path: '/dashboard/profile/', name:'Profile', component: Profile, exact:true},
   { path: '/dashboard/profile/edit/', name: 'editProfile', component: editProfile },
   { path: '/dashboard/profile/shipping', name: 'add shipping', component: shipping },
-  { path: '/dashboard/profile/personal/', name:'Personal', component: Personal},
   { path: '/dashboard/profile/Coorporate', name:'Cooporate', component: Coorporate},
-  // { path: '/dashboard/profile/edit-profile', name:'Edit', component: editProfile},
   { path: '/dashboard/donation/donation-received', name:'Your Donation', component: donationReceived},
   { path: '/dashboard/funds/yourFunds/cash-distribution', name:'Cash Distribution', component: cashDistribution},
   { path: '/dashboard/funds/yourFunds/item-distribution', name:'Item Distribution', component: itemDistribution},

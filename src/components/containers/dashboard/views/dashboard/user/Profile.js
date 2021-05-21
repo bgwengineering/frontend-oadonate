@@ -1,58 +1,36 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { Field, reduxForm } from "redux-form";
-import { personalProfile } from "store/actions/auth/Dashboard";
-import {
-  fetchCompanyProfile,
-  fetchPersonalProfile
-} from "store/actions/auth/Dashboard";
+import { useSelector } from "react-redux";
+import ProfilePrompt from "./ProfilePrompt";
 
-
-const Profile = ({ handleSubmit }) => {
-  const dispatch = useDispatch();
-  const Submit = formValues => {
-    dispatch(personalProfile(formValues));
-  };
-  useEffect(() => {
-    dispatch(fetchPersonalProfile());
-    dispatch(fetchCompanyProfile());
-  }, []);
-  const profileState = useSelector(state => state.userTypeReducer);
-  const { profile_user } = profileState;
+const Profile = () => {
+  const profileState = useSelector((state) => state.userTypeReducer.profile_user);
+  const { gender } = profileState;
+  const userState= useSelector(state=> state.authReducer.user);
+  const {email,first_name,last_name} = userState;
   return (
     <>
-      {profile_user.map(personal => {
-        const {
-          user,
-          address,
-          gender,
-          country,
-          contact_method,
-          city
-        } = personal;
-        const { email, first_name, last_name } = user;
-        return (
-          <div className="container-fluid mt--7">
-            <div className="row">
+      <div className="container-fluid mt--7">
+        <div className="row">
               <div className="col-xl-4 order-xl-2 mb-5 mb-xl-0">
                 <div className="card card-profile shadow">
                   <div className="row justify-content-center">
                     <div className="col-lg-3 order-lg-2">
                       <div className="card-profile-image">
-                        <img
-                          src=""
-                          alt="rounded-circle"
-                          className="rounded-circle-img"
-                        />
+                        <img src="" alt="rounded-circle" className="rounded-circle-img" />
                       </div>
                     </div>
                   </div>
 
                   <div className="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
                     <div className="d-flex justify-content-between">
-                      {/* <a href="/#" className="btn btn-sm btn-default float-right">Message</a> */}
+                      <Link to="/dashboard/profile/edit" className="btn btn-sm edit-btn  mr-4">
+                        Edit profile
+                      </Link>
+                      <a href="/#" className="btn btn-sm btn-default float-right">
+                        Message
+                      </a>
                     </div>
                   </div>
 
@@ -61,12 +39,10 @@ const Profile = ({ handleSubmit }) => {
                       <div className="col">
                         <div className="card-profile-stats d-flex justify-content-center mt-md-5">
                           <div>
-                            <h3 className="all-heading">
-                              {first_name + " " + last_name}
-                            </h3>
+                            <h3 className="all-heading">{first_name + " " + last_name}</h3>
                             <div className="h5 font-weight-300">
                               <i className="ni location_pin mr-2"></i>
-                              {city + " " + country}
+                            
                             </div>
                             <hr className="my-4" />
                           </div>
@@ -76,39 +52,33 @@ const Profile = ({ handleSubmit }) => {
                   </div>
                 </div>
               </div>
-
-              {/* account info */}
-              <div className="col-xl-8 order-xl-1">
-                <div className="card shadow">
-                  <div className="card-header bg-white border-0">
-                    <div className="row align-items-center">
-                      <div className="col-8">
-                        <h3 className="all-heading mb-0">My account</h3>
-                      </div>
-                      <div className="col-4">
-                        <Link
-                          to="/dashboard/profile/shipping"
-                          className="main-link"
-                        >
-                          <Button className="shipping-btn">
-                            Add Shipping Address
-                          </Button>
-                        </Link>
-                      </div>
-                    </div>
+          {/* account info */}
+          <div className="col-xl-8 order-xl-1">
+            <div className="card shadow">
+              <div className="card-header bg-white border-0">
+                <div className="row align-items-center">
+                  <div className="col-4">
+                    <h3 className="all-heading mb-0">My account</h3>
                   </div>
-                  <div className="card-body">
-                    <h6 className="heading-small text-muted mb-4">
-                      User information
-                    </h6>
-                    <div className="pl-lg-4">
+                  <div className="col-4">
+                    <Link to="/dashboard/profile/shipping" className="main-link">
+                      <Button className="shipping-btn">Add Shipping Address</Button>
+                    </Link>
+                  </div>
+                  <div className="col-4">
+                    <Link to="/dashboard/profile/billing" className="main-link">
+                      <Button className="shipping-btn">Add Billing Address</Button>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+              <div className="card-body">
+                <h6 className="heading-small text-muted mb-4">User information</h6>
+                <div className="pl-lg-4">
                       <div className="row">
                         <div className="col-lg-6">
                           <div className="form-group">
-                            <label
-                              className="profile-control-label"
-                              for="input-email"
-                            >
+                            <label className="profile-control-label" for="input-email">
                               Email address
                             </label>
                             <input
@@ -122,10 +92,7 @@ const Profile = ({ handleSubmit }) => {
                         </div>
                         <div className="col-lg-6">
                           <div className="form-group">
-                            <label
-                              className="profile-control-label"
-                              for="gender"
-                            >
+                            <label className="profile-control-label" for="gender">
                               Gender
                             </label>
                             <input
@@ -141,10 +108,7 @@ const Profile = ({ handleSubmit }) => {
                       <div className="row">
                         <div className="col-lg-6">
                           <div className="form-group focused">
-                            <label
-                              className="profile-control-label"
-                              for="input-first-name"
-                            >
+                            <label className="profile-control-label" for="input-first-name">
                               First name
                             </label>
                             <input
@@ -158,10 +122,7 @@ const Profile = ({ handleSubmit }) => {
                         </div>
                         <div className="col-lg-6">
                           <div className="form-group focused">
-                            <label
-                              className="profile-control-label"
-                              for="input-last-name"
-                            >
+                            <label className="profile-control-label" for="input-last-name">
                               Last name
                             </label>
                             <input
@@ -175,8 +136,8 @@ const Profile = ({ handleSubmit }) => {
                         </div>
                       </div>
                     </div>
-                    <hr className="my-4" />
 
+<<<<<<< HEAD
                     {/* contact information */}
                     <h6 className="heading-small text-muted all-heading mb-4">
                       Contact information
@@ -184,15 +145,20 @@ const Profile = ({ handleSubmit }) => {
                    
                   </div>
                 </div>
+=======
+                <hr className="my-4" />
+
+                {/* contact information */}
+                <h6 className="heading-small text-muted all-heading mb-4">Contact information</h6>
+                <ProfilePrompt />
+>>>>>>> 9304949605fc58af1b68885f184e0502aef01fd6
               </div>
             </div>
           </div>
-        );
-      })}
+        </div>
+      </div>
     </>
   );
 };
 
-export default reduxForm({
-  form: "personalForm",
-})(Profile);
+export default Profile;

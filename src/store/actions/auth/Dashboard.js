@@ -4,7 +4,7 @@ import { stopSubmit, reset } from "redux-form";
 import * as actionTypes from "../ActionTypes";
 import { setLoading, offLoading } from "store/actions/Common";
 
-export const personalProfile = (formValues) => async (dispatch, getState) => {
+export const createPersonalProfile = (formValues) => async (dispatch, getState) => {
   dispatch(setLoading());
   try {
     const res = await axiosInstance.post(
@@ -59,6 +59,21 @@ export const updatePersonalProfile = (id, formValues) => async (dispatch, getSta
 export const fetchPersonalProfile = () => async (dispatch, getState) => {
   try {
     const res = await axiosInstance.get("/accounts/profile/personal", tokenConfig(getState));
+    dispatch({
+      type: actionTypes.FETCH_PERSONAL_PROFILE_SUCCESS,
+      payload: res.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: actionTypes.FETCH_PERSONAL_PROFILE_FAIL,
+    });
+    dispatch({ type: actionTypes.SHOW_ERROR_MESSAGE, payload: `Detail: ${error.response}` });
+  }
+};
+// fetch personal profile
+export const singlePersonalProfile = (id) => async (dispatch, getState) => {
+  try {
+    const res = await axiosInstance.get(`/accounts/profile/personal/${id}`, tokenConfig(getState));
     dispatch({
       type: actionTypes.FETCH_PERSONAL_PROFILE_SUCCESS,
       payload: res.data,

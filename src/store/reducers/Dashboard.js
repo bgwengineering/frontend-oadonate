@@ -1,8 +1,8 @@
 import * as actionTypes from "../actions/ActionTypes";
 
 const initialState = {
-  profile_user: [],
-  company_user: [],
+  profile_user: null,
+  company_user: null,
   shippingAddress: [],
   user_donations_received: [],
   loading: false,

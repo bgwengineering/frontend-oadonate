@@ -26,7 +26,7 @@ import CorporateAuction from './containers/pages/CorporateAuction/CorporateAucti
 
 
 const MainApp = () => {
-
+ 
   return (
       <>
         <BrowserRouter>

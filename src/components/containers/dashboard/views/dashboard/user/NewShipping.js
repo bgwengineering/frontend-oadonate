@@ -127,8 +127,11 @@ const Shipping = ({ handleSubmit, pristine, submitting }) => {
                   </div>
                 </div>
                 <hr className="profile_hr my-4" />
-                <div className="d-flex flex-end">
-                  <Button className="shipping-btn" type="submit" disabled={pristine || submitting}>
+                <div className="d-flex justify-content-between">
+                  <Button className="shipping-btn" type="button">
+                    Cancel
+                  </Button>
+                  <Button className="shipping-btn" type="submit" disabled={pristine||submitting}>
                     Save Address
                   </Button>
                 </div>

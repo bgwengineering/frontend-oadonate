@@ -1,22 +1,22 @@
-
 import React, { useState, useEffect } from "react";
-import { connect, useDispatch} from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
 import { Button } from "@material-ui/core";
 import { reduxForm, Field } from "redux-form";
 import { updateShippingAddress, singleShippingAddress } from "store/actions/auth/Dashboard";
 import { validateShipping, checkoutRenderField } from "util/RenderValidate";
 
-const EditShipping = ({  handleSubmit, pristine, submitting, id }) => {
+const EditShipping = ({ nextPage, previousPage, handleSubmit, id }) => {
   const dispatch = useDispatch();
   useEffect(() => {
-    document.title = 'Ogadonate|Shipping'
+    // document.title = 'Ogadonate | Checkout'
     dispatch(singleShippingAddress(`${id}`));
   }, []);
   const [checked, setChecked] = useState(false);
 
   const updateShipping = (formValues) => {
     dispatch(updateShippingAddress(id, formValues));
+    nextPage();
   };
   const ToggleSwitch = ({ checked, onChange, id }) => (
     <div>
@@ -151,11 +151,11 @@ const EditShipping = ({  handleSubmit, pristine, submitting, id }) => {
                 </div>
                 <hr className="profile_hr my-4" />
                 <div className="d-flex justify-content-between">
-                  <Button className="shipping-btn" type="button">
+                  <Button className="shipping-btn" type="button" onClick={() => previousPage()}>
                     Cancel
                   </Button>
-                  <Button className="shipping-btn" type="submit" disabled={pristine||submitting}>
-                    Update Address
+                  <Button className="shipping-btn" type="submit">
+                    Next
                   </Button>
                 </div>
               </form>
@@ -180,3 +180,4 @@ function mapStateToProps(state) {
 
 export default connect(mapStateToProps, { updateShippingAddress, singleShippingAddress })(
   reduxForm({ form: "shipping", enableReinitialize: true, validateShipping })(EditShipping)
+);

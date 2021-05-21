@@ -6,6 +6,7 @@ import {
   fetchPersonalProfile,
   fetchUserDonationsReceived,
 } from "store/actions/auth/Dashboard";
+import { load_user } from "store/actions/auth/Auth.js";
 
 const WidgetsDropdown = lazy(() => import("../../widgets/WidgetsDropdown.js"));
 
@@ -15,9 +16,13 @@ const Dashboard = () => {
 
   const dispatch = useDispatch();
   useEffect(() => {
+    document.title = "Ogadonate | Dashboard";
+    dispatch(load_user());
     dispatch(fetchPersonalProfile());
     dispatch(fetchCompanyProfile());
     dispatch(fetchUserDonationsReceived());
+    // dispatch(fetchAllCampaign());
+    // dispatch(updateMarketCollections());
   }, []);
 
   return (
