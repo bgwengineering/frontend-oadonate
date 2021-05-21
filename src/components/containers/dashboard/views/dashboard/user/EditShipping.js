@@ -179,4 +179,4 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, { updateShippingAddress, singleShippingAddress })(
-  reduxForm({ form: "shipping", enableReinitialize: true, validateShipping })(EditShipping)
+  reduxForm({ form: "shipping", enableReinitialize: true, validateShipping })(EditShipping));

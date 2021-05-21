@@ -6,7 +6,7 @@ import ProfilePrompt from "./ProfilePrompt";
 
 const Profile = () => {
   const profileState = useSelector((state) => state.userTypeReducer.profile_user);
-  const { gender } = profileState;
+  // const { gender } = profileState;
   const userState= useSelector(state=> state.authReducer.user);
   const {email,first_name,last_name} = userState;
   return (
@@ -100,7 +100,7 @@ const Profile = () => {
                               id="gender"
                               className="form-control form-control-alternative"
                               placeholder="gender"
-                              value={gender}
+                              // value={gender}
                             />
                           </div>
                         </div>
@@ -137,21 +137,11 @@ const Profile = () => {
                       </div>
                     </div>
 
-<<<<<<< HEAD
-                    {/* contact information */}
-                    <h6 className="heading-small text-muted all-heading mb-4">
-                      Contact information
-                    </h6>
-                   
-                  </div>
-                </div>
-=======
                 <hr className="my-4" />
 
                 {/* contact information */}
                 <h6 className="heading-small text-muted all-heading mb-4">Contact information</h6>
                 <ProfilePrompt />
->>>>>>> 9304949605fc58af1b68885f184e0502aef01fd6
               </div>
             </div>
           </div>

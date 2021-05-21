@@ -2,6 +2,7 @@ import React,{useEffect} from "react";
 import { Field, reduxForm } from "redux-form";
 import {connect,useDispatch} from "react-redux";
 import { Button } from "@material-ui/core";
+import {Link} from 'react-router-dom'
 import { updatePersonalProfile,singlePersonalProfile } from "store/actions/auth/Dashboard";
 
 
@@ -9,7 +10,7 @@ const EditProfile = ({ handleSubmit, pristine, submitting, id }) => {
     const dispatch = useDispatch()
     useEffect(() => {
         document.title = 'Ogadonate|Shipping'
-        // dispatch(singlePersonalProfile(`${id}`));
+        dispatch(singlePersonalProfile(`${id}`));
       }, []);
   const onEditProfile = (formvalues) => {
     dispatch(updatePersonalProfile(id, formvalues))
@@ -24,7 +25,12 @@ const EditProfile = ({ handleSubmit, pristine, submitting, id }) => {
                 <label className="profile-control-label" for="input-address">
                   Address
                 </label>
-                <Field name="address" component="input" type="text" className="field-inputs" />
+                <Field
+                  name="address"
+                  component="input"
+                  type="text"
+                  className="form-control form-control-alternative"
+                />
               </div>
             </div>
           </div>
@@ -36,6 +42,7 @@ const EditProfile = ({ handleSubmit, pristine, submitting, id }) => {
                 </label>
                 <Field
                   component="input"
+                  name="city"
                   type="text"
                   id="input-city"
                   className="form-control form-control-alternative"
@@ -54,36 +61,52 @@ const EditProfile = ({ handleSubmit, pristine, submitting, id }) => {
                   id="input-country"
                   className="form-control form-control-alternative"
                   placeholder="country"
+                  name="country"
                 />
               </div>
             </div>
-            <div className="col-lg-4">
-              <div className="form-group">
-                <label className="profile-control-label" for="input-country">
-                  Contact Method
-                </label>
-                <Field
-                  name="contact_method"
-                  component="input"
-                  type="radio"
-                  value="Phone Call"
-                  className="field-inputs mr-2 "
-                />
-                <Field
-                  name="contact_method"
-                  component="input"
-                  type="radio"
-                  value="Phone Call"
-                  className="field-inputs mr-2 "
-                />
+
+            {/* contact method */}
+            <div>
+              <label className="profile-control-label" for="input-contact">
+                Contact Method:
+              </label>
+              <div className="row">
+                <div className="form-group focused">
+                  <label className="ml-3"> Phone Call </label>
+                  <Field
+                    name="contact_method"
+                    component="input"
+                    type="radio"
+                    className="field-inputs ml-2"
+                  />
+                </div>
+                <div className="form-group focused">
+                  <label className="ml-4"> Email </label>
+                  <Field
+                    name="contact_method"
+                    component="input"
+                    type="radio"
+                    className="field-inputs ml-2"
+                  />
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <hr className="profile_hr my-4" />
+        <div className="pl-lg-4">
+          <div className="form-group focused">
+            <label>Profile Image</label>
+            <Field
+              name="picture"
+              component="input"
+              type="file"
+              className="form-control form-control-alternative"
+            />
+          </div>
+        </div>
 
         {/* description */}
-        <h6 className="heading-small text-muted all-heading mb-4">About me</h6>
         <div className="pl-lg-4">
           <div className="form-group focused">
             <label>About Me</label>
@@ -95,7 +118,17 @@ const EditProfile = ({ handleSubmit, pristine, submitting, id }) => {
             />
           </div>
         </div>
-        <button>Update</button>
+        <hr className="profile_hr my-4" />
+        <div className="pl-lg-4">
+          <div className="d-flex justify-content-between">
+            <Button type="button">
+              <Link to="/dashboard">Cancel</Link>
+            </Button>
+            <Button type="submit" disabled={pristine || submitting}>
+              Update Address
+            </Button>
+          </div>
+        </div>
       </form>
     </>
   );
