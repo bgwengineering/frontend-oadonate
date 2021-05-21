@@ -9,7 +9,8 @@ import {
   fetchPersonalProfile
 } from "store/actions/auth/Dashboard";
 
-const Profile = ({ handleSubmit, pristine, reset, submitting }) => {
+
+const Profile = ({ handleSubmit }) => {
   const dispatch = useDispatch();
   const Submit = formValues => {
     dispatch(personalProfile(formValues));
@@ -32,7 +33,6 @@ const Profile = ({ handleSubmit, pristine, reset, submitting }) => {
           city
         } = personal;
         const { email, first_name, last_name } = user;
-
         return (
           <div className="container-fluid mt--7">
             <div className="row">
@@ -271,13 +271,14 @@ const Profile = ({ handleSubmit, pristine, reset, submitting }) => {
                           </div>
                         </div>
                       </div>
-                      <Field
-                        component="textarea"
-                        rows="4"
-                        className="form-control form-control-alternative about_textarea"
-                        placeholder="A few words about you ..."
-                      />
-                      {/* description */}
+                      <div className="pl-lg-4">
+                      <div className="form-group focused">
+                        <label>Profile Image</label>
+                      <Field name="picture" component="input" type="file" className="form-control form-control-alternative" />
+                     </div>
+                      </div>
+                     
+                        {/* description */}
                       <div className="pl-lg-4">
                         <div className="form-group focused">
                           <label>About Me</label>

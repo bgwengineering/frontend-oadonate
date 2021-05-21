@@ -35,6 +35,20 @@
       background-color: $logo_green !important;
   }
 }
+.affiliate-login-btn{
+   background-color: $logo_orange !important;
+  color:#fff !important;
+   &:hover{
+      background-color: $logo_green !important;
+  }
+}
+.affiliate-signup-btn{
+   background-color: $logo_green !important;
+  color:#fff !important;
+   &:hover{
+      background-color: $logo_orange !important;
+  }
+}
 .top-nav-btn{
   background-color: $logo_orange !important;
   padding:11px !important;
@@ -389,6 +403,15 @@
     opacity:.8;
   }
 }
+.bid_btn{
+  background-color: $logo_orange !important;
+  width:125px !important;
+  color:#fff !important;
+  &:hover{
+    opacity:.8;
+  }
+}
+
 .back_product{
   background-color: $logo_green !important;
   width:195px !important;
