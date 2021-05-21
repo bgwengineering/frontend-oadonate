@@ -121,7 +121,7 @@ export const renderField = ({
         errors.last_name = 'Required'
       }
       if (!values.street_address) {
-        errors.street_address = 'Required'
+        errors.address = 'Required'
       }
       if (!values.state_name) {
         errors.state_name = 'Required'

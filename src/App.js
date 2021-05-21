@@ -7,7 +7,7 @@ import MainApp from "./components/mainApp";
 import { hideMessage } from "store/actions/Common";
 import { fetchAllCampaign } from "store/actions/fund_donate/FundDonate";
 import { updateMarketCollections } from "store/actions/MarketPlace";
-import {ReactComponent as LoadingSpinner} from 'assets/images/spinner.svg'
+import {fetchShippingAddress} from 'store/actions/auth/Dashboard'
 import "./styles/style.js";
 
 
@@ -17,10 +17,11 @@ const App = () => {
   const dispatch = useDispatch();
   useEffect(() => {   
      document.title = 'Ogadonate | Home'  
-      dispatch(checkAuthenticated());
-      dispatch(load_user());
+     dispatch(checkAuthenticated());
+     dispatch(load_user());
       dispatch(fetchAllCampaign());
        dispatch(updateMarketCollections());
+       dispatch(fetchShippingAddress());
        setIsLoading(false);
   }, []);
 
