@@ -1,7 +1,7 @@
-import React, {useState } from "react";
-import { useSelector } from "react-redux";
+import React, {useState,useEffect } from "react";
+import {useSelector } from "react-redux";
 import PropTypes from "prop-types";
-import Shipping from '../../checkout/Shipping'
+import ShippingPrompt from './ShippingPrompt'
 import OrderPreview from '../../checkout/OrderPreview'
 import {fetchAddressBook, fetchShippingAddress} from 'store/actions/auth/Dashboard'
 import {placeOrder} from '../../../store/actions/cart/cart.actions'
@@ -10,9 +10,13 @@ import { withRouter } from "react-router-dom";
 import CheckLogin from '../../checkout/CheckLogin';
 
 
-const CheckoutForm = ({ currentUser, cartItems, }) => {
+const CheckoutForm = () => {
+  useEffect(() => {
+    document.title = 'Ogadonate | Checkout'
+  }, []);
   const reduxState = useSelector((state) => state.userTypeReducer);
   const id = reduxState.shippingAddress.map(_id=> _id.id);
+  const currentUser = useSelector((state) => state.authReducer.isAuthenticated);
   const [page, setPage] = useState(1);
 
   const nextPage = () => {
@@ -26,15 +30,18 @@ const CheckoutForm = ({ currentUser, cartItems, }) => {
     switch (page) {
       case 1:
         return (
-          <Shipping
-            nextPage={nextPage}
-            previousPage={previousPage}
-            id={id}
+           <ShippingPrompt
+          nextPage={nextPage}
+           previousPage={previousPage} 
+           id={id}
           />
         );  
       case 2:
         return (
-          <OrderPreview nextPage={nextPage} previousPage={previousPage} cartItems={cartItems} />
+          <OrderPreview 
+          nextPage={nextPage}
+           previousPage={previousPage} 
+          />
         );
       default:
         return;
@@ -51,6 +58,5 @@ const CheckoutForm = ({ currentUser, cartItems, }) => {
     </div>
   );
 };
-
 
 export default CheckoutForm;

@@ -29,10 +29,10 @@ const LoginForm = ({handleSubmit, submitting, pristine}) => {
         <form onSubmit={handleSubmit(onSubmit)}>
             <>
            <fieldset>
-            <Field component={renderField} label="Email" name='email' type='email'/> 
+            <Field component={renderField} label="Email" name='email' type='email' className="form-control form-control-alternative"/> 
             </fieldset>     
             <fieldset className='d-flex form-eye-field'>    
-            <Field type={isPasswordShown ? 'text' :'password'} name="password"  component={renderField} label='password'/>     
+            <Field type={isPasswordShown ? 'text' :'password'} name="password"  component={renderField} label='password' className="form-control form-control-alternative"/>     
              <span className='password-icon' onClick={handleShowPassword}><BiShow /></span>
              <span className='password-icon' onClick={handleShowPassword} style={{display:isPasswordShown ? 'none' : 'block' }}><BiHide /></span>
             </fieldset>

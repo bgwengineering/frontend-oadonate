@@ -4,7 +4,7 @@ import EditTabs from './EditTab'
 
 
 
-const EditProfile = () => {
+const Edit = () => {
     return (
         <form  className='profile-form-container mb-5'>
         <div className = 'profile-reg-heading text-white text-center'>
@@ -15,4 +15,4 @@ const EditProfile = () => {
     )
 }
 
-export default EditProfile;
+export default Edit;

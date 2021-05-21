@@ -6,7 +6,7 @@ const baseURL = 'https://ogadonate.herokuapp.com/api/';
 
 const axiosInstance = axios.create({
 	baseURL: baseURL,
-	timeout: 50000,
+	timeout: 5000,
   headers: {
         "Content-Type": "application/json",
         Accept: "application/json",

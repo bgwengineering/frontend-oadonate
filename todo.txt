@@ -1,2 +1,6 @@
 1. Style password reset
-2. submit and update billing and shipping  form
+2. submit and update shipping  form
+3. submit and update profile form
+4. restyle shipping and orderpreview(remove onfocus blue to green)
+5. change cartBasket to onhover show not onclick
+6. display firstname and lastname initials only (Henry.U)

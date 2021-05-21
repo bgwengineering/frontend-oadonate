@@ -23,7 +23,7 @@ import CheckoutPage from "./containers/pages/CheckoutPage";
 
 
 const MainApp = () => {
-
+ 
   return (
       <>
         <BrowserRouter>

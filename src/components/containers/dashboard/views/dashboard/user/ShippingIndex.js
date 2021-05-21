@@ -1,12 +1,12 @@
 import React from "react";
-import Shipping from "./Shipping";
+import { useSelector } from "react-redux";
+import NewShipping from "./NewShipping";
+import EditShipping from "./EditShipping";
 
 const ShippingForm = () => {
-  return (
-    <div>
-      <Shipping />
-    </div>
-  );
+  const reduxState = useSelector((state) => state.userTypeReducer);
+  const id = reduxState.shippingAddress.map((_id) => _id.id);
+  return <>{id ? <EditShipping id={id} /> : <NewShipping/>}</>;
 };
 
 export default ShippingForm;

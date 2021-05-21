@@ -2,57 +2,58 @@ import React, { useEffect, useState } from "react";
 import Snackbar from "@material-ui/core/Snackbar";
 import { Alert } from "@material-ui/lab";
 import { useSelector, useDispatch } from "react-redux";
-import { load_user, checkAuthenticated,} from "./store/actions/auth/Auth";
+import { load_user, checkAuthenticated } from "./store/actions/auth/Auth";
 import MainApp from "./components/mainApp";
 import { hideMessage } from "store/actions/Common";
 import { fetchAllCampaign } from "store/actions/fund_donate/FundDonate";
 import { updateMarketCollections } from "store/actions/MarketPlace";
-import {fetchShippingAddress} from 'store/actions/auth/Dashboard'
+import {
+  fetchPersonalProfile,
+  fetchShippingAddress,
+  fetchUserDonationsReceived,
+} from "store/actions/auth/Dashboard";
 import "./styles/style.js";
 
-
-
 const App = () => {
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true);
   const dispatch = useDispatch();
-  useEffect(() => {   
-     document.title = 'Ogadonate | Home'  
-     dispatch(checkAuthenticated());
-     dispatch(load_user());
-      dispatch(fetchAllCampaign());
-       dispatch(updateMarketCollections());
-       dispatch(fetchShippingAddress());
-       setIsLoading(false);
+  useEffect(() => {
+    document.title = "Ogadonate | Home";
+    dispatch(checkAuthenticated());
+    dispatch(load_user());
+    dispatch(fetchAllCampaign());
+    dispatch(updateMarketCollections());
+    dispatch(fetchPersonalProfile());
+    dispatch(fetchShippingAddress());
+    dispatch(fetchUserDonationsReceived());
+    setIsLoading(false);
   }, []);
-
-
 
   // check auth state
   const commonState = useSelector((state) => state.commonReducer);
-  const { showMessage, Message,error } = commonState;
+  const { showMessage, Message, error } = commonState;
 
   // alert func
   const AlertSnackBar = (props) => {
     return <Alert elevation={6} variant="filled" {...props} />;
   };
   const handleClose = () => {
-    dispatch(hideMessage())
+    dispatch(hideMessage());
   };
   return (
     <>
-      {isLoading ? null :<MainApp/>}
-      
-      {showMessage && <Snackbar
-        open={showMessage}
-        autoHideDuration={4000}
-        onClose={handleClose}
-        anchorOrigin={{ vertical: "top", horizontal: "right" }}
-      >
-        <AlertSnackBar severity={error ? "error" : "success"}>
-          {Message}
-        </AlertSnackBar>
-      </Snackbar>}
-      
+      {isLoading ? null : <MainApp />}
+
+      {showMessage && (
+        <Snackbar
+          open={showMessage}
+          autoHideDuration={4000}
+          onClose={handleClose}
+          anchorOrigin={{ vertical: "top", horizontal: "right" }}
+        >
+          <AlertSnackBar severity={error ? "error" : "success"}>{Message}</AlertSnackBar>
+        </Snackbar>
+      )}
     </>
   );
 };
