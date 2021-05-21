@@ -26,7 +26,7 @@ const Profile = () => {
                   <div className="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
                     <div className="d-flex justify-content-between">
                       <Link to="/dashboard/profile/edit" className="btn btn-sm edit-btn  mr-4">
-                        Edit profile
+                        Change Password
                       </Link>
                       <a href="/#" className="btn btn-sm btn-default float-right">
                         Message
@@ -56,18 +56,13 @@ const Profile = () => {
           <div className="col-xl-8 order-xl-1">
             <div className="card shadow">
               <div className="card-header bg-white border-0">
-                <div className="row align-items-center">
-                  <div className="col-4">
+                <div className="row">
+                  <div className="col-8">
                     <h3 className="all-heading mb-0">My account</h3>
                   </div>
-                  <div className="col-4">
+                  <div className="col-3">
                     <Link to="/dashboard/profile/shipping" className="main-link">
                       <Button className="shipping-btn">Add Shipping Address</Button>
-                    </Link>
-                  </div>
-                  <div className="col-4">
-                    <Link to="/dashboard/profile/billing" className="main-link">
-                      <Button className="shipping-btn">Add Billing Address</Button>
                     </Link>
                   </div>
                 </div>
