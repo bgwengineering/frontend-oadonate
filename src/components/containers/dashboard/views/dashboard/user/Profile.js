@@ -4,12 +4,14 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import ProfilePrompt from "./ProfilePrompt";
 import { load_user } from "store/actions/auth/Auth";
+import { fetchPersonalProfile } from "store/actions/auth/Dashboard";
 
 
 const Profile = () => {
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(load_user());
+    dispatch(fetchPersonalProfile());
   }, [])
   const profileState = useSelector((state) => state.userTypeReducer.profile_user);
   // const { gender } = profileState;

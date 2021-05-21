@@ -7,6 +7,7 @@ import { updateShippingAddress, singleShippingAddress } from "store/actions/auth
 import { validateShipping, checkoutRenderField } from "util/RenderValidate";
 
 const EditShipping = ({ nextPage, previousPage, handleSubmit, id }) => {
+  console.log(id)
   const dispatch = useDispatch();
   useEffect(() => {
     // document.title = 'Ogadonate | Checkout'

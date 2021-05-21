@@ -76,7 +76,7 @@ export const singlePersonalProfile = (id) => async (dispatch, getState) => {
     const res = await axiosInstance.get(`/accounts/profile/personal/${id}`, tokenConfig(getState));
     dispatch({
       type: actionTypes.FETCH_PERSONAL_PROFILE_SUCCESS,
-      payload: res.data,
+      payload: {id, res},
     });
   } catch (error) {
     dispatch({

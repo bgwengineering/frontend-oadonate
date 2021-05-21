@@ -16,6 +16,7 @@ import "./styles/style.js";
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const isAuthenticated = useSelector(state=>state.authReducer.isAuthenticated)
   const dispatch = useDispatch();
   useEffect(() => {
     document.title = "Ogadonate | Home";
@@ -23,11 +24,13 @@ const App = () => {
     dispatch(load_user());
     dispatch(fetchAllCampaign());
     dispatch(updateMarketCollections());
-    dispatch(fetchPersonalProfile());
-    dispatch(fetchShippingAddress());
-    dispatch(fetchUserDonationsReceived());
+    if(isAuthenticated){
+      dispatch(fetchPersonalProfile());
+      dispatch(fetchShippingAddress());
+      dispatch(fetchUserDonationsReceived());
+    }
     setIsLoading(false);
-  }, []);
+  }, [isAuthenticated]);
 
   // check auth state
   const commonState = useSelector((state) => state.commonReducer);
