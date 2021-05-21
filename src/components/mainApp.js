@@ -22,6 +22,7 @@ import MarketIndex from './containers/subpages/buytosupport/MarketIndex';
 import CheckoutPage from "./containers/pages/CheckoutPage";
 import Affiliate from './containers/pages/Affiliate/Affiliate';
 import SignupAffiliate from './containers/pages/Affiliate/SignupAffiliate';
+import CorporateAuction from './containers/pages/CorporateAuction/CorporateAuction';
 
 
 const MainApp = () => {
@@ -49,8 +50,8 @@ const MainApp = () => {
         <Route path='/payment-success/' component={PaymentSuccess} />
         <Route path='/payment-cancel/' component={PaymentCancel} />
         <Route path='/affiliate' component={Affiliate} />
-        <Route path='/affiliate-signup' component={SignupAffiliate} />
-
+            <Route path='/affiliate-signup' component={SignupAffiliate} />
+            <Route path='/corporate-auction' component={CorporateAuction} />
         <Route
           exact
           path="/password/reset/confirm/:uid/:token"

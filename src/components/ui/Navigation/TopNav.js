@@ -21,7 +21,7 @@ const TopNav = () => {
           {/* coorporate auction */}
           <li className="top-nav-item">
             <Button variant="contained" className="top-nav-btn mr-3">
-              <NavLink to="" className="button-top-navigation-link text-white">
+              <NavLink to="/corporate-auction" className="button-top-navigation-link text-white">
                 Corporate Auction
               </NavLink>
             </Button>
