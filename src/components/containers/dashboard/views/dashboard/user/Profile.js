@@ -1,10 +1,16 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import ProfilePrompt from "./ProfilePrompt";
+import { load_user } from "store/actions/auth/Auth";
+
 
 const Profile = () => {
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(load_user());
+  }, [])
   const profileState = useSelector((state) => state.userTypeReducer.profile_user);
   // const { gender } = profileState;
   const userState= useSelector(state=> state.authReducer.user);

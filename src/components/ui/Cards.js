@@ -115,7 +115,7 @@ const Cards = () => {
             );
           })
         : <div className='spinner-container mx-auto'>
-            <LoadingSpinner className='spinner'/>
+            <p>No Fund Available. Create a new Fund</p>
         </div>}
     </>
   );
