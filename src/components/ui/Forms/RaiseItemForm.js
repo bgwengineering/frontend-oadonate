@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {Field, reduxForm, stopSubmit, reset} from "redux-form"
 import axiosInstance from "util/api";
 import { setLoading,offLoading } from 'store/actions/Common';
 import {
@@ -12,51 +13,43 @@ import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
 import Button from "@material-ui/core/Button";
 
-const RaiseItem = ({ setCurrentOpenForm, setIsRaiseCardButtonsOpen }) => {
+const RaiseItem = ({ setCurrentOpenForm, setIsRaiseCardButtonsOpen,mime, handleSubmit,submitting, pristine }) => {
   const dispatch = useDispatch();
-
-  const [postData, updateFormData] = useState({
-    fund_category: "",
-    fund_title: "",
-    fund_endAt: "",
-    fund_currency_type: "",
-    fund_purpose: "",
-    fund_item_desc: "",
-    fund_item_value: ""
-  });
-  const [postImage, setPostImage] = useState(null);
-
-  const handleChange = e => {
-    if ([e.target.name] == "fund_img") {
-      setPostImage({
-        fund_img: e.target.files
-      });
-      console.log(e.target.files);
-    }
-    if ([e.target.name] == "fund_title") {
-      updateFormData({
-        ...postData,
-        [e.target.name]: e.target.value.trim()
-      });
-    } else {
-      updateFormData({
-        ...postData,
-        [e.target.name]: e.target.value.trim()
-      });
-    }
+  const renderInput = ({ input, type, meta }) => {
+    return (
+      <div>
+        <input
+          name={input.name}
+          type={type}
+          accept={mime}
+          onChange={(event) => handleChange(event, input)}
+        />
+        {meta && meta.invalid && meta.error && (
+          <p style={{ color: "red", fontSize: "10px" }}>{meta.error}</p>
+        )}
+      </div>
+    );
   };
+  const handleChange = (event, input) => {
+    event.preventDefault();
+    let imageFile = event.target.files[0];
+    if (imageFile) {
+      const localImageUrl = URL.createObjectURL(imageFile);
+      const imageObject = new window.Image();
 
-  const handleSubmit = e => {
-    e.preventDefault();
+
+  
+
+  const onSubmit = (formValues) => {
     let formData = new FormData();
-    formData.append("fund_title", postData.fund_title);
-    formData.append("fund_category", postData.fund_category);
-    formData.append("fund_currency_type", postData.fund_currency_type);
-    formData.append("fund_endAt", postData.fund_endAt);
-    formData.append("fund_purpose", postData.fund_purpose);
-    formData.append("fund_item_value", postData.fund_item_value);
-    formData.append("fund_item_desc", postData.fund_item_desc);
-    formData.append("fund_img", postImage.fund_img[0]);
+    formData.append("fund_title", formValues.fund_title);
+    formData.append("fund_category", formValues.fund_category);
+    formData.append("fund_currency_type", formValues.fund_currency_type);
+    formData.append("fund_endAt", formValues.fund_endAt);
+    formData.append("fund_purpose", formValues.fund_purpose);
+    formData.append("fund_item_value", formValues.fund_item_value);
+    formData.append("fund_item_desc", formValues.fund_item_desc);
+    formData.append("fund_img", formValues.fund_img);
 
     const config = {
       headers: {
@@ -67,7 +60,7 @@ const RaiseItem = ({ setCurrentOpenForm, setIsRaiseCardButtonsOpen }) => {
     };
     dispatch(setLoading());
     axiosInstance
-      .post(`campaign/create/fundraise-item`, formData, config)
+      .post('campaign/create/fundraise-item', formData, config)
       .then(res => {
         dispatch({ type: SHOW_SUCCESS_MESSAGE, payload: "Campaign Created!" });
       })
@@ -140,22 +133,22 @@ const RaiseItem = ({ setCurrentOpenForm, setIsRaiseCardButtonsOpen }) => {
     return (
       <fieldset>
         <h2 className="fs-title">Fundraise Title</h2>
-        <input
+        <Field
           type="text"
           className="input-text"
           placeholder="what should your cause be called?"
-          onChange={handleChange}
+          component="input"
           name="fund_title"
         />
         <div className="d-flex mt-3">
           <h2 className="fs-title mr-4">Select fund raise categories</h2>
-          <select onChange={handleChange} name="fund_category" id="categories">
-            <option value="">select</option>
+          <Field component="select" name="fund_category" id="categories">
+            <option value="" disabled>select option</option>
             <option value="Personal_need">Personal</option>
             <option value="Community">Community</option>
             <option value="Start_up">Start up</option>
             <option value="NGO">NGO</option>
-          </select>
+          </Field>
         </div>
       </fieldset>
     );
@@ -167,32 +160,32 @@ const RaiseItem = ({ setCurrentOpenForm, setIsRaiseCardButtonsOpen }) => {
         <h2 className="fs-title">
           <i>item description</i>
         </h2>
-        <textarea
+        <Field
           type="text"
           className="input-textarea"
           name="fund_item_desc"
-          onChange={handleChange}
+          component="textarea"
           placeholder="breifly describe the item you need"
-        ></textarea>
+        />
 
         <div className="d-flex mt-3">
           <h2 className="fs-title mr-3">
             <i>Select currency type</i>
           </h2>
-          <select onChange={handleChange} name="fund_currency_type">
-            <option value="">select</option>
+          <Field component="select" name="fund_currency_type">
+            <option value="" disabled>select option</option>
             <option value="$">$</option>
             <option value="₦">₦</option>
-          </select>
+          </Field>
         </div>
         <h2 className="fs-title mt-4">
           <i>item cash value</i>
         </h2>
-        <input
+        <Field
           id="amount"
           name="fund_item_value"
           required="required"
-          onChange={handleChange}
+          component="input"
           placeholder="what's the value of the item when converted to cash"
           data-msg-required="Please enter a valid number"
           type="number"
@@ -212,31 +205,30 @@ const RaiseItem = ({ setCurrentOpenForm, setIsRaiseCardButtonsOpen }) => {
         <label>Choose your image file</label>
 
         <div>
-          <input
+          <Field
             name="fund_img"
             type="file"
-            accept="image/*"
-            onChange={handleChange}
+            component={renderInput}
             className="input-file"
           />
         </div>
 
         <h2 className="fs-title mt-4">Campaign end date</h2>
-        <input
+        <Field
           type="date"
           name="fund_endAt"
-          onChange={handleChange}
+          component="input"
           className="input-date"
         />
         <h2 className="fs-title mt-4">Tell your story</h2>
-        <textarea
+        <Field
           name="fund_purpose"
           className="input-textarea"
           col="50"
           row="50"
           placeholder="Briefly tell a story why you need the item"
-          onChange={handleChange}
-        ></textarea>
+          component="textarea"
+        />
       </fieldset>
     );
   };
@@ -254,7 +246,7 @@ const RaiseItem = ({ setCurrentOpenForm, setIsRaiseCardButtonsOpen }) => {
 
   return (
     <>
-      <form onSubmit={handleSubmit} className="fundforms_container">
+      <form onSubmit={handleSubmit(onSubmit)} className="fundforms_container">
         <div className="w-80">
           <Stepper
             activeStep={activeStep}
@@ -325,6 +317,7 @@ const RaiseItem = ({ setCurrentOpenForm, setIsRaiseCardButtonsOpen }) => {
                   type="submit"
                   name="submit"
                   className="MuiButton-containedPrimary"
+                  disabled={pristine || submitting}
                   onClick={() => {
                     setTimeout(() => {
                       setIsRaiseCardButtonsOpen(false);
@@ -343,4 +336,6 @@ const RaiseItem = ({ setCurrentOpenForm, setIsRaiseCardButtonsOpen }) => {
   );
 };
 
-export default RaiseItem;
+export default reduxForm({
+  form:"itemFund"
+})(RaiseItem);

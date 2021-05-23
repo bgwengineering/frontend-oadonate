@@ -1,18 +1,18 @@
-import React, {useState} from "react";
-import {withRouter, NavLink } from "react-router-dom";
+import React, { useState } from "react";
+import { withRouter, NavLink } from "react-router-dom";
 import Logo from "assets/images/logo.jpeg";
 
 const CollapsedNavbar = () => {
-  const [showUpArrow, setShowUpArrow] = useState(false);
+    const [showUpArrow, setShowUpArrow] = useState(false);
 
-  const arrowUp = () => {
-    setShowUpArrow(!showUpArrow);
-  }
+    const arrowUp = () => {
+        setShowUpArrow(!showUpArrow);
+    }
 
 
-  return (
-    <>
-      <nav className="navbar__donate toolbar">
+    return ( <
+        >
+        <nav className="navbar__donate toolbar">
         {/* nav-center */}
         <div className="navbar-center-container p-t-20">
           <ul className="navbar-center">
@@ -40,9 +40,9 @@ const CollapsedNavbar = () => {
           <img src={Logo} alt="log" className="logo" style={{width:'150px'}} />
         </NavLink>
         </div>
-      </nav>
-    </>
-  );
+      </nav> <
+        />
+    );
 };
 
 export default CollapsedNavbar;

@@ -3,7 +3,7 @@ import ChangePasswordForm from '../../../../../ui/Forms/ChangePasswordForm'
 
 
 
-const Edit = () => {
+const ChangePassword = () => {
     return (
         <form  className='profile-form-container mb-5'>
         <div className = 'profile-reg-heading text-white text-center'>
@@ -14,4 +14,4 @@ const Edit = () => {
     )
 }
 
-export default Edit;
+export default ChangePassword;

@@ -18,39 +18,39 @@ import { updateMarketCollections } from "store/actions/MarketPlace";
 
 
 const Navbar = ({ menuOpen }) => {
-  const authState = useSelector(state => state.authReducer);
-  const { isAuthenticated } = authState;
+    const authState = useSelector(state => state.authReducer);
+    const { isAuthenticated } = authState;
 
-  const hiddenState = useSelector(state => state.cartReducer);
-  const { hidden } = hiddenState;
+    const hiddenState = useSelector(state => state.cartReducer);
+    const { hidden } = hiddenState;
 
-  const cartState = useSelector(state => state.cartReducer);
-  const { cartItems } = cartState;
+    const cartState = useSelector(state => state.cartReducer);
+    const { cartItems } = cartState;
 
-  const itemCount = cartItems.reduce(
-    (accumulatedQuantity, cartItem) => accumulatedQuantity + cartItem.quantity,
-    0
-  );
+    const itemCount = cartItems.reduce(
+        (accumulatedQuantity, cartItem) => accumulatedQuantity + cartItem.quantity,
+        0
+    );
 
-  const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-  const refreshState = () => {
-    dispatch(fetchAllCampaign());
-    dispatch(updateMarketCollections());
-  }
+    const refreshState = () => {
+        dispatch(fetchAllCampaign());
+        dispatch(updateMarketCollections());
+    }
 
-  const [showUpArrow, setShowUpArrow] = useState({
-    raiseFundsArrow: false,
-    donateArrow: false,
-    howWorksArrow: false
-  });
+    const [showUpArrow, setShowUpArrow] = useState({
+        raiseFundsArrow: false,
+        donateArrow: false,
+        howWorksArrow: false
+    });
 
-  const { raiseFundsArrow, donateArrow, howWorksArrow } = showUpArrow;
+    const { raiseFundsArrow, donateArrow, howWorksArrow } = showUpArrow;
 
-  return (
-    <>
-      {/* nav */}
-      <nav className="navbar__donate pt-2">
+    return ( <
+        >
+        { /* nav */ }
+        <nav className="navbar__donate pt-2">
         {/* nav-center */}
         <div className="navbar-left-container">
           <MenuToggle isMenuClicked={menuOpen} />
@@ -368,9 +368,9 @@ const Navbar = ({ menuOpen }) => {
             {hidden ? null : <CartDropdown />}
           </ul>
         </div>
-      </nav>
-    </>
-  );
+      </nav> <
+        />
+    );
 };
 
 export default Navbar;

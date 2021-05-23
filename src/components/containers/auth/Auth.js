@@ -1,49 +1,49 @@
-import React, {useEffect } from "react";
+import React, { useEffect } from "react";
 import { get } from "axios";
 import { FaGoogle, FaTwitter, FaFacebook, FaLinkedinIn } from "react-icons/fa";
 import SignupForm from './SignupForm';
 import LoginForm from './LoginForm';
-import {NavLink} from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 const AuthLayout = () => {
-  useEffect(() => {
-    const signUpButton = document.querySelector("#signUp");
-    const container = document.querySelector("#auth-form-container");
-    const signInButton = document.querySelector("#signIn");
-    const signinSmscr = document.querySelector("#signinHidden");
-   
-    
-    signUpButton.addEventListener("click", () => {
-      container.classList.add("right-panel-active"); 
-    });
-    signinSmscr.addEventListener("click", () => {
-      container.classList.remove("right-panel-active"); 
-    });
+    useEffect(() => {
+        const signUpButton = document.querySelector("#signUp");
+        const container = document.querySelector("#auth-form-container");
+        const signInButton = document.querySelector("#signIn");
+        const signinSmscr = document.querySelector("#signinHidden");
 
-    signInButton.addEventListener("click", () => {
-      container.classList.remove("right-panel-active");
-    });
-  })
 
-  const continueWithGoogle = async () => {
-    try {
-      const res = await get(
-        "https://ogadonate-api.herokuapp.com/api/auth/o/google-oauth2/?redirect_uri=http://localhost:3000/google"
-      );
+        signUpButton.addEventListener("click", () => {
+            container.classList.add("right-panel-active");
+        });
+        signinSmscr.addEventListener("click", () => {
+            container.classList.remove("right-panel-active");
+        });
 
-      window.location.replace(res.data.authorization_url);
-    } catch (err) {}
-  };
-  
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
-  return (
-    <>    
-      <div className="auth-container" id="auth-form-container">
+        signInButton.addEventListener("click", () => {
+            container.classList.remove("right-panel-active");
+        });
+    })
+
+    const continueWithGoogle = async () => {
+        try {
+            const res = await get(
+                "https://ogadonate-api.herokuapp.com/api/auth/o/google-oauth2/?redirect_uri=http://localhost:3000/google"
+            );
+
+            window.location.replace(res.data.authorization_url);
+        } catch (err) {}
+    };
+
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
+    };
+    return ( <
+        >
+        <div className="auth-container" id="auth-form-container">
             {/* sign up */}
          <div id="lay-hidden">
           <h1>Welcome Back!</h1>
@@ -124,9 +124,9 @@ const AuthLayout = () => {
             </div>
           </div>
         </div>
-      </div>
-    </>
-  );
+      </div> <
+        />
+    );
 };
 
 

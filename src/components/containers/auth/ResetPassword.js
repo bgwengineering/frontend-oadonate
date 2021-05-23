@@ -1,18 +1,18 @@
-import React, {useState} from 'react'
-import {Field, reduxForm} from 'redux-form'
-import {useDispatch, useSelector} from 'react-redux'
-import {reset_password} from "store/actions/auth/Auth"
-import {Redirect} from 'react-router-dom'
+import React, { useState } from 'react'
+import { Field, reduxForm } from 'redux-form'
+import { useDispatch, useSelector } from 'react-redux'
+import { reset_password } from "store/actions/auth/Auth"
+import { Redirect } from 'react-router-dom'
 import { renderField, validate } from 'util/RenderValidate';
-import {ReactComponent as LoaderSpinn} from 'assets/images/244.svg'
+import { ReactComponent as LoaderSpinn } from 'assets/images/244.svg'
 
 
 
-const ResetPassword = ({handleSubmit, submitting, pristine}) => {
-     const dispatch = useDispatch();
-   
-     const isLoading = useSelector(state=>state.authReducer.loading);
-     const [sent, setSent] = useState(false);
+const ResetPassword = ({ handleSubmit, submitting, pristine }) => {
+    const dispatch = useDispatch();
+
+    const isLoading = useSelector(state => state.authReducer.loading);
+    const [sent, setSent] = useState(false);
 
     const onSubmit = formValues => {
         dispatch(reset_password(formValues));
@@ -21,7 +21,7 @@ const ResetPassword = ({handleSubmit, submitting, pristine}) => {
         }, 3000);
     };
     if (sent) {
-            return <Redirect to='/' />
+        return <Redirect to='/' />
     };
 
     return (
@@ -44,7 +44,6 @@ const ResetPassword = ({handleSubmit, submitting, pristine}) => {
 }
 
 export default reduxForm({
-    form:'resetForm',
+    form: 'resetForm',
     validate,
 })(ResetPassword)
-
