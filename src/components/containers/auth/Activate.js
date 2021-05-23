@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { verify } from 'store/actions/auth/Auth';
-import {Button} from "@material-ui/core"
+import { Button } from "@material-ui/core"
 import CollapsedNavbar from 'components/ui/Navigation/CollapsedNavbar';
 
 
@@ -12,22 +12,23 @@ const Activate = ({ verify, match }) => {
     const verify_account = e => {
         const uid = match.params.uid;
         const token = match.params.token;
-        const verifyValues = {uid, token}
+        const verifyValues = { uid, token }
         verify(verifyValues);
-        setTimeout(()=>{
+        setTimeout(() => {
             setVerified(true);
-    }, 5000)}
-  
-   
-   if (verified) {
+        }, 5000)
+    }
+
+
+    if (verified) {
         return <Redirect to='/auth'/>
     }
 
-    return (
-        <>
-        <CollapsedNavbar/>
-        <div className='container verify-container'>
-            <div 
+    return ( <
+        >
+        <CollapsedNavbar/> <
+        div className = 'container verify-container' >
+        <div 
                 className='d-flex flex-column justify-content-center align-items-center'
                 style={{ marginTop: '100px' }}
             >
@@ -40,9 +41,8 @@ const Activate = ({ verify, match }) => {
                 >
                     Verify
                 </Button>
-            </div>
-        </div>
-        </>
+            </div> <
+        /div> < / >
     );
 };
 

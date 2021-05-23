@@ -1,8 +1,7 @@
 import * as actionTypes from "store/actions/ActionTypes";
 
 const initialState = {
-  fund: null,
-  loading: false,
+  fund: [],
   allCampaign: [],
   singleCampaign:[],
   singleCampaignItem:[],
@@ -21,23 +20,17 @@ const fundDonate = (state = initialState, action) => {
   const { type, payload } = action;
 
   switch (type) {
-    case actionTypes.LOADING:
-      return{...state, loading:true}
     case actionTypes.GET_ALL_CAMPAIGN_SUCCESS:
       return{...state, allCampaign:payload}
     case actionTypes.CREATE_FUND_CASH_SUCCESS:
       return {
         ...state,
         fund: payload,
-        loading: false,
-        submitted:true,
       };
     case actionTypes.CREATE_FUND_ITEM_SUCCESS:
       return {
         ...state,
         fund: payload,
-        loading: false,
-        submitted:true,
       };
     case actionTypes.CREATE_CASH_DONATION_OGAFUND_SUCCESS:
       return {

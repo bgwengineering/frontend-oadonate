@@ -13,12 +13,12 @@ const GetUserType = () => {
                     <div className='user-type-row'>    
                     <Link to='/dashboard/profile' className='main-link'>
                       <Button className="get-userType-button" id="personal">
-                          Personal
+                        New Profile
                        </Button>
                     </Link>
-                      <Link to='/dashboard/profile' className='main-link'>
+                      <Link to='/corporate-auction' className='main-link'>
                       <Button className="get-userType-button  ml-4" id="company">
-                        Corporate
+                        Corporate Auction
                       </Button> 
                     </Link>
                      </div>

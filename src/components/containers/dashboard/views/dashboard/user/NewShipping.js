@@ -6,13 +6,13 @@ import { createShippingAddress } from "store/actions/auth/Dashboard";
 import { validateShipping } from "util/RenderValidate";
 
 const Shipping = ({ handleSubmit, pristine, submitting }) => {
-  const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-  const createShipping = (formValues) => {
-    dispatch(createShippingAddress(formValues));
-  };
-  return (
-    <div className="container-fluid mt--7">
+    const createShipping = (formValues) => {
+        dispatch(createShippingAddress(formValues));
+    };
+    return (
+        <div className="container-fluid mt--7">
       <div className="row">
         <div className="col-xl-12 order-xl-1">
           <div className="card shadow">
@@ -141,7 +141,7 @@ const Shipping = ({ handleSubmit, pristine, submitting }) => {
         </div>
       </div>
     </div>
-  );
+    );
 };
 
 export default reduxForm({ form: "shipping", validateShipping })(Shipping);

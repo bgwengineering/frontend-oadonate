@@ -1,20 +1,20 @@
-import React, {useState} from 'react'
-import {Field, reduxForm} from 'redux-form'
-import {useDispatch} from 'react-redux'
-import {signup} from "store/actions/auth/Auth"
+import React, { useState } from 'react'
+import { Field, reduxForm } from 'redux-form'
+import { useDispatch } from 'react-redux'
+import { signup } from "store/actions/auth/Auth"
 import { renderField, validate } from 'util/RenderValidate';
-import {BiShow} from 'react-icons/bi'
-import {BiHide} from 'react-icons/bi'
+import { BiShow } from 'react-icons/bi'
+import { BiHide } from 'react-icons/bi'
 
 
 
-const SignupForm = ({handleSubmit, submitting, pristine}) => {
+const SignupForm = ({ handleSubmit, submitting, pristine }) => {
     const [isPasswordShown, setIsPasswordShown] = useState(false)
     const handleShowPassword = () => {
         setIsPasswordShown(!isPasswordShown)
     }
 
-   const dispatch = useDispatch()
+    const dispatch = useDispatch()
     const submit = values => {
         dispatch(signup(values))
     }
@@ -48,6 +48,6 @@ const SignupForm = ({handleSubmit, submitting, pristine}) => {
 }
 
 export default reduxForm({
-  form:'SignupForm',
-  validate,
+    form: 'SignupForm',
+    validate,
 })(SignupForm)

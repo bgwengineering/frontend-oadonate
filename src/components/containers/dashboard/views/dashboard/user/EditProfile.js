@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Field, reduxForm, stopSubmit, reset } from "redux-form";
 import { connect, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
@@ -6,67 +6,67 @@ import { Button } from "@material-ui/core";
 import axiosInstance from "util/api";
 import * as actionTypes from "store/actions/ActionTypes";
 import { singlePersonalProfile } from "store/actions/auth/Dashboard";
-import { setLoading,offLoading } from "store/actions/Common";
+import { setLoading, offLoading } from "store/actions/Common";
 import { renderField } from "util/RenderValidate";
 
 const EditProfile = ({ handleSubmit, pristine, submitting, history, profileId }) => {
-  const [submit, setSubmit] = useState(false);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    document.title = "Ogadonate | Profile";
-    dispatch(singlePersonalProfile(profileId));
-  }, []);
-  const onFormSubmit = (formValues) => {
-    let formData = new FormData();
-    formData.append("address", formValues.address);
-    formData.append("city", formValues.city);
-    formData.append("state", formValues.state);
-    formData.append("country", formValues.country);
-    formData.append("phone", formValues.phone);
-    formData.append("gender", formValues.gender);
-    formData.append("about_me", formValues.about_me);
-    formData.append("contact_method", formValues.contact_method);
-    const config = {
-      headers: {
-        "content-type": "multipart/form-data",
-        Authorization: `JWT ${localStorage.getItem("access")}`,
-      },
-    };
-    const url = `accounts/profile/personal/${profileId}`;
-    dispatch(setLoading());
-    axiosInstance
-      .patch(url, formData, config)
-      .then(function (response) {
-        dispatch({
-          type: actionTypes.UPDATE_PERSONAL_PROFILE_SUCCESS,
-          payload: response.data,
-        });
-        dispatch(stopSubmit("editpersonalForm"));
-        dispatch(reset("editpersonalForm"));
-        dispatch(offLoading());
-        dispatch({ type: actionTypes.SHOW_SUCCESS_MESSAGE, payload: "Personal Profile Updated" });
-        setTimeout(()=>{
-          setSubmit(true)
-        },2000)
-      })
-      .catch(function (error) {
-        console.log(error.response);
-        dispatch({
-          type: actionTypes.UPDATE_PERSONAL_PROFILE_FAIL,
-        });
+    const [submit, setSubmit] = useState(false);
+    const dispatch = useDispatch();
+    useEffect(() => {
+        document.title = "Ogadonate | Profile";
+        dispatch(singlePersonalProfile(profileId));
+    }, []);
+    const onFormSubmit = (formValues) => {
+        let formData = new FormData();
+        formData.append("address", formValues.address);
+        formData.append("city", formValues.city);
+        formData.append("state", formValues.state);
+        formData.append("country", formValues.country);
+        formData.append("phone", formValues.phone);
+        formData.append("gender", formValues.gender);
+        formData.append("about_me", formValues.about_me);
+        formData.append("contact_method", formValues.contact_method);
+        const config = {
+            headers: {
+                "content-type": "multipart/form-data",
+                Authorization: `JWT ${localStorage.getItem("access")}`,
+            },
+        };
+        const url = `accounts/profile/personal/${profileId}`;
         dispatch(setLoading());
-        dispatch(stopSubmit("editpersonalForm"));
-        dispatch(reset("editpersonalForm"));
-        dispatch(offLoading());
-        dispatch({ type: actionTypes.SHOW_ERROR_MESSAGE, payload: error.response.message });
-      });
-  };
-if(submit){
-    history.push("/dashboard")
-}
-  return (
-    <>
-      <form onSubmit={handleSubmit(onFormSubmit)}>
+        axiosInstance
+            .patch(url, formData, config)
+            .then(function(response) {
+                dispatch({
+                    type: actionTypes.UPDATE_PERSONAL_PROFILE_SUCCESS,
+                    payload: response.data,
+                });
+                dispatch(stopSubmit("editpersonalForm"));
+                dispatch(reset("editpersonalForm"));
+                dispatch(offLoading());
+                dispatch({ type: actionTypes.SHOW_SUCCESS_MESSAGE, payload: "Personal Profile Updated" });
+                setTimeout(() => {
+                    setSubmit(true)
+                }, 2000)
+            })
+            .catch(function(error) {
+                console.log(error.response);
+                dispatch({
+                    type: actionTypes.UPDATE_PERSONAL_PROFILE_FAIL,
+                });
+                dispatch(setLoading());
+                dispatch(stopSubmit("editpersonalForm"));
+                dispatch(reset("editpersonalForm"));
+                dispatch(offLoading());
+                dispatch({ type: actionTypes.SHOW_ERROR_MESSAGE, payload: error.response.message });
+            });
+    };
+    if (submit) {
+        history.push("/dashboard")
+    }
+    return ( 
+      <>
+        <form onSubmit={handleSubmit(onFormSubmit)}>
         <div className="pl-lg-4">
           <div className="row">
             <div className="col-md-12">
@@ -198,8 +198,7 @@ if(submit){
           <div className="form-group focused">
             <label>About Me</label>
             <Field
-              component="input"
-              type="textarea"
+              component="textarea"
               rows="4"
               name="about_me"
               className="form-control form-control-alternative about_textarea"
@@ -222,17 +221,18 @@ if(submit){
             </Button>
           </div>
         </div>
-      </form>
-    </>
-  );
+      </form> 
+      </>
+    );
 };
+
 function mapStateToProps(state) {
-  const { singleProfile } = state.userTypeReducer;
-  return {
-    initialValues: singleProfile,
-  };
+    const { singleProfile } = state.userTypeReducer;
+    return {
+        initialValues: singleProfile,
+    };
 }
 
 export default connect(mapStateToProps, { singlePersonalProfile })(
-  reduxForm({ form: "editpersonalForm", enableReinitialize: true })(EditProfile)
+    reduxForm({ form: "editpersonalForm", enableReinitialize: true })(EditProfile)
 );

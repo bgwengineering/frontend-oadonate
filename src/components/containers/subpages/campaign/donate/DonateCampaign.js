@@ -6,7 +6,7 @@ import DonateCashForm from "components/ui/Forms/DonateCashForm";
 import DonateItemForm from "components/ui/Forms/DonateItemForm";
 import DonatePrompt from "./DonatePrompt";
 import { fetchSingleCampaign } from "store/actions/fund_donate/FundDonate";
-import { ReactComponent as LoaderSpinn } from "assets/images/244.svg";
+
 
 const DonateCampaign = ({ match }) => {
   const dispatch = useDispatch();
@@ -16,7 +16,6 @@ const DonateCampaign = ({ match }) => {
   }, []);
 
   const isAuthenticated = useSelector((state) => state.authReducer.isAuthenticated);
-  const isLoading = useSelector((state) => state.fundDonateReducer.loading);
 
   const singleCampaign = useSelector((state) => state.fundDonateReducer.singleCampaign);
 
@@ -32,15 +31,6 @@ const DonateCampaign = ({ match }) => {
 
   return (
     <>
-      {isLoading ? (
-        <div className="d-flex justify-content-center">
-          <LoaderSpinn />
-          <LoaderSpinn />
-          <LoaderSpinn />
-          <LoaderSpinn />
-          <LoaderSpinn />
-        </div>
-      ) : null}
       <div className="container-fluid">
         <div className="row">
           <div className="col-md-6 col-lg-6 mt-5">

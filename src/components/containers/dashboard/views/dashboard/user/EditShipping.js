@@ -1,25 +1,24 @@
-
 import React, { useState, useEffect } from "react";
-import { connect, useDispatch} from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import { Button } from "@material-ui/core";
 import { reduxForm, Field } from "redux-form";
 import { updateShippingAddress, singleShippingAddress } from "store/actions/auth/Dashboard";
 import { validateShipping, checkoutRenderField } from "util/RenderValidate";
 
-const EditShipping = ({  handleSubmit, pristine, submitting, id }) => {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    document.title = 'Ogadonate|Shipping'
-    dispatch(singleShippingAddress(`${id}`));
-  }, []);
-  const [checked, setChecked] = useState(false);
+const EditShipping = ({ handleSubmit, pristine, submitting, id }) => {
+    const dispatch = useDispatch();
+    useEffect(() => {
+        document.title = 'Ogadonate| Shipping'
+        dispatch(singleShippingAddress(`${id}`));
+    }, []);
+    const [checked, setChecked] = useState(false);
 
-  const updateShipping = (formValues) => {
-    dispatch(updateShippingAddress(id, formValues));
-  };
-  const ToggleSwitch = ({ checked, onChange, id }) => (
-    <div>
+    const updateShipping = (formValues) => {
+        dispatch(updateShippingAddress(id, formValues));
+    };
+    const ToggleSwitch = ({ checked, onChange, id }) => (
+        <div>
       <input
         type="checkbox"
         checked={checked}
@@ -27,9 +26,9 @@ const EditShipping = ({  handleSubmit, pristine, submitting, id }) => {
         id={id}
       />
     </div>
-  );
-  return (
-    <div className="container-fluid mt--7">
+    );
+    return (
+        <div className="container-fluid mt--7">
       <div className="row">
         <div className="col-xl-12 order-xl-1">
           <div className="card shadow">
@@ -164,19 +163,19 @@ const EditShipping = ({  handleSubmit, pristine, submitting, id }) => {
         </div>
       </div>
     </div>
-  );
+    );
 };
 EditShipping.propTypes = {
-  nextPage: PropTypes.func.isRequired,
-  previousPage: PropTypes.func.isRequired,
+    nextPage: PropTypes.func.isRequired,
+    previousPage: PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
-  const { singleAddress } = state.userTypeReducer;
-  return {
-    initialValues: singleAddress,
-  };
+    const { singleAddress } = state.userTypeReducer;
+    return {
+        initialValues: singleAddress,
+    };
 }
 
 export default connect(mapStateToProps, { updateShippingAddress, singleShippingAddress })(
-  reduxForm({ form: "shipping", enableReinitialize: true, validateShipping })(EditShipping));
+    reduxForm({ form: "shipping", enableReinitialize: true, validateShipping })(EditShipping));

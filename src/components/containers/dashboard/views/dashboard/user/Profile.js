@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import { Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -8,20 +8,20 @@ import ProfilePrompt from "./ProfilePrompt";
 
 
 const Profile = () => {
-  const dispatch = useDispatch()
-  const profileState = useSelector((state) => state.userTypeReducer);
-  const {profile_user} = profileState
-  let gender = ""
-  let profile_img =""
- profile_user.length && profile_user.map(profile=>{
-    gender = profile.gender;
-    profile_img = profile.profile_image
-  })
-  const userState= useSelector(state=> state.authReducer.user);
-  const {email,first_name,last_name} = userState;
-  return (
-    <>
-      <div className="container-fluid mt--7">
+    const dispatch = useDispatch()
+    const profileState = useSelector((state) => state.userTypeReducer);
+    const { profile_user } = profileState
+    let gender = ""
+    let profile_img = ""
+    profile_user.length && profile_user.map(profile => {
+        gender = profile.gender;
+        profile_img = profile.profile_image
+    })
+    const userState = useSelector(state => state.authReducer.user);
+    const { email, first_name, last_name } = userState;
+    return ( <
+        >
+        <div className="container-fluid mt--7">
         <div className="row">
               <div className="col-xl-4 order-xl-2 mb-5 mb-xl-0">
                 <div className="card card-profile shadow">
@@ -151,9 +151,9 @@ const Profile = () => {
             </div>
           </div>
         </div>
-      </div>
-    </>
-  );
+      </div> <
+        />
+    );
 };
 
 export default Profile;

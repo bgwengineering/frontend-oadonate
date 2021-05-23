@@ -5,10 +5,8 @@ import { Link } from "react-router-dom";
 import { Button } from "@material-ui/core";
 import axiosInstance from "util/api";
 import * as actionTypes from "store/actions/ActionTypes";
-import { setLoading,offLoading } from "store/actions/Common";
+import { setLoading, offLoading } from "store/actions/Common";
 import { renderField } from "util/RenderValidate";
-
-
 
 const NewProfile = ({ handleSubmit, pristine, submitting, mime }) => {
   const dispatch = useDispatch();
@@ -38,7 +36,7 @@ const NewProfile = ({ handleSubmit, pristine, submitting, mime }) => {
       .then(function (response) {
         dispatch({
           type: actionTypes.CREATE_PERSONAL_PROFILE_SUCCESS,
-          payload: response.data
+          payload: response.data,
         });
         dispatch(stopSubmit("newpersonalForm"));
         dispatch(reset("newpersonalForm"));
