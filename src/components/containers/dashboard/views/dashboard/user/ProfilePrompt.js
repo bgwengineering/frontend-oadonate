@@ -1,17 +1,15 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import EditProfile from "./EditProfile";
+import {useSelector} from "react-redux";
 import NewProfile from "./NewProfile";
 
 const ProfilePrompt = () => {
-  const profileState = useSelector(state => state.userTypeReducer);
-  const id = profileState.profile_user.map(_id=>_id.id);
-  console.log(id);
-  
+  const profileState = useSelector((state) => state.userTypeReducer.profile_user);
+  const profileId = profileState.length && profileState.map(_id=>_id.id);
   return (
     <>
-      {profileState && profileState.length ? (
-        <EditProfile id={id} />
+      {profileState.length ? (
+        <EditProfile profileId={profileId} />
       ) : (
         <NewProfile />
       )}

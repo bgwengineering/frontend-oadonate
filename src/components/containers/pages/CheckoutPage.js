@@ -14,8 +14,8 @@ const CheckoutForm = () => {
   useEffect(() => {
     document.title = 'Ogadonate | Checkout'
   }, []);
-  const reduxState = useSelector((state) => state.userTypeReducer);
-  const id = reduxState.shippingAddress.map(_id=> _id.id);
+  const shippingState = useSelector((state) => state.userTypeReducer);
+  const id = shippingState.shippingAddress.map(_id=>_id.id)
   const currentUser = useSelector((state) => state.authReducer.isAuthenticated);
   const [page, setPage] = useState(1);
 
@@ -32,6 +32,7 @@ const CheckoutForm = () => {
         return (
            <ShippingPrompt
           nextPage={nextPage}
+          shippingState={shippingState}
            previousPage={previousPage} 
            id={id}
           />

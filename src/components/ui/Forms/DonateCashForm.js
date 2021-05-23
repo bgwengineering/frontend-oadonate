@@ -7,9 +7,9 @@ import StepLabel from "@material-ui/core/StepLabel";
 import Button from "@material-ui/core/Button";
 import axiosInstance from "util/api";
 import { setLoading } from 'store/actions/Common';
-const stripePromise = window.Stripe(
-  "pk_test_51Ihz1EJtAhKBp45zJXZLT2RmTKQLDbpZRPerC1uKcnQ69N1R1IchlmRhCBMp3cwJ4DIVpSf9iHe4Hnq9wUdAC6OA00DNznJtw5"
-);
+// const stripePromise = window.Stripe(
+//   "pk_test_51Ihz1EJtAhKBp45zJXZLT2RmTKQLDbpZRPerC1uKcnQ69N1R1IchlmRhCBMp3cwJ4DIVpSf9iHe4Hnq9wUdAC6OA00DNznJtw5"
+// );
 
 const Message = ({ message }) => (
   <section>
@@ -97,44 +97,44 @@ const DonateCashForm = ({ fund_cash, setCurrentOpenForm, setIsDonateCardButtonsO
 
     dispatch(donateToCash(formData));
   };
-  const handleClick = (e) => {
-    e.preventDefault();
-    const formData = {
-      donate_amount: giveOgadonate ? tol_5_percentage : amount_given,
-      donate_payment_method,
-      donate_comment,
-      donate_currency,
-      donate_collect_per: giveOgadonate,
-      donate_as_unknown,
-      donate_percentage_value,
-      donate_accept,
-      fund_cash: fund_cash,
-      donate_percent_amount: giveOgadonate ? fivePercent : initial_amount,
-    };
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `JWT ${localStorage.getItem("access")}`,
-        Accept: "application/json",
-      },
-    };
-    const stripe = stripePromise;
-    axiosInstance
-      .post("campaign/create/donation-cash", formData, config)
-      .then((res) => {
-        const session = res.data;
-        const result = stripe.redirectToCheckout({ sessionId: session });
-        if (result.error) {
-          // If `redirectToCheckout` fails due to a browser or network
-          // error, display the localized error message to your customer
-          console.log(result.error.message);
-        }
-        return message ? <Message message={message} /> : null;
-      })
-      .catch((error) => {
-        console.log(error.message);
-      });
-  };
+  // const handleClick = (e) => {
+  //   e.preventDefault();
+  //   const formData = {
+  //     donate_amount: giveOgadonate ? tol_5_percentage : amount_given,
+  //     donate_payment_method,
+  //     donate_comment,
+  //     donate_currency,
+  //     donate_collect_per: giveOgadonate,
+  //     donate_as_unknown,
+  //     donate_percentage_value,
+  //     donate_accept,
+  //     fund_cash: fund_cash,
+  //     donate_percent_amount: giveOgadonate ? fivePercent : initial_amount,
+  //   };
+  //   const config = {
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Authorization: `JWT ${localStorage.getItem("access")}`,
+  //       Accept: "application/json",
+  //     },
+  //   };
+  //   // const stripe = stripePromise;
+  //   axiosInstance
+  //     .post("campaign/create/donation-cash", formData, config)
+  //     .then((res) => {
+  //       const session = res.data;
+  //       // const result = stripe.redirectToCheckout({ sessionId: session });
+  //       if (result.error) {
+  //         // If `redirectToCheckout` fails due to a browser or network
+  //         // error, display the localized error message to your customer
+  //         console.log(result.error.message);
+  //       }
+  //       return message ? <Message message={message} /> : null;
+  //     })
+  //     .catch((error) => {
+  //       console.log(error.message);
+  //     });
+  // };
 
 
   const handleChange = (e) => {
@@ -380,9 +380,10 @@ const DonateCashForm = ({ fund_cash, setCurrentOpenForm, setIsDonateCardButtonsO
                   Donate With Paystack
                 </button>
               ) : (
-                <button onClick={handleClick} type="submit" name="submit">
-                  Donate With Stripe
-                </button>
+                null
+                // <button onClick={handleClick} type="submit" name="submit">
+                //   Donate With Stripe
+                // </button>
               )}
               <Button
                 disabled={activeStep === 0}

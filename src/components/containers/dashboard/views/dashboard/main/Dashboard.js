@@ -19,10 +19,8 @@ const Dashboard = () => {
     document.title = "Ogadonate | Dashboard";
     dispatch(load_user());
     dispatch(fetchPersonalProfile());
-    dispatch(fetchCompanyProfile());
+    // dispatch(fetchCompanyProfile());
     dispatch(fetchUserDonationsReceived());
-    // dispatch(fetchAllCampaign());
-    // dispatch(updateMarketCollections());
   }, []);
 
   return (
@@ -34,7 +32,7 @@ const Dashboard = () => {
         ) : (
           <GetUserType />
         )}
-        graph display
+        <h4>Current Activity Display</h4>
       </div>
     </>
   );
