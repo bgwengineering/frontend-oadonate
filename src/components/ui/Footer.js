@@ -111,7 +111,7 @@ const Footer = () => {
                   <Link className="sub-navigation-link link-router">Terms</Link>
                 </li>
                 <li className="footer-item">
-                  <Link className="sub-navigation-link link-router">
+                  <Link className="sub-navigation-link link-router" to='/affiliate'>
                     Become an affiliate
                   </Link>
                 </li>

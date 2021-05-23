@@ -9,8 +9,11 @@
   box-shadow:0px 5px 17px -7px rgba(0, 0, 0, 1);
   margin-right:10px;
   transition:transform 100ms ease-in;
-  .boss-text{
-      padding-top:200px;
+ .boss-text{
+      padding-top:100px;
+      @media screen and(max-width:1198px){
+        color:#EF8508;
+      }
   }
  }
 
@@ -27,7 +30,7 @@
   position: absolute;
   display: table;
   right: 0;
-  top: 0;
+  top: 680px;
   height: 200px;
   line-height: 164px;
   white-space: nowrap;
@@ -440,6 +443,7 @@ header .footer-wave {
 .pset {
   padding-top: 180px;
   padding-bottom: 80px;
+  background-color:#F4F4F4;
 }
 
 .listar-map-button-text span {

@@ -17,14 +17,13 @@ const AuctionItem = () => {
   const [open, setOpen] = useState(false);
   const [count, setCount] = useState(0)
 
-  const controlSingleOrMultipleItemClick = (num) => {
-    if (num === 1) {
-      return "item added"
-    } else {
-      return "items added"
-    }
-  }
-    
+  const [AuctionPage, setBuyToSupportPage] = useState(0)
+  const [auctionCardPerPage] = useState(8)
+
+  const indexOfLastCard = AuctionPage * auctionCardPerPage;
+  const indexOfFirstCard = indexOfLastCard + auctionCardPerPage;
+
+  
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
       return;
@@ -33,9 +32,8 @@ const AuctionItem = () => {
   };
   return (
     <>
-      {collections.length ? collections.map(itemValues => {
+      {collections.length ? collections.slice(indexOfLastCard, indexOfFirstCard).map(itemValues => {
         const { donate_item_img, donate_mkt_price,donate_determine_by, donate_item_name, donate_mkt_bid, donate_currency, id, donate_item_condition } = itemValues
-       console.log(itemValues);
        
         if (donate_determine_by == 'Market') {
           return (
@@ -90,23 +88,7 @@ const AuctionItem = () => {
         }
  
         }) : <h4 className='text-center'>no available item for sale</h4>}
-      <Snackbar
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'center',
-        }}
-        open={open}
-        autoHideDuration={2000}
-        onClose={handleClose}
-        message={count + " " + controlSingleOrMultipleItemClick(count)}
-        action={
-          <React.Fragment>
-            <IconButton size="small" aria-label="close" color="inherit" onClick={handleClose}>
-              <CloseIcon fontSize="small" />
-            </IconButton>
-          </React.Fragment>
-        }
-      />
+    
     </>
   )
 };

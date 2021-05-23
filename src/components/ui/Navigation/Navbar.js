@@ -355,7 +355,7 @@ const Navbar = ({ menuOpen }) => {
             {/* cart icons and count */}
             <li className="nav-item navigation-btn-item">
               <div className="cart-badge">
-                <span onClick={() => dispatch(toggleCartHidden())}>
+                <span onMouseEnter={() => dispatch(toggleCartHidden())}>
                   <FiShoppingCart color="#fff" className="shopping-cart" />
                 </span>
                 <span className="badge-container">

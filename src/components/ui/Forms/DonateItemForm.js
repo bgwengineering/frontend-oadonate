@@ -13,12 +13,12 @@ import StepLabel from "@material-ui/core/StepLabel";
 import Button from "@material-ui/core/Button";
 import { setLoading } from 'store/actions/Common';
 
-
 const DonateItemForm = ({
   fund_item,
   setCurrentOpenForm,
   setIsDonateCardButtonsOpen,
 }) => {
+
   // all states
   const [postData, updateFormData] = useState({
     donate_comment: "",
@@ -54,7 +54,7 @@ const DonateItemForm = ({
 
   // hooks
   const [itemImage, setItemImage] = useState(null);
-  const [validiateImage, setValidateImage] = useState(null);
+  const [validateImage, setValidateImage] = useState(null);
 
   const [currentQuestionnaireOpen, setCurrentQuestionnaireOpen] = useState(null);
   const [isQuestionAnswerShown, setIsQuestionAnswerShown] = useState(false);
@@ -62,8 +62,6 @@ const DonateItemForm = ({
   const handleSwitchCurrentQuestion = (formToShow) => {
     setCurrentQuestionnaireOpen(formToShow);
   };
-
-
 
 
   // dispatch
@@ -95,6 +93,20 @@ const DonateItemForm = ({
     }
   };
 
+  const handleImageValidation = e => {
+    setValidateImage({donate_item_validation:e.target.files})
+  }
+
+  const checkInputFields = () => {
+    if (postData.donate_item_name === "") {
+      return true
+    } else if(postData.donate_item_name !== " "){
+      return false
+    } else {
+      return true
+    }
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
     let formData = new FormData();
@@ -105,10 +117,21 @@ const DonateItemForm = ({
     formData.append("donate_as_unknown", postData.donate_as_unknown);
     formData.append("donate_accept", postData.donate_accept);
     formData.append("donate_item_img", itemImage.donate_item_img[0]);
-    formData.append(
-      "donate_item_validation",
-      validiateImage.donate_item_validation[0]
-    );
+     if ("donate_item_validation" == [e.target.name]) {
+       formData.append(
+        "donate_item_validation",
+        validateImage.donate_item_validation[0]
+      );
+      setValidateImage({
+        donate_item_validation: e.target.files,
+      });
+    } else {
+       formData.append("donate_item_validation", null)
+       setValidateImage({
+         donate_item_validation: null,
+       });
+    }
+
     //  sell
     formData.append("donate_mkt_bid", postData.donate_mkt_bid);
     formData.append("donate_mkt_price", postData.donate_mkt_price);
@@ -135,8 +158,7 @@ const DonateItemForm = ({
       .catch(error => {
         if (error.response.data) {
           error.response.data.donate_item_name.map(err => {
-            return (
-
+            return (    
               dispatch({ type: SHOW_ERROR_MESSAGE, payload: `Item Name Field: ${err}` })
             )
           })
@@ -230,7 +252,6 @@ const DonateItemForm = ({
             <option value="Fairly Used">Fairly used</option>
           </select>
         </div>
-
       </fieldset>
     );
   };
@@ -248,18 +269,18 @@ const DonateItemForm = ({
           type="file"
           accept="image/*"
           onChange={handleChange}
-          className='input-file'
+          className="input-file"
         />
         <h2 className="fs-title mt-3">
-           upload image of proof of ownership on items above{" "}
+          upload image of proof of ownership on items above
           <b>one million naira</b>
         </h2>
         <input
           name="donate_item_validation"
           type="file"
           accept="image/*"
-          onChange={handleChange}
-          className='input-file'
+          onChange={handleImageValidation}
+          className="input-file"
         />
         <div className="d-block">
           <h2 className="fs-title mt-3">Your message</h2>
@@ -268,7 +289,7 @@ const DonateItemForm = ({
             placeholder="Give a brief message on the item"
             onChange={handleChange}
             name="donate_comment"
-            className='input-textarea'
+            className="input-textarea"
           />
         </div>
       </fieldset>
@@ -432,7 +453,7 @@ const DonateItemForm = ({
 
   return (
     <>
-      <form onSubmit={handleSubmit} className='fundforms_container'>
+      <form onSubmit={handleSubmit} className="fundforms_container">
         <div className="w-80">
           <Stepper
             activeStep={activeStep}
@@ -445,7 +466,7 @@ const DonateItemForm = ({
                   key={label}
                   className={`horizontal-stepper ${
                     index === activeStep ? "active" : ""
-                    }`}
+                  }`}
                 >
                   <StepLabel className="stepperlabel">{label}</StepLabel>
                 </Step>
@@ -453,12 +474,12 @@ const DonateItemForm = ({
             })}
           </Stepper>
 
-          <div >
+          <div>
             {activeStep !== steps.length ? (
               <div>
                 {getStepContent(activeStep)}
-                <div className='mt-4'>
-                  {activeStep !== 0 &&
+                <div className="mt-4">
+                  {activeStep !== 0 && (
                     <Button
                       disabled={activeStep === 0}
                       onClick={handleBack}
@@ -466,53 +487,56 @@ const DonateItemForm = ({
                       color="primary"
                     >
                       Back
-                  </Button>
-                  }
-                    <Button
-                       onClick={() => {
-                        setCurrentOpenForm(null);
-                        setIsDonateCardButtonsOpen(false);
-                      }}
-                      className="mr-2 ml-2 float-left"
-                      color="primary"
-                    >
-                      Cancel
+                    </Button>
+                  )}
+                  <Button
+                    onClick={() => {
+                      setCurrentOpenForm(null);
+                      setIsDonateCardButtonsOpen(false);
+                    }}
+                    className="mr-2 ml-2 float-left"
+                    color="primary"
+                  >
+                    Cancel
                   </Button>
                   <Button
                     className="mr-2 float-right"
                     variant="contained"
                     color="primary"
                     onClick={handleNext}
-                  // disabled={true}
+                    disabled={
+                      postData.donate_item_name === "" ||
+                      postData.donate_item_desc === "" 
+                    }
                   >
                     {activeStep === steps.length - 1 ? "Finish" : "Next"}
                   </Button>
                 </div>
               </div>
             ) : (
-                <>
-                  <Button
-                    disabled={activeStep === 0}
-                    onClick={handleBack}
-                    className="mr-2 float-left"
-                    color="primary"
-                  >
-                    Back
+              <>
+                <Button
+                  disabled={activeStep === 0}
+                  onClick={handleBack}
+                  className="mr-2 float-left"
+                  color="primary"
+                >
+                  Back
                 </Button>
-                  <Button
-                    type="submit"
-                    name="submit"
-                    className='MuiButton-containedPrimary'
-                  >
-                    Submit
+                <Button
+                  type="submit"
+                  name="submit"
+                  className="MuiButton-containedPrimary"
+                >
+                  Submit
                 </Button>
-                </>
-              )}
+              </>
+            )}
           </div>
         </div>
       </form>
     </>
-  )
+  );
 
 
 

@@ -40,7 +40,8 @@ const {cartItems} = cartItemState
          <div className='total'>
              <span>TOTAL: ${total}</span>
          </div>
-         <button className='cart-paybtn text-uppercase'><Link to='/checkout'>Checkout</Link></button>
+         {cartItems.length > 0 ? <button className='cart-paybtn text-uppercase'><Link to='/checkout'>Checkout</Link></button>: null}
+       
     </div>
 )
 }

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import DonateCardImport from "../campaign/CampaignCardImport";
+// import DonateCardImport from "../campaign/CampaignCardImport";
 import SearchSvg from "components/ui/Svg/SearchSvg";
 import ArrowSvg from "components/ui/Svg/ArrowSvg";
 import axios from 'axios'
@@ -14,6 +14,7 @@ const DonateItem = () => {
  })
 const [searchValue, setSearchValue] = useState('')
 const [filteredData, setFilteredData] = useState([]);
+console.log(filteredData);
 
 
  useEffect(() => {
@@ -25,10 +26,11 @@ const [filteredData, setFilteredData] = useState([]);
        result:[]
      })
      setFilteredData([])
-
      try{
        const searchUrl = 'https://ogadonate-api.herokuapp.com/api/campaign/fundraise'
-          const res = await axios.get(searchUrl)
+       const res = await axios.get(searchUrl)
+       console.log(res);
+       
            setData({
              ...data,
              loading:false,
@@ -54,7 +56,8 @@ const [filteredData, setFilteredData] = useState([]);
  const handleSearchValue = e => {
    setSearchValue(e.target.value)
    let inputValue = e.target.value;
-   let filteredInput = inputValue.length > 0 && data.result.filter(campaigns=>(campaigns.fund_title.toLowerCase() === inputValue.toLowerCase()))
+   let filteredInput = inputValue.length > 0 && data.result.filter(campaigns=>(campaigns.fund_title.toLowerCase().contains(inputValue.toLowerCase())))
+  
    if (inputValue === "") {
     setFilteredData(data.result);
   } else {
@@ -62,7 +65,6 @@ const [filteredData, setFilteredData] = useState([]);
   }
   }
   
-
   return (
     <>
       <div className="viewport">
@@ -82,7 +84,6 @@ const [filteredData, setFilteredData] = useState([]);
               />
               <SearchSvg />
             </div>
-
             {/* filter */}
             <div className="btn-container__filter">
               <div className="filter-label">
@@ -97,13 +98,13 @@ const [filteredData, setFilteredData] = useState([]);
 
         </div>
       </div>
-     {/*    
-      {filteredData.map(filters=>{
+        
+      {filteredData.map(filters => {
         return(
           <li>{filters.fund_title}</li>
         )
       })
-      } */}
+      }
       <div>
       <h4 className="text-uppercase text-center">
         Find an item cause to donate to
