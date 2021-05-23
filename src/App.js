@@ -25,8 +25,8 @@ const App = () => {
     dispatch(fetchAllCampaign());
     dispatch(updateMarketCollections());
     if(isAuthenticated){
-      dispatch(fetchPersonalProfile());
       dispatch(fetchShippingAddress());
+      dispatch(fetchPersonalProfile());
       dispatch(fetchUserDonationsReceived());
     }
     setIsLoading(false);

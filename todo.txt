@@ -5,3 +5,5 @@
 5. change cartBasket to onhover show not onclick
 6. display firstname and lastname initials only (Henry.U)
 7. no item render for buy-to-support(check mapping)
+8 . validate profie form with redux validate style
+9. style chnagepassword form using core ui form className(location of form ui/form/chanagepasswordform)

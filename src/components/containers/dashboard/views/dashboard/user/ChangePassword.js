@@ -1,6 +1,5 @@
 import React from 'react'
-// import {useDispatch} from 'react-redux'
-import EditTabs from './EditTab'
+import ChangePasswordForm from '../../../../../ui/Forms/ChangePasswordForm'
 
 
 
@@ -10,7 +9,7 @@ const Edit = () => {
         <div className = 'profile-reg-heading text-white text-center'>
         <h4 className='pt-4 pb-4 text-uppercase'>Change Password</h4>
         </div>
-         <EditTabs /> 
+         <ChangePasswordForm /> 
       </form>
     )
 }

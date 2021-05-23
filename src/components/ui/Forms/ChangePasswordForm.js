@@ -1,13 +1,12 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
 import {useDispatch} from 'react-redux';
-import { updatePersonalProfile } from "store/actions/auth/Dashboard";
 import {Link} from 'react-router-dom'
 
 
 
 // main function
-const EditTabs = ({ pristine, reset, submitting, handleSubmit, history }) => {
+const ChangePasswordForm = ({ pristine, reset, submitting, handleSubmit, history }) => {
   const [value, setValue] = React.useState(0);
   
   const handleChange = (event, newValue) => {
@@ -17,7 +16,7 @@ const EditTabs = ({ pristine, reset, submitting, handleSubmit, history }) => {
   const dispatch = useDispatch()
 
   const editProfileSubmit = values => {
-    dispatch( updatePersonalProfile(values))
+
   }
 
   return (
@@ -37,6 +36,17 @@ const EditTabs = ({ pristine, reset, submitting, handleSubmit, history }) => {
         </div>
         <div>
           <label>New Password</label>
+          <div className="profile-reg-fields">
+            <Field
+              name="new_password"
+              component="input"
+              type="password"
+              className="password-inputs "
+            />
+          </div>
+        </div>
+        <div>
+          <label>Confirm Password</label>
           <div className="profile-reg-fields">
             <Field
               name="new_password"
@@ -68,4 +78,4 @@ const EditTabs = ({ pristine, reset, submitting, handleSubmit, history }) => {
   );
 };
 
-export default reduxForm({ form: "editForm" })(EditTabs);
+export default reduxForm({ form: "changePasswordForm" })(ChangePasswordForm);
