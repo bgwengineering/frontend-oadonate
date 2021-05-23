@@ -37,11 +37,58 @@ const RaiseItem = ({ setCurrentOpenForm, setIsRaiseCardButtonsOpen,mime, handleS
       const localImageUrl = URL.createObjectURL(imageFile);
       const imageObject = new window.Image();
 
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+      imageObject.onload = () => {
+        imageFile.width = imageObject.naturalWidth;
+        imageFile.height = imageObject.naturalHeight;
+        input.onChange(imageFile);
+        URL.revokeObjectURL(imageFile);
+      };
+      imageObject.src = localImageUrl;
+=======
+  const [postData, updateFormData] = useState({
+    fund_category: "",
+    fund_title: "",
+    fund_endAt: "",
+    fund_currency_type: "",
+    fund_purpose: "",
+    fund_item_desc: "",
+    fund_item_value: ""
+  });
+  const [postImage, setPostImage] = useState(null);
+
+  const handleChange = e => {
+    if ([e.target.name] == "fund_img") {
+      setPostImage({
+        fund_img: e.target.files
+      });
+      console.log(e.target.files);
+    }
+    if ([e.target.name] == "fund_title") {
+      updateFormData({
+        ...postData,
+        [e.target.name]: e.target.value.trim()
+      });
+    } else {
+      updateFormData({
+        ...postData,
+        [e.target.name]: e.target.value.trim()
+      });
+>>>>>>> 28ed9b7750d103758dd357f964941dc92af0fa17
+    }
+  };
+>>>>>>> 5ab553e7b900387a2c9d5b31061bde455d0d2592
   
 
   const onSubmit = (formValues) => {
     let formData = new FormData();
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 5ab553e7b900387a2c9d5b31061bde455d0d2592
     formData.append("fund_title", formValues.fund_title);
     formData.append("fund_category", formValues.fund_category);
     formData.append("fund_currency_type", formValues.fund_currency_type);
@@ -50,6 +97,19 @@ const RaiseItem = ({ setCurrentOpenForm, setIsRaiseCardButtonsOpen,mime, handleS
     formData.append("fund_item_value", formValues.fund_item_value);
     formData.append("fund_item_desc", formValues.fund_item_desc);
     formData.append("fund_img", formValues.fund_img);
+<<<<<<< HEAD
+=======
+=======
+    formData.append("fund_title", postData.fund_title);
+    formData.append("fund_category", postData.fund_category);
+    formData.append("fund_currency_type", postData.fund_currency_type);
+    formData.append("fund_endAt", postData.fund_endAt);
+    formData.append("fund_purpose", postData.fund_purpose);
+    formData.append("fund_item_value", postData.fund_item_value);
+    formData.append("fund_item_desc", postData.fund_item_desc);
+    formData.append("fund_img", postImage.fund_img[0]);
+>>>>>>> 28ed9b7750d103758dd357f964941dc92af0fa17
+>>>>>>> 5ab553e7b900387a2c9d5b31061bde455d0d2592
 
     const config = {
       headers: {
