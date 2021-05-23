@@ -145,7 +145,7 @@ const Profile = () => {
                 <hr className="my-4" />
 
                 {/* contact information */}
-                <h6 className="heading-small text-muted all-heading mb-4">Contact information</h6>
+                <h6 className="heading-small text-muted all-heading mb-4">Create Profile</h6>
                 <ProfilePrompt/>
               </div>
             </div>

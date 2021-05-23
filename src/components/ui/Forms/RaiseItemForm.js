@@ -24,7 +24,7 @@ const RaiseItem = ({ setCurrentOpenForm, setIsRaiseCardButtonsOpen }) => {
     fund_item_desc: "",
     fund_item_value: ""
   });
-  const [postimage, setPostImage] = useState(null);
+  const [postImage, setPostImage] = useState(null);
 
   const handleChange = e => {
     if ([e.target.name] == "fund_img") {
@@ -56,7 +56,7 @@ const RaiseItem = ({ setCurrentOpenForm, setIsRaiseCardButtonsOpen }) => {
     formData.append("fund_purpose", postData.fund_purpose);
     formData.append("fund_item_value", postData.fund_item_value);
     formData.append("fund_item_desc", postData.fund_item_desc);
-    formData.append("fund_img", postimage.fund_img[0]);
+    formData.append("fund_img", postImage.fund_img[0]);
 
     const config = {
       headers: {
@@ -73,7 +73,7 @@ const RaiseItem = ({ setCurrentOpenForm, setIsRaiseCardButtonsOpen }) => {
       })
       .catch(error => {
         dispatch({ type: CREATE_FUND_CASH_FAIL });
-        dispatch(offLoading());
+        dispatch(offLoading()); 
         if (error.response.data) {
           error.response.data.fund_title.map(err => {
             return dispatch({
@@ -131,7 +131,6 @@ const RaiseItem = ({ setCurrentOpenForm, setIsRaiseCardButtonsOpen }) => {
         return getTrack();
       case 2:
         return getItems();
-
       default:
         return "Uknown stepIndex";
     }

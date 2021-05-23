@@ -9,6 +9,7 @@ const Shipping = ({ handleSubmit, pristine, submitting }) => {
   const dispatch = useDispatch();
 
   const createShipping = (formValues) => {
+    console.log(formValues)
     dispatch(createShippingAddress(formValues));
   };
   return (

@@ -1,23 +1,35 @@
 import React from "react";
 import Boss from "assets/images/homepage/boss.jpg";
 import { Link } from "react-router-dom";
+import { SiWebauthn } from 'react-icons/si';
+import { FaRegShareSquare, } from "react-icons/fa";
+import { GiReceiveMoney } from "react-icons/gi";
 
 const Affiliate = () => {
+
+  const iconStyle = {
+    position: "relative",
+     width: "auto",
+    left: "25%",
+    height: "55px",
+    color: '#0F6929'
+  }
+  const iStyle = {
+    height: "55px",
+    width: "auto",
+    color: "#0F6929",
+  };
+   
   return (
     <>
       <div
         className="container affiliate-container"
         style={{ backgroundImage: `url(${Boss})` }}
       >
-        <h4 className="font-weight-bold text-uppercase d-flex align-items-center boss-text">
-          Become your own boss by joining our affiliate program
+        <h4 className="font-weight-bold text-uppercase  boss-text">
+          Become your own boss by <br/> joining our affiliate <br/>program
         </h4>
         <div className="mt-5">
-          <button className="btn btn-lg affiliate-login-btn mr-4">
-            <Link className="link-router-inverted" to="/affiliate-login">
-              Login
-            </Link>
-          </button>
           <button className="btn btn-lg affiliate-signup-btn">
             <Link className="link-router-inverted" to="affiliate-signup">
               Sign up
@@ -33,11 +45,11 @@ const Affiliate = () => {
             className="listar-map-button-text"
             style={{ display: "inline-block", opacity: "1" }}
           >
-            <span className="icon-map2">How it Works? </span>
+            <span className="icon-map2">How Affiliate Works? </span>
           </div>
         </div>
 
-        {/*  */}
+        {/* footer wave */}
         <div className="footer-wave"></div>
       </header>
 
@@ -45,44 +57,37 @@ const Affiliate = () => {
         <div className="container">
           <div className="row listar-feature-items">
             <div
-              className="col-xs-12 col-sm-6 col-md-4 listar-feature-item-wrapper listar-feature-with-image listar-height-changed"
+              className="col-12 col-sm-6 col-md-4 listar-feature-item-wrapper listar-feature-with-image listar-height-changed"
               data-aos="fade-zoom-in"
               data-aos-group="features"
               data-line-height="25.2px"
             >
               <div className="listar-feature-item listar-feature-has-link">
-                <a href="https://enationalelectronics.com" target="_blank"></a>
-
+                <a href='#'></a>
                 <div className="listar-feature-item-inner">
                   <div className="listar-feature-right-border"></div>
 
                   <div className="listar-feature-block-content-wrapper">
                     <div className="listar-feature-icon-wrapper">
                       <div className="listar-feature-icon-inner">
-                        <div>
-                          <img
-                            alt="Businesses"
-                            className="listar-image-icon"
-                            src="https://image.flaticon.com/icons/svg/1899/1899582.svg"
-                          />
-                        </div>
+                        <SiWebauthn style={iStyle} />
                       </div>
                     </div>
 
                     <div
                       className="listar-feature-content-wrapper"
-                      style={{paddingTop: '0px'}}
+                      style={{ paddingTop: "0px" }}
                     >
                       <div className="listar-feature-item-title listar-feature-counter-added">
                         <span>
                           <span>01</span>
-                          Businesses{" "}
+                          Sign Up
                         </span>
                       </div>
 
                       <div className="listar-feature-item-excerpt">
-                        Start publish listings to show everyone the details and
-                        goodies of your establishment.{" "}
+                        Join tens of thousands of creators, publishers and
+                        bloggers who are earning with Ogadonate affiliate
                       </div>
                     </div>
                   </div>
@@ -98,8 +103,7 @@ const Affiliate = () => {
               data-line-height="25.2px"
             >
               <div className="listar-feature-item listar-feature-has-link">
-                <a href="https://enationalelectronics.com/" target="_blank"></a>
-
+                <a href='#'></a>
                 <div className="listar-feature-item-inner">
                   <div className="listar-feature-right-border"></div>
 
@@ -107,29 +111,24 @@ const Affiliate = () => {
                     <div className="listar-feature-icon-wrapper">
                       <div className="listar-feature-icon-inner">
                         <div>
-                          <img
-                            alt="Customers"
-                            className="listar-image-icon"
-                            src="https://image.flaticon.com/icons/svg/1899/1899506.svg"
-                          />
+                          <FaRegShareSquare style={iconStyle} />
                         </div>
                       </div>
                     </div>
 
                     <div
                       className="listar-feature-content-wrapper"
-                      style={{ paddingTop: '0px' }}
+                      style={{ paddingTop: "0px" }}
                     >
                       <div className="listar-feature-item-title listar-feature-counter-added">
                         <span>
                           <span>02</span>
-                          Customers{" "}
+                         Recommend
                         </span>
                       </div>
 
                       <div className="listar-feature-item-excerpt">
-                        Easily find interesting places by local experts, save
-                        time by checking listing features.{" "}
+                        Share links with your audience
                       </div>
                     </div>
                   </div>
@@ -145,8 +144,7 @@ const Affiliate = () => {
               data-line-height="25.2px"
             >
               <div className="listar-feature-item listar-feature-has-link">
-                <a href="https://enationalelectronics.com" target="_blank"></a>
-
+                <a href='#'></a>
                 <div className="listar-feature-item-inner">
                   <div className="listar-feature-right-border"></div>
 
@@ -154,29 +152,25 @@ const Affiliate = () => {
                     <div className="listar-feature-icon-wrapper">
                       <div className="listar-feature-icon-inner">
                         <div>
-                          <img
-                            alt="Feedback"
-                            className="listar-image-icon"
-                            src="https://image.flaticon.com/icons/svg/1899/1899604.svg"
-                          />
+                          <GiReceiveMoney style={iconStyle} />
                         </div>
                       </div>
                     </div>
 
                     <div
                       className="listar-feature-content-wrapper"
-                      style={{ paddingTop: '0px' }}
+                      style={{ paddingTop: "0px" }}
                     >
                       <div className="listar-feature-item-title listar-feature-counter-added">
                         <span>
                           <span>03</span>
-                          Feedback{" "}
+                            Earn
                         </span>
                       </div>
 
                       <div className="listar-feature-item-excerpt">
-                        Visitors discuss listings to share experiences, so
-                        businesses get reputation consolidated.{" "}
+                        Earn up to 10% in commissions from qualifying
+                        purchases and programs.
                       </div>
                     </div>
                   </div>
