@@ -5,7 +5,7 @@ import { reduxForm, Field } from "redux-form";
 import { createShippingAddress } from "store/actions/auth/Dashboard";
 import { validateShipping } from "util/RenderValidate";
 
-const NewShipping = ({ handleSubmit, pristine, submitting }) => {
+const NewShipping = ({ handleSubmit, pristine, submitting, nextPage }) => {
   const dispatch = useDispatch();
 
   const createShipping = (formValues) => {
@@ -18,14 +18,19 @@ const NewShipping = ({ handleSubmit, pristine, submitting }) => {
           <div className="card shadow">
             <div className="card-header bg-white border-0"></div>
             <div className="card-body">
-              <h6 className="heading-small text-muted all-heading mb-4">Shipping information</h6>
+              <h6 className="heading-small text-muted all-heading mb-4">
+                Shipping information
+              </h6>
               <hr className="my-4" />
               <form onSubmit={handleSubmit(createShipping)}>
                 <div className="pl-lg-4">
                   <div className="row">
                     <div className="col-lg-6">
                       <div className="form-group">
-                        <label className="profile-control-label" for="input-first_name">
+                        <label
+                          className="profile-control-label"
+                          for="input-first_name"
+                        >
                           First Name<span>*</span>
                         </label>
                         <Field
@@ -39,7 +44,10 @@ const NewShipping = ({ handleSubmit, pristine, submitting }) => {
                     </div>
                     <div className="col-lg-6">
                       <div className="form-group">
-                        <label className="profile-control-label" for="input-first_name">
+                        <label
+                          className="profile-control-label"
+                          for="input-first_name"
+                        >
                           Last Name<span>*</span>
                         </label>
                         <Field
@@ -55,7 +63,10 @@ const NewShipping = ({ handleSubmit, pristine, submitting }) => {
                   <div className="row">
                     <div className="col-md-12">
                       <div className="form-group focused">
-                        <label className="profile-control-label" for="input-address">
+                        <label
+                          className="profile-control-label"
+                          for="input-address"
+                        >
                           Address<span>*</span>
                         </label>
                         <Field
@@ -70,7 +81,10 @@ const NewShipping = ({ handleSubmit, pristine, submitting }) => {
                   <div className="row">
                     <div className="col-lg-4">
                       <div className="form-group focused">
-                        <label className="profile-control-label" for="input-city">
+                        <label
+                          className="profile-control-label"
+                          for="input-city"
+                        >
                           City<span>*</span>
                         </label>
                         <Field
@@ -84,7 +98,10 @@ const NewShipping = ({ handleSubmit, pristine, submitting }) => {
                     </div>
                     <div className="col-lg-4">
                       <div className="form-group focused">
-                        <label className="profile-control-label" for="input-state">
+                        <label
+                          className="profile-control-label"
+                          for="input-state"
+                        >
                           State<span>*</span>
                         </label>
                         <Field
@@ -98,7 +115,10 @@ const NewShipping = ({ handleSubmit, pristine, submitting }) => {
                     </div>
                     <div className="col-lg-4">
                       <div className="form-group focused">
-                        <label className="profile-control-label" for="input-country">
+                        <label
+                          className="profile-control-label"
+                          for="input-country"
+                        >
                           Country<span>*</span>
                         </label>
                         <Field
@@ -127,9 +147,20 @@ const NewShipping = ({ handleSubmit, pristine, submitting }) => {
                   </div>
                 </div>
                 <hr className="profile_hr my-4" />
-                <div className="d-flex flex-end">
-                  <Button className="shipping-btn" type="submit" disabled={pristine || submitting}>
-                    Save Address
+                <div className="d-flex justify-content-between">
+                  <Button
+                    className="shipping-btn"
+                    type="button"
+                  >
+                    Cancel
+                  </Button>
+                  <Button
+                    className="shipping-btn"
+                    type="submit"
+                    onClick={() => nextPage()}
+                    disabled={pristine || submitting}
+                >
+                  Next
                   </Button>
                 </div>
               </form>

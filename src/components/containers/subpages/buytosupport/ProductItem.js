@@ -9,7 +9,6 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 
 
-
 const ProductItem = () => {  
   const dispatch = useDispatch()
   const marketState = useSelector(state=>state.marketPlaceReducer)
@@ -30,8 +29,7 @@ const ProductItem = () => {
      }else{
        return "items added"
      }
-   }
-  
+   } 
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
       return;
@@ -40,7 +38,9 @@ const ProductItem = () => {
   };
 return (      
 <> 
- {collections.length ? collections.slice(indexOfLastCard, indexOfFirstCard).map(itemValues => {
+    {collections.length ? collections.slice(indexOfLastCard, indexOfFirstCard).map(itemValues => {
+      console.log(collections);
+      
    const {donate_item_img, donate_determine_price, donate_mkt_price, donate_item_name, donate_currency, id, donate_item_condition} = itemValues
    
    if(donate_determine_price || donate_mkt_price){

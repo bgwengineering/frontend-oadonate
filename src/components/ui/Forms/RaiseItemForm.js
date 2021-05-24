@@ -15,7 +15,8 @@ import Button from "@material-ui/core/Button";
 
 const RaiseItem = ({ setCurrentOpenForm, setIsRaiseCardButtonsOpen,mime, handleSubmit,submitting, pristine }) => {
   const dispatch = useDispatch();
-   const renderInput = ({ input, type, meta }) => {
+   const renderInput = ({ input, type, meta}) => {
+
     return (
         <div>
       <input
@@ -48,7 +49,6 @@ const RaiseItem = ({ setCurrentOpenForm, setIsRaiseCardButtonsOpen,mime, handleS
 };
 
   
-
   const onSubmit = (formValues) => {
     let formData = new FormData();
     formData.append("fund_title", formValues.fund_title);
@@ -123,7 +123,6 @@ const RaiseItem = ({ setCurrentOpenForm, setIsRaiseCardButtonsOpen,mime, handleS
   const getSteps = () => {
     return ["Item Title", "Description & Item Value", "Add a photo"];
   };
-
   const steps = getSteps();
   const getStepContent = stepIndex => {
     switch (stepIndex) {
