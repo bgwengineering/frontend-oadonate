@@ -17,6 +17,8 @@ const Layout = (props) => {
           <LoaderSpinn />
           <LoaderSpinn />
           <LoaderSpinn />
+          <LoaderSpinn />
+          <LoaderSpinn />
         </div>
       ) : null}
       <main>{props.children}</main>

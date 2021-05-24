@@ -2,16 +2,14 @@ import React, { useState } from "react";
 import { useDispatch,useSelector } from "react-redux";
 import {Field, reduxForm,stopSubmit,reset} from "redux-form"
 import axiosInstance from "util/api";
-import {
-  SHOW_ERROR_MESSAGE,
-  SHOW_SUCCESS_MESSAGE,
-  CREATE_FUND_ITEM_FAIL
-} from "store/actions/ActionTypes";
+import * as actionTypes from "store/actions/ActionTypes";
 import { setLoading, offLoading } from 'store/actions/Common';
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
 import Button from "@material-ui/core/Button";
+import { raiseCashFund } from "store/actions/fund_donate/FundDonate";
+
 
 
 const RaiseCash = ({ setIsRaiseCardButtonsOpen, setCurrentOpenForm, mime,handleSubmit,submitting, pristine }) => {
@@ -47,6 +45,9 @@ const RaiseCash = ({ setIsRaiseCardButtonsOpen, setCurrentOpenForm, mime,handleS
       imageObject.src = localImageUrl;
     }
   };
+
+
+
   const onSubmit = (formValues) => {
     let formData = new FormData();
     formData.append("fund_title", formValues.fund_title);
@@ -64,59 +65,86 @@ const RaiseCash = ({ setIsRaiseCardButtonsOpen, setCurrentOpenForm, mime,handleS
       }
     };
     dispatch(setLoading());
-    axiosInstance
-      .post('campaign/create/fundraise-cash', formData, config)
-      .then(res => {
-        dispatch({ type: SHOW_SUCCESS_MESSAGE, payload: "Campaign Created!" });
-        dispatch(stopSubmit("cashfund"));
-        dispatch(reset("cashfund"));
-      })
-      .catch(error => {
-        dispatch({ type: CREATE_FUND_ITEM_FAIL });
-        dispatch(stopSubmit("cashfund"));
-        dispatch(reset("cashfund"));
-        if (error.response.data) {
-          error.response.data.fund_title.map(err => {
-            return dispatch({
-              type: SHOW_ERROR_MESSAGE,
-              payload: `Fund Title Field: ${err}`
-            });
+    setTimeout(()=>{
+        axiosInstance
+          .post('campaign/create/fundraise-cash', formData, config)
+          .then((res) => {
+            console.log(res);
+            dispatch({ type: actionTypes.SHOW_SUCCESS_MESSAGE, payload: "Campaign Created!" });
+            dispatch(stopSubmit("cashfund"));
+            dispatch(reset("cashfund"));
+            dispatch(offLoading());
+          })
+          .catch(error => {
+            console.log(error.response);
+            dispatch({ type: actionTypes.CREATE_FUND_ITEM_FAIL });
+            dispatch(stopSubmit("cashfund"));
+            dispatch(reset("cashfund"));
+            // if (error.response.data) {
+            //   error.response.data.fund_title.map(err => {
+            //     return dispatch({
+            //       type: actionTypes.SHOW_ERROR_MESSAGE,
+            //       payload: `Fund Title Field: ${err}`
+            //     });
+            //   });
+            // dispatch(offLoading());
+            // }
+            if (error.response.data) {
+              error.response.data.fund_category.map(err => {
+                return dispatch({
+                  type: actionTypes.SHOW_ERROR_MESSAGE,
+                  payload: "Category Field: Must not be empty"
+                });
+              });
+              dispatch(offLoading());
+            }
+            else if (error.response.data) {
+              error.response.data.fund_cash_amount.map(err => {
+                return dispatch({
+                  type: actionTypes.SHOW_ERROR_MESSAGE,
+                  payload: "Amount Field: Must not be empty"
+                });
+              });
+              dispatch(offLoading());
+            }
+            else if (error.response.data) {
+              error.response.data.fund_img.map(err => {
+                return dispatch({
+                  type: actionTypes.SHOW_ERROR_MESSAGE,
+                  payload: `Fund Image Field: ${err}`
+                });
+              });
+            dispatch(offLoading());
+            }
+            else if (error.response.data) {
+              error.response.data.fund_purpose.map(err => {
+                return dispatch({
+                  type: actionTypes.SHOW_ERROR_MESSAGE,
+                  payload: `Purpose Field: ${err}`
+                });
+              });
+            dispatch(offLoading());
+            }
+            else if (error.response.data) {
+              error.response.data.fund_currency_type.map(err => {
+                return dispatch({
+                  type: actionTypes.SHOW_ERROR_MESSAGE,
+                  payload: `Currency Field: ${err}`
+                });
+              });
+            dispatch(offLoading());
+            }
+            else{
+              dispatch({
+                type: actionTypes.SHOW_ERROR_MESSAGE,
+                payload: "internal server error"
+              });
+              dispatch(offLoading());
+            }
+            
           });
-        }
-        if (error.response.data) {
-          error.response.data.fund_category.map(err => {
-            return dispatch({
-              type: SHOW_ERROR_MESSAGE,
-              payload: `Category Field: ${err}`
-            });
-          });
-        }
-        if (error.response.data) {
-          error.response.data.fund_img.map(err => {
-            return dispatch({
-              type: SHOW_ERROR_MESSAGE,
-              payload: `Fund Image Field: ${err}`
-            });
-          });
-        }
-        if (error.response.data) {
-          error.response.data.fund_purpose.map(err => {
-            return dispatch({
-              type: SHOW_ERROR_MESSAGE,
-              payload: `Purpose Field: ${err}`
-            });
-          });
-        }
-        if (error.response.data) {
-          error.response.data.fund_currency_type.map(err => {
-            return dispatch({
-              type: SHOW_ERROR_MESSAGE,
-              payload: `Currency Field: ${err}`
-            });
-          });
-        }
-      });
-      dispatch(offLoading());
+      },2000);
+      
   };
 
   const [activeStep, setActiveStep] = useState(0);
@@ -329,7 +357,7 @@ const RaiseCash = ({ setIsRaiseCardButtonsOpen, setCurrentOpenForm, mime,handleS
                   //     setCurrentOpenForm(null);
                   //   }, 5000);
                   // }}
-                  disabled={pristine || submitting}
+                  // disabled={pristine || submitting}
                 >
                   Submit
                 </Button>
