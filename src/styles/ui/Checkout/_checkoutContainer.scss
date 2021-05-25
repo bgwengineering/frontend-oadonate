@@ -116,8 +116,7 @@ $green_color: #0f6929;
     margin-top: 30px;
   }
 
-
-  // step container
+// step container
   .step-container {
     height: 700px;
     box-sizing: border-box;
@@ -129,70 +128,47 @@ $green_color: #0f6929;
         position:relative;
         .scroll-to-order {
           position:absolute;
-          left:18%;
+          left:17%;
         }
         // inflow scroll
         .scroll-resp{
           width:20%;
           }
-          .scroll-1, .scroll-3, .scroll-2, .inflow-scroll, .inflow-scroll-2 {
-          border-top: $border-top;
-        }
 
-        .inflow-scroll-active, .inflow-scroll{
-             margin-top:8px;  
-        }
-        .inflow-scroll-active-2, .inflow-scroll-2{
-             margin-top:8px;  
-       
-        }
-        .scroll-login-active, .inflow-scroll-active, .inflow-scroll-active-2, .scroll-1-active {
+        .inflow-scroll-active-2, .inflow-scroll-active-3 {
           border-top: $check-border-top $orange_color;
           width:200px;
         }      
 
-        .scroll-2-active{
+        .inflow-scroll-2, .inflow-scroll-3 {
+          border-top: $border-top;
+           width:200px;
+            margin-top:8px;  
+        }
+
+        .scroll-2-active, .scroll-3-active{
           border-radius:100%;
           width:30px;
           height:30px;
           border:1px solid $green_color;
         }    
-         .scroll-3-active{
-          border-radius:100%;
-          width:30px;
-          height:30px;
-          border:1px solid $green_color;
-        }  
+  
+        .inflow-scroll-active-2, .inflow-scroll-active-3{
+             margin-top:8px;  
+        }
+  
+      
+       
+    
 
         // shipping
-          .shipping-active { 
+          .shipping-active, .order-active { 
             color: #000000;
             font-size: 15px;
             font-family: "Open Sans";
             margin-top:5px;
           }
             
-          .order-active { 
-            color: #000000;
-            font-size: 15px;
-            font-family: "Open Sans";
-            margin-top:5px;
-          }
-            
-
-
-
-
-
-
-
-        // scroll 3
-          .order-payment-active {
-            color: #000000;
-            font-size: 15px;
-            font-family: "Open Sans";
-          }
-       
       
       }
     }
