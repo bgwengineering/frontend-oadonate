@@ -3,20 +3,19 @@ import { connect, useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
 import { Button } from "@material-ui/core";
 import { reduxForm, Field } from "redux-form";
-import { updateShippingAddress, singleShippingAddress } from "store/actions/auth/Dashboard";
+import { updateShippingAddressCheckout, singleShippingAddress } from "store/actions/auth/Dashboard";
 import { validateShipping, checkoutRenderField } from "util/RenderValidate";
 
 const EditShipping = ({ nextPage, previousPage, handleSubmit, id }) => {
   console.log(id)
   const dispatch = useDispatch();
   useEffect(() => {
-    // document.title = 'Ogadonate | Checkout'
     dispatch(singleShippingAddress(`${id}`));
   }, []);
   const [checked, setChecked] = useState(false);
 
   const updateShipping = (formValues) => {
-    dispatch(updateShippingAddress(id, formValues));
+    dispatch(updateShippingAddressCheckout(id, formValues));
     nextPage();
   };
   const ToggleSwitch = ({ checked, onChange, id }) => (
@@ -152,7 +151,7 @@ const EditShipping = ({ nextPage, previousPage, handleSubmit, id }) => {
                 </div>
                 <hr className="profile_hr my-4" />
                 <div className="d-flex justify-content-between">
-                  <Button className="shipping-btn" type="button" onClick={() => previousPage()}>
+                  <Button className="shipping-btn" type="button">
                     Cancel
                   </Button>
                   <Button className="shipping-btn" type="submit">
@@ -179,6 +178,6 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { updateShippingAddress, singleShippingAddress })(
+export default connect(mapStateToProps, { updateShippingAddressCheckout, singleShippingAddress })(
   reduxForm({ form: "editshipping", enableReinitialize: true, validateShipping })(EditShipping)
 );
