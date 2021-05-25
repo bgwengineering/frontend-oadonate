@@ -16,36 +16,37 @@ import Button from "@material-ui/core/Button";
 const RaiseItem = ({ setCurrentOpenForm, setIsRaiseCardButtonsOpen,mime, handleSubmit,submitting, pristine }) => {
   const dispatch = useDispatch();
    const renderInput = ({ input, type, meta}) => {
+
     return (
-      <div>
-        <input
-          name={input.name}
-          type={type}
-          accept={mime}
-          onChange={(event) => handleChange(event, input)}
-        />
-        {meta && meta.invalid && meta.error && (
-          <p style={{ color: "red", fontSize: "10px" }}>{meta.error}</p>
-        )}
-      </div>
+        <div>
+      <input
+        name={input.name}
+        type={type}
+        accept={mime}
+        onChange={(event) => handleChange(event, input)}
+      />
+      {meta && meta.invalid && meta.error && (
+        <p style={{ color: "red", fontSize: "10px" }}>{meta.error}</p>
+      )}
+    </div>
     );
-  };
-   const handleChange = (event, input) => {
+};
+ const handleChange = (event, input) => {
     event.preventDefault();
     let imageFile = event.target.files[0];
     if (imageFile) {
-      const localImageUrl = URL.createObjectURL(imageFile);
-      const imageObject = new window.Image();
+        const localImageUrl = URL.createObjectURL(imageFile);
+        const imageObject = new window.Image();
 
-      imageObject.onload = () => {
-        imageFile.width = imageObject.naturalWidth;
-        imageFile.height = imageObject.naturalHeight;
-        input.onChange(imageFile);
-        URL.revokeObjectURL(imageFile);
-      };
-      imageObject.src = localImageUrl;
+        imageObject.onload = () => {
+            imageFile.width = imageObject.naturalWidth;
+            imageFile.height = imageObject.naturalHeight;
+            input.onChange(imageFile);
+            URL.revokeObjectURL(imageFile);
+        };
+        imageObject.src = localImageUrl;
     }
-  };
+};
 
   
   const onSubmit = (formValues) => {

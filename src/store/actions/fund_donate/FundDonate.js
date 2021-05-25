@@ -4,6 +4,21 @@ import * as actionTypes from '../ActionTypes';
 import { setLoading,offLoading } from './../Common';
 
 
+export const raiseCashFund = (formValues) => async(dispatch, getState) => {
+  dispatch(setLoading());
+  try{
+    const res = await axiosInstance.post('campaign/create/fundraise-cash', {...formValues}, tokenConfig(getState));
+    dispatch({type: actionTypes.CREATE_FUND_CASH_SUCCESS, payload:res.data})
+    dispatch(offLoading());
+    dispatch({type:actionTypes.SHOW_SUCCESS_MESSAGE, payload:"Fund Created"})
+  }catch(error){
+    dispatch(setLoading());
+    dispatch({type:actionTypes.CREATE_FUND_CASH_FAIL})
+    dispatch({type:actionTypes.SHOW_ERROR_MESSAGE, payload:error.message})
+    dispatch(offLoading());
+  }
+}
+
 //  FUND CREATE AND FETCH
 export const getfundCashCampaigns = () => async(dispatch,getState) =>{
    try{

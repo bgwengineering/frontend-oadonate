@@ -3,7 +3,7 @@ import * as actionTypes from "../actions/ActionTypes";
 const initialState = {
   profile_user: [],
   singleProfile: [],
-  company_user: null,
+  company_user: [],
   shippingAddress: [],
   user_donations_received: [],
   loading: false,

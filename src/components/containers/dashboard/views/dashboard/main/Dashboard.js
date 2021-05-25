@@ -27,7 +27,7 @@ const Dashboard = () => {
     <>
       <div id="dashboard-view">
         <WidgetsDropdown />
-        {profile_user && profile_user.length || company_user && company_user.length  ? (
+        {profile_user.length || company_user.length  ? (
 
           <h4>Current Activity to be Display</h4>
         ) : (
