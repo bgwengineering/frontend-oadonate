@@ -39,7 +39,7 @@ export default function Stepper({ page, currentUser }) {
             </div>
           </div>  
           
-
+             {/* order */}
           <div className="scroll-resp scroll-to-order d-flex">
               <div
                 className={
@@ -73,18 +73,10 @@ export default function Stepper({ page, currentUser }) {
             </div>
           </div>  
           
-
-
-
           </div>
       
       ) : (
-        // <div className={page === 2 ? "scroll-3-active" : "scroll-3"}>
-        //   <span className={page === 2 ? "scroll-3-heading-active" : "scroll-3-heading"}>2</span>
-        //   <p className={page === 2 ? "order-payment-active" : "order-payment"}>Order & Payment</p>
-        // </div>
-
-        // <div className={page === 2 ? "outflow-scroll-active" : "outflow-scroll"}> </div>
+      
 
         <div className="currentUser scroll-bar-not-loggedin">
           <div className="inflow-scroll-active"></div>

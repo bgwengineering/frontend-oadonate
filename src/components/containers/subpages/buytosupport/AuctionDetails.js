@@ -61,6 +61,7 @@ const AuctionDetails = ({ match }) => {
     useEffect(() => {
     dispatch(getSingleMarketProductItem(match.params.id))
   }, [])  
+
     const productState = useSelector(state=>state.marketPlaceReducer)
     const {singleCollections} = productState
     const {donate_item_img, donate_mkt_price, donate_mkt_bid, donate_item_name, donate_currency, id, donate_item_condition} = singleCollections
@@ -83,7 +84,7 @@ const AuctionDetails = ({ match }) => {
 
     <p className="text-capitalize font-weight-bold mt-3 mb-0">
           Item Condition:{donate_item_condition}
-              </p>          
+    </p>          
               <p className="text-muted lead">Auction ends: </p>
               <p className="text-muted lead">Timezone: </p>
               <p className="text-muted lead">Category:</p> 
