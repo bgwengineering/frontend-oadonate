@@ -138,6 +138,27 @@ export const updateShippingAddress = (id, address) => async (dispatch, getState)
     }, 5000);
   }
 };
+export const updateShippingAddressCheckout = (id, address) => async (dispatch, getState) => {
+  dispatch(setLoading());
+  try {
+    const res = await axiosInstance.patch(
+      `buy-to-support/shipping/${id}`,
+      { ...address },
+      tokenConfig(getState)
+    );
+    dispatch({ type: actionTypes.UPDATE_SHIPPING_ADDRESS_SUCCESS, payload: res.data });
+    dispatch(reset("editshipping"));
+    dispatch(stopSubmit("editshipping"));
+    dispatch(offLoading());
+  } catch (error) {
+    dispatch({ type: actionTypes.UPDATE_SHIPPING_ADDRESS_FAIL });
+    dispatch(stopSubmit("editshipping"));
+    dispatch(reset("editshipping"));
+    setTimeout(() => {
+      dispatch(offLoading());
+    }, 5000);
+  }
+};
 
 //get shipping address
 export const fetchShippingAddress = () => async (dispatch, getState) => {

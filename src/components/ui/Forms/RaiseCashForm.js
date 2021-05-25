@@ -1,18 +1,23 @@
 import React, { useState } from "react";
-import { useDispatch,useSelector } from "react-redux";
-import {Field, reduxForm,stopSubmit,reset} from "redux-form"
+import { useDispatch, useSelector } from "react-redux";
+import { Field, reduxForm, stopSubmit, reset } from "redux-form";
 import axiosInstance from "util/api";
 import * as actionTypes from "store/actions/ActionTypes";
-import { setLoading, offLoading } from 'store/actions/Common';
+import { setLoading, offLoading } from "store/actions/Common";
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
 import Button from "@material-ui/core/Button";
 import { raiseCashFund } from "store/actions/fund_donate/FundDonate";
 
-
-
-const RaiseCash = ({ setIsRaiseCardButtonsOpen, setCurrentOpenForm, mime,handleSubmit,submitting, pristine }) => {
+const RaiseCash = ({
+  setIsRaiseCardButtonsOpen,
+  setCurrentOpenForm,
+  mime,
+  handleSubmit,
+  submitting,
+  pristine,
+}) => {
   const dispatch = useDispatch();
   const renderInput = ({ input, type, meta }) => {
     return (
@@ -46,8 +51,6 @@ const RaiseCash = ({ setIsRaiseCardButtonsOpen, setCurrentOpenForm, mime,handleS
     }
   };
 
-
-
   const onSubmit = (formValues) => {
     let formData = new FormData();
     formData.append("fund_title", formValues.fund_title);
@@ -61,90 +64,77 @@ const RaiseCash = ({ setIsRaiseCardButtonsOpen, setCurrentOpenForm, mime,handleS
       headers: {
         "Content-Type": "application/json",
         Authorization: `JWT ${localStorage.getItem("access")}`,
-        Accept: "application/json"
-      }
+        Accept: "application/json",
+      },
     };
     dispatch(setLoading());
-    setTimeout(()=>{
-        axiosInstance
-          .post('campaign/create/fundraise-cash', formData, config)
-          .then((res) => {
-            console.log(res);
-            dispatch({ type: actionTypes.SHOW_SUCCESS_MESSAGE, payload: "Campaign Created!" });
-            dispatch(stopSubmit("cashfund"));
-            dispatch(reset("cashfund"));
+    setTimeout(() => {
+      axiosInstance
+        .post("campaign/create/fundraise-cash", formData, config)
+        .then((res) => {
+          dispatch({ type: actionTypes.CREATE_FUND_CASH_SUCCESS });
+          dispatch({ type: actionTypes.SHOW_SUCCESS_MESSAGE, payload: "Campaign Created!" });
+          dispatch(stopSubmit("cashfund"));
+          dispatch(reset("cashfund"));
+          dispatch(offLoading());
+        })
+        .catch((error) => {
+          console.log(error.response.data);
+          dispatch({ type: actionTypes.CREATE_FUND_CASH_FAIL });
+          dispatch(stopSubmit("cashfund"));
+          dispatch(reset("cashfund"));
+          if (error.response == "undefined") {
+            dispatch({
+              type: actionTypes.SHOW_ERROR_MESSAGE,
+              payload: `Error: ${error.response.data}`,
+            });
             dispatch(offLoading());
-          })
-          .catch(error => {
-            console.log(error.response);
-            dispatch({ type: actionTypes.CREATE_FUND_ITEM_FAIL });
-            dispatch(stopSubmit("cashfund"));
-            dispatch(reset("cashfund"));
-            // if (error.response.data) {
-            //   error.response.data.fund_title.map(err => {
-            //     return dispatch({
-            //       type: actionTypes.SHOW_ERROR_MESSAGE,
-            //       payload: `Fund Title Field: ${err}`
-            //     });
-            //   });
-            // dispatch(offLoading());
-            // }
-            if (error.response.data) {
-              error.response.data.fund_category.map(err => {
-                return dispatch({
-                  type: actionTypes.SHOW_ERROR_MESSAGE,
-                  payload: "Category Field: Must not be empty"
-                });
-              });
-              dispatch(offLoading());
-            }
-            else if (error.response.data) {
-              error.response.data.fund_cash_amount.map(err => {
-                return dispatch({
-                  type: actionTypes.SHOW_ERROR_MESSAGE,
-                  payload: "Amount Field: Must not be empty"
-                });
-              });
-              dispatch(offLoading());
-            }
-            else if (error.response.data) {
-              error.response.data.fund_img.map(err => {
-                return dispatch({
-                  type: actionTypes.SHOW_ERROR_MESSAGE,
-                  payload: `Fund Image Field: ${err}`
-                });
-              });
-            dispatch(offLoading());
-            }
-            else if (error.response.data) {
-              error.response.data.fund_purpose.map(err => {
-                return dispatch({
-                  type: actionTypes.SHOW_ERROR_MESSAGE,
-                  payload: `Purpose Field: ${err}`
-                });
-              });
-            dispatch(offLoading());
-            }
-            else if (error.response.data) {
-              error.response.data.fund_currency_type.map(err => {
-                return dispatch({
-                  type: actionTypes.SHOW_ERROR_MESSAGE,
-                  payload: `Currency Field: ${err}`
-                });
-              });
-            dispatch(offLoading());
-            }
-            else{
-              dispatch({
+          } if (error.response.data) {
+            error.response.data.fund_category.map((err) => {
+              return dispatch({
                 type: actionTypes.SHOW_ERROR_MESSAGE,
-                payload: "internal server error"
+                payload: "Category Field: Must not be empty",
               });
-              dispatch(offLoading());
-            }
-            
-          });
-      },2000);
-      
+            });
+            dispatch(offLoading());
+          } if (error.response.data) {
+            error.response.data.fund_cash_amount.map((err) => {
+              return dispatch({
+                type: actionTypes.SHOW_ERROR_MESSAGE,
+                payload: "Amount Field: Must not be empty",
+              });
+            });
+            dispatch(offLoading());
+          } if (error.response.data) {
+            error.response.data.fund_img.map((err) => {
+              return dispatch({
+                type: actionTypes.SHOW_ERROR_MESSAGE,
+                payload: `Fund Image Field: ${err}`,
+              });
+            });
+            dispatch(offLoading());
+          } if (error.response.data) {
+            error.response.data.fund_purpose.map((err) => {
+              return dispatch({
+                type: actionTypes.SHOW_ERROR_MESSAGE,
+                payload: `Purpose Field: ${err}`,
+              });
+            });
+            dispatch(offLoading());
+          } if (error.response.data) {
+            error.response.data.fund_currency_type.map((err) => {
+              return dispatch({
+                type: actionTypes.SHOW_ERROR_MESSAGE,
+                payload: `Currency Field: ${err}`,
+              });
+            });
+            dispatch(offLoading());
+          }
+        });
+    }, 2000);
+    setTimeout(() => {
+      dispatch(offLoading());
+    }, 3000);
   };
 
   const [activeStep, setActiveStep] = useState(0);
@@ -153,7 +143,7 @@ const RaiseCash = ({ setIsRaiseCardButtonsOpen, setCurrentOpenForm, mime,handleS
   };
 
   const steps = getSteps();
-  const getStepContent = stepIndex => {
+  const getStepContent = (stepIndex) => {
     switch (stepIndex) {
       case 0:
         return getPersonalInformation();
@@ -170,7 +160,7 @@ const RaiseCash = ({ setIsRaiseCardButtonsOpen, setCurrentOpenForm, mime,handleS
       <fieldset>
         <h2 className="fs-title text-capitalize">Fundraise Title</h2>
         <Field
-        component="input"
+          component="input"
           type="text"
           placeholder="what should your cause be called?"
           name="fund_title"
@@ -179,7 +169,9 @@ const RaiseCash = ({ setIsRaiseCardButtonsOpen, setCurrentOpenForm, mime,handleS
         <div>
           <label className="mr-3 mt-3">Select fund raise categories</label>
           <Field name="fund_category" id="categories" component="select">
-            <option value="" disabled>select option</option>
+            <option value="" disabled>
+              select option
+            </option>
             <option value="Personal_need">Personal</option>
             <option value="Community">Community</option>
             <option value="Start_up">Start up</option>
@@ -192,7 +184,9 @@ const RaiseCash = ({ setIsRaiseCardButtonsOpen, setCurrentOpenForm, mime,handleS
         <span>
           <i className="mr-3">select option for dollar, naira, euro</i>
           <Field name="fund_currency_type" component="select">
-            <option value="" disabled>select option</option>
+            <option value="" disabled>
+              select option
+            </option>
             <option value="$">$</option>
             <option value="₦">₦</option>
           </Field>
@@ -205,15 +199,15 @@ const RaiseCash = ({ setIsRaiseCardButtonsOpen, setCurrentOpenForm, mime,handleS
           component="input"
           data-msg-required="Please enter a valid number"
           type="number"
-          normalize={val => (val || "").replace(/[^\d]/g, "")}
+          normalize={(val) => (val || "").replace(/[^\d]/g, "")}
           className="mt-3 input-number"
           placeholder="Type the amount you need"
         />
 
         <p>
           <i>
-            Keep in mind that transaction fees of (5%) including credit and
-            debit charges are deducted from each donation
+            Keep in mind that transaction fees of (5%) including credit and debit charges are
+            deducted from each donation
           </i>
         </p>
       </fieldset>
@@ -224,25 +218,13 @@ const RaiseCash = ({ setIsRaiseCardButtonsOpen, setCurrentOpenForm, mime,handleS
     return (
       <fieldset>
         <h2 className="fs-title">Add a cover photo</h2>
-        <h3 className="fs-subtitle">
-          Please upload a picture that describes your need
-        </h3>
+        <h3 className="fs-subtitle">Please upload a picture that describes your need</h3>
         <label>Choose your image file</label>
         <div>
-          <Field
-            name="fund_img"
-            type="file"
-            component={renderInput}
-            className="input-number"
-          />
+          <Field name="fund_img" type="file" component={renderInput} className="input-number" />
         </div>
         <h2 className="fs-title mt-4">Campaign End date</h2>
-        <Field
-          type="date"
-          name="fund_endAt"
-          component="input"
-          className="input-date"
-        />
+        <Field type="date" name="fund_endAt" component="input" className="input-date" />
 
         <h2 className="fs-title mt-4">Tell your story</h2>
         <Field
@@ -257,11 +239,11 @@ const RaiseCash = ({ setIsRaiseCardButtonsOpen, setCurrentOpenForm, mime,handleS
   };
 
   const handleNext = () => {
-    setActiveStep(prevActiveStep => prevActiveStep + 1);
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
   const handleBack = () => {
-    setActiveStep(prevActiveStep => prevActiveStep - 1);
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
   const handleReset = () => {
     setActiveStep(0);
@@ -271,18 +253,12 @@ const RaiseCash = ({ setIsRaiseCardButtonsOpen, setCurrentOpenForm, mime,handleS
     <>
       <form onSubmit={handleSubmit(onSubmit)} className="fundforms_container">
         <div className="w-80">
-          <Stepper
-            activeStep={activeStep}
-            alternativeLabel
-            className="horizontal-stepper-linear"
-          >
+          <Stepper activeStep={activeStep} alternativeLabel className="horizontal-stepper-linear">
             {steps.map((label, index) => {
               return (
                 <Step
                   key={label}
-                  className={`horizontal-stepper ${
-                    index === activeStep ? "active" : ""
-                  }`}
+                  className={`horizontal-stepper ${index === activeStep ? "active" : ""}`}
                 >
                   <StepLabel className="stepperlabel">{label}</StepLabel>
                 </Step>
@@ -351,13 +327,14 @@ const RaiseCash = ({ setIsRaiseCardButtonsOpen, setCurrentOpenForm, mime,handleS
                   type="submit"
                   name="submit"
                   className="MuiButton-containedPrimary"
-                  // onClick={() => {
-                  //   setTimeout(() => {
-                  //     setIsRaiseCardButtonsOpen(false);
-                  //     setCurrentOpenForm(null);
-                  //   }, 5000);
-                  // }}
-                  // disabled={pristine || submitting}
+                  onClick={() => {
+                    setTimeout(() => {
+                      setIsRaiseCardButtonsOpen(false);
+                      setCurrentOpenForm(null);
+                      handleReset();
+                    }, 9000);
+                  }}
+                  disabled={pristine || submitting}
                 >
                   Submit
                 </Button>
@@ -371,6 +348,5 @@ const RaiseCash = ({ setIsRaiseCardButtonsOpen, setCurrentOpenForm, mime,handleS
 };
 
 export default reduxForm({
-  form: "cashfund"
-}
-)(RaiseCash);
+  form: "cashfund",
+})(RaiseCash);

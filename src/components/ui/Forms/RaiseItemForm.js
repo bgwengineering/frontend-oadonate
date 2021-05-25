@@ -2,11 +2,7 @@ import React, { useState } from "react";
 import {Field, reduxForm, stopSubmit, reset} from "redux-form"
 import axiosInstance from "util/api";
 import { setLoading,offLoading } from 'store/actions/Common';
-import {
-  SHOW_ERROR_MESSAGE,
-  SHOW_SUCCESS_MESSAGE,
-  CREATE_FUND_CASH_FAIL
-} from "store/actions/ActionTypes";
+import * as actionTypes from "store/actions/ActionTypes";
 import { useDispatch } from "react-redux";
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
@@ -68,55 +64,85 @@ const RaiseItem = ({ setCurrentOpenForm, setIsRaiseCardButtonsOpen,mime, handleS
       }
     };
     dispatch(setLoading());
-    axiosInstance
+    setTimeout(() =>{
+      axiosInstance
       .post('campaign/create/fundraise-item', formData, config)
       .then(res => {
-        dispatch({ type: SHOW_SUCCESS_MESSAGE, payload: "Campaign Created!" });
+        dispatch({ type: actionTypes.SHOW_SUCCESS_MESSAGE, payload: "Campaign Created!" });
+        dispatch(stopSubmit("itemFund"));
+        dispatch(reset("itemFund")); 
+        dispatch(offLoading());
       })
       .catch(error => {
-        dispatch({ type: CREATE_FUND_CASH_FAIL });
-        dispatch(offLoading()); 
-        if (error.response.data) {
-          error.response.data.fund_title.map(err => {
-            return dispatch({
-              type: SHOW_ERROR_MESSAGE,
-              payload: `Fund Title Field: ${err}`
-            });
+        console.log(error.response);
+        dispatch({ type: actionTypes.CREATE_FUND_ITEM_FAIL });
+        dispatch(stopSubmit("cashfund"));
+        dispatch(reset("cashfund"));
+        if (error.response == "undefined") {
+            dispatch({
+              type: actionTypes.SHOW_ERROR_MESSAGE,
+              payload: `Error: ${error.response.data}`
           });
+        dispatch(offLoading());
         }
-        if (error.response.data) {
+        else if (error.response.data) {
           error.response.data.fund_category.map(err => {
             return dispatch({
-              type: SHOW_ERROR_MESSAGE,
-              payload: `Category Field: ${err}`
+              type: actionTypes.SHOW_ERROR_MESSAGE,
+              payload: "Category Field: Must not be empty"
             });
           });
+          dispatch(offLoading());
         }
-        if (error.response.data) {
+        else if (error.response.data) {
+          error.response.data.fund_cash_amount.map(err => {
+            return dispatch({
+              type: actionTypes.SHOW_ERROR_MESSAGE,
+              payload: "Amount Field: Must not be empty"
+            });
+          });
+          dispatch(offLoading());
+        }
+        else if (error.response.data) {
           error.response.data.fund_img.map(err => {
             return dispatch({
-              type: SHOW_ERROR_MESSAGE,
+              type: actionTypes.SHOW_ERROR_MESSAGE,
               payload: `Fund Image Field: ${err}`
             });
           });
+        dispatch(offLoading());
         }
-        if (error.response.data) {
+        else if (error.response.data) {
           error.response.data.fund_purpose.map(err => {
             return dispatch({
-              type: SHOW_ERROR_MESSAGE,
+              type: actionTypes.SHOW_ERROR_MESSAGE,
               payload: `Purpose Field: ${err}`
             });
           });
+        dispatch(offLoading());
         }
-        if (error.response.data) {
+        else if (error.response.data) {
           error.response.data.fund_currency_type.map(err => {
             return dispatch({
-              type: SHOW_ERROR_MESSAGE,
+              type: actionTypes.SHOW_ERROR_MESSAGE,
               payload: `Currency Field: ${err}`
             });
           });
+        dispatch(offLoading());
         }
+        else{
+          dispatch({
+            type: actionTypes.SHOW_ERROR_MESSAGE,
+            payload: "internal server error"
+          });
+          dispatch(offLoading());
+        }
+        
       });
+  },2000);
+  setTimeout(()=>{
+    dispatch(offLoading());
+  },3000)
   };
 
   const [activeStep, setActiveStep] = useState(0);
@@ -330,7 +356,8 @@ const RaiseItem = ({ setCurrentOpenForm, setIsRaiseCardButtonsOpen,mime, handleS
                     setTimeout(() => {
                       setIsRaiseCardButtonsOpen(false);
                       setCurrentOpenForm(null);
-                    }, 5000);
+                      handleReset();
+                    }, 9000);
                   }}
                 >
                   Submit
