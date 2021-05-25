@@ -78,7 +78,7 @@ const OrderPreview = ({ nextPage, previousPage, history }) => {
 
       <div className="d-flex justify-content-between order-total">
         <p className="text-uppercase order-total">Total</p>
-        <p className="amount-order">₦{(subTotal + 1000).toFixed(2)}</p>
+        <p className="amount-order font-weight-bold">₦{(subTotal + 1000).toFixed(2)}</p>
       </div>
 
       <div>

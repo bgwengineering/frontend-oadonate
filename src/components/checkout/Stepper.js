@@ -9,7 +9,7 @@ export default function Stepper({ page, currentUser }) {
           <div className="scroll-resp d-flex">
               <div
                 className={
-                  page === 1 ? "inflow-scroll-active" : "inflow-scroll"
+                  page === 1 ? "inflow-scroll-active-2" : "inflow-scroll-2"
                 }
             ></div>
             <div className=" d-flex flex-column justify-content-center">
@@ -43,13 +43,13 @@ export default function Stepper({ page, currentUser }) {
           <div className="scroll-resp scroll-to-order d-flex">
               <div
                 className={
-                  page === 2 ? "inflow-scroll-active-2" : "inflow-scroll-2"
+                  page === 2 ? "inflow-scroll-active-3" : "inflow-scroll-3"
                 }
             ></div>
             <div className="d-flex flex-column justify-content-center">
               <div
                 className={
-                  page === 1
+                  page === 2
                     ? "scroll-3-active d-flex justify-content-center align-items-center"
                     : "scroll-3 d-flex justify-content-center align-items-center"
                   }
