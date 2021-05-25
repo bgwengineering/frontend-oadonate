@@ -1,6 +1,7 @@
 // constant variables
 $input_border: 0.1rem #dddddd solid;
 
+
 // border radius
 $border-top: 3px solid#dddd;
 $check-border-top: 3px solid;
@@ -9,8 +10,9 @@ $border-radius: 20px;
 // colors
 $black_color: black;
 $smoke_white: #efecec;
-$orange_color: #C75A00;
-$green_color:#0F6929;
+$orange_color: #c75a00;
+$green_color: #0f6929;
+
 
 @mixin border-radius {
   border-bottom-right-radius: $border-radius;
@@ -20,27 +22,25 @@ $green_color:#0F6929;
 }
 
 // form mixins
-@mixin input-border-fill{
+@mixin input-border-fill {
   width: 180px;
   height: 40px;
   border-top-left-radius: 50px;
   border-bottom-left-radius: 50px;
   border-top-right-radius: 50px;
   border-bottom-right-radius: 50px;
-  font-size:1rem;
-   color: #C75A00;
-   outline: 2px solid #C75A00;
-   border:none;
-   background-color:#fff;
-   &:hover{
-       color:#0F6929;
-   }
+  font-size: 1rem;
+  color: #c75a00;
+  outline: 2px solid #c75a00;
+  border: none;
+  background-color: #fff;
+  &:hover {
+    color: #0f6929;
+  }
 }
 @mixin addresses {
- 
 }
 @mixin address-input {
-
 }
 @mixin labels {
   margin: 0 0 3px 5px;
@@ -57,10 +57,7 @@ $green_color:#0F6929;
 }
 
 // next and previous buttons
-@mixin btn {
-  display: flex;
-  height: 46px;
-}
+
 @mixin bck {
   height: 46px;
   width: 139px;
@@ -94,7 +91,6 @@ $green_color:#0F6929;
   width: 92px;
   min-width: auto;
   outline: none;
-  margin-left: 680px;
   border-top-left-radius: 50px;
   border-bottom-left-radius: 50px;
   border-bottom-right-radius: 50px;
@@ -106,8 +102,6 @@ $green_color:#0F6929;
   }
 }
 
-
-// next and previous buttons
 .checkout-page-container {
   height: 1100px;
   width: 100%;
@@ -119,393 +113,141 @@ $green_color:#0F6929;
     font-size: 40px;
     height: 44px;
     text-align: center;
-    margin-top:30px;
+    margin-top: 30px;
   }
-  
+
+
+  // step container
   .step-container {
     height: 700px;
     box-sizing: border-box;
+    
     .checkout-scroll {
       display: flex;
-      .currentUser {
-        display: flex;
+      .scroll-bar-signedin {
+        width:100%;
+        position:relative;
+        .scroll-to-order {
+          position:absolute;
+          left:18%;
+        }
         // inflow scroll
-        .inflow-scroll-active {
-          border-top: $check-border-top $green_color;
-        }
-        .inflow-scroll {
+        .scroll-resp{
+          width:20%;
+          }
+          .scroll-1, .scroll-3, .scroll-2, .inflow-scroll, .inflow-scroll-2 {
           border-top: $border-top;
         }
-        .scroll-login-active {    
-          border-top: $check-border-top $orange_color;
-          .login {
-            margin: 0 0 0 -40px;
-            color: #464646;
-            font-size: 15px;
-            font-family: "Open Sans";
-          }
-        }
-        .scroll-1-active {
-          border-top: $check-border-top $orange_color;
-          .billing-active {
-            margin: 0 0 0 -40px;
-            color: #000000;
-            font-size: 15px;
-            font-family: "Open Sans";
-          }
-          .billing {
-            margin: 0 0 0 -40px;
-            color: #818181;
-            font-size: 15px;
-            font-family: "Open Sans";
-          }
-        }
-        .scroll-1 {
-          border-top: $border-top;
-          .billing-active {
-            margin: 0 0 0 -40px;
-            color: #000000;
-            font-size: 15px;
-            font-family: "Open Sans";
-          }
-          .billing {
-            margin: 0 0 0 -40px;
-            color: #818181;
-            font-size: 15px;
-            font-family: "Open Sans";
-          }
-        }
 
-        .scroll-2-active {
+        .inflow-scroll-active, .inflow-scroll{
+             margin-top:8px;  
+        }
+        .inflow-scroll-active-2, .inflow-scroll-2{
+             margin-top:8px;  
+       
+        }
+        .scroll-login-active, .inflow-scroll-active, .inflow-scroll-active-2, .scroll-1-active {
           border-top: $check-border-top $orange_color;
-          margin-left: 32px;
-          .shipping-active {
-            margin: 0 0 0 -40px;
+          width:200px;
+        }      
+
+        .scroll-2-active{
+          border-radius:100%;
+          width:30px;
+          height:30px;
+          border:1px solid $green_color;
+        }    
+         .scroll-3-active{
+          border-radius:100%;
+          width:30px;
+          height:30px;
+          border:1px solid $green_color;
+        }  
+
+        // shipping
+          .shipping-active { 
             color: #000000;
             font-size: 15px;
             font-family: "Open Sans";
+            margin-top:5px;
           }
-          .shpping {
-            margin: 0 0 0 -50px;
-            color: #818181;
-            font-size: 15px;
-            font-family: "Open Sans";
-          }
-        }
-
-        .scroll-2 {
-          border-top: $border-top;
-          margin-left: 32px;
-          .shipping-active {
-            margin: 0 0 0 -40px;
+            
+          .order-active { 
             color: #000000;
             font-size: 15px;
             font-family: "Open Sans";
+            margin-top:5px;
           }
-          .shipping {
-            margin: 0 0 0 -50px;
-            color: #818181;
-            font-size: 15px;
-            font-family: "Open Sans";
-          }
-        }
+            
 
-        .scroll-3-active {
-          border-top: $check-border-top $orange_color;
-          margin-left: 32px;
+
+
+
+
+
+
+        // scroll 3
           .order-payment-active {
-            margin: 0 0 0 -40px;
             color: #000000;
             font-size: 15px;
             font-family: "Open Sans";
           }
-          .order-payment {
-            margin: 0 0 0 -70px;
-            color: #818181;
-            font-size: 15px;
-            font-family: "Open Sans";
-          }
-        }
-        .scroll-3 {
-          border-top: $border-top;
-          margin-left: 32px;
-          .order-payment-active {
-            margin: 0 0 0 -40px;
-            color: #000000;
-            font-size: 15px;
-            font-family: "Open Sans";
-          }
-          .order-payment {
-            margin: 0 0 0 -70px;
-            color: #818181;
-            font-size: 15px;
-            font-family: "Open Sans";
-          }
-        }
-
-        //  link scroll
-        @mixin link-scrolls {
-          width: 120px;
-        }
-        .link-scroll-login-active {
-          @include link-scrolls;
-          border-top: $check-border-top $orange_color;
-        }
-        .link-scroll-login {
-          @include link-scrolls;
-          border-top: $border-top;
-          margin-right: 12px;
-        }
-        .link-scroll-1-active {
-          @include link-scrolls;
-          border-top: $check-border-top $orange_color;
-        }
-        .link-scroll-1 {
-          @include link-scrolls;
-          border-top: $border-top;
-        }
-
-        .link-scroll-2-active {
-          @include link-scrolls;
-          border-top: $check-border-top $orange_color;
-        }
-        .link-scroll-2 {
-          @include link-scrolls;
-          border-top: $border-top;
-        }
-
-
-
-        // scroll writup
-        @mixin writeup {
-          margin-top: -20px;
-          width: 30px;
-          height: 30px;
-        ;
-          border-radius: 50%;
-        }
-        .scroll-login-writeup-active {
-          @include writeup;
-          margin-left: -35px;
-          border: $check-border-top $orange_color;
-        }
-        .scroll-1-writeup-active {
-          @include writeup;
-          margin-left: -35px;
-          border: $check-border-top $orange_color;
-        }
-        .scroll-1-writeup {
-          @include writeup;
-          margin-left: -35px;
-          border: $border-top;
-        }
-
-        .scroll-2-writeup-active {
-          @include writeup;
-          margin-left: -35px;
-          border: $check-border-top $orange_color;
-        }
-        .scroll-2-writeup {
-          @include writeup;
-          margin-left: -35px;
-          border: $border-top;
-        }
-
-        .scroll-3-writeup-active {
-          @include writeup;
-          margin-left: -35px;
-          border: $check-border-top $orange_color;
-        }
-        .scroll-3-writeup {
-          @include writeup;
-          margin-left: -35px;
-          border: $border-top;
-        }
+       
+      
       }
     }
 
 
-    // OrderPreview form
-    // .orderpreview {
-    //   height: 1200px;
-    //   width: 1000px;
-    //   max-width: 1000px;
-    //   margin: -30px 0 0 -20px;
-    //   padding: 0 15px 0 25px;
-    //   box-sizing: border-box;
-    //   .preview {
-    //     box-sizing: border-box;
+    // order preview
+    .orderpreview {
+      border: 1px solid #ccc;
+      background-color: #fff;
+      border-radius: 3px;
+      box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+      padding: 20px 30px 56px 20px;
+      box-sizing: border-box;
+      width: 100%;
+      position: relative;
+      .product-subtotal-row, .subtotal-price-row{
+        height:22px;
+      }
+      .product-heading, .order-shipping-heading, .order-total{
+        font-size:1.1rem;
+      }
+      .flat-rate-container{
+        width:9%;
+      }
+      .order-payment-mode {
+        height: 120px;
+        background-color: whitesmoke;
+        margin-top: 20px;
+        font-weight: 400px;
+        border: $input_border;
+      }
+     .next-prev--container{
+       @media screen and (max-width:508px){
+         display:flex;
+         flex-wrap:wrap;
+      }
+      .order-end-button-container{
+           width:80%;
+        }
+     }
 
-    //     padding: 0 15px 0 95px;
-    //     .order-header {
-    //       display: flex;
-    //       border-bottom: $input_border;
-    //       width: 730px;
-    //       font-weight: 490;
-
-    //       .order-product {
-    //         margin-top: 100px;
-    //         color: $black-color;
-    //         font-size: 25px;
-    //         font-weight: 600;
-    //       }
-    //       .order-subtotal {
-    //         margin-top: 100px;
-    //         font-weight: 600;
-    //         color: $black-color;
-    //         font-size: 25px;
-    //         margin-left: 550px;
-    //       }
-    //     }
-    //     .order-details {
-    //       display: flex;
-    //       justify-content: space-between;
-    //       list-style-type: none;
-    //       overflow: hidden;
-    //       font-weight: 600;
-    //       width: 690px;
-    //       padding-bottom: 10px;
-    //       border-bottom: $input_border;
-    //       .order-product-details {
-    //         margin-left: -30px;
-    //         display: flex;
-    //         li p {
-    //           border: none;
-    //           background-color: whitesmoke;
-    //           outline: none;
-    //         }
-    //       }
-    //       .order-subtotal-price li p {
-    //         color: $black-color;
-    //         font-size: 20px;
-    //         margin-right: -85px;
-    //         font-weight: 490;
-    //         li p {
-    //           border: none;
-    //           background-color: whitesmoke;
-    //           outline: none;
-    //         }
-    //       }
-    //     }
-    //     @mixin order-sub {
-    //       color: $black-color;
-    //       font-size: 20px;
-    //       font-weight: 490;
-    //       justify-items: center;
-    //     }
-    //     .order-subtitle {
-    //       @include order-sub;
-    //       display: flex;
-    //       border-bottom: $input_border;
-    //       justify-content: space-between;
-    //       list-style: none;
-    //       width: 690px;
-    //       .order-subtext {
-    //         @include order-sub;
-    //         margin-left: -40px;
-    //       }
-    //       .order-subprice {
-    //         @include order-sub;
-    //         margin-right: 1px;
-    //       }
-    //     }
-
-    //     .order-shipping {
-    //       width: 690px;
-    //       border-bottom: $input_border;
-    //       .order-input {
-    //         list-style-type: none;
-    //         display: block;
-    //         .order-shipping-title {
-    //           margin-left: -82px;
-    //           @include order-sub;
-    //         }
-    //         .order-flatrate {
-    //           display: flex;
-    //           margin-left: -50px;
-    //           margin-top: 15px;
-    //           .order-flatrate-amount {
-    //             margin-left: 538px;
-    //             font-size: 20px;
-    //           }
-    //         }
-    //         .order-store {
-    //           display: flex;
-    //           margin-left: -50px;
-    //           margin-top: 25px;
-    //           .store {
-    //             margin-top: 2px;
-    //           }
-    //         }
-    //       }
-    //     }
-
-    //     .order-total {
-    //       display: flex;
-    //       justify-content: space-between;
-    //       color: $black-color;
-    //       font-size: 25px;
-    //       font-weight: 690;
-    //       width: 730px;
-    //       border-bottom: $input_border;
-    //     }
-    //     .account-submit-button button:hover {
-    //       background-color: $black-color;
-    //       color: white;
-    //     }
-    //     .order-payment-header {
-    //       width: 730px;
-    //       .order-title-payment {
-    //         border-bottom: 0.1rem solid $orange_color;
-    //         width: 730px;
-    //       }
-    //       .order-payment {
-    //         width: 730px;
-    //         margin-top: 20px;
-    //         padding-top: 20px;
-    //         font-weight: 400px;
-    //         border-top: $input_border;
-    //       }
-
-    //       .order-note {
-    //         margin-top: 20px;
-    //         font-weight: 490;
-    //       }
-    //       .order-note-color {
-    //         color: #014c8c;
-    //         margin-top: -20px;
-    //         font-weight: bold;
-    //         margin-left: 305px;
-    //       }
-    //     }
-    //     .order-approval {
-    //       display: flex;
-    //       margin-top: 20px;
-    //       width: 730px;
-    //       .order-approval-note {
-    //         margin-top: 1px;
-    //       }
- 
-    //     }
-  
-    //   }
-
-         .order-payment-mode {
-            height: 100px;
-            padding: 20px 0 20px 20px;
-            background-color: whitesmoke;
-            margin-top: 20px;
-            font-weight: 400px;
-            border: $input_border;
-          }
-         .order-payment-button {
+      .order-payment-button-container{
+           margin:20px auto;
            width:100%;
-          padding: 10px 41px 10px 21px;
+           max-width:900px;
+          justify-content:center;
+          display:flex;
+        .order-payment-button {
+          width: 50%;
+          padding: 10px 15px 10px 15px;
           height: 65px;
-          background-color: #f15822;
+          background-color: #0f6929;
           border: 0px outset #f15822;
           outline: none;
-          font-size: 25px;
+          font-size: 25px;   
           cursor: pointer;
           border-top-left-radius: 50px;
           border-bottom-left-radius: 50px;
@@ -513,120 +255,26 @@ $green_color:#0F6929;
           border-top-right-radius: 50px;
           color: white;
           &:hover {
-            background-color: #0F6929;
-            color: white;
+          opacity:.8;
           }
         }
-   
-            .approval-note {
-            color: #014c8c;
-            font-weight: bold;
-          }
-      .next-prev-cart {
-        @include btn;
-        width: 895px;
-        margin: 50px 5px 0 15px;
-        .back-to-cart-btn {
-          @include prev;
-          width: 395px;
+      }
+      .order-product-total{
+        .order-list{
+          list-style-type: none;
         }
-        .next-prev {
-          display: flex;
-
-          width: 800px;
-          margin-left: 600px;
-          .prev-submit-btn {
-            @include prev;
-            width: 95px;
-          }
-          .next-submit-btn {
-            @include prev;
-            width: 95px;
-          }
+        .order-subtotal-price{
+          width:30%;        
         }
+        .order-details{
+          width:70%;
+        }
+      }
+      .approval-note {
+        color: #000;
+        font-weight: bold;
       }
     }
-
-
-
-
-    // Login Checkout Form
-    .checkout-login-form {
-      height: 700px;
-      width: 1100px;
-      max-width: 1100px;
-      margin: 20px 0 0 30px;
-      padding: 0 15px 0 25px;
-      box-sizing: border-box;
-      .form {
-        display: flex;
-        .checkout-renderfield-layout {
-          width: 1000px;
-          height: 97px;
-          .label {
-            margin: 5px 0 10px 5px;
-          }
-          .checkout-renderfield {
-            width: 470px;
-            height: 44px;
-            .checkout-renderfield-input {
-              width: 470px;
-              height: 44px;
-              @include border-radius;
-              outline: none;
-              border: $input_border;
-              padding: 0 17px 0 17px;
-              background-color: #e8f0fe;
-            }
-            .checkout-renderfield-error{
-              color: #f15a22;
-            }
-          }
-        }
-      }
-      .rem-login {
-        .rem{
-          margin-top: 30px;
-          span{
-            height: auto;
-            width: auto;
-          }
-        }
-        .login-cart {
-          margin-top: 20px;
-          #login {
-            @include border-radius;
-            height: 46px;
-            width: 96px;
-            outline: none;
-            text-align: center;
-            font-size: 14px;
-            background-color: #efecec;
-            color: #333e48;
-            border: 0px outset #efecec;
-            &:hover {
-              background-color: $black_color;
-              color: white;
-            }
-          }
-          #to-cart {
-            @include border-radius;
-            height: 46px;
-            width: 96px;
-            margin-left: 780px;
-            text-align: center;
-            outline: none;
-            font-size: 14px;
-            background-color: #efecec;
-            color: #333e48;
-            border: 0px outset #efecec;
-            &:hover {
-              background-color: $black_color;
-              color: white;
-            }
-          }
-        }
-      }
-    }
+  }
   }
 

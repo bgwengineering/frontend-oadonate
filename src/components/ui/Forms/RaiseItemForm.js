@@ -15,7 +15,11 @@ import Button from "@material-ui/core/Button";
 
 const RaiseItem = ({ setCurrentOpenForm, setIsRaiseCardButtonsOpen,mime, handleSubmit,submitting, pristine }) => {
   const dispatch = useDispatch();
+<<<<<<< HEAD
    const renderInput = ({ input, type, meta }) => {
+=======
+   const renderInput = ({ input, type, meta}) => {
+>>>>>>> 5991e764ab50c5036462f80a38760c4512101ffd
     return (
         <div>
       <input
@@ -29,6 +33,7 @@ const RaiseItem = ({ setCurrentOpenForm, setIsRaiseCardButtonsOpen,mime, handleS
       )}
     </div>
     );
+<<<<<<< HEAD
 };
  const handleChange = (event, input) => {
     event.preventDefault();
@@ -48,7 +53,27 @@ const RaiseItem = ({ setCurrentOpenForm, setIsRaiseCardButtonsOpen,mime, handleS
 };
 
   
+=======
+  };
+   const handleChange = (event, input) => {
+    event.preventDefault();
+    let imageFile = event.target.files[0];
+    if (imageFile) {
+      const localImageUrl = URL.createObjectURL(imageFile);
+      const imageObject = new window.Image();
 
+      imageObject.onload = () => {
+        imageFile.width = imageObject.naturalWidth;
+        imageFile.height = imageObject.naturalHeight;
+        input.onChange(imageFile);
+        URL.revokeObjectURL(imageFile);
+      };
+      imageObject.src = localImageUrl;
+    }
+  };
+>>>>>>> 5991e764ab50c5036462f80a38760c4512101ffd
+
+  
   const onSubmit = (formValues) => {
     let formData = new FormData();
     formData.append("fund_title", formValues.fund_title);
@@ -123,7 +148,6 @@ const RaiseItem = ({ setCurrentOpenForm, setIsRaiseCardButtonsOpen,mime, handleS
   const getSteps = () => {
     return ["Item Title", "Description & Item Value", "Add a photo"];
   };
-
   const steps = getSteps();
   const getStepContent = stepIndex => {
     switch (stepIndex) {

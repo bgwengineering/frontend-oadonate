@@ -4,50 +4,133 @@ export default function Stepper({ page, currentUser }) {
   return (
     <div className="checkout-scroll">
       {currentUser ? (
-        <div className="currentUser">
-          <div className={page === 1 ? "inflow-scroll-active" : "inflow-scroll"}></div>
+        // scroll signed
+        <div className="scroll-bar-signedin  d-flex">    
+          <div className="scroll-resp d-flex">
+              <div
+                className={
+                  page === 1 ? "inflow-scroll-active" : "inflow-scroll"
+                }
+            ></div>
+            <div className=" d-flex flex-column justify-content-center">
+              <div
+                className={
+                  page === 1
+                    ? "scroll-2-active d-flex justify-content-center align-items-center"
+                    : "scroll-2 d-flex justify-content-center align-items-center"
+                  }
+                >
+                <span
+                  className={
+                    page === 1 ? "scroll-2-number-active" : "scroll-2-heading"
+                  }
+                >
+                  1
+                </span>
+           
+              </div>
+              <p
+                className={
+                  page === 1 ? "shipping-active" : "shipping"
+                }
+              >
+                Shipping
+            </p>
+            </div>
+          </div>  
+          
 
-          <div className={page === 1 ? "link-scroll-1-active" : "link-scroll-1"}></div>
+          <div className="scroll-resp scroll-to-order d-flex">
+              <div
+                className={
+                  page === 2 ? "inflow-scroll-active-2" : "inflow-scroll-2"
+                }
+            ></div>
+            <div className="d-flex flex-column justify-content-center">
+              <div
+                className={
+                  page === 1
+                    ? "scroll-3-active d-flex justify-content-center align-items-center"
+                    : "scroll-3 d-flex justify-content-center align-items-center"
+                  }
+                >
+                <span
+                  className={
+                    page === 2 ? "scroll-3-number-active" : "scroll-3-heading"
+                  }
+                >
+                  2
+                </span>
+           
+              </div>
+              <p
+                className={
+                  page === 2 ? "order-active" : "order"
+                }
+              >
+              Order
+            </p>
+            </div>
+          </div>  
+          
 
-          <div className={page === 1 ? "scroll-2-active" : "scroll-2"}>
-            <p className={page === 1 ? "scroll-2-writeup-active" : "scroll-2-writeup"}>1</p>
-            <p className={page === 1 ? "shipping-active" : "shipping"}>Shipping</p>
+
+
           </div>
-
-          <div className={page === 2 ? "link-scroll-2-active" : "link-scroll-2"}></div>
-
-          <div className={page === 2 ? "scroll-3-active" : "scroll-3"}>
-            <p className={page === 2 ? "scroll-3-writeup-active" : "scroll-3-writeup"}>2</p>
-            <p className={page === 2 ? "order-payment-active" : "order-payment"}>Order & Payment</p>
-          </div>
-          <div className={page === 2 ? "outflow-scroll-active" : "outflow-scroll"}> </div>
-        </div>
+      
       ) : (
-        <div className="currentUser">
+        // <div className={page === 2 ? "scroll-3-active" : "scroll-3"}>
+        //   <span className={page === 2 ? "scroll-3-heading-active" : "scroll-3-heading"}>2</span>
+        //   <p className={page === 2 ? "order-payment-active" : "order-payment"}>Order & Payment</p>
+        // </div>
+
+        // <div className={page === 2 ? "outflow-scroll-active" : "outflow-scroll"}> </div>
+
+        <div className="currentUser scroll-bar-not-loggedin">
           <div className="inflow-scroll-active"></div>
 
-          <div className={page===1 ?"scroll-login-active" : null}>
-            <p className="scroll-login-writeup-active">1</p>
+          {/* login scroll */}
+          <div className={page === 1 ? "scroll-login-active" : null}>
+            <span className="scroll-login-heading-active">1</span>
             <p className="login">Login</p>
           </div>
 
-          <div className="link-scroll-login"></div>
-
-          <div className="link-scroll-1"></div>
-
-          <div className="scroll-2">
-            <p className="scroll-2-writeup">2</p>
-            <p className="shipping">Shipping</p>
+          {/* Shipping Scroll */}
+          <div className={page === 1 ? "scroll-2-active" : "scroll-2"}>
+            <span
+              className={
+                page === 1 ? "scroll-2-heading-active" : "scroll-2-heading"
+              }
+            >
+              1
+            </span>
+            <p className={page === 1 ? "shipping-active" : "shipping"}>
+              Shipping
+            </p>
           </div>
 
-          <div className="link-scroll-2"></div>
+          {/* order scroll */}
+          <div className={page === 2 ? "scroll-3-active" : "scroll-3"}>
+            <span
+              className={
+                page === 2 ? "scroll-3-heading-active" : "scroll-3-heading"
+              }
+            >
+              2
+            </span>
+            <p
+              className={page === 2 ? "order-payment-active" : "order-payment"}
+            >
+              Order & Payment
+            </p>
+          </div>
 
-          <div className="scroll-3">
-            <p className="scroll-3-writeup">3</p>
-            <p className="order-payment">Order & Payment</p>
+          <div
+            className={page === 2 ? "outflow-scroll-active" : "outflow-scroll"}
+          >
+            {" "}
           </div>
-          <div className="outflow-scroll"> </div>
-          </div>
+        </div>
       )}
     </div>
   );

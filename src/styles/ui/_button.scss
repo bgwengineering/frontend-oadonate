@@ -293,7 +293,20 @@
     background-color:$logo_green !important;
   }
 }
-.cancel-btn{
+.cancel-btn, .previous-action-btn, .next-action-btn{
+  background-color:$logo_orange !important;
+  outline:none !important;
+  border:none !important;
+  color:#fff !important;
+  padding:7px 15px;
+  border-radius:4px;
+  &:hover{
+    cursor:pointer !important;
+    background-color:$logo_green !important;
+    outline:none
+  }
+}
+ .previous-action-btn{
   background-color:$logo_green !important;
   outline:none !important;
   border:none !important;
@@ -303,8 +316,10 @@
   &:hover{
     cursor:pointer !important;
     background-color:$logo_orange !important;
+    outline:none
   }
 }
+
 .coorporate-form-but{
   background-color:$logo_orange !important;
   outline:none !important;
@@ -417,8 +432,6 @@
   width:195px !important;
   color:#fff !important;
 }
-
-
 
 .PrivateTabIndicator-colorSecondary-3 {
   border-bottom: 2px solid #C75A00 !important;
