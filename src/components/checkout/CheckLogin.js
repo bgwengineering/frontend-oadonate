@@ -29,7 +29,7 @@ const LoginForm = ({handleSubmit, submitting, pristine}) => {
     return (
       <div className="container-fluid mt--7">
         <div className="row">
-          <div className="col-xl-7 order-xl-1">
+          <div className="col-md-7 col-xl-7 order-xl-1 mx-auto mt-5">
             <div className="card shadow">
               <div className="card-header bg-white border-0"></div>
               <div className="card-body">
@@ -37,6 +37,8 @@ const LoginForm = ({handleSubmit, submitting, pristine}) => {
                   Sign In
                 </h6>
                 <hr className="my-4" />
+
+                {/* form */}
                 <form onSubmit={handleSubmit(onSubmit)}>
                   <div className="pl-lg-2">
                     <div className="row">
@@ -46,18 +48,19 @@ const LoginForm = ({handleSubmit, submitting, pristine}) => {
                             className="profile-control-label"
                             for="input-first_name"
                           >
-                           Email<span>*</span>
+                            Email<span>*</span>
                           </label>
                           <Field
                             component="input"
                             type="text"
                             id="input-first_name"
-                            name="first_name"
+                            name="email"
                             className="form-control form-control-alternative"
                           />
                         </div>
                       </div>
                     </div>
+
                     <div className="row">
                       <div className="col-lg-12">
                         <div className="form-group">
@@ -65,13 +68,13 @@ const LoginForm = ({handleSubmit, submitting, pristine}) => {
                             className="profile-control-label"
                             for="input-first_name"
                           >
-                           Password<span>*</span>
+                            Password<span>*</span>
                           </label>
                           <Field
                             component="input"
                             type="text"
                             id="input-first_name"
-                            name="first_name"
+                            name="password"
                             className="form-control form-control-alternative"
                           />
                         </div>
@@ -79,13 +82,15 @@ const LoginForm = ({handleSubmit, submitting, pristine}) => {
                     </div>
                   </div>
                   <hr className="profile_hr my-4" />
-                  <div className="d-flex flex-end">
+
+                  <div className="d-flex justify-content-end">
                     <Button
-                      className="shipping-btn"
+                      className="profile-form-but"
                       type="submit"
                       disabled={pristine || submitting}
+
                     >
-                     Login
+                      Login
                     </Button>
                   </div>
                 </form>

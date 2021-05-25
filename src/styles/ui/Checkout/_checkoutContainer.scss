@@ -116,202 +116,84 @@ $green_color: #0f6929;
     margin-top: 30px;
   }
 
+
+  // step container
   .step-container {
     height: 700px;
     box-sizing: border-box;
+    
     .checkout-scroll {
       display: flex;
-      .currentUser {
-        display: flex;
+      .scroll-bar-signedin {
+        width:100%;
+        position:relative;
+        .scroll-to-order {
+          position:absolute;
+          left:18%;
+        }
         // inflow scroll
-        .inflow-scroll-active {
-          border-top: $check-border-top $green_color;
-        }
-        .inflow-scroll {
+        .scroll-resp{
+          width:20%;
+          }
+          .scroll-1, .scroll-3, .scroll-2, .inflow-scroll, .inflow-scroll-2 {
           border-top: $border-top;
         }
-        .scroll-login-active {
-          border-top: $check-border-top $orange_color;
-          .login {
-            margin: 0 0 0 -40px;
-            color: #464646;
-            font-size: 15px;
-            font-family: "Open Sans";
-          }
-        }
-        .scroll-1-active {
-          border-top: $check-border-top $orange_color;
-          .billing-active {
-            margin: 0 0 0 -40px;
-            color: #000000;
-            font-size: 15px;
-            font-family: "Open Sans";
-          }
-          .billing {
-            margin: 0 0 0 -40px;
-            color: #818181;
-            font-size: 15px;
-            font-family: "Open Sans";
-          }
-        }
-        .scroll-1 {
-          border-top: $border-top;
-          .billing-active {
-            margin: 0 0 0 -40px;
-            color: #000000;
-            font-size: 15px;
-            font-family: "Open Sans";
-          }
-          .billing {
-            margin: 0 0 0 -40px;
-            color: #818181;
-            font-size: 15px;
-            font-family: "Open Sans";
-          }
-        }
 
-        .scroll-2-active {
+        .inflow-scroll-active, .inflow-scroll{
+             margin-top:8px;  
+        }
+        .inflow-scroll-active-2, .inflow-scroll-2{
+             margin-top:8px;  
+       
+        }
+        .scroll-login-active, .inflow-scroll-active, .inflow-scroll-active-2, .scroll-1-active {
           border-top: $check-border-top $orange_color;
-          margin-left: 32px;
-          .shipping-active {
-            margin: 0 0 0 -40px;
+          width:200px;
+        }      
+
+        .scroll-2-active{
+          border-radius:100%;
+          width:30px;
+          height:30px;
+          border:1px solid $green_color;
+        }    
+         .scroll-3-active{
+          border-radius:100%;
+          width:30px;
+          height:30px;
+          border:1px solid $green_color;
+        }  
+
+        // shipping
+          .shipping-active { 
             color: #000000;
             font-size: 15px;
             font-family: "Open Sans";
+            margin-top:5px;
           }
-          .shpping {
-            margin: 0 0 0 -50px;
-            color: #818181;
-            font-size: 15px;
-            font-family: "Open Sans";
-          }
-        }
-
-        .scroll-2 {
-          border-top: $border-top;
-          margin-left: 32px;
-          .shipping-active {
-            margin: 0 0 0 -40px;
+            
+          .order-active { 
             color: #000000;
             font-size: 15px;
             font-family: "Open Sans";
+            margin-top:5px;
           }
-          .shipping {
-            margin: 0 0 0 -50px;
-            color: #818181;
-            font-size: 15px;
-            font-family: "Open Sans";
-          }
-        }
+            
 
-        .scroll-3-active {
-          border-top: $check-border-top $orange_color;
-          margin-left: 32px;
+
+
+
+
+
+
+        // scroll 3
           .order-payment-active {
-            margin: 0 0 0 -40px;
             color: #000000;
             font-size: 15px;
             font-family: "Open Sans";
           }
-          .order-payment {
-            margin: 0 0 0 -70px;
-            color: #818181;
-            font-size: 15px;
-            font-family: "Open Sans";
-          }
-        }
-        .scroll-3 {
-          border-top: $border-top;
-          margin-left: 32px;
-          .order-payment-active {
-            margin: 0 0 0 -40px;
-            color: #000000;
-            font-size: 15px;
-            font-family: "Open Sans";
-          }
-          .order-payment {
-            margin: 0 0 0 -70px;
-            color: #818181;
-            font-size: 15px;
-            font-family: "Open Sans";
-          }
-        }
-
-        //  link scroll
-        @mixin link-scrolls {
-          width: 120px;
-        }
-        .link-scroll-login-active {
-          @include link-scrolls;
-          border-top: $check-border-top $orange_color;
-        }
-        .link-scroll-login {
-          @include link-scrolls;
-          border-top: $border-top;
-          margin-right: 12px;
-        }
-        .link-scroll-1-active {
-          @include link-scrolls;
-          border-top: $check-border-top $orange_color;
-        }
-        .link-scroll-1 {
-          @include link-scrolls;
-          border-top: $border-top;
-        }
-
-        .link-scroll-2-active {
-          @include link-scrolls;
-          border-top: $check-border-top $orange_color;
-        }
-        .link-scroll-2 {
-          @include link-scrolls;
-          border-top: $border-top;
-        }
-
-        // scroll writup
-        @mixin writeup {
-          margin-top: -20px;
-          width: 30px;
-          height: 30px;
-          border-radius: 50%;
-        }
-        .scroll-login-writeup-active {
-          @include writeup;
-          margin-left: -35px;
-          border: $check-border-top $orange_color;
-        }
-        .scroll-1-writeup-active {
-          @include writeup;
-          margin-left: -35px;
-          border: $check-border-top $orange_color;
-        }
-        .scroll-1-writeup {
-          @include writeup;
-          margin-left: -35px;
-          border: $border-top;
-        }
-
-        .scroll-2-writeup-active {
-          @include writeup;
-          margin-left: -35px;
-          border: $check-border-top $orange_color;
-        }
-        .scroll-2-writeup {
-          @include writeup;
-          margin-left: -35px;
-          border: $border-top;
-        }
-
-        .scroll-3-writeup-active {
-          @include writeup;
-          margin-left: -35px;
-          border: $check-border-top $orange_color;
-        }
-        .scroll-3-writeup {
-          @include writeup;
-          margin-left: -35px;
-          border: $border-top;
-        }
+       
+      
       }
     }
 
@@ -375,6 +257,17 @@ $green_color: #0f6929;
           &:hover {
           opacity:.8;
           }
+        }
+      }
+      .order-product-total{
+        .order-list{
+          list-style-type: none;
+        }
+        .order-subtotal-price{
+          width:30%;        
+        }
+        .order-details{
+          width:70%;
         }
       }
       .approval-note {

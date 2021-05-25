@@ -1,40 +1,49 @@
 import React from "react";
-import { connect } from "react-redux";
+import {useSelector, useDispatch} from "react-redux"
 // import { placeOrder, removeCartItems } from "../../actions/cart/actions";
 // import { placeOrder, removeItem } from './../../store/actions/cart/cart.actions';
-import _ from "lodash";
+
+
 
 const OrderPreview = ({ nextPage, previousPage, history }) => {
-  let subtotal = 0;
-  // let orders = _.map(cartItems, (cartItem) => {
-  //   subtotal += cartItem.product.price * cartItem.quantity
-  //  return <ul key={cartItem.id} className="order-details">
-  //     <div className="order-product-details">
-  //       <li>
-  //         <p>{cartItem.quantity}</p>
-  //       </li>
-  //       <p>x</p>
-  //       <li>
-  //         <p>{cartItem.product.item}</p>
-  //       </li>
-  //     </div>
-  //     <br />
-  //     <li className="order-subtotal-price">
-  //       <p>{cartItem.product.price}</p>
-  //     </li>
-  //   </ul>;
+  const dispatch = useDispatch()
 
-  // })
+  const cartState = useSelector(state => state.cartReducer)
+  const {cartItems} = cartState
+  
+  let subTotal = 0;
+  
+ let  orders = cartItems.map(cart => {
+    subTotal += cart.donate_mkt_price * cart.quantity
+   return (
+     <ul className="order-product-total d-flex mt-3">
+       <ul key={cart.id} className=" d-flex order-details">
+         <li className="order-list text-uppercase font-weight-bold">
+           {cart.donate_item_name}
+         </li>
+         <li className="order-list ml-3 font-weight-bold">x</li>
+         <li className="order-list mr-4 font-weight-bold">{cart.quantity}</li>
+       </ul>
+
+       <li className="d-flex justify-content-end order-subtotal-price order-list">
+         {cart.donate_currency + cart.donate_mkt_price}
+       </li>
+     </ul>
+   );
+  })
+
   return (
     <div className="orderpreview">
       <div className="d-flex justify-content-between product-subtotal-row">
         <p className="product-heading text-uppercase">Product</p>
         <p className="subtotal-heading">Subtotal</p>
       </div>
+      {orders}
+     
       <hr />
       <div className="d-flex justify-content-between subtotal-price-row">
         <p className="subtotal">Subtotal</p>
-        <p className="subprice">₦{subtotal.toFixed(2)}</p>
+        <p className="subprice">₦{subTotal.toFixed(2)}</p>
       </div>
       <hr />
 
@@ -69,14 +78,14 @@ const OrderPreview = ({ nextPage, previousPage, history }) => {
 
       <div className="d-flex justify-content-between order-total">
         <p className="text-uppercase order-total">Total</p>
-        <p className="amount-order">₦{(subtotal + 1000).toFixed(2)}</p>
+        <p className="amount-order">₦{(subTotal + 1000).toFixed(2)}</p>
       </div>
 
       <div>
-        <h5 className="text-uppercase">Payment</h5>
+        <h4 className="text-uppercase ">Payment</h4>
         {/* payment order box */}
         <div className="order-payment-mode">
-          <p className="font-weight-bold">
+          <p className="font-weight-bold ml-2 mt-2">
             Make payment using your debit and credit cards
           </p>
           <div className="pl-2">
@@ -115,7 +124,7 @@ const OrderPreview = ({ nextPage, previousPage, history }) => {
         </button>
       </div>
       <hr className="profile_hr my-4" />
-      {/* cancel next button */}
+      {/* cancel next button */}                   
       <div className="next-prev--container d-flex justify-content-between">
         <div className="order-cancel-btn-container">
           <button className="cancel-btn">
