@@ -124,38 +124,77 @@ $green_color: #0f6929;
     
     .checkout-scroll {
       display: flex;
-      .scroll-bar-signedin {
+      .scroll-bar-unsigned, .scroll-bar-signedin {
         width:100%;
         position:relative;
         .scroll-to-order {
           position:absolute;
-          left:20%;
+          left:19.8%;
+        
+        }
+        .scroll-to-shipping{
+           position:absolute;
+          left:39.4%;
+        }
+        .scroll-to-login{
+           position:absolute;
+          left:19.7%;
         }
         // inflow scroll
         .scroll-resp{
           width:30%;
+            @media screen and(max-width:1167px){
+            width:23%;
+          }
+           @media screen and(max-width:1020px){
+            width:23.7%;
+          }
+           @media screen and(max-width:844px){
+            width:24.8%;
+          }
+           @media screen and(max-width:655px){
+            width:25.7%;
+          }
+           @media screen and(max-width:572px){
+            width:26%;
+          }
+           @media screen and(max-width:541px){
+            width:26.8%;
+          }
+           @media screen and(max-width:480px){
+            width:27.2%;
+          }
+           @media screen and(max-width:440px){
+            width:28%;
+          }
+           @media screen and(max-width:402px){
+            width:29%;
+          }
+           @media screen and(max-width:360px){
+            width:30%;
+          }
           }
 
-        .inflow-scroll-active-2, .inflow-scroll-active-3, .outflow-scroll-active-3 {
+        .inflow-scroll-active-1, .inflow-scroll-active-2, .inflow-scroll-active-3, .outflow-scroll-active-3 {
           border-top: $check-border-top $orange_color;
           width:200px;
           margin-top:10px;  
         }      
 
-        .inflow-scroll-2, .inflow-scroll-3, .outflow-scroll-3 {
+        .inflow-scroll-1, .inflow-scroll-2, .inflow-scroll-3, .outflow-scroll-3 {
           border-top: $border-top;
            width:200px;
             margin-top:10px;  
         }
 
-        .scroll-2-active, .scroll-3-active{
+        .scroll-1-active, .scroll-2-active, .scroll-3-active{
           border-radius:100%;
           width:30px;
           height:30px;
           border:1px solid $orange_color;
         }    
   
-        .scroll-2, .scroll-3{
+        .scroll-1, .scroll-2, .scroll-3{
           border-radius:100%;
           width:30px;
           height:30px;
