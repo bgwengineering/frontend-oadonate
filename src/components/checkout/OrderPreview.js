@@ -1,37 +1,128 @@
-import React from "react";
-import {useSelector, useDispatch} from "react-redux"
-// import { placeOrder, removeCartItems } from "../../actions/cart/actions";
-// import { placeOrder, removeItem } from './../../store/actions/cart/cart.actions';
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import axiosInstance from "util/api";
+import { setLoading } from "store/actions/Common";
+import { placeOrder } from "store/actions/cart/cart.actions";
 
+const stripePromise = window.Stripe(
+  "pk_test_51Ihz1EJtAhKBp45zJXZLT2RmTKQLDbpZRPerC1uKcnQ69N1R1IchlmRhCBMp3cwJ4DIVpSf9iHe4Hnq9wUdAC6OA00DNznJtw5"
+);
 
+const Message = ({ message }) => (
+  <section>
+    <p>{message}</p>
+  </section>
+);
 
 const OrderPreview = ({ nextPage, previousPage, history }) => {
-  const dispatch = useDispatch()
+  const [message, setMessage] = useState("");
+  const [paystack, setPaystack] = useState(true);
+  const [Stripebtn, setStripebtn] = useState(false);
+  const [storepickup, setStorepickup] = useState(true);
+  const [flatrate, setFlatrate] = useState(false);
 
-  const cartState = useSelector(state => state.cartReducer)
-  const {cartItems} = cartState
-  
+  const [donateFields, setDonateFields] = useState({
+    donate_amount: "",
+    donate_payment_method: "",
+    donate_comment: "",
+    donate_currency: "",
+    donate_collect_per: false,
+    donate_as_unknown: "",
+    donate_accept: "",
+    donate_percentage_value: "",
+  });
+  const cartState = useSelector((state) => state.cartReducer);
+  const { cartItems } = cartState;
+  const paystackUrl = useSelector((state) => state.fundDonateReducer.paystackUrl);
+  useEffect(() => {
+    if (paystackUrl.length >= 1) {
+      window.location = paystackUrl;
+    }
+  }, [paystackUrl]);
+
+  useEffect(() => {
+    // Check to see if this is a redirect back from Checkout
+    const query = new URLSearchParams(window.location.search);
+    if (query.get("success")) {
+      setMessage("Order placed! You will receive an email confirmation.");
+    }
+    if (query.get("canceled")) {
+      setMessage("Order canceled -- continue to shop around and checkout when you're ready.");
+    }
+  }, []);
+  const dispatch = useDispatch();
+
+  // submit with paystack gateway
+  const PayWithPaystack = (e) => {
+    e.preventDefault();
+    const formData = {};
+    dispatch(placeOrder(formData));
+  };
+
+  // submit with stripe gateway
+  const PayWithStripe = (e) => {
+    e.preventDefault();
+    const formData = {};
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `JWT ${localStorage.getItem("access")}`,
+        Accept: "application/json",
+      },
+    };
+    const stripe = stripePromise;
+    axiosInstance
+      .post("campaign/create/donation-cash", formData, config)
+      .then((res) => {
+        const session = res.data;
+        const result = stripe.redirectToCheckout({ sessionId: session });
+        if (result.error) {
+          console.log(result.error.message);
+        }
+        return message ? <Message message={message} /> : null;
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
+  const handleChange = (e) => {
+    setDonateFields({ ...donateFields, [e.target.name]: e.target.value });
+  };
+  const setPaystackBtn = () => {
+    setStripebtn(false);
+    setPaystack(true);
+  };
+  const setStripeBtn = () => {
+    setStripebtn(true);
+    setPaystack(false);
+  };
+  const FlatRateBtn = () => {
+    setStorepickup(false);
+    setFlatrate(true);
+  };
+  const StorePickupBtn = () => {
+    setFlatrate(false);
+    setStorepickup(true);
+  };
   let subTotal = 0;
-  
- let  orders = cartItems.map(cart => {
-    subTotal += cart.donate_mkt_price * cart.quantity
-   return (
-     <ul className="order-product-total d-flex mt-3">
-       <ul key={cart.id} className=" d-flex order-details">
-         <li className="order-list text-uppercase font-weight-bold">
-           {cart.donate_item_name}
-         </li>
-         <li className="order-list ml-3 font-weight-bold">x</li>
-         <li className="order-list mr-4 font-weight-bold">{cart.quantity}</li>
-       </ul>
+  let orders = cartItems.map((cart) => {
+    subTotal += cart.donate_mkt_price * cart.quantity;
+    return (
+      <ul className="order-product-total d-flex mt-3">
+        <ul key={cart.id} className=" d-flex order-details">
+          <li className="order-list text-uppercase font-weight-bold">{cart.donate_item_name}</li>
+          <li className="order-list ml-3 font-weight-bold">x</li>
+          <li className="order-list mr-4 font-weight-bold">{cart.quantity}</li>
+        </ul>
 
-       <li className="d-flex justify-content-end order-subtotal-price order-list">
-         {cart.donate_currency + cart.donate_mkt_price}
-       </li>
-     </ul>
-   );
-  })
-
+        <li className="d-flex justify-content-end order-subtotal-price order-list">
+          {cart.donate_currency + cart.donate_mkt_price}
+        </li>
+      </ul>
+    );
+  });
+const flatTotal = (subTotal + 1000).toFixed(2);
+const storeTotal = (subTotal + 0).toFixed(2);
   return (
     <div className="orderpreview">
       <div className="d-flex justify-content-between product-subtotal-row">
@@ -39,7 +130,7 @@ const OrderPreview = ({ nextPage, previousPage, history }) => {
         <p className="subtotal-heading">Subtotal</p>
       </div>
       {orders}
-     
+
       <hr />
       <div className="d-flex justify-content-between subtotal-price-row">
         <p className="subtotal">Subtotal</p>
@@ -53,7 +144,14 @@ const OrderPreview = ({ nextPage, previousPage, history }) => {
           <p className="order-shipping-heading text-uppercase">Shipping</p>
           <div className="d-flex  justify-content-between">
             <div className="d-flex flat-rate-container">
-              <input type="radio" name="pickup" value="1000" id="flatrate" />
+            <input
+              name="shipping_method"
+              type="radio"
+              className="mr-1 ml-3 mt-2"
+              onChange={handleChange}
+              value="Stripe"
+              onClick={FlatRateBtn}
+            />
               <span className="ml-2">Flat Rate:</span>
             </div>
             <span className="order-flatrate-amount">₦1,000</span>
@@ -61,13 +159,14 @@ const OrderPreview = ({ nextPage, previousPage, history }) => {
           {/* store-pickup */}
           <div className="d-flex justify-content-between">
             <div className="d-flex store-pickup-container">
-              <input
-                type="radio"
-                name="store-pickup"
-                value="1000"
-                id="pickup"
-                id="pickup"
-              />
+            <input
+              name="shipping_method"
+              type="radio"
+              className="mr-1 ml-3 mt-2"
+              onChange={handleChange}
+              value="Stripe"
+              onClick={StorePickupBtn}
+            />
               <span className="ml-2">In Store Pickup:</span>
             </div>
             <span className="order-flatrate-amount"></span>
@@ -78,7 +177,7 @@ const OrderPreview = ({ nextPage, previousPage, history }) => {
 
       <div className="d-flex justify-content-between order-total">
         <p className="text-uppercase order-total">Total</p>
-        <p className="amount-order font-weight-bold">₦{(subTotal + 1000).toFixed(2)}</p>
+        <p className="amount-order font-weight-bold">₦{flatrate? flatTotal: storeTotal}</p>
       </div>
 
       <div>
@@ -88,21 +187,32 @@ const OrderPreview = ({ nextPage, previousPage, history }) => {
           <p className="font-weight-bold ml-2 mt-2">
             Make payment using your debit and credit cards
           </p>
-          <div className="pl-2">
-            <input type="checkbox" />
-            <span className="pl-2">Pay using Paystack</span>
-          </div>
-
-          <div className="pl-2 mt-2">
-            <input type="checkbox" />
-            <span className="pl-2">Pay using Stripe</span>
+          <div className="d-flex">
+            <input
+              name="payment_method"
+              type="radio"
+              className="mr-1 ml-2 mt-2"
+              onChange={handleChange}
+              value="PayStack"
+              onClick={setPaystackBtn}
+              checked={paystack}
+            />
+            <p className="mt-4">PayStack Gateway</p>
+            <input
+              name="payment_method"
+              type="radio"
+              className="mr-1 ml-3 mt-2"
+              onChange={handleChange}
+              value="Stripe"
+              onClick={setStripeBtn}
+            />
+            <p className="mt-4 ">Stripe Gateway</p>
           </div>
         </div>
 
         <p className="order-note">
-          Your personal data will be used to process your order, support your
-          experience throughout this website, and for other purposes described
-          in our privacy policy.
+          Your personal data will be used to process your order, support your experience throughout
+          this website, and for other purposes described in our privacy policy.
         </p>
       </div>
 
@@ -114,28 +224,29 @@ const OrderPreview = ({ nextPage, previousPage, history }) => {
         </p>
       </div>
       <div className="order-payment-button-container">
+        {paystack ? (
+          <button
+            onClick={PayWithPaystack}
+            className="order-payment-button"
+          >
+            Pay Now PayStack
+          </button>
+        ) : 
         <button
-          onClick={() => {
-            history.push("/");
-          }}
-          className="order-payment-button"
-        >
-          Pay now
-        </button>
+            onClick={PayWithStripe}
+            className="order-payment-button"
+          >
+            Pay Now Stripe
+          </button>}
       </div>
       <hr className="profile_hr my-4" />
-      {/* cancel next button */}                   
+      {/* cancel next button */}
       <div className="next-prev--container d-flex justify-content-between">
         <div className="order-cancel-btn-container">
-          <button className="cancel-btn">
-            Cancel
-          </button>
+          <button className="cancel-btn">Cancel</button>
         </div>
         <div className="order-end-button-container d-flex justify-content-end">
-          <button
-            className="previous-action-btn mr-3"
-            onClick={() => previousPage()}
-           >
+          <button className="previous-action-btn mr-3" onClick={() => previousPage()}>
             Previous
           </button>
           <button className="next-action-btn" onClick={() => nextPage()}>
