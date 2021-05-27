@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import axiosInstance from "util/api";
 import { setLoading } from "store/actions/Common";
-import { placeOrder } from "store/actions/cart/cart.actions";
+import { clearCartItems, placeOrder } from "store/actions/cart/cart.actions";
 
 const stripePromise = window.Stripe(
   "pk_test_51Ihz1EJtAhKBp45zJXZLT2RmTKQLDbpZRPerC1uKcnQ69N1R1IchlmRhCBMp3cwJ4DIVpSf9iHe4Hnq9wUdAC6OA00DNznJtw5"
@@ -21,24 +21,18 @@ const OrderPreview = ({ nextPage, previousPage, history }) => {
   const [storepickup, setStorepickup] = useState(true);
   const [flatrate, setFlatrate] = useState(false);
 
-  const [donateFields, setDonateFields] = useState({
-    donate_amount: "",
-    donate_payment_method: "",
-    donate_comment: "",
-    donate_currency: "",
-    donate_collect_per: false,
-    donate_as_unknown: "",
-    donate_accept: "",
-    donate_percentage_value: "",
+  const [orderFields, setOrderFields] = useState({
+    payment_method: "",
+    delivery_method: "",
   });
   const cartState = useSelector((state) => state.cartReducer);
-  const { cartItems } = cartState;
-  const paystackUrl = useSelector((state) => state.fundDonateReducer.paystackUrl);
-  useEffect(() => {
-    if (paystackUrl.length >= 1) {
-      window.location = paystackUrl;
-    }
-  }, [paystackUrl]);
+  const { cartItems,checkoutUrl } = cartState;
+
+  // useEffect(() => {
+  //   if (checkoutUrl && checkoutUrl.length) {
+  //     window.location = checkoutUrl;
+  //   }
+  // }, [checkoutUrl]);
 
   useEffect(() => {
     // Check to see if this is a redirect back from Checkout
@@ -51,59 +45,6 @@ const OrderPreview = ({ nextPage, previousPage, history }) => {
     }
   }, []);
   const dispatch = useDispatch();
-
-  // submit with paystack gateway
-  const PayWithPaystack = (e) => {
-    e.preventDefault();
-    const formData = {};
-    dispatch(placeOrder(formData));
-  };
-
-  // submit with stripe gateway
-  const PayWithStripe = (e) => {
-    e.preventDefault();
-    const formData = {};
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `JWT ${localStorage.getItem("access")}`,
-        Accept: "application/json",
-      },
-    };
-    const stripe = stripePromise;
-    axiosInstance
-      .post("campaign/create/donation-cash", formData, config)
-      .then((res) => {
-        const session = res.data;
-        const result = stripe.redirectToCheckout({ sessionId: session });
-        if (result.error) {
-          console.log(result.error.message);
-        }
-        return message ? <Message message={message} /> : null;
-      })
-      .catch((error) => {
-        console.log(error.message);
-      });
-  };
-  const handleChange = (e) => {
-    setDonateFields({ ...donateFields, [e.target.name]: e.target.value });
-  };
-  const setPaystackBtn = () => {
-    setStripebtn(false);
-    setPaystack(true);
-  };
-  const setStripeBtn = () => {
-    setStripebtn(true);
-    setPaystack(false);
-  };
-  const FlatRateBtn = () => {
-    setStorepickup(false);
-    setFlatrate(true);
-  };
-  const StorePickupBtn = () => {
-    setFlatrate(false);
-    setStorepickup(true);
-  };
   let subTotal = 0;
   let orders = cartItems.map((cart) => {
     subTotal += cart.donate_mkt_price * cart.quantity;
@@ -121,8 +62,79 @@ const OrderPreview = ({ nextPage, previousPage, history }) => {
       </ul>
     );
   });
-const flatTotal = (subTotal + 1000).toFixed(2);
-const storeTotal = (subTotal + 0).toFixed(2);
+  const flatTotal = (subTotal + 1000)
+  const storeTotal = (subTotal + 0)
+  const { payment_method, delivery_method } = orderFields;
+  // submit with paystack gateway
+  const PayWithPaystack = (e) => {
+    e.preventDefault();
+    const formData = {
+      payment_method,
+      delivery_method,
+      totalPrice: flatrate ? flatTotal : storeTotal,
+      orderItem: cartItems,
+    };
+    dispatch(placeOrder(formData));
+  };
+
+  // submit with stripe gateway
+  const PayWithStripe = () => {
+    let productsArr = [];
+    let quantitiesArr = [];
+    cartItems.forEach(items => {
+      productsArr.push(items.donate_item_name);
+      quantitiesArr.push(items.quantity);
+      });
+    const formData = {
+          products: productsArr,
+          quantities: quantitiesArr,
+          total_price: flatrate ? flatTotal : storeTotal,
+          ordered: true,
+          payment_method,
+          delivery_method 
+    };
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `JWT ${localStorage.getItem("access")}`,
+        Accept: "application/json",
+      },
+    };
+    const stripe = stripePromise;
+    axiosInstance
+      .post("buy-to-support/orders", formData, config)
+      .then((res) => {
+        const session = res.data;
+        const result = stripe.redirectToCheckout({ sessionId: session });
+        if (result.error) {
+          setMessage(result.error.message);
+        }
+        return message ? <Message message={message} /> : null;
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
+  const handleChange = (e) => {
+    setOrderFields({ ...orderFields, [e.target.name]: e.target.value });
+  };
+  const setPaystackBtn = () => {
+    setStripebtn(false);
+    setPaystack(true);
+  };
+  const setStripeBtn = () => {
+    setStripebtn(true);
+    setPaystack(false);
+  };
+  const FlatRateBtn = () => {
+    setStorepickup(false);
+    setFlatrate(true);
+  };
+  const StorePickupBtn = () => {
+    setFlatrate(false);
+    setStorepickup(true);
+  };
+
   return (
     <div className="orderpreview">
       <div className="d-flex justify-content-between product-subtotal-row">
@@ -144,14 +156,14 @@ const storeTotal = (subTotal + 0).toFixed(2);
           <p className="order-shipping-heading text-uppercase">Shipping</p>
           <div className="d-flex  justify-content-between">
             <div className="d-flex flat-rate-container">
-            <input
-              name="shipping_method"
-              type="radio"
-              className="mr-1 ml-3 mt-2"
-              onChange={handleChange}
-              value="Stripe"
-              onClick={FlatRateBtn}
-            />
+              <input
+                name="delivery_method"
+                type="radio"
+                className="mr-1 ml-3 mt-2"
+                onChange={handleChange}
+                value="Flat Rate"
+                onClick={FlatRateBtn}
+              />
               <span className="ml-2">Flat Rate:</span>
             </div>
             <span className="order-flatrate-amount">₦1,000</span>
@@ -159,14 +171,14 @@ const storeTotal = (subTotal + 0).toFixed(2);
           {/* store-pickup */}
           <div className="d-flex justify-content-between">
             <div className="d-flex store-pickup-container">
-            <input
-              name="shipping_method"
-              type="radio"
-              className="mr-1 ml-3 mt-2"
-              onChange={handleChange}
-              value="Stripe"
-              onClick={StorePickupBtn}
-            />
+              <input
+                name="delivery_method"
+                type="radio"
+                className="mr-1 ml-3 mt-2"
+                onChange={handleChange}
+                value="Store"
+                onClick={StorePickupBtn}
+              />
               <span className="ml-2">In Store Pickup:</span>
             </div>
             <span className="order-flatrate-amount"></span>
@@ -177,7 +189,7 @@ const storeTotal = (subTotal + 0).toFixed(2);
 
       <div className="d-flex justify-content-between order-total">
         <p className="text-uppercase order-total">Total</p>
-        <p className="amount-order font-weight-bold">₦{flatrate? flatTotal: storeTotal}</p>
+        <p className="amount-order font-weight-bold">₦{flatrate ? flatTotal : storeTotal}</p>
       </div>
 
       <div>
@@ -195,7 +207,6 @@ const storeTotal = (subTotal + 0).toFixed(2);
               onChange={handleChange}
               value="PayStack"
               onClick={setPaystackBtn}
-              checked={paystack}
             />
             <p className="mt-4">PayStack Gateway</p>
             <input
@@ -225,19 +236,14 @@ const storeTotal = (subTotal + 0).toFixed(2);
       </div>
       <div className="order-payment-button-container">
         {paystack ? (
-          <button
-            onClick={PayWithPaystack}
-            className="order-payment-button"
-          >
-            Pay Now PayStack
+          <button onClick={()=>{PayWithPaystack();clearCartItems()}} className="order-payment-button">
+            Pay Now
           </button>
-        ) : 
-        <button
-            onClick={PayWithStripe}
-            className="order-payment-button"
-          >
-            Pay Now Stripe
-          </button>}
+        ) : (
+          <button onClick={()=>{PayWithStripe();clearCartItems()}} className="order-payment-button">
+            Pay Nows
+          </button>
+        )}
       </div>
       <hr className="profile_hr my-4" />
       {/* cancel next button */}
@@ -249,9 +255,7 @@ const storeTotal = (subTotal + 0).toFixed(2);
           <button className="previous-action-btn mr-3" onClick={() => previousPage()}>
             Previous
           </button>
-          <button className="next-action-btn" onClick={() => nextPage()}>
-            Back to cart
-          </button>
+          <button className="next-action-btn">Back to cart</button>
         </div>
       </div>
     </div>
