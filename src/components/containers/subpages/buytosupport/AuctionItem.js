@@ -64,10 +64,12 @@ const AuctionItem = () => {
                   </div>
                 </div>
 
-                <p className="align-self-center mb-0">{donate_item_name}</p>
+                <p className="align-self-center text-uppercase mb-0 bid-item-name">
+                  {donate_item_name}
+                </p>
 
                 <div>
-                  <div className='text-center'>
+                  <div className="text-center">
                     <AiOutlineFolderOpen />
                     <span className="card-text align-self-center text-muted ml-1">
                       {donate_item_condition}
@@ -76,11 +78,13 @@ const AuctionItem = () => {
                 </div>
 
                 {/*card footer */}
-                <div className="card-footer mt-5">
-                  <h5 className="text-blue font-italic mb-0">
-                    Starting-bid:{donate_mkt_price}
-                  </h5>
-                  <h5 className="text-blue font-italic mt-2 mb-0">Expires on:</h5>
+                <div className="card-footer d-flex flex-column align-items-center justify-content-center mt-5">
+                  <h6 className="font-italic mb-0">
+                    Starting-bid:<span className='font-weight-bold'>{donate_mkt_price}</span>
+                  </h6>
+                  <h6 className=" font-italic mt-2 mb-0">
+                    Expires on:
+                  </h6>
                 </div>
               </div>
             </div>

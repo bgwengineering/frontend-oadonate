@@ -357,7 +357,7 @@ const RaiseItem = ({ setCurrentOpenForm, setIsRaiseCardButtonsOpen,mime, handleS
                       setIsRaiseCardButtonsOpen(false);
                       setCurrentOpenForm(null);
                       handleReset();
-                    }, 9000);
+                    }, 7000);
                   }}
                 >
                   Submit

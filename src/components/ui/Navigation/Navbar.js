@@ -47,8 +47,8 @@ const Navbar = ({ menuOpen }) => {
 
     const { raiseFundsArrow, donateArrow, howWorksArrow } = showUpArrow;
 
-    return ( <
-        >
+    return ( 
+        <>
         { /* nav */ }
         <nav className="navbar__donate pt-2">
         {/* nav-center */}
@@ -368,8 +368,8 @@ const Navbar = ({ menuOpen }) => {
             {hidden ? null : <CartDropdown />}
           </ul>
         </div>
-      </nav> <
-        />
+      </nav> 
+        </>
     );
 };
 

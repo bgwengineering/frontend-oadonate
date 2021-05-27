@@ -16,7 +16,7 @@ import CartItem from './CartItem'
        cartItems.map(cartItem =>  
         {
         const {id} = cartItem  
-        console.log(cartItem)
+       
         return( 
          <CartItem key={id} item={cartItem}/>
        )  

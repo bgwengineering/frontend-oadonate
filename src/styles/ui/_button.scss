@@ -412,7 +412,7 @@
 
 .add_cart_btn{
   background-color: $logo_orange !important;
-  width:125px !important;
+  width:100% !important;
   color:#fff !important;
   &:hover{
     opacity:.8;
@@ -460,12 +460,12 @@
   border-top-right-radius: 50px;
   border-bottom-right-radius: 50px;
   font-size:1rem;
-   color: #C75A00;
+   color: #000;
    outline: 2px solid #C75A00;
    border:none;
    background-color:#fff;
    &:hover{
-       color:#0F6929;
+       opacity:.8;
    }
  }
 

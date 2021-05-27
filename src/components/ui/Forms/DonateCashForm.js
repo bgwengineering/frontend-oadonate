@@ -160,7 +160,7 @@ const DonateCashForm = ({ fund_cash, setCurrentOpenForm, setIsDonateCardButtonsO
   };
 
   const steps = getSteps();
-  const getStepContent = (stepIndex) => {
+  const getStepContent = (stepIndex) => { 
     switch (stepIndex) {
       case 0:
         return getPersonalInformation();
@@ -220,7 +220,6 @@ const DonateCashForm = ({ fund_cash, setCurrentOpenForm, setIsDonateCardButtonsO
             <option value="">select currency</option>
             <option value="$">$</option>
             <option value="₦">₦</option>
-            <option value="€">€</option>
           </select>
         </div>
         <input
@@ -315,9 +314,9 @@ const DonateCashForm = ({ fund_cash, setCurrentOpenForm, setIsDonateCardButtonsO
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
-  // const handleReset = () => {
-  //   setActiveStep(0);
-  // };
+  const handleReset = () => {
+    setActiveStep(0);
+  };
 
   return (
     <>
@@ -390,6 +389,14 @@ const DonateCashForm = ({ fund_cash, setCurrentOpenForm, setIsDonateCardButtonsO
                 color="primary"
               >
                 Back
+              </Button>
+              <Button
+                disabled={activeStep === 0}
+                onClick={handleReset}
+                className="mr-2 float-left"
+                color="primary"
+              >
+               Cancel
               </Button>
             </>
           )}

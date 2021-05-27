@@ -37,10 +37,12 @@ const EditShipping = ({ nextPage, previousPage, handleSubmit, id }) => {
             <div className="card-body">
               <h6 className="heading-small text-muted all-heading mb-4">Shipping information</h6>
               <hr className="my-4" />
-              <div className="shipping-show">
+
+              <div className="shipping-show d-flex">
                 <ToggleSwitch checked={checked} id="form" onChange={setChecked} />
-                <span className="shipping-msg">Ship to a different address?</span>
+                <span className="shipping-msg ml-2">Ship to a different address?</span>
               </div>
+
               <form onSubmit={handleSubmit(updateShipping)}>
                 <div className="pl-lg-4">
                   {checked ? (
@@ -137,7 +139,7 @@ const EditShipping = ({ nextPage, previousPage, handleSubmit, id }) => {
                     </>
                   ) : null}
                   <div className="form-group focused">
-                    <label>
+                    <label className='mt-3'>
                       Shipping Note<span>*</span>
                     </label>
                     <Field
