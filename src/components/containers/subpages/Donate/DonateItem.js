@@ -30,6 +30,7 @@ const DonateItem = ({ history }) => {
           "https://ogadonate.herokuapp.com/api/campaign/fundraise";
         const res = await axios.get(searchUrl);
         console.log(res);
+        
         setData({
           ...data,
           loading: false,
@@ -37,7 +38,6 @@ const DonateItem = ({ history }) => {
           result: res.data
         });
         setFilteredData(res.data);
-        console.error(filteredData);
       } catch (err) {
         setData({
           ...data,
@@ -57,10 +57,14 @@ const DonateItem = ({ history }) => {
     let filteredInput =
       inputValue.length > 0 &&
       data.result.filter(campaigns => {
-        return campaigns.fund_title
+        return (
+         campaigns.fund_type === 'Item' && campaigns.fund_title
           .toLowerCase()
-          .includes(inputValue.toLowerCase());
-      });
+          .includes(inputValue.toLowerCase())
+        )
+      }
+      
+      );
 
     if (inputValue === "") {
       setFilteredData(data.result);
@@ -71,7 +75,7 @@ const DonateItem = ({ history }) => {
 
   return (
     <>
-      <div className="viewport">
+      <div className="viewport border-secondary">
         <div className="viewport__body">
           {/* search */}
           <div className="btn-container">
@@ -100,21 +104,35 @@ const DonateItem = ({ history }) => {
           </div>
         </div>
       </div>
-      {filteredData.map(filters => {
-        return (
-          <li
-            style={{ display: searchValue ? "block" : "none" }}
-            onClick={()=>history.push(`/campaign/${filters.fund_category}/${filters.id}/details`)}
-          >
-            {filters.fund_type === "Item" ? filters.fund_title : null}
-          </li>
-        );
-      })}
-      <div>
-        <h4 className="text-uppercase text-center">
+     
+      <div
+        style={{ display: searchValue ? "block" : "none" }}
+        className="searched-data-container"
+      >
+        <div className="searched-data-subcontainer">
+          {filteredData.map(filters => {
+            return (
+              <ul>
+                <li
+                  onClick={() =>
+                    history.push(
+                      `/campaign/${filters.fund_category}/${filters.id}/details`
+                    )
+                  }
+                >
+                  {filters.fund_type === "Item" ? filters.fund_title : null}
+                </li>
+              </ul>
+            );
+          })}
+        </div>
+      </div>
+      <div className="all_donate_item_cards">
+        <h4 className="text-uppercase text-center mt-5">
           Find an item cause to donate to
         </h4>
         <AllDonateItemCards />
+
       </div>
     </>
   );
