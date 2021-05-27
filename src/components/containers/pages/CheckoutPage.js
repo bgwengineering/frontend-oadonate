@@ -24,6 +24,10 @@ const CheckoutForm = () => {
   };  
   const previousPage = () => {
     setPage(page - 1);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   };
 
   const showStep = () => {

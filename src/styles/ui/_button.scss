@@ -9,12 +9,22 @@
     color:#fff !important;
   }
 }
-.shipping-btn{
-  background-color: $logo_orange !important;
+.shipping-next-btn{
+  background-color: $logo_green !important;
   padding:9px 5px 9px 5px !important;
-  width:200px !important;
+  width:120px !important;
   color:#fff !important;
 }
+.shipping-cancel-btn{
+    background-color:none;
+  padding:9px 5px 9px 5px !important;
+  width:100px !important;
+  color:#000 !important;
+  &:hover{
+    background-color:#fefefe;
+  }
+}
+
 .billing-btn{
   background-color: $logo_orange !important;
   padding:9px 5px 9px 5px !important;
@@ -293,20 +303,7 @@
     background-color:$logo_green !important;
   }
 }
-.cancel-btn, .previous-action-btn, .next-action-btn{
-  background-color:$logo_orange !important;
-  outline:none !important;
-  border:none !important;
-  color:#fff !important;
-  padding:7px 15px;
-  border-radius:4px;
-  &:hover{
-    cursor:pointer !important;
-    background-color:$logo_green !important;
-    outline:none
-  }
-}
- .previous-action-btn{
+ .next-action-btn{
   background-color:$logo_green !important;
   outline:none !important;
   border:none !important;
@@ -315,7 +312,20 @@
   border-radius:4px;
   &:hover{
     cursor:pointer !important;
-    background-color:$logo_orange !important;
+    opacity:.9;
+    outline:none
+  }
+}
+ .cancel-btn, .previous-action-btn{
+  outline:none !important;
+  border:none !important;
+  color:#000 !important;
+  padding:7px 15px;
+  border-radius:4px;
+  background:none;
+  &:hover{
+    cursor:pointer !important;
+    background-color:#f3f3f3!important;
     outline:none
   }
 }

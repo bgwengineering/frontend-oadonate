@@ -5,9 +5,11 @@ import { Button } from "@material-ui/core";
 import { reduxForm, Field } from "redux-form";
 import { updateShippingAddressCheckout, singleShippingAddress } from "store/actions/auth/Dashboard";
 import { validateShipping, checkoutRenderField } from "util/RenderValidate";
+import {Link} from 'react-router-dom'
+
 
 const EditShipping = ({ nextPage, previousPage, handleSubmit, id }) => {
-  console.log(id)
+  
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(singleShippingAddress(`${id}`));
@@ -18,6 +20,14 @@ const EditShipping = ({ nextPage, previousPage, handleSubmit, id }) => {
     dispatch(updateShippingAddressCheckout(id, formValues));
     nextPage();
   };
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behaviour: 'smooth'
+    })
+  }
+  // toggle switch
   const ToggleSwitch = ({ checked, onChange, id }) => (
     <div>
       <input
@@ -153,10 +163,12 @@ const EditShipping = ({ nextPage, previousPage, handleSubmit, id }) => {
                 </div>
                 <hr className="profile_hr my-4" />
                 <div className="d-flex justify-content-between">
-                  <Button className="shipping-btn" type="button">
+                  <Link className='link-router-inverted' to='/'>
+                  <Button className="shipping-cancel-btn" type="button" onClick={scrollToTop}>
                     Cancel
                   </Button>
-                  <Button className="shipping-btn" type="submit">
+                  </Link>
+                  <Button className="shipping-next-btn" type="submit">
                     Next
                   </Button>
                 </div>

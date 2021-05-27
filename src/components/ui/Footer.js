@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { FiTwitter } from "react-icons/fi";
 import { ImFacebook } from "react-icons/im";
 import { IoLogoInstagram } from "react-icons/io";
@@ -7,13 +7,37 @@ import Logo from "assets/images/logo.jpeg";
 import { FUNDRAISECATEGORIES } from "store/actions/Category";
 import { useDispatch } from "react-redux";
 
-const Footer = () => {
-  const scrollToTop = () => {
+
+const Footer = ({history}) => {
+  
+  const pushToAbout = () => {
     window.scrollTo({
       top: 0,
       behavior: "smooth"
-    });
-  };
+    }, history.push('/about'));
+  } 
+  const pushToAffiliate = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    }, history.push('/affiliate'));
+  } 
+  // const pushToAffiliate = () => {
+  //   window.scrollTo({
+  //     top: 0,
+  //     behavior: "smooth"
+  //   }, history.push('/affiliate'));
+  // } 
+  const pushToPersonal = () => {
+    window.scrollTo(
+      {
+        top: 0,
+        behavior: "smooth"
+      },
+      history.push("/categories/personal-fundraising")
+    );
+  } 
+
   const dispatch = useDispatch();
 
   return (
@@ -42,27 +66,35 @@ const Footer = () => {
               <ul className=" footer-ul">
                 <li className="footer-item">
                   <Link
-                    to="/categories/personal-fundraising"
-                    exact
                     activeClassName="navigation-link--active"
                     className="sub-navigation-link link-router"
-                    onClick={() => {
-                      scrollToTop();
+                     onClick={() => {
                       dispatch(FUNDRAISECATEGORIES());
+                      window.scrollTo(
+                        {
+                          top: 0,
+                          behavior: "smooth"
+                        },
+                        history.push("/categories/personal-fundraising")
+                      );
                     }}
-                  >
+                   >
                     Personal
                   </Link>
                 </li>
                 <li className="footer-item">
                   <Link
-                    to="/categories/community-fundraising"
-                    exact
                     activeClassName="navigation-link--active"
                     className="sub-navigation-link link-router"
                     onClick={() => {
-                      scrollToTop();
                       dispatch(FUNDRAISECATEGORIES());
+                      window.scrollTo(
+                        {
+                          top: 0,
+                          behavior: "smooth"
+                        },
+                        history.push("/categories/community-fundraising")
+                      );
                     }}
                   >
                     Community
@@ -70,27 +102,35 @@ const Footer = () => {
                 </li>
                 <li className="footer-item">
                   <Link
-                    to="/categories/startup-fundraising"
-                    exact
                     activeClassName="navigation-link--active"
                     className="sub-navigation-link link-router"
                     onClick={() => {
-                      scrollToTop();
                       dispatch(FUNDRAISECATEGORIES());
+                      window.scrollTo(
+                        {
+                          top: 0,
+                          behavior: "smooth"
+                        },
+                        history.push("/categories/startup-fundraising")
+                      );
                     }}
-                  >
+                   >
                     Start up
                   </Link>
                 </li>
                 <li className="footer-item">
                   <Link
-                    to="/categories/ngo-fundraising"
-                    exact
                     activeClassName="navigation-link--active"
                     className="sub-navigation-link link-router"
                     onClick={() => {
-                      scrollToTop();
                       dispatch(FUNDRAISECATEGORIES());
+                      window.scrollTo(
+                        {
+                          top: 0,
+                          behavior: "smooth"
+                        },
+                        history.push("/categories/ngo-fundraising")
+                      );
                     }}
                   >
                     NGO
@@ -111,14 +151,16 @@ const Footer = () => {
                   <Link className="sub-navigation-link link-router">Terms</Link>
                 </li>
                 <li className="footer-item">
-                  <Link className="sub-navigation-link link-router" to='/affiliate'>
+                  <Link
+                    className="sub-navigation-link link-router"
+                    onClick={pushToAffiliate}
+                  >
                     Become an affiliate
                   </Link>
                 </li>
                 <li className="footer-item">
                   <Link
-                    to="/about"
-                    onClick={scrollToTop}
+                    onClick={pushToAbout}
                     className="sub-navigation-link link-router"
                   >
                     About us
@@ -173,4 +215,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default withRouter(Footer);

@@ -28,16 +28,16 @@ const Scroll = () => {
             behavior: "smooth",
         });
     };
-    return ( <
-        >
+    return ( 
+        <>
         {
-            showScroll && (
-                <div className="font-bg" onClick={() => scrollToTop()}>
+        showScroll && (
+        <div className="font-bg" onClick={() => scrollToTop()}>
           <TiArrowUpOutline color='#C75A00' className='fs-3' />
         </div>
-            )
-        } <
-        />
+        )
+        }
+    </>
     );
 };
 

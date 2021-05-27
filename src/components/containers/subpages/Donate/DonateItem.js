@@ -2,80 +2,83 @@ import React, { useState, useEffect } from "react";
 // import DonateCardImport from "../campaign/CampaignCardImport";
 import SearchSvg from "components/ui/Svg/SearchSvg";
 import ArrowSvg from "components/ui/Svg/ArrowSvg";
-import axios from 'axios'
-import AllDonateItemCards from "./AllDonateItemCards"
+import axios from "axios";
+import AllDonateItemCards from "./AllDonateItemCards";
+import { withRouter } from 'react-router-dom';
 
 
-const DonateItem = () => {
- const [data, setData] = useState({
-   loading: false,
-   error: null,
-   result: [],
- })
-const [searchValue, setSearchValue] = useState('')
-const [filteredData, setFilteredData] = useState([]);
-console.log(filteredData);
+const DonateItem = ({ history }) => {
+  const [data, setData] = useState({
+    loading: false,
+    error: null,
+    result: []
+  });
+  const [searchValue, setSearchValue] = useState("");
+  const [filteredData, setFilteredData] = useState([]);
 
+  useEffect(() => {
+    const handleCampaignData = async () => {
+      setData({
+        ...data,
+        loading: true,
+        error: null,
+        result: []
+      });
+      setFilteredData([]);
+      try {
+        const searchUrl =
+          "https://ogadonate.herokuapp.com/api/campaign/fundraise";
+        const res = await axios.get(searchUrl);
+        console.log(res);
+        setData({
+          ...data,
+          loading: false,
+          error: null,
+          result: res.data
+        });
+        setFilteredData(res.data);
+        console.error(filteredData);
+      } catch (err) {
+        setData({
+          ...data,
+          loading: false,
+          result: [],
+          error: err.message
+        });
+        setFilteredData([]);
+      }
+    };
+    handleCampaignData();
+  }, []);
 
- useEffect(() => {
-   const handleCampaignData = async () =>{
-     setData({
-       ...data,
-       loading:true,
-       error:null,
-       result:[]
-     })
-     setFilteredData([])
-     try{
-       const searchUrl = 'https://ogadonate-api.herokuapp.com/api/campaign/fundraise'
-       const res = await axios.get(searchUrl)
-       console.log(res);
-       
-           setData({
-             ...data,
-             loading:false,
-             error:null,
-             result:res.data
-           })
-           setFilteredData(res.data)
-           console.error(filteredData);
-     }catch(err){
-         setData({
-           ...data,
-           loading: false,
-           result: [],
-           error: err.message,
-         })
-         setFilteredData([])
-     }
+  const handleSearchValue = e => {
+    setSearchValue(e.target.value);
+    let inputValue = e.target.value;
+    let filteredInput =
+      inputValue.length > 0 &&
+      data.result.filter(campaigns => {
+        return campaigns.fund_title
+          .toLowerCase()
+          .includes(inputValue.toLowerCase());
+      });
 
-   } 
-   handleCampaignData()
- }, [])
+    if (inputValue === "") {
+      setFilteredData(data.result);
+    } else {
+      setFilteredData(filteredInput);
+    }
+  };
 
- const handleSearchValue = e => {
-   setSearchValue(e.target.value)
-   let inputValue = e.target.value;
-   let filteredInput = inputValue.length > 0 && data.result.filter(campaigns=>(campaigns.fund_title.toLowerCase().contains(inputValue.toLowerCase())))
-  
-   if (inputValue === "") {
-    setFilteredData(data.result);
-  } else {
-    setFilteredData(filteredInput);
-  }
-  }
-  
   return (
     <>
       <div className="viewport">
         <div className="viewport__body">
-
           {/* search */}
           <div className="btn-container">
             <div className="btn-container__search">
               <span>Search</span>
               <input
-                className='search_input'
+                className="search_input"
                 type="text"
                 name="search-query"
                 placeholder="search"
@@ -95,24 +98,26 @@ console.log(filteredData);
               </div>
             </div>
           </div>
-
         </div>
       </div>
-        
       {filteredData.map(filters => {
-        return(
-          <li>{filters.fund_title}</li>
-        )
-      })
-      }
+        return (
+          <li
+            style={{ display: searchValue ? "block" : "none" }}
+            onClick={()=>history.push(`/campaign/${filters.fund_category}/${filters.id}/details`)}
+          >
+            {filters.fund_type === "Item" ? filters.fund_title : null}
+          </li>
+        );
+      })}
       <div>
-      <h4 className="text-uppercase text-center">
-        Find an item cause to donate to
-      </h4>
-      <AllDonateItemCards />
+        <h4 className="text-uppercase text-center">
+          Find an item cause to donate to
+        </h4>
+        <AllDonateItemCards />
       </div>
     </>
   );
 };
 
-export default DonateItem;
+export default withRouter(DonateItem);

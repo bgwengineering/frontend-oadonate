@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import axiosInstance from "util/api";
 import { setLoading } from "store/actions/Common";
 import { clearCartItems, placeOrder } from "store/actions/cart/cart.actions";
+import { Link } from 'react-router-dom';
 
 const stripePromise = window.Stripe(
   "pk_test_51Ihz1EJtAhKBp45zJXZLT2RmTKQLDbpZRPerC1uKcnQ69N1R1IchlmRhCBMp3cwJ4DIVpSf9iHe4Hnq9wUdAC6OA00DNznJtw5"
@@ -28,11 +29,11 @@ const OrderPreview = ({ nextPage, previousPage, history }) => {
   const cartState = useSelector((state) => state.cartReducer);
   const { cartItems,checkoutUrl } = cartState;
 
-  // useEffect(() => {
-  //   if (checkoutUrl && checkoutUrl.length) {
-  //     window.location = checkoutUrl;
-  //   }
-  // }, [checkoutUrl]);
+  useEffect(() => {
+    if (checkoutUrl && checkoutUrl.length) {
+      window.location = checkoutUrl;
+    }
+  }, [checkoutUrl]);
 
   useEffect(() => {
     // Check to see if this is a redirect back from Checkout
@@ -44,6 +45,13 @@ const OrderPreview = ({ nextPage, previousPage, history }) => {
       setMessage("Order canceled -- continue to shop around and checkout when you're ready.");
     }
   }, []);
+ 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behaviour:'smooth'
+    })
+  }
   const dispatch = useDispatch();
   let subTotal = 0;
   let orders = cartItems.map((cart) => {
@@ -66,8 +74,8 @@ const OrderPreview = ({ nextPage, previousPage, history }) => {
   const storeTotal = (subTotal + 0)
   const { payment_method, delivery_method } = orderFields;
   // submit with paystack gateway
-  const PayWithPaystack = (e) => {
-    e.preventDefault();
+  const PayWithPaystack = () => {
+    // e.preventDefault();
     const formData = {
       payment_method,
       delivery_method,
@@ -189,7 +197,9 @@ const OrderPreview = ({ nextPage, previousPage, history }) => {
 
       <div className="d-flex justify-content-between order-total">
         <p className="text-uppercase order-total">Total</p>
-        <p className="amount-order font-weight-bold">₦{flatrate ? flatTotal : storeTotal}</p>
+        <p className="amount-order font-weight-bold">
+          ₦{flatrate ? flatTotal : storeTotal}
+        </p>
       </div>
 
       <div>
@@ -222,8 +232,9 @@ const OrderPreview = ({ nextPage, previousPage, history }) => {
         </div>
 
         <p className="order-note">
-          Your personal data will be used to process your order, support your experience throughout
-          this website, and for other purposes described in our privacy policy.
+          Your personal data will be used to process your order, support your
+          experience throughout this website, and for other purposes described
+          in our privacy policy.
         </p>
       </div>
 
@@ -236,12 +247,24 @@ const OrderPreview = ({ nextPage, previousPage, history }) => {
       </div>
       <div className="order-payment-button-container">
         {paystack ? (
-          <button onClick={()=>{PayWithPaystack();clearCartItems()}} className="order-payment-button">
+          <button
+            onClick={() => {
+              PayWithPaystack();
+              clearCartItems();
+            }}
+            className="order-payment-button"
+          >
             Pay Now
           </button>
         ) : (
-          <button onClick={()=>{PayWithStripe();clearCartItems()}} className="order-payment-button">
-            Pay Nows
+          <button
+            onClick={() => {
+              PayWithStripe();
+              clearCartItems();
+            }}
+            className="order-payment-button"
+          >
+            Pay Now
           </button>
         )}
       </div>
@@ -249,10 +272,15 @@ const OrderPreview = ({ nextPage, previousPage, history }) => {
       {/* cancel next button */}
       <div className="next-prev--container d-flex justify-content-between">
         <div className="order-cancel-btn-container">
-          <button className="cancel-btn">Cancel</button>
+          <Link className='link-router-inverted' to='/cart'>
+            <button className="cancel-btn" onClick={scrollToTop}>Cancel</button>
+          </Link>
         </div>
         <div className="order-end-button-container d-flex justify-content-end">
-          <button className="previous-action-btn mr-3" onClick={() => previousPage()}>
+          <button
+            className="previous-action-btn mr-3"
+            onClick={() => previousPage()}
+          >
             Previous
           </button>
           <button className="next-action-btn">Back to cart</button>

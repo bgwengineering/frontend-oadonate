@@ -4,6 +4,8 @@ import { Button } from "@material-ui/core";
 import { reduxForm, Field } from "redux-form";
 import { createShippingAddress } from "store/actions/auth/Dashboard";
 import { validateShipping } from "util/RenderValidate";
+import { Link } from 'react-router-dom';
+
 
 const NewShipping = ({ handleSubmit, pristine, submitting, nextPage }) => {
   const dispatch = useDispatch();
@@ -11,6 +13,14 @@ const NewShipping = ({ handleSubmit, pristine, submitting, nextPage }) => {
   const createShipping = (formValues) => {
     dispatch(createShippingAddress(formValues));
   };
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behaviour:'smooth'
+    })
+  }
+
   return (
     <div className="container-fluid mt--7">
       <div className="row">
@@ -148,19 +158,23 @@ const NewShipping = ({ handleSubmit, pristine, submitting, nextPage }) => {
                 </div>
                 <hr className="profile_hr my-4" />
                 <div className="d-flex justify-content-between">
+                  <Link to='/'>
                   <Button
-                    className="shipping-btn"
-                    type="button"
+                      className="shipping-cancel-btn"
+                      type="button"
+                      onClick={scrollToTop}
                   >
                     Cancel
                   </Button>
+                  </Link>
+
                   <Button
-                    className="shipping-btn"
+                    className="shipping-next-btn"
                     type="submit"
                     onClick={() => nextPage()}
                     disabled={pristine || submitting}
-                >
-                  Next
+                    >
+                    Next
                   </Button>
                 </div>
               </form>
