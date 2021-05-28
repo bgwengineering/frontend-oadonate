@@ -16,7 +16,7 @@ import {persistStore} from 'redux-persist';
 
 export const store = createStore(
          rootReducer,
-         composeWithDevTools(applyMiddleware(thunk, logger))
+         applyMiddleware(thunk, logger)
        );
 export const persistor = persistStore(store);
 
