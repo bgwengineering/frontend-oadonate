@@ -2,7 +2,7 @@
   "name": "ogadonate",
   "version": "0.1.0",
   "homepage": ".",
-  
+  "proxy": "https://ogadonate.herokuapp.com/",
   "private": true,
   "dependencies": {
     "@coreui/chartjs": "^2.0.0",
