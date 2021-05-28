@@ -7,10 +7,10 @@ import rootReducer from './reducers/root-reducer';
 import {persistStore} from 'redux-persist';
 
 const initialState = {};
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+const composeEnhancers = compose
 const middlewares = [thunk, logger]
 
-export const store = createStore(rootReducer, initialState,composeEnhancers(applyMiddleware(...middlewares)));
+export const store = createStore(rootReducer, initialState, composeEnhancers(applyMiddleware(...middlewares)));
 
 export const persistor = persistStore(store);
 export default store;
