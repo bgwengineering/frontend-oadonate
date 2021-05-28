@@ -179,3 +179,23 @@ export const singleShippingAddress = (id) => async (dispatch, getState) => {
     dispatch({ type: actionTypes.GET_SINGLE_SHIPPING_ADDRESS_FAIL, payload: error.message });
   }
 };
+
+// orders
+export const fetchOrders = () => async (dispatch, getState) => {
+  try {
+    const res = await axiosInstance.get('buy-to-support/orders', tokenConfig(getState));
+    dispatch({ type: actionTypes.FETCH_ORDERS_SUCCESS, payload: res });
+  } catch (error) {
+    dispatch({ type: actionTypes.FETCH_ORDERS_FAIL, payload: error.message });
+  }
+};
+
+
+export const fetchAuction = () => async (dispatch, getState) => {
+  try {
+    const res = await axiosInstance.get('buy-to-support/auction', tokenConfig(getState));
+    dispatch({ type: actionTypes.FETCH_AUCTION_SUCCESS, payload: res });
+  } catch (error) {
+    dispatch({ type: actionTypes.FETCH_AUCTION_FAIL, payload: error.message });
+  }
+};

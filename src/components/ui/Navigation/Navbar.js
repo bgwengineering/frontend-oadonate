@@ -19,8 +19,8 @@ import { updateMarketCollections } from "store/actions/MarketPlace";
 
 const Navbar = ({ menuOpen }) => {
     const authState = useSelector(state => state.authReducer);
-    const { isAuthenticated } = authState;
-
+  const { isAuthenticated } = authState;
+    
     const hiddenState = useSelector(state => state.cartReducer);
     const { hidden } = hiddenState;
 

@@ -53,7 +53,7 @@ export const placeOrder = (orders) => async (dispatch, getState) => {
         tokenConfig(getState)
       );
       dispatch({ type: actionTypes.PLACE_ORDERS_PAYSTACK_SUCCESS, payload: data });
-      dispatch(clearItemFromCart())
+      dispatch(clearCartItems());
     } catch (error) {
       dispatch({ type: actionTypes.PLACE_ORDERS_PAYSTACK_FAIL });
     }

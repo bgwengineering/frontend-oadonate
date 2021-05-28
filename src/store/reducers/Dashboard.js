@@ -8,6 +8,8 @@ const initialState = {
   user_donations_received: [],
   loading: false,
   singleAddress: [],
+  orders: [],
+  auction:[]
 };
 
 const dashboard = (state = initialState, action) => {
@@ -51,13 +53,26 @@ const dashboard = (state = initialState, action) => {
         ...state,
         user_donations_received: payload,
       };
+    case actionTypes.FETCH_ORDERS_SUCCESS:
+      return {
+        ...state,
+        orders: payload,
+      };
+    
+    case actionTypes.FETCH_AUCTION_SUCCESS:
+      return {
+        ...state,
+        auction: payload,
+      };    
     case actionTypes.UPDATE_PERSONAL_PROFILE_FAIL:
     case actionTypes.CREATE_PERSONAL_PROFILE_FAIL:
     case actionTypes.UPDATE_SHIPPING_ADDRESS_FAIL:
     case actionTypes.CREATE_SHIPPING_ADDRESS_FAIL:
+    case actionTypes.FETCH_ORDERS_FAIL:
+    case actionTypes.FETCH_AUCTION_FAIL:
       return {
         ...state,
-      };
+    };
     default:
       return state;
   }

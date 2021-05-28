@@ -13,6 +13,7 @@ import storage from 'redux-persist/lib/storage';
 import {persistReducer} from 'redux-persist';
 import { LOGOUT } from 'store/actions/ActionTypes';
 
+
   const appReducer = combineReducers({
     form:formReducer,
     authReducer:auth,
@@ -24,6 +25,8 @@ import { LOGOUT } from 'store/actions/ActionTypes';
     fundSubCategoriesReducer: fundSubCategories,
     cartReducer: cart,
     marketPlaceReducer: marketPlace,
+    orderReducer: dashboard,
+    auctionReducer: dashboard
 });
 
 const persistConfig = {

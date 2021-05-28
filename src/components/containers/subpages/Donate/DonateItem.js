@@ -75,7 +75,7 @@ const DonateItem = ({ history }) => {
 
   return (
     <>
-      <div className="viewport border-secondary">
+      <div className="viewport">
         <div className="viewport__body">
           {/* search */}
           <div className="btn-container">
@@ -112,14 +112,15 @@ const DonateItem = ({ history }) => {
         <div className="searched-data-subcontainer">
           {filteredData.map(filters => {
             return (
-              <ul>
+              <ul className='mt-0 mb-0'>
                 <li
+                  className='searched-data-list d-flex flex-column justify-content-center align-items-center'
                   onClick={() =>
                     history.push(
                       `/campaign/${filters.fund_category}/${filters.id}/details`
                     )
                   }
-                >
+                  >
                   {filters.fund_type === "Item" ? filters.fund_title : null}
                 </li>
               </ul>
@@ -132,7 +133,6 @@ const DonateItem = ({ history }) => {
           Find an item cause to donate to
         </h4>
         <AllDonateItemCards />
-
       </div>
     </>
   );

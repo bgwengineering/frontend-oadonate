@@ -31,10 +31,12 @@ export const renderField = ({
     <div>
     <input {...input} className={className} placeholder={label} type={type} />
     {touched &&
-      ((error && <div tyle={{ color: "red", fontSize: "10px" }}>{error}</div>) ||
+      ((error && <div style={{ color: "red", fontSize: "10px" }}>{error}</div>) ||
         (warning && <div>{warning}</div>))}
   </div>
 );
+
+
 export const checkoutRenderField = ({
     input,
     placeholder,

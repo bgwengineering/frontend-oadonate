@@ -1,8 +1,26 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { CCard, CCardBody, CCol, CRow } from "@coreui/react";
+import { fetchOrders } from "store/actions/auth/Dashboard";
+
+
 
 const Order= () => {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(fetchOrders());
+  }, [])
+
+  const orderState = useSelector(state => state.orderReducer)
+  const auctionState = useSelector(state => state.orderReducer)
+
+  const {orders} = orderState 
+  const {auction} = auctionState 
+  console.log(orders);
+  console.log(auction);
+  
+
 
   return (
     <>

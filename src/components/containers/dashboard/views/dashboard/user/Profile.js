@@ -3,22 +3,24 @@ import { Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import ProfilePrompt from "./ProfilePrompt";
-// import { load_user } from "store/actions/auth/Auth";
-// import { fetchPersonalProfile } from "store/actions/auth/Dashboard";
+import placeholder_image from '../../../../../../assets/images//homepage/user.png'
+
 
 const Profile = () => {
-  const dispatch = useDispatch();
-  const profileState = useSelector((state) => state.userTypeReducer);
+
+  const profileState = useSelector(state => state.userTypeReducer);
   const { profile_user } = profileState;
   let gender = "";
   let profile_img = "";
-  profile_user.length &&
-    profile_user.map((profile) => {
+
+   profile_user.length &&
+    profile_user.map(profile => {
       gender = profile.gender;
       profile_img = profile.profile_image;
     });
-  const userState = useSelector((state) => state.authReducer.user);
+  const userState = useSelector(state => state.authReducer.user);
   const { email, first_name, last_name } = userState;
+
   return (
     <>
       <div className="container-fluid mt--7">
@@ -28,7 +30,12 @@ const Profile = () => {
               <div className="row justify-content-center">
                 <div className="col-lg-3 order-lg-2">
                   <div className="card-profile-image">
-                    <img src={profile_img} alt="rounded-circle" className="rounded-circle-img" />
+                    {
+                      profile_img ?
+                        <img src={profile_img} alt="rounded-circle" className="rounded-circle-img" />
+                        : 
+                        <img src={placeholder_image} alt="rounded-circle" className="rounded-circle-img" />
+                    }
                   </div>
                 </div>
               </div>

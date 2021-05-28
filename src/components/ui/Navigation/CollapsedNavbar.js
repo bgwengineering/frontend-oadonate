@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { withRouter, NavLink } from "react-router-dom";
 import Logo from "assets/images/logo.jpeg";
+import { FcHome } from 'react-icons/fc';
+
 
 const CollapsedNavbar = () => {
     const [showUpArrow, setShowUpArrow] = useState(false);
@@ -10,39 +12,55 @@ const CollapsedNavbar = () => {
     }
 
 
-    return ( <
-        >
-        <nav className="navbar__donate toolbar">
+  return (
+    <>
+      <nav className="navbar__donate">
         {/* nav-center */}
-        <div className="navbar-center-container p-t-20">
-          <ul className="navbar-center">
-            <li className="nav-item">
+        <div className="p-t-20">
+          <ul>
+            <li className="collapsednav-item">
               <NavLink
                 to="/"
                 exact
                 activeClassName="navigation-link--active"
-                className="navigation-link text-white"
+                className="colnavigation-link text-black"
               >
                 Home
               </NavLink>
             </li>
           </ul>
         </div>
-         
+
         {/* logo */}
-        <div className="nav-left">
-        <NavLink
-                to="/"
-                exact
-                activeClassName="navigation-link--active"
-                className="navigation-link text-white"
-              >
-          <img src={Logo} alt="log" className="logo" style={{width:'150px'}} />
-        </NavLink>
+        <div className="">
+          <NavLink
+            to="/"
+            exact
+            activeClassName="navigation-link--active"
+            className="navigation-link"
+          >
+            <img
+              src={Logo}
+              alt="log"
+              className="logo"
+              style={{ width: "150px" }}
+            />
+          </NavLink>
         </div>
-      </nav> <
-        />
-    );
+
+        <div className="home-icon-container d-flex justify-content-center">
+          <NavLink
+            to="/"
+            exact
+            activeClassName="navigation-link--active"
+            className="navigation-link"
+          >
+            <FcHome size={50} />
+          </NavLink>
+        </div>
+      </nav>
+    </>
+  );
 };
 
 export default CollapsedNavbar;

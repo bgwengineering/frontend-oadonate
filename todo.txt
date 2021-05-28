@@ -1,8 +1,8 @@
 1. Style password reset
-2. submit and update shipping  form
-3. submit and update profile form
+2. submit and update shipping  form -- Done
+3. submit and update profile form -- Done
 4. restyle shipping and orderpreview(remove onfocus blue to green)
 6. display firstname and lastname initials only (Henry.U)
-7. no item render for buy-to-support(check mapping)
+7. no item render for buy-to-support(check mapping) --- Done
 8 . validate profie form with redux validate style
 9. style chnagepassword form using core ui form className(location of form ui/form/chanagepasswordform)
