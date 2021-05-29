@@ -25,10 +25,10 @@ const SignupForm = ({ handleSubmit, submitting, pristine }) => {
             <Field component={renderField} className='input' label="First Name" name='first_name' type='text'/>
             </fieldset>
             <fieldset>
-                    <Field component={renderField} className='input' label="Last Name" name='last_name' type='text'/>
+            <Field component={renderField} className='input' label="Last Name" name='last_name' type='text'/>
             </fieldset>
             <fieldset>
-                    <Field component={renderField} className='input' label="Email" name='email' type='email' />
+              <Field component={renderField} className='input' label="Email" name='email' type='email' />
             </fieldset>
 
             <fieldset className='d-flex form-eye-field'>    
