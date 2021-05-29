@@ -123,18 +123,18 @@ export const login = ({ email, password }) => async (dispatch) => {
         err.response.data.detail &&
           dispatch({ type: SHOW_ERROR_MESSAGE, payload: `Detail: ${err.response.data.detail}` });
     };
-  }
-  
+  }  
 };
 
 
 // signup
+
 export const signup = ({ first_name, last_name, email, password }) => async (dispatch) => {
   dispatch(setLoading())
   const body = { first_name, last_name, email, password };
   try {
     const res = await axiosInstance.post("auth/users/", body);
-    dispatch({
+     dispatch({
       type: SIGNUP_SUCCESS,
       payload: res.data,
     });
@@ -152,7 +152,7 @@ export const signup = ({ first_name, last_name, email, password }) => async (dis
           dispatch({ type: SHOW_ERROR_MESSAGE, payload:`Email: ${err}` })
           )
         });
-      err.response.data.password &&
+       err.response.data.password &&
         err.response.data.password.map((err) => {return(
             dispatch({ type: SHOW_ERROR_MESSAGE, payload: `Password: ${err}` })
           )

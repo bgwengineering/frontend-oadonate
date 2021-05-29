@@ -1,8 +1,6 @@
 {
   "name": "ogadonate",
   "version": "0.1.0",
-  "homepage": ".",
-  "proxy": "https://ogadonate.herokuapp.com/",
   "private": true,
   "dependencies": {
     "@coreui/chartjs": "^2.0.0",
@@ -67,26 +65,20 @@
     "build": "react-scripts build webpack --mode production",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-      "dev": "webpack --mode development" 
+    "dev": "webpack --mode development"
   },
-
   "eslintConfig": {
     "extends": [
       "react-app",
       "react-app/jest"
     ]
   },
-  "browserslist": {
-    "production": [
-     "defaults"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
   "devDependencies": {
     "@types/react-redux": "^7.1.16"
-  }
+  },
+
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ]
 }
