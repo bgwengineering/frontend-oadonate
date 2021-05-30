@@ -11,6 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import {RiAuctionFill} from 'react-icons/ri'
 import {IoEyeOutline} from 'react-icons/io5'
+import { auctionBid } from 'store/actions/auth/Dashboard';
 
 
 function TabPanel(props) {
@@ -42,14 +43,18 @@ const a11yProps = (index) => {
 
 
 const AuctionDetails = ({ match }) => {  
-  const [value, setValue] = React.useState(0);
+  const bid_id = match.params.id
+  const [value, setValue] = useState(0);
+  const [anonymously, setAnonymously] = useState(false);
+  const [typeBidAmount, setTypeBidAmount] = useState(1)
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
  
-  const [typeBidAmount, setTypeBidAmount] = useState(1)
-
+ const unknownBidder = () =>{
+  setAnonymously(true)
+ }
   const handleSetBidAmountIncrease = () => {
     setTypeBidAmount(Number(typeBidAmount) + 1);
   }
@@ -58,6 +63,14 @@ const AuctionDetails = ({ match }) => {
     setTypeBidAmount(e.target.value);
   }
 
+  const handleSubmit = () =>{
+    const bidValues = {
+      bidding_for : bid_id,
+      bid_amount : typeBidAmount,
+      bid_anonymously: anonymously
+    }
+    dispatch(auctionBid(bidValues))
+  }
  
   const handleSetBidAmountDecrease = () => {
     if (typeBidAmount === 1){
@@ -74,10 +87,11 @@ const AuctionDetails = ({ match }) => {
 
     const productState = useSelector(state=>state.marketPlaceReducer)
     const {singleCollections} = productState
-  const { donate_item_img, donate_mkt_price, donate_item_desc, donate_mkt_bid, donate_item_name, donate_currency, id, donate_item_condition} = singleCollections
+  const { donate_item_img,  donate_item_desc, donate_mkt_bid, donate_item_name,  donate_item_condition} = singleCollections
   return (
     <>
       <div className="auction-container">
+
         {/* title */}
         <div className="row">
           <div className="auction-image-container col-md-4 col-lg-4 mr-5 my-3 text-capitalize">
@@ -112,7 +126,7 @@ const AuctionDetails = ({ match }) => {
                     <span className="auction-add-minus-subcontainer d-flex justify-content-between align-items-center">
                       <p
                         className="auction-minus mt-3"
-                        // onClick={handleSetBidAmountDecrease}
+                        onClick={handleSetBidAmountDecrease}
                       >
                         -
                       </p>
@@ -120,7 +134,6 @@ const AuctionDetails = ({ match }) => {
                         className="bid-amt-input text-center"
                         name="bid_amount"
                         min={typeBidAmount}
-                        name="quantity"
                         value={typeBidAmount}
                         type="number"
                         onChange={handleBidChange}
@@ -134,13 +147,15 @@ const AuctionDetails = ({ match }) => {
                     </span>
                     <div
                       className="riauction-container d-flex justify-content-center align-items-center py-1 ml-4"
-                      title="bid now"
+                      title="Bid now"
+                      onClick={handleSubmit}
                     >
                       <RiAuctionFill className="riauction-icon" />
                     </div>
                     <div
                       className="riauction-container d-flex justify-content-center align-items-center py-1 ml-4"
-                      title="Add to watchlist"
+                      title="Bid Anonymously"
+                      onClick={unknownBidder}
                     >
                       <IoEyeOutline className="riauction-icon" />
                     </div>
@@ -149,7 +164,6 @@ const AuctionDetails = ({ match }) => {
                     Buy now for
                   </button>
                 </div>
-                
               </div>
             </div>
           </div>

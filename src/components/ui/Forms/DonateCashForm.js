@@ -7,6 +7,7 @@ import StepLabel from "@material-ui/core/StepLabel";
 import Button from "@material-ui/core/Button";
 import axiosInstance from "util/api";
 import { setLoading } from 'store/actions/Common';
+
 const stripePromise = window.Stripe(
   "pk_test_51Ihz1EJtAhKBp45zJXZLT2RmTKQLDbpZRPerC1uKcnQ69N1R1IchlmRhCBMp3cwJ4DIVpSf9iHe4Hnq9wUdAC6OA00DNznJtw5"
 );
