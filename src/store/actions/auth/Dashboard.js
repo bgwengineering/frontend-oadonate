@@ -195,7 +195,7 @@ export const fetchOrders = () => async (dispatch, getState) => {
 export const auctionBid = (bidValues) => async(dispatch,getState) =>{
   dispatch(setLoading());
 try {
-  const {res }= await axiosInstance.post("buy-to-support/auction",bidValues, tokenConfig(getState))
+  const res= await axiosInstance.post("buy-to-support/auction",bidValues, tokenConfig(getState))
   dispatch({type: actionTypes.CREATE_AUCTION_SUCCESS});
   dispatch({type: actionTypes.SHOW_SUCCESS_MESSAGE, payload:"Bid Submited Successfully"});
   dispatch(offLoading());
@@ -208,9 +208,9 @@ try {
 // FETCH AUCTION
 export const fetchAuctionBid = () => async(dispatch,getState) =>{
 try {
-  const {res }= await axiosInstance.get("buy-to-support/auction",tokenConfig(getState))
+  const res= await axiosInstance.get("buy-to-support/auction",tokenConfig(getState))
   dispatch({type: actionTypes.FETCH_AUCTION_SUCCESS, payload: res.data});
 } catch (error) {
-  dispatch({type: actionTypes.FETCH_AUCTION_FAIL});
+  dispatch({type: actionTypes.FETCH_AUCTION_FAIL,payload: error});
 }
 }

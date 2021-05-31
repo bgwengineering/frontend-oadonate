@@ -95,6 +95,7 @@ export const login = ({ email, password }) => async (dispatch) => {
       type: LOGIN_SUCCESS,
       payload: res.data,
     });
+    dispatch(offLoading());
     dispatch({
       type: SHOW_SUCCESS_MESSAGE,
       payload: "You've successfully logged in",
@@ -103,10 +104,8 @@ export const login = ({ email, password }) => async (dispatch) => {
     dispatch(reset("LoginForm"));
     dispatch(load_user());
   } catch (err) {
+    dispatch(setLoading());
     dispatch({ type: LOGIN_FAIL });
-    dispatch(offLoading());
-    dispatch(stopSubmit("LoginForm"));
-    dispatch(reset("LoginForm"));
     if (err.response.data) {
       err.response.data.email &&
         err.response.data.email.map((err) => { return(
@@ -123,6 +122,9 @@ export const login = ({ email, password }) => async (dispatch) => {
         err.response.data.detail &&
           dispatch({ type: SHOW_ERROR_MESSAGE, payload: `Detail: ${err.response.data.detail}` });
     };
+    dispatch(offLoading());
+    dispatch(stopSubmit("LoginForm"));
+    dispatch(reset("LoginForm"));
   }  
 };
 
@@ -138,14 +140,13 @@ export const signup = ({ first_name, last_name, email, password }) => async (dis
       type: SIGNUP_SUCCESS,
       payload: res.data,
     });
-    dispatch(stopSubmit("SignupForm"));
-    dispatch(reset("SignupForm"));
-    dispatch({ type: SHOW_SUCCESS_MESSAGE, payload: "Account Created: Please check your email to verify your account."})
-  } catch (err) {
-    dispatch({ type: SIGNUP_FAIL });
     dispatch(offLoading());
+    dispatch({ type: SHOW_SUCCESS_MESSAGE, payload: "Account Created: Please check your email to verify your account."})
     dispatch(stopSubmit("SignupForm"));
     dispatch(reset("SignupForm"));
+  } catch (err) {
+    dispatch(setLoading())
+    dispatch({ type: SIGNUP_FAIL });
     if (err.response.data) {
       err.response.data.email &&
         err.response.data.email.map((err) => { return(
@@ -168,6 +169,9 @@ export const signup = ({ first_name, last_name, email, password }) => async (dis
           )
         });
     }
+    dispatch(offLoading());
+    dispatch(stopSubmit("SignupForm"));
+    dispatch(reset("SignupForm"));
   }
 };
 

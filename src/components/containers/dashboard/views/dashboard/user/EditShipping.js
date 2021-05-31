@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { connect, useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import { Button } from "@material-ui/core";
@@ -150,9 +151,11 @@ const EditShipping = ({ handleSubmit, pristine, submitting, id }) => {
                 </div>
                 <hr className="profile_hr my-4" />
                 <div className="d-flex justify-content-between">
+                <Link to="/dashboard">
                   <Button className="shipping-btn" type="button">
                     Cancel
                   </Button>
+                  </Link>
                   <Button className="shipping-btn" type="submit" disabled={pristine||submitting}>
                     Update Address
                   </Button>

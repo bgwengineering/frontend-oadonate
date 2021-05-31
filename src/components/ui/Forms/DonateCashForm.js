@@ -218,7 +218,7 @@ const DonateCashForm = ({ fund_cash, setCurrentOpenForm, setIsDonateCardButtonsO
         <div className="d-flex">
           <h6 className="mr-3">currency type :</h6>
           <select name="donate_currency" className="mb-4" onChange={handleChange}>
-            <option value="">select currency</option>
+            <option value="" disabled></option>
             <option value="$">$</option>
             <option value="₦">₦</option>
           </select>
