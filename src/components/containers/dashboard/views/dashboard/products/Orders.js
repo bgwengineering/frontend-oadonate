@@ -54,7 +54,7 @@ const Order = () => {
                             <div>{id}</div>
                           </td>
                           <td className="text-center">
-                            <div>{total_price}</div>
+                            <div>₦{total_price}</div>
                           </td>
                           <td className="text-center">
                             <div>{payment_method}</div>

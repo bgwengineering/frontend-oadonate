@@ -6,7 +6,7 @@ const initialState = {
   refresh: localStorage.getItem("refresh"),
   isAuthenticated: false,
   accountCreated: null,
-  user: null,
+  user: [],
   loading: false,
 };
 

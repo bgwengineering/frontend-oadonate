@@ -40,7 +40,7 @@ const Auction = () => {
                       <tbody>
                         <tr key={id}>
                           <td className="text-center">
-                            <div>{bid_amount}</div>
+                            <div>₦{bid_amount}</div>
                           </td>
                           <td className="text-center">
                             <div>Open</div>

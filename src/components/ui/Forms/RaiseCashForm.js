@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import { Field, reduxForm, stopSubmit, reset } from "redux-form";
 import axiosInstance from "util/api";
 import * as actionTypes from "store/actions/ActionTypes";
@@ -8,7 +8,7 @@ import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
 import Button from "@material-ui/core/Button";
-import { raiseCashFund } from "store/actions/fund_donate/FundDonate";
+
 
 const RaiseCash = ({
   setIsRaiseCardButtonsOpen,
@@ -51,7 +51,8 @@ const RaiseCash = ({
     }
   };
 
-  const onSubmit = (formValues) => {
+
+  const onSubmit = async (formValues) => {
     let formData = new FormData();
     formData.append("fund_title", formValues.fund_title);
     formData.append("fund_category", formValues.fund_category);
@@ -68,75 +69,82 @@ const RaiseCash = ({
       },
     };
     dispatch(setLoading());
-    setTimeout(() => {
-      axiosInstance
-        .post("campaign/create/fundraise-cash", formData, config)
-        .then((res) => {
-          dispatch({ type: actionTypes.CREATE_FUND_CASH_SUCCESS });
-          dispatch({ type: actionTypes.SHOW_SUCCESS_MESSAGE, payload: "Campaign Created!" });
-          dispatch(stopSubmit("cashfund"));
-          dispatch(reset("cashfund"));
-          dispatch(offLoading());
-        })
-        .catch((error) => {
-          console.log(error.response.data);
-          dispatch({ type: actionTypes.CREATE_FUND_CASH_FAIL });
-          dispatch(stopSubmit("cashfund"));
-          dispatch(reset("cashfund"));
-          if (error.response == "undefined") {
-            dispatch({
-              type: actionTypes.SHOW_ERROR_MESSAGE,
-              payload: `Error: ${error.response.data}`,
-            });
-            dispatch(offLoading());
-          } if (error.response.data) {
-            error.response.data.fund_category.map((err) => {
-              return dispatch({
-                type: actionTypes.SHOW_ERROR_MESSAGE,
-                payload: "Category Field: Must not be empty",
-              });
-            });
-            dispatch(offLoading());
-          } if (error.response.data) {
-            error.response.data.fund_cash_amount.map((err) => {
-              return dispatch({
-                type: actionTypes.SHOW_ERROR_MESSAGE,
-                payload: "Amount Field: Must not be empty",
-              });
-            });
-            dispatch(offLoading());
-          } if (error.response.data) {
-            error.response.data.fund_img.map((err) => {
-              return dispatch({
-                type: actionTypes.SHOW_ERROR_MESSAGE,
-                payload: `Fund Image Field: ${err}`,
-              });
-            });
-            dispatch(offLoading());
-          } if (error.response.data) {
-            error.response.data.fund_purpose.map((err) => {
-              return dispatch({
-                type: actionTypes.SHOW_ERROR_MESSAGE,
-                payload: `Purpose Field: ${err}`,
-              });
-            });
-            dispatch(offLoading());
-          } if (error.response.data) {
-            error.response.data.fund_currency_type.map((err) => {
-              return dispatch({
-                type: actionTypes.SHOW_ERROR_MESSAGE,
-                payload: `Currency Field: ${err}`,
-              });
-            });
-            dispatch(offLoading());
-          }
-        });
-    }, 2000);
-    setTimeout(() => {
+    try {
+      const response = await axiosInstance.post("campaign/create/fundraise-cash", formData, config);
+      dispatch({ type: actionTypes.CREATE_FUND_CASH_SUCCESS });
+      dispatch({ type: actionTypes.SHOW_SUCCESS_MESSAGE, payload: "Campaign Created!" });
+      dispatch(stopSubmit("cashfund"));
+      dispatch(reset("cashfund"));
       dispatch(offLoading());
-    }, 3000);
+    } catch (error) {
+      dispatch(setLoading());
+      dispatch({ type: actionTypes.CREATE_FUND_CASH_FAIL });
+      if (error.response === "undefined") {
+        dispatch({
+          type: actionTypes.SHOW_ERROR_MESSAGE,
+          payload: `Error: ${error.response.data}`,
+        });
+        dispatch(offLoading());
+      }
+      if (error.response.data) {
+        error.response.data.fund_category.map((err) => {
+          return dispatch({
+            type: actionTypes.SHOW_ERROR_MESSAGE,
+            payload: "Category Field: Must not be empty",
+          });
+        });
+        dispatch(offLoading());
+      }
+      if (error.response.data) {
+        error.response.data.fund_img.map((err) => {
+          return dispatch({
+            type: actionTypes.SHOW_ERROR_MESSAGE,
+            payload: `Fund Image Field: Must not be empty`,
+          });
+        });
+      }
+      // if (error.response.data) {
+      //   error.response.data.fund_title.map((err) => {
+      //     return dispatch({
+      //       type: actionTypes.SHOW_ERROR_MESSAGE,
+      //       payload: `Fund Title Field: ${err}`,
+      //     });
+      //   });
+        // dispatch(offLoading());
+      // }
+      // if (error.response.data) {
+      //   error.response.data.fund_purpose.map((err) => {
+      //     return dispatch({
+      //       type: actionTypes.SHOW_ERROR_MESSAGE,
+      //       payload: `Purpose Field: ${err}`,
+      //     });
+      //   });
+      //   dispatch(offLoading());
+      // }
+      if (error.response.data) {
+        error.response.data.fund_currency_type.map((err) => {
+          return dispatch({
+            type: actionTypes.SHOW_ERROR_MESSAGE,
+            payload: `Currency Field: Must not be empty`,
+          });
+        });
+        dispatch(offLoading());
+      }
+      if (error.response.data) {
+        error.response.data.fund_cash_amount.map((err) => {
+          return dispatch({
+            type: actionTypes.SHOW_ERROR_MESSAGE,
+            payload: `Currency Field: ${err}`,
+          });
+        });
+        dispatch(offLoading());
+      }
+      dispatch(stopSubmit("cashfund"));
+      dispatch(reset("cashfund"));
+      dispatch(offLoading());
+    
   };
-
+  }
   const [activeStep, setActiveStep] = useState(0);
   const getSteps = () => {
     return ["Basic Information", "Add a photo"];
@@ -170,7 +178,6 @@ const RaiseCash = ({
           <label className="mr-3 mt-3">Select fund raise categories</label>
           <Field name="fund_category" id="categories" component="select">
             <option value="" disabled>
-              select option
             </option>
             <option value="Personal_need">Personal</option>
             <option value="Community">Community</option>
@@ -185,7 +192,6 @@ const RaiseCash = ({
           <i className="mr-3">select option for dollar, naira, euro</i>
           <Field name="fund_currency_type" component="select">
             <option value="" disabled>
-              select option
             </option>
             <option value="$">$</option>
             <option value="₦">₦</option>

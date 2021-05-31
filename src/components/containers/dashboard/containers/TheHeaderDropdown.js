@@ -28,7 +28,7 @@ const TheHeaderDropdown = ({history}) => {
   const profileState = useSelector(state => state.userTypeReducer);
   const { profile_user } = profileState;
 
-  const profile_img = profile_user.map(profile => profile.profile_image)
+  const profile_img = profile_user.length && profile_user.map(profile => profile.profile_image)
  
   
   return (
