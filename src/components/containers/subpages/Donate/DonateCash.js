@@ -147,7 +147,7 @@ const DonateCash = ({history}) => {
                       `/campaign/${filters.fund_category}/${filters.id}/details`
                     )
                   }
-                >
+                  >
                   {filters.fund_type === "Cash" ? filters.fund_title : null}
                 </li>
               </ul>

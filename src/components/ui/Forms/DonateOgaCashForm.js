@@ -134,7 +134,6 @@ const DonateOgaCashForm = ({
             <option value="">select currency</option>
             <option value="$">$</option>
             <option value="₦">₦</option>
-            <option value="€">€</option>
           </select>
         </div>
         <input
@@ -172,8 +171,7 @@ const DonateOgaCashForm = ({
   const getItems = () => {
     return (
       <>
-        <fieldset>
-       
+        <fieldset>  
             {giveOgadonate ? <input
                             type="number"
                             id="fixins"
@@ -259,8 +257,7 @@ const DonateOgaCashForm = ({
               <div>
                 {getStepContent(activeStep)}
                 <div className="mt-4">
-                  {activeStep !== 0 &&
-               
+                  {activeStep !== 0 &&           
                     <Button
                       disabled={activeStep === 0}
                       onClick={handleBack}

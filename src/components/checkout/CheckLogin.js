@@ -48,7 +48,7 @@ const LoginForm = ({handleSubmit, submitting, pristine}) => {
                             className="profile-control-label"
                             for="input-first_name"
                           >
-                            Email<span>*</span>
+                            Email<span className='text-danger'>*</span>
                           </label>
                           <Field
                             component="input"
@@ -68,11 +68,11 @@ const LoginForm = ({handleSubmit, submitting, pristine}) => {
                             className="profile-control-label"
                             for="input-first_name"
                           >
-                            Password<span>*</span>
+                            Password<span className='text-danger'>*</span>
                           </label>
                           <Field
                             component="input"
-                            type="text"
+                            type="password"
                             id="input-first_name"
                             name="password"
                             className="form-control form-control-alternative"
@@ -82,14 +82,12 @@ const LoginForm = ({handleSubmit, submitting, pristine}) => {
                     </div>
                   </div>
                   <hr className="profile_hr my-4" />
-
                   <div className="d-flex justify-content-end">
                     <Button
                       className="profile-form-but"
                       type="submit"
                       disabled={pristine || submitting}
-
-                    >
+                     >
                       Login
                     </Button>
                   </div>

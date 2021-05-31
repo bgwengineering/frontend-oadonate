@@ -2,6 +2,7 @@ import React from "react";
 import NewShipping from "../../checkout/NewShipping";
 import EditShipping from "../../checkout/EditShipping";
 
+
 export const ShippingPrompt = ({ nextPage, previousPage, id, shippingState }) => {
   const { shippingAddress } = shippingState;
   return (

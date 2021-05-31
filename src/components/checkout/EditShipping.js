@@ -180,6 +180,7 @@ const EditShipping = ({ nextPage, previousPage, handleSubmit, id }) => {
     </div>
   );
 };
+
 EditShipping.propTypes = {
   nextPage: PropTypes.func.isRequired,
   previousPage: PropTypes.func.isRequired,

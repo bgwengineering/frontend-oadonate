@@ -25,10 +25,18 @@ const TheHeaderDropdown = ({history}) => {
     history.push('/');
   }
 
-  const profileState = useSelector(state => state.userTypeReducer);
+  const profileState = useSelector(state => state.userTypeReducer)
   const { profile_user } = profileState;
 
+  const acc_name = profile_user.length && profile_user.map(profile => {
+    const { user } = profile
+    const {first_name, last_name} = user
+    return (
+      <p>{first_name + " " + last_name}</p>
+    )
+  })
   const profile_img = profile_user.length && profile_user.map(profile => profile.profile_image)
+ 
  
   
   return (
@@ -42,9 +50,10 @@ const TheHeaderDropdown = ({history}) => {
           />
         </div>
       </CDropdownToggle>
+
       <CDropdownMenu className="pt-0" placement="bottom-end">
         <CDropdownItem header tag="div" color="light" className="text-center">
-          <strong>Account</strong>
+          <strong>{acc_name}</strong>
         </CDropdownItem>
 
         <CDropdownItem>

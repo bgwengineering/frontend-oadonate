@@ -13,9 +13,9 @@ const DonationReceived = () => {
     dispatch(fetchUserDonationsReceived())
   }, [])
 
- 
   return (
     <>
+    {/* Cash Donations received */}
       <h4 className='text-uppercase text-center mb-4 mt-4'>Cash Donations Received</h4>
       <CRow>
         <CCol>
@@ -37,58 +37,62 @@ const DonationReceived = () => {
                     <th className="text-center">Date</th>
                   </tr>
                 </thead>
-
                 {/* table body */}
                 <tbody>
                   {user_donations_received.length ?
                     user_donations_received.map(data => {
+                      console.log(data);             
                       const {
                         fund_type,
                         fund_cash,
                         fund_title,
                         fund_category,
-                        fund_cash_amount,             
-                      } = data;   
+                        fund_cash_amount,  
+                        Cash
+                      } = data;  
+                      if (fund_type === Cash) {
                         return (
-                        <tr>
-                          <td className="text-center">
-                            <div>{fund_title}</div>
-                          </td>
-                          <td className="text-center">
-                            <div>{fund_cash_amount}</div>
-                          </td>
-                          <td className="text-center">
-                            <div>{fund_category}</div>
-                          </td>
-                          {fund_cash.length && fund_cash.map(donations => {
-                               const {donate_amount, donate_curency,  donate_payment_method, user, donate_payment_status, donate_createdAt} = donations
-                                   const {first_name, last_name, email} = user
-                             return(
-                            <>
-                              <td className="text-center">
-                              <div>{first_name + " " +  last_name}</div>
+                          <tr>
+                            <td className="text-center">
+                              <div>{fund_title}</div>
                             </td>
                             <td className="text-center">
-                              <div>{email}</div>
+                              <div>{fund_cash_amount}</div>
                             </td>
                             <td className="text-center">
-                              <div>{donate_amount}</div>
+                              <div>{fund_category}</div>
                             </td>
-                            <td className="text-center">
-                              <div>{donate_payment_method}</div>
-                            </td>
-                            <td className="text-center">
-                              <div>{donate_payment_status}</div>
-                            </td>
-                            <td className="text-center">
-                              <div>{donate_createdAt}</div>
-                            </td>
-                            </>
-                             )
-                          })}
-                        
-                        </tr>
-                      )
+                            {fund_cash.length && fund_cash.map(donations => {
+                              const { donate_amount, donate_payment_method, user, donate_payment_status, donate_createdAt } = donations
+                              const { first_name, last_name, email } = user
+                              return (
+                                <>
+                                  <td className="text-center">
+                                    <div>{first_name + " " + last_name}</div>
+                                  </td>
+                                  <td className="text-center">
+                                    <div>{email}</div>
+                                  </td>
+                                  <td className="text-center">
+                                    <div>{donate_amount}</div>
+                                  </td>
+                                  <td className="text-center">
+                                    <div>{donate_payment_method}</div>
+                                  </td>
+                                  <td className="text-center">
+                                    <div>{donate_payment_status}</div>
+                                  </td>
+                                  <td className="text-center">
+                                    <div>{donate_createdAt}</div>
+                                  </td>
+                                </>
+                              )
+                            })}
+
+                          </tr>
+                        )
+                      }
+                       
                     }):
                     <div>
                       You have not recieved any donation on your Cash cause
@@ -129,11 +133,12 @@ const DonationReceived = () => {
 
                 {/* table body */}
                 <tbody>
-                  {/* {user_donations_received.length ?
+                  {user_donations_received.length ?
                     user_donations_received.map(data => {
+                    console.log(data);            
                       const {
                         fund_type,
-                        fund_item_sell,
+                        fund_item,
                         fund_title,
                         fund_category,
                         fund_cash_amount,             
@@ -149,7 +154,7 @@ const DonationReceived = () => {
                           <td className="text-center">
                             <div>{fund_category}</div>
                           </td>
-                          {fund_item_sell.length && fund_item_sell.map(donations => {
+                          {fund_item.length && fund_item.map(donations => {
                                const {donate_amount, donate_curency,  donate_payment_method, user, donate_payment_status, donate_createdAt} = donations
                                    const {first_name, last_name, email} = user
                              return(
@@ -174,15 +179,14 @@ const DonationReceived = () => {
                             </td>
                             </>
                              )
-                          })}
-                        
+                          })}             
                         </tr>
                       )
                     }):
-                    <div>
+                    <div className='d-flex justify-content-center align-items-center'>
                       You have not recieved any donation for your Item cause
                     </div>
-                    } */}
+                    }
                 </tbody>
               </table>
             </CCardBody>

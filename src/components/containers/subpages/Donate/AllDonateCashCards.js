@@ -51,7 +51,7 @@ const AllDonateCashCards = () => {
                     <Link
                       to={`/campaign/${fund_category}/${id}/details`}
                       className="link-router"
-                      onClick={()=>scrollToTop()}
+                      onClick={scrollToTop}
                     >
                       <img
                         className="card-img-top"
@@ -73,7 +73,7 @@ const AllDonateCashCards = () => {
                         <Link
                           to={`/campaign/${fund_category}/${id}/details`}
                           className="link-router"
-                          onClick={()=>scrollToTop()}
+                          onClick={scrollToTop}
                         >
                           <h4 className="card-title pt-2">{fund_title}</h4>
                         </Link>
@@ -94,7 +94,7 @@ const AllDonateCashCards = () => {
                             <Link
                               to={`/campaign/${fund_category}/${id}/details`}
                               className="link-router-btn"
-                              onClick={()=>scrollToTop()}
+                              onClick={scrollToTop}
                               >
                               Donate
                             </Link>
@@ -102,7 +102,7 @@ const AllDonateCashCards = () => {
                         </div>
                         <hr />
                         <div className="row donated-ws">
-                          <p className="m-l-15">by {first_name + " " + last_name}</p>
+                          <p className="m-l-15">by {first_name + " " + last_name.substring(0,1)}</p>
                           <span className="m-r-12">End date : {fund_endAt}</span>
                         </div>
                       </div>
