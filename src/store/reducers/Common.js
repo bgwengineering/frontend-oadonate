@@ -19,15 +19,15 @@ import {
     switch (type) {
         case SHOW_SUCCESS_MESSAGE:
         return {
-            ...state, showMessage: true, Message:payload, loading:false, error: false,
+            ...state, showMessage: true, Message:payload, error: false,
         }
         case SHOW_ERROR_MESSAGE:
         return {
-            ...state, showMessage: true, Message:payload, loading:false, error: true,
+            ...state, showMessage: true, Message:payload, error: true,
         }
         case HIDE_MESSAGE:
         return {
-            ...state, showMessage: false, Message: " ", loading:false
+            ...state, showMessage: false, Message: " ", 
         }
         case LOADING:
         return {

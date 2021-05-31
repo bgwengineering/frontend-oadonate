@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { Button } from "@material-ui/core";
 import { reduxForm, Field } from "redux-form";
@@ -128,9 +129,11 @@ const Shipping = ({ handleSubmit, pristine, submitting }) => {
                 </div>
                 <hr className="profile_hr my-4" />
                 <div className="d-flex justify-content-between">
+                  <Link to="/dashboard">
                   <Button className="shipping-btn" type="button">
                     Cancel
                   </Button>
+                  </Link>
                   <Button className="shipping-btn" type="submit" disabled={pristine||submitting}>
                     Save Address
                   </Button>

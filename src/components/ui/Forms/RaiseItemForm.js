@@ -45,7 +45,7 @@ const RaiseItem = ({ setCurrentOpenForm, setIsRaiseCardButtonsOpen,mime, handleS
 };
 
   
-  const onSubmit = (formValues) => {
+  const onSubmit = async (formValues) => {
     let formData = new FormData();
     formData.append("fund_title", formValues.fund_title);
     formData.append("fund_category", formValues.fund_category);
@@ -64,85 +64,78 @@ const RaiseItem = ({ setCurrentOpenForm, setIsRaiseCardButtonsOpen,mime, handleS
       }
     };
     dispatch(setLoading());
-    setTimeout(() =>{
-      axiosInstance
-      .post('campaign/create/fundraise-item', formData, config)
-      .then(res => {
-        dispatch({ type: actionTypes.SHOW_SUCCESS_MESSAGE, payload: "Campaign Created!" });
+    try {
+      const res = await axiosInstance.post('campaign/create/fundraise-item', formData, config);
+      dispatch({ type: actionTypes.SHOW_SUCCESS_MESSAGE, payload: "Campaign Created!" });
         dispatch(stopSubmit("itemFund"));
         dispatch(reset("itemFund")); 
         dispatch(offLoading());
-      })
-      .catch(error => {
-        console.log(error.response);
-        dispatch({ type: actionTypes.CREATE_FUND_ITEM_FAIL });
-        dispatch(stopSubmit("cashfund"));
-        dispatch(reset("cashfund"));
-        if (error.response == "undefined") {
-            dispatch({
-              type: actionTypes.SHOW_ERROR_MESSAGE,
-              payload: `Error: ${error.response.data}`
-          });
-        dispatch(offLoading());
-        }
-        else if (error.response.data) {
-          error.response.data.fund_category.map(err => {
-            return dispatch({
-              type: actionTypes.SHOW_ERROR_MESSAGE,
-              payload: "Category Field: Must not be empty"
-            });
-          });
-          dispatch(offLoading());
-        }
-        else if (error.response.data) {
-          error.response.data.fund_cash_amount.map(err => {
-            return dispatch({
-              type: actionTypes.SHOW_ERROR_MESSAGE,
-              payload: "Amount Field: Must not be empty"
-            });
-          });
-          dispatch(offLoading());
-        }
-        else if (error.response.data) {
-          error.response.data.fund_img.map(err => {
-            return dispatch({
-              type: actionTypes.SHOW_ERROR_MESSAGE,
-              payload: `Fund Image Field: ${err}`
-            });
-          });
-        dispatch(offLoading());
-        }
-        else if (error.response.data) {
-          error.response.data.fund_purpose.map(err => {
-            return dispatch({
-              type: actionTypes.SHOW_ERROR_MESSAGE,
-              payload: `Purpose Field: ${err}`
-            });
-          });
-        dispatch(offLoading());
-        }
-        else if (error.response.data) {
-          error.response.data.fund_currency_type.map(err => {
-            return dispatch({
-              type: actionTypes.SHOW_ERROR_MESSAGE,
-              payload: `Currency Field: ${err}`
-            });
-          });
-        dispatch(offLoading());
-        }
-        else{
-          dispatch({
-            type: actionTypes.SHOW_ERROR_MESSAGE,
-            payload: "internal server error"
-          });
-          dispatch(offLoading());
-        }
-        
+    } catch (error) {
+      dispatch({ type: actionTypes.CREATE_FUND_ITEM_FAIL });
+      if (error.response == "undefined") {
+        dispatch({
+          type: actionTypes.SHOW_ERROR_MESSAGE,
+          payload: `Error: ${error.response.data}`
       });
-  },2000);
-  setTimeout(()=>{
     dispatch(offLoading());
-  },3000)
+    }
+    else if (error.response.data) {
+      error.response.data.fund_category.map(err => {
+        return dispatch({
+          type: actionTypes.SHOW_ERROR_MESSAGE,
+          payload: "Category Field: Must not be empty"
+        });
+      });
+      dispatch(offLoading());
+    }
+    else if (error.response.data) {
+      error.response.data.fund_cash_amount.map(err => {
+        return dispatch({
+          type: actionTypes.SHOW_ERROR_MESSAGE,
+          payload: "Amount Field: Must not be empty"
+        });
+      });
+      dispatch(offLoading());
+    }
+    else if (error.response.data) {
+      error.response.data.fund_img.map(err => {
+        return dispatch({
+          type: actionTypes.SHOW_ERROR_MESSAGE,
+          payload: `Fund Image Field: ${err}`
+        });
+      });
+    dispatch(offLoading());
+    }
+    else if (error.response.data) {
+      error.response.data.fund_purpose.map(err => {
+        return dispatch({
+          type: actionTypes.SHOW_ERROR_MESSAGE,
+          payload: `Purpose Field: ${err}`
+        });
+      });
+    dispatch(offLoading());
+    }
+    else if (error.response.data) {
+      error.response.data.fund_currency_type.map(err => {
+        return dispatch({
+          type: actionTypes.SHOW_ERROR_MESSAGE,
+          payload: `Currency Field: ${err}`
+        });
+      });
+    dispatch(offLoading());
+    }
+    else{
+      dispatch({
+        type: actionTypes.SHOW_ERROR_MESSAGE,
+        payload: "internal server error"
+      });
+      dispatch(offLoading());
+    }
+      dispatch(stopSubmit("cashfund"));
+      dispatch(reset("cashfund"));
+      dispatch(offLoading());
+    };
+        
   };
 
   const [activeStep, setActiveStep] = useState(0);
@@ -177,7 +170,7 @@ const RaiseItem = ({ setCurrentOpenForm, setIsRaiseCardButtonsOpen,mime, handleS
         <div className="d-flex mt-3">
           <h2 className="fs-title mr-4">Select fund raise categories</h2>
           <Field component="select" name="fund_category" id="categories">
-            <option value="" disabled>select option</option>
+            <option value="" disabled></option>
             <option value="Personal_need">Personal</option>
             <option value="Community">Community</option>
             <option value="Start_up">Start up</option>
@@ -207,7 +200,7 @@ const RaiseItem = ({ setCurrentOpenForm, setIsRaiseCardButtonsOpen,mime, handleS
             <i>Select currency type</i>
           </h2>
           <Field component="select" name="fund_currency_type">
-            <option value="" disabled>select option</option>
+            <option value="" disabled></option>
             <option value="$">$</option>
             <option value="₦">₦</option>
           </Field>

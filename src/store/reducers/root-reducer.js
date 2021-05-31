@@ -26,7 +26,6 @@ import { LOGOUT } from 'store/actions/ActionTypes';
     cartReducer: cart,
     marketPlaceReducer: marketPlace,
     orderReducer: dashboard,
-    auctionReducer: dashboard
 });
 
 const persistConfig = {

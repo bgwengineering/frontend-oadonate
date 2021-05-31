@@ -3,30 +3,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { CCard, CCardBody, CCol, CRow } from "@coreui/react";
 import { fetchOrders } from "store/actions/auth/Dashboard";
 
-
-
-const Order= () => {
-  const dispatch = useDispatch()
+const Order = () => {
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchOrders());
-  }, [])
+  }, []);
 
-  const orderState = useSelector(state => state.orderReducer)
-  const auctionState = useSelector(state => state.orderReducer)
-
-  const {orders} = orderState 
-  const {auction} = auctionState 
-  console.log(orders);
-  console.log(auction);
-  
-
+  const orderState = useSelector((state) => state.orderReducer);
+  const { orders } = orderState;
 
   return (
     <>
-      <h4 className="text-uppercase text-center mb-4 mt-4">
-         Orders
-      </h4>
+      <h4 className="text-uppercase text-center mb-4 mt-4">Orders</h4>
       <CRow>
         <CCol>
           <CCard>
@@ -36,35 +25,61 @@ const Order= () => {
                 {/* table header */}
                 <thead className="thead-light">
                   <tr>
-                <th className="text-center">S/N</th>
+                    <th className="text-center">S/N</th>
                     <th className="text-center">Total payments</th>
                     <th className="text-center">Payment Type</th>
+                    <th className="text-center">Payment</th>
+                    <th className="text-center">Delivery Method</th>
                     <th className="text-center">Order Status</th>
                     <th className="text-center">Date</th>
                   </tr>
                 </thead>
 
-                              
                 {/* table body */}
-                <tbody>               
-                        <tr>
+                {orders.length ? (
+                  orders.map((order) => {
+                    const {
+                      id,
+                      order_status,
+                      total_price,
+                      ordered_date,
+                      payment_status,
+                      payment_method,
+                      delivery_method,
+                    } = order;
+                    return (
+                      <tbody>
+                        <tr key={id}>
                           <td className="text-center">
-                            <div>1</div>
+                            <div>{id}</div>
                           </td>
                           <td className="text-center">
-                            <div>800</div>
+                            <div>₦{total_price}</div>
                           </td>
                           <td className="text-center">
-                            <div>Paystack</div>
+                            <div>{payment_method}</div>
                           </td>
                           <td className="text-center">
-                            <div>Received</div>
+                            <div>{payment_status}</div>
                           </td>
                           <td className="text-center">
-                            <div>13-04-21</div>
-                          </td>       
-                        </tr>           
-                </tbody>
+                            <div>{delivery_method}</div>
+                          </td>
+                          <td className="text-center">
+                            <div>{order_status}</div>
+                          </td>
+                          <td className="text-center">
+                            <div>{ordered_date.substring(0, 10)}</div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    );
+                  })
+                ) : (
+                  <div className="text-center">
+                    <h6>You have not place any order yet.</h6>
+                  </div>
+                )}
               </table>
             </CCardBody>
           </CCard>

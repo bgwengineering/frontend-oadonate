@@ -2,7 +2,8 @@ import * as actionTypes from "../ActionTypes"
 import axios from '../../../util/api';
 import {tokenConfig} from '../../../util/TokenConfig'
 import _ from "lodash";
-import { setLoading } from 'store/actions/Common';
+import { setLoading,offLoading } from 'store/actions/Common';
+import axiosInstance from "../../../util/api";
 
 
 export const toggleCartHidden = () => ({
@@ -62,5 +63,4 @@ export const placeOrder = (orders) => async (dispatch, getState) => {
       dispatch({ type: actionTypes.PLACE_ORDERS_PAYSTACK_FAIL });
     }
   };
-  
   

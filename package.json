@@ -2,6 +2,7 @@
   "name": "ogadonate",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://ogadonate.com",
   "dependencies": {
     "@coreui/chartjs": "^2.0.0",
     "@coreui/coreui": "^3.4.0",

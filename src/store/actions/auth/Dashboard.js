@@ -184,18 +184,33 @@ export const singleShippingAddress = (id) => async (dispatch, getState) => {
 export const fetchOrders = () => async (dispatch, getState) => {
   try {
     const res = await axiosInstance.get('buy-to-support/orders', tokenConfig(getState));
-    dispatch({ type: actionTypes.FETCH_ORDERS_SUCCESS, payload: res });
+    dispatch({ type: actionTypes.FETCH_ORDERS_SUCCESS, payload: res.data });
   } catch (error) {
     dispatch({ type: actionTypes.FETCH_ORDERS_FAIL, payload: error.message });
   }
 };
 
 
-export const fetchAuction = () => async (dispatch, getState) => {
-  try {
-    const res = await axiosInstance.get('buy-to-support/auction', tokenConfig(getState));
-    dispatch({ type: actionTypes.FETCH_AUCTION_SUCCESS, payload: res });
-  } catch (error) {
-    dispatch({ type: actionTypes.FETCH_AUCTION_FAIL, payload: error.message });
-  }
-};
+//  CREATE AUCTION BID+
+export const auctionBid = (bidValues) => async(dispatch,getState) =>{
+  dispatch(setLoading());
+try {
+  const res= await axiosInstance.post("buy-to-support/auction",bidValues, tokenConfig(getState))
+  dispatch({type: actionTypes.CREATE_AUCTION_SUCCESS});
+  dispatch({type: actionTypes.SHOW_SUCCESS_MESSAGE, payload:"Bid Submited Successfully"});
+  dispatch(offLoading());
+} catch (error) {
+  dispatch(setLoading());
+  dispatch({type: actionTypes.CREATE_AUCTION_FAIL});
+  dispatch(offLoading());
+}
+}
+// FETCH AUCTION
+export const fetchAuctionBid = () => async(dispatch,getState) =>{
+try {
+  const res= await axiosInstance.get("buy-to-support/auction",tokenConfig(getState))
+  dispatch({type: actionTypes.FETCH_AUCTION_SUCCESS, payload: res.data});
+} catch (error) {
+  dispatch({type: actionTypes.FETCH_AUCTION_FAIL,payload: error});
+}
+}
