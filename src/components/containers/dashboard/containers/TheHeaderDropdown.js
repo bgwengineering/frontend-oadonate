@@ -86,11 +86,6 @@ const TheHeaderDropdown = ({history}) => {
             Profile
           </CLink>
         </CDropdownItem>
-
-        <CDropdownItem>
-          <CIcon name="cil-settings" className="mfe-2" />
-          Settings
-        </CDropdownItem>
         <CDropdownItem divider />
         <CDropdownItem onClick={logoutUser}>
           <CIcon name="cil-lock-locked" className="mfe-2" />

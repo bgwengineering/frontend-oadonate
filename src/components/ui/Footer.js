@@ -22,12 +22,7 @@ const Footer = ({history}) => {
       behavior: "smooth"
     }, history.push('/affiliate'));
   } 
-  // const pushToAffiliate = () => {
-  //   window.scrollTo({
-  //     top: 0,
-  //     behavior: "smooth"
-  //   }, history.push('/affiliate'));
-  // } 
+ 
   const pushToPersonal = () => {
     window.scrollTo(
       {
