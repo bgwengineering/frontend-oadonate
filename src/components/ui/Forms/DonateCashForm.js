@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { donateToCash} from "store/actions/fund_donate/FundDonate";
+import { donateToCash } from "store/actions/fund_donate/FundDonate";
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
@@ -8,140 +8,141 @@ import Button from "@material-ui/core/Button";
 import axiosInstance from "util/api";
 import { setLoading } from 'store/actions/Common';
 
-const stripePromise = window.Stripe(
-  "pk_test_51Ihz1EJtAhKBp45zJXZLT2RmTKQLDbpZRPerC1uKcnQ69N1R1IchlmRhCBMp3cwJ4DIVpSf9iHe4Hnq9wUdAC6OA00DNznJtw5"
-);
+// const stripePromise = window.Stripe(
+//   "pk_test_51Ihz1EJtAhKBp45zJXZLT2RmTKQLDbpZRPerC1uKcnQ69N1R1IchlmRhCBMp3cwJ4DIVpSf9iHe4Hnq9wUdAC6OA00DNznJtw5"
+// );
+const stripePromise = ""
 
 const Message = ({ message }) => (
-  <section>
+    <section>
     <p>{message}</p>
   </section>
 );
 
 const DonateCashForm = ({ fund_cash, setCurrentOpenForm, setIsDonateCardButtonsOpen }) => {
-  const paystackUrl = useSelector((state) => state.fundDonateReducer.paystackUrl);
-  useEffect(() => {
-    if (paystackUrl.length >= 1) {
-      window.location = paystackUrl;
-    }
-  }, [paystackUrl]);
-
-  useEffect(() => {
-    // Check to see if this is a redirect back from Checkout
-    const query = new URLSearchParams(window.location.search);
-    if (query.get("success")) {
-      setMessage("Order placed! You will receive an email confirmation.");
-    }
-    if (query.get("canceled")) {
-      setMessage("Order canceled -- continue to shop around and checkout when you're ready.");
-    }
-  }, []);
-  const [giveOgadonate, setGiveOgadonate] = useState(true);
-
-  const [donateFields, setDonateFields] = useState({
-    donate_amount: "",
-    donate_payment_method: "",
-    donate_comment: "",
-    donate_currency: "",
-    donate_collect_per: false,
-    donate_as_unknown: "",
-    donate_accept: "",
-    donate_percentage_value: "",
-  });
-  
-  const [message, setMessage] = useState("");
-  const [percentage, setPercentage] = useState(true);
-  const [paystack, setPaystack] = useState(false);
-  const [Stripebtn, setStripebtn] = useState(false);
-
-
-  const setPaystackBtn = () => {
-    setStripebtn(false);
-    setPaystack(true);
-  };
-  const setStripeBtn = () => {
-    setPaystack(false);
-    setStripebtn(true);
-  };
-
-  const dispatch = useDispatch();
-
-  const {
-    donate_amount,
-    donate_payment_method,
-    donate_comment,
-    donate_currency,
-    donate_as_unknown,
-    donate_accept,
-    donate_percentage_value,
-  } = donateFields;
-
-  const fivePercent = (5 / 100) * donate_amount;
-  const initial_amount = parseInt(donate_amount);
-  const tol_5_percentage = parseInt(donate_amount) + parseInt(fivePercent);
-  const amount_given = parseInt(initial_amount) + (parseInt(donate_percentage_value) || 0);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const formData = {
-      donate_amount: giveOgadonate ? tol_5_percentage : amount_given,
-      donate_payment_method,
-      donate_comment,
-      donate_currency,
-      donate_collect_per: giveOgadonate,
-      donate_as_unknown,
-      donate_percentage_value,
-      donate_accept,
-      fund_cash: fund_cash,
-      donate_percent_amount: giveOgadonate ? fivePercent : initial_amount,
-    };
-
-    dispatch(donateToCash(formData));
-  };
-  const handleClick = (e) => {
-    e.preventDefault();
-    const formData = {
-      donate_amount: giveOgadonate ? tol_5_percentage : amount_given,
-      donate_payment_method,
-      donate_comment,
-      donate_currency,
-      donate_collect_per: giveOgadonate,
-      donate_as_unknown,
-      donate_percentage_value,
-      donate_accept,
-      fund_cash: fund_cash,
-      donate_percent_amount: giveOgadonate ? fivePercent : initial_amount,
-    };
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `JWT ${localStorage.getItem("access")}`,
-        Accept: "application/json",
-      },
-    };
-    const stripe = stripePromise;
-    axiosInstance
-      .post("campaign/create/donation-cash", formData, config)
-      .then((res) => {
-        const session = res.data;
-        const result = stripe.redirectToCheckout({ sessionId: session });
-        if (result.error) {
-          console.log(result.error.message);
+    const paystackUrl = useSelector((state) => state.fundDonateReducer.paystackUrl);
+    useEffect(() => {
+        if(paystackUrl.length >= 1) {
+            window.location = paystackUrl;
         }
-        return message ? <Message message={message} /> : null;
-      })
-      .catch((error) => {
-        console.log(error.message);
-      });
-  };
+    }, [paystackUrl]);
+
+    useEffect(() => {
+        // Check to see if this is a redirect back from Checkout
+        const query = new URLSearchParams(window.location.search);
+        if(query.get("success")) {
+            setMessage("Order placed! You will receive an email confirmation.");
+        }
+        if(query.get("canceled")) {
+            setMessage("Order canceled -- continue to shop around and checkout when you're ready.");
+        }
+    }, []);
+    const [giveOgadonate, setGiveOgadonate] = useState(true);
+    const [message, setMessage] = useState("");
+    const [percentage, setPercentage] = useState(true);
+    const [paystack, setPaystack] = useState(false);
+    const [Stripebtn, setStripebtn] = useState(false);
+    const [donateFields, setDonateFields] = useState({
+        donate_amount: "",
+        donate_payment_method: "",
+        donate_comment: "",
+        donate_currency: "",
+        donate_collect_per: false,
+        donate_as_unknown: "",
+        donate_accept: "",
+        donate_percentage_value: "",
+    });
 
 
-  const handleChange = (e) => {
-    setDonateFields({ ...donateFields, [e.target.name]: e.target.value });
-  };
 
-  const ToggleSwitch = ({ checked, onChange, id, name }) => (
-    <div>
+
+    const setPaystackBtn = () => {
+        setStripebtn(false);
+        setPaystack(true);
+    };
+    const setStripeBtn = () => {
+        setPaystack(false);
+        setStripebtn(true);
+    };
+
+    const dispatch = useDispatch();
+
+    const {
+        donate_amount,
+        donate_payment_method,
+        donate_comment,
+        donate_currency,
+        donate_as_unknown,
+        donate_accept,
+        donate_percentage_value,
+    } = donateFields;
+
+    const fivePercent = (5 / 100) * donate_amount;
+    const initial_amount = parseInt(donate_amount);
+    const tol_5_percentage = parseInt(donate_amount) + parseInt(fivePercent);
+    const amount_given = parseInt(initial_amount) + (parseInt(donate_percentage_value) || 0);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const formData = {
+            donate_amount: giveOgadonate ? tol_5_percentage : amount_given,
+            donate_payment_method,
+            donate_comment,
+            donate_currency,
+            donate_collect_per: giveOgadonate,
+            donate_as_unknown,
+            donate_percentage_value,
+            donate_accept,
+            fund_cash: fund_cash,
+            donate_percent_amount: giveOgadonate ? fivePercent : initial_amount,
+        };
+
+        dispatch(donateToCash(formData));
+    };
+    const handleClick = (e) => {
+        e.preventDefault();
+        const formData = {
+            donate_amount: giveOgadonate ? tol_5_percentage : amount_given,
+            donate_payment_method,
+            donate_comment,
+            donate_currency,
+            donate_collect_per: giveOgadonate,
+            donate_as_unknown,
+            donate_percentage_value,
+            donate_accept,
+            fund_cash: fund_cash,
+            donate_percent_amount: giveOgadonate ? fivePercent : initial_amount,
+        };
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `JWT ${localStorage.getItem("access")}`,
+                Accept: "application/json",
+            },
+        };
+        const stripe = stripePromise;
+        axiosInstance
+            .post("campaign/create/donation-cash", formData, config)
+            .then((res) => {
+                const session = res.data;
+                const result = stripe.redirectToCheckout({ sessionId: session });
+                if(result.error) {
+                    console.log(result.error.message);
+                }
+                return message ? <Message message={message} /> : null;
+            })
+            .catch((error) => {
+                console.log(error.message);
+            });
+    };
+
+
+    const handleChange = (e) => {
+        setDonateFields({ ...donateFields, [e.target.name]: e.target.value });
+    };
+
+    const ToggleSwitch = ({ checked, onChange, id, name }) => (
+        <div>
       <input
         name={name}
         type="checkbox"
@@ -153,65 +154,65 @@ const DonateCashForm = ({ fund_cash, setCurrentOpenForm, setIsDonateCardButtonsO
         id={id}
       />
     </div>
-  );
+    );
 
-  const [activeStep, setActiveStep] = useState(0);
-  const getSteps = () => {
-    return ["Amount", "Message", "Support Ogadonate", "Attestation"];
-  };
+    const [activeStep, setActiveStep] = useState(0);
+    const getSteps = () => {
+        return ["Amount", "Message", "Support Ogadonate", "Attestation"];
+    };
 
-  const steps = getSteps();
-  const getStepContent = (stepIndex) => { 
-    switch (stepIndex) {
-      case 0:
-        return getPersonalInformation();
-      case 1:
-        return getMessage();
-      case 2:
-        return supportOgd();
-      case 3:
-        return getPayment();
-      default:
-        return "Uknown stepIndex";
-    }
-  };
+    const steps = getSteps();
+    const getStepContent = (stepIndex) => {
+        switch (stepIndex) {
+            case 0:
+                return getPersonalInformation();
+            case 1:
+                return getMessage();
+            case 2:
+                return supportOgd();
+            case 3:
+                return getPayment();
+            default:
+                return "Uknown stepIndex";
+        }
+    };
 
-  // you can call this function anything
-  const getPayment = () => {
-    return (
-      <>
-        <label className="mt-3">Please indicate if you want to donate anonymously</label>
-        <div className="d-flex">
-          <input
+    // you can call this function anything
+    const getPayment = () => {
+        return ( <
+            >
+            <label className="mt-3">Please indicate if you want to donate anonymously</label> <
+            div className = "d-flex" >
+            <input
             type="checkbox"
             id="anonymous_check"
             name="donate_as_unknown"
             className="mr-3 mt-1"
             defaultChecked={false}
             onChange={handleChange}
-          />
-          <label>Yes, I want to donate anonymously</label>
-        </div>
-        <h2 class="fs-title">Attestation</h2>
-        <div className="d-flex">
-          <input
+          /> <
+            label > Yes, I want to donate anonymously < /label> < /
+            div > <
+            h2 class = "fs-title" > Attestation < /h2> <
+            div className = "d-flex" >
+            <input
             name="donate_accept"
             type="checkbox"
             required
             className="mr-3 mt-4"
             defaultChecked={false}
             onChange={handleChange}
-          />
-          <p className="attest">
-            I attest that this donation is willful and I am not being forced into giving
-          </p>
-        </div>
-      </>
-    );
-  };
-  const getPersonalInformation = () => {
-    return (
-      <fieldset>
+          /> <
+            p className = "attest" >
+            I attest that this donation is willful and I am not being forced into giving <
+            /p> < /
+            div > <
+            />
+        );
+    };
+    const getPersonalInformation = () => {
+        return (
+            <fieldset>
         <h2 className="fs-title">
           How much do you want to donate <span className="text-danger">*</span>
         </h2>
@@ -235,12 +236,12 @@ const DonateCashForm = ({ fund_cash, setCurrentOpenForm, setIsDonateCardButtonsO
           onChange={handleChange}
         />
       </fieldset>
-    );
-  };
+        );
+    };
 
-  const getMessage = () => {
-    return (
-      <fieldset>
+    const getMessage = () => {
+        return (
+            <fieldset>
         <label> Message</label>
         <textarea
           className="donate-message-comment all-input-fields"
@@ -251,13 +252,13 @@ const DonateCashForm = ({ fund_cash, setCurrentOpenForm, setIsDonateCardButtonsO
           name="donate_comment"
         />
       </fieldset>
-    );
-  };
+        );
+    };
 
-  const supportOgd = () => {
-    return (
-      <>
-        <fieldset>
+    const supportOgd = () => {
+        return ( <
+            >
+            <fieldset>
           <label className="mt-2 mb-3">
             Would you like to donate an extra amount to ogadonate?
           </label>
@@ -302,26 +303,26 @@ const DonateCashForm = ({ fund_cash, setCurrentOpenForm, setIsDonateCardButtonsO
             />
             <p className="mt-4 ">Stripe</p>
           </div>
-        </fieldset>
-      </>
-    );
-  };
+        </fieldset> <
+            />
+        );
+    };
 
-  //
-  const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-  };
+    //
+    const handleNext = () => {
+        setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    };
 
-  const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  };
-  const handleReset = () => {
-    setActiveStep(0);
-  };
+    const handleBack = () => {
+        setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    };
+    const handleReset = () => {
+        setActiveStep(0);
+    };
 
-  return (
-    <>
-      <div className="fundforms_container">
+    return ( <
+        >
+        <div className="fundforms_container">
         <form className="w-80">
           <Stepper activeStep={activeStep} alternativeLabel className="horizontal-stepper-linear">
             {steps.map((label, index) => {
@@ -402,9 +403,9 @@ const DonateCashForm = ({ fund_cash, setCurrentOpenForm, setIsDonateCardButtonsO
             </>
           )}
         </form>
-      </div>
-    </>
-  );
+      </div> <
+        />
+    );
 };
 
 export default DonateCashForm;

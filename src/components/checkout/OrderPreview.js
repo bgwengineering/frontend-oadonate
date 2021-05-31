@@ -5,10 +5,10 @@ import { setLoading } from "store/actions/Common";
 import { clearCartItems, placeOrder } from "store/actions/cart/cart.actions";
 import { Link } from 'react-router-dom';
 
-const stripePromise = window.Stripe(
-  "pk_test_51Ihz1EJtAhKBp45zJXZLT2RmTKQLDbpZRPerC1uKcnQ69N1R1IchlmRhCBMp3cwJ4DIVpSf9iHe4Hnq9wUdAC6OA00DNznJtw5"
-);
-
+// const stripePromise = window.Stripe(
+//   "pk_test_51Ihz1EJtAhKBp45zJXZLT2RmTKQLDbpZRPerC1uKcnQ69N1R1IchlmRhCBMp3cwJ4DIVpSf9iHe4Hnq9wUdAC6OA00DNznJtw5"
+// );
+const stripePromise = ""
 const Message = ({ message }) => (
   <section>
     <p>{message}</p>
