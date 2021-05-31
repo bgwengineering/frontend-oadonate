@@ -15,6 +15,11 @@ const INITIAL_STATE = {
           ...state,
           hidden: !state.hidden
         };
+      case actionTypes.CART_HIDDEN:
+        return {
+          ...state,
+          hidden:true
+        }
       case actionTypes.ADD_ITEM:
         return {
           ...state,

@@ -50,8 +50,8 @@ const MainApp = () => {
         <Route path='/payment-success/' component={PaymentSuccess} />
         <Route path='/payment-cancel/' component={PaymentCancel} />
         <Route path='/affiliate' component={Affiliate} />
-            <Route path='/affiliate-signup' component={SignupAffiliate} />
-            <Route path='/corporate-auction' component={CorporateAuction} />
+          <Route path='/affiliate-signup' component={SignupAffiliate} />
+          <Route path='/corporate-auction' component={CorporateAuction} />
         <Route
           exact
           path="/password/reset/confirm/:uid/:token"

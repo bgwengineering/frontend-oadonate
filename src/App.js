@@ -43,23 +43,22 @@ const App = () => {
     const handleClose = () => {
         dispatch(hideMessage());
     };
-    return ( <
-        >
+    return ( 
+        <>
         { isLoading ? null : <MainApp /> }
-
         {
-            showMessage && (
-                <Snackbar
+        showMessage && (
+        <Snackbar
           open={showMessage}
           autoHideDuration={4000}
           onClose={handleClose}
           anchorOrigin={{ vertical: "top", horizontal: "right" }}
         >
-          <AlertSnackBar severity={error ? "error" : "success"}>{Message}</AlertSnackBar>
+        <AlertSnackBar severity={error ? "error" : "success"}>{Message}</AlertSnackBar>
         </Snackbar>
-            )
-        } <
-        />
+    )
+    }
+    </>
     );
 };
 

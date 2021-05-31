@@ -11,7 +11,7 @@ import { ImFacebook } from 'react-icons/im'
 import { IoLogoInstagram } from 'react-icons/io'
 
 
-const SidenavContent = ({ history, handleClickAway }) => {
+const SidenavContent = ({ handleClickAway }) => {
   const authState = useSelector((state) => state.authReducer);
   const { isAuthenticated } = authState;
   const [showUpArrow, setShowUpArrow] = useState(false);
