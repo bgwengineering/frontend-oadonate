@@ -1,16 +1,16 @@
 import React from "react";
-import {Field, reduxForm} from 'redux-form'
-import {useDispatch} from 'react-redux'
+import { Field, reduxForm } from 'redux-form'
+import { useDispatch } from 'react-redux'
 import { companyProfile } from "store/actions/auth/Dashboard";
 
-const CompanyForm = ({handleSubmit, pristine, reset, submitting}) => {
-   const dispatch = useDispatch()
-   const Submit = (formValues) => {
-     dispatch (companyProfile(formValues))
-   }
- 
-  return (
-      <form onSubmit={handleSubmit(Submit)} className='coorporate-form-container mb-5'>
+const CompanyForm = ({ handleSubmit, pristine, reset, submitting }) => {
+    const dispatch = useDispatch()
+    const Submit = (formValues) => {
+        dispatch(companyProfile(formValues))
+    }
+
+    return (
+        <form onSubmit={handleSubmit(Submit)} className='coorporate-form-container mb-5'>
       <div className = 'coorporate-reg-heading text-white text-center'>
       <h4 className='pt-4 pb-4 text-uppercase'>Company registration form</h4>
 
@@ -101,9 +101,9 @@ const CompanyForm = ({handleSubmit, pristine, reset, submitting}) => {
       </div>
       </div>
     </form>
-  );
+    );
 };
 
 export default reduxForm({
-   form: 'companyForm'
+    form: 'companyForm'
 })(CompanyForm)

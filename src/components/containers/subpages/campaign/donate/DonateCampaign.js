@@ -5,22 +5,19 @@ import { useSelector, useDispatch } from "react-redux";
 import DonateCashForm from "components/ui/Forms/DonateCashForm";
 import DonateItemForm from "components/ui/Forms/DonateItemForm";
 import DonatePrompt from "./DonatePrompt";
-import { fetchSingleCampaign} from "store/actions/fund_donate/FundDonate";
-import {ReactComponent as LoaderSpinn} from 'assets/images/244.svg'
+import { fetchSingleCampaign } from "store/actions/fund_donate/FundDonate";
+
 
 const DonateCampaign = ({ match }) => {
   const dispatch = useDispatch();
-  
+
   useEffect(() => {
-    dispatch(fetchSingleCampaign(match.params.id)); 
+    dispatch(fetchSingleCampaign(match.params.id));
   }, []);
 
-  const isAuthenticated = useSelector(state => state.authReducer.isAuthenticated);
-  const isLoading = useSelector(state => state.fundDonateReducer.loading);
-  
-  const singleCampaign = useSelector(
-    state => state.fundDonateReducer.singleCampaign
-  );
+  const isAuthenticated = useSelector((state) => state.authReducer.isAuthenticated);
+
+  const singleCampaign = useSelector((state) => state.fundDonateReducer.singleCampaign);
 
   const { fund_img, fund_purpose, id } = singleCampaign;
 
@@ -34,10 +31,6 @@ const DonateCampaign = ({ match }) => {
 
   return (
     <>
-      {isLoading ? <div className='d-flex justify-content-center'><LoaderSpinn  />
-        <LoaderSpinn />
-        <LoaderSpinn /></div>
-        : null}
       <div className="container-fluid">
         <div className="row">
           <div className="col-md-6 col-lg-6 mt-5">
@@ -46,8 +39,8 @@ const DonateCampaign = ({ match }) => {
               alt="personal_campaign"
               style={{ width: "100%", maxHeight: "300px" }}
             ></img>
-           
-           {/* Donat tabs */}
+
+            {/* Donat tabs */}
             <div className="mt-4">
               <DonateTabs story={fund_purpose} />
             </div>
@@ -68,39 +61,33 @@ const DonateCampaign = ({ match }) => {
             className="col-md-6 col-lg-6 mt-5"
             id="DonPrompt"
             style={{
-              display:
-                isDonateCardButtonsOpen && !currentOpenForm ? "block" : "none",
+              display: isDonateCardButtonsOpen && !currentOpenForm ? "block" : "none",
             }}
           >
-          <DonatePrompt
-              handleSwitchCurrentForm={handleSwitchCurrentForm}
-           />
+            <DonatePrompt handleSwitchCurrentForm={handleSwitchCurrentForm} />
           </div>
-             
+
           <div
             className="col-md-6 col-lg-6 mt-5"
             id="donate__cash__form"
             style={{
-              display:
-                currentOpenForm === "donate__cash__form" ? "block" : "none"
+              display: currentOpenForm === "donate__cash__form" ? "block" : "none",
             }}
           >
-          <DonateCashForm
+            <DonateCashForm
               fund_cash={id}
               setCurrentOpenForm={setCurrentOpenForm}
               setIsDonateCardButtonsOpen={setIsDonateCardButtonsOpen}
             />
-           
           </div>
 
           <div
             className="col-md-6 col-lg-6 mt-5"
             id="donate__item__form"
             style={{
-              display:
-                currentOpenForm === "donate__item__form" ? "block" : "none",
+              display: currentOpenForm === "donate__item__form" ? "block" : "none",
             }}
-           >
+          >
             <DonateItemForm
               fund_item={id}
               currentOpenForm={currentOpenForm}
@@ -114,6 +101,5 @@ const DonateCampaign = ({ match }) => {
     </>
   );
 };
-
 
 export default DonateCampaign;

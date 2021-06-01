@@ -1,21 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { donateToCash} from "store/actions/fund_donate/FundDonate";
+import { donateToCash } from "store/actions/fund_donate/FundDonate";
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
 import Button from "@material-ui/core/Button";
 import axiosInstance from "util/api";
-import { setLoading } from 'store/actions/Common';
-const stripePromise = window.Stripe(
-  "pk_test_51Ihz1EJtAhKBp45zJXZLT2RmTKQLDbpZRPerC1uKcnQ69N1R1IchlmRhCBMp3cwJ4DIVpSf9iHe4Hnq9wUdAC6OA00DNznJtw5"
-);
+import { setLoading } from "store/actions/Common";
 
-const Message = ({ message }) => (
-  <section>
-    <p>{message}</p>
-  </section>
-);
+// const stripePromise = window.Stripe(
+//   "pk_test_51Ihz1EJtAhKBp45zJXZLT2RmTKQLDbpZRPerC1uKcnQ69N1R1IchlmRhCBMp3cwJ4DIVpSf9iHe4Hnq9wUdAC6OA00DNznJtw5"
+// );
+const stripePromise = "";
+
+
 
 const DonateCashForm = ({ fund_cash, setCurrentOpenForm, setIsDonateCardButtonsOpen }) => {
   const paystackUrl = useSelector((state) => state.fundDonateReducer.paystackUrl);
@@ -36,7 +34,10 @@ const DonateCashForm = ({ fund_cash, setCurrentOpenForm, setIsDonateCardButtonsO
     }
   }, []);
   const [giveOgadonate, setGiveOgadonate] = useState(true);
-
+  const [message, setMessage] = useState(false);
+  const [percentage, setPercentage] = useState(true);
+  const [paystack, setPaystack] = useState(false);
+  const [Stripebtn, setStripebtn] = useState(false);
   const [donateFields, setDonateFields] = useState({
     donate_amount: "",
     donate_payment_method: "",
@@ -47,12 +48,6 @@ const DonateCashForm = ({ fund_cash, setCurrentOpenForm, setIsDonateCardButtonsO
     donate_accept: "",
     donate_percentage_value: "",
   });
-  
-  const [message, setMessage] = useState("");
-  const [percentage, setPercentage] = useState(true);
-  const [paystack, setPaystack] = useState(false);
-  const [Stripebtn, setStripebtn] = useState(false);
-
 
   const setPaystackBtn = () => {
     setStripebtn(false);
@@ -97,7 +92,12 @@ const DonateCashForm = ({ fund_cash, setCurrentOpenForm, setIsDonateCardButtonsO
 
     dispatch(donateToCash(formData));
   };
-  const handleClick = (e) => {
+  const Message = ({ message }) => (
+    <section>
+      <p>{message}</p>
+    </section>
+  );
+  const handleClick = async (e) => {
     e.preventDefault();
     const formData = {
       donate_amount: giveOgadonate ? tol_5_percentage : amount_given,
@@ -119,24 +119,15 @@ const DonateCashForm = ({ fund_cash, setCurrentOpenForm, setIsDonateCardButtonsO
       },
     };
     const stripe = stripePromise;
-    axiosInstance
-      .post("campaign/create/donation-cash", formData, config)
-      .then((res) => {
-        const session = res.data;
-        const result = stripe.redirectToCheckout({ sessionId: session });
-        if (result.error) {
-          // If `redirectToCheckout` fails due to a browser or network
-          // error, display the localized error message to your customer
-          console.log(result.error.message);
-        }
-        return message ? <Message message={message} /> : null;
-      })
-      .catch((error) => {
-        console.log(error.message);
-      });
-  };
-
-
+      const res = await axiosInstance.post("campaign/create/donation-cash", formData, config)
+      const session = res.data;
+      const result = stripe.redirectToCheckout({ sessionId: session });
+      if(result.error){
+        setMessage(true);
+        return message ? <Message message={result.error.message} /> : null;
+      }
+    }
+  
   const handleChange = (e) => {
     setDonateFields({ ...donateFields, [e.target.name]: e.target.value });
   };
@@ -191,9 +182,9 @@ const DonateCashForm = ({ fund_cash, setCurrentOpenForm, setIsDonateCardButtonsO
             defaultChecked={false}
             onChange={handleChange}
           />
-          <label>Yes, I want to donate anonymously</label>
+          <label> Yes, I want to donate anonymously </label>
         </div>
-        <h2 class="fs-title">Attestation</h2>
+        <h2 class="fs-title"> Attestation </h2>
         <div className="d-flex">
           <input
             name="donate_accept"
@@ -219,10 +210,9 @@ const DonateCashForm = ({ fund_cash, setCurrentOpenForm, setIsDonateCardButtonsO
         <div className="d-flex">
           <h6 className="mr-3">currency type :</h6>
           <select name="donate_currency" className="mb-4" onChange={handleChange}>
-            <option value="">select currency</option>
+            <option value="" disabled></option>
             <option value="$">$</option>
             <option value="₦">₦</option>
-            <option value="€">€</option>
           </select>
         </div>
         <input
@@ -317,9 +307,9 @@ const DonateCashForm = ({ fund_cash, setCurrentOpenForm, setIsDonateCardButtonsO
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
-  // const handleReset = () => {
-  //   setActiveStep(0);
-  // };
+  const handleReset = () => {
+    setActiveStep(0);
+  };
 
   return (
     <>
@@ -376,13 +366,13 @@ const DonateCashForm = ({ fund_cash, setCurrentOpenForm, setIsDonateCardButtonsO
           ) : (
             <>
               {paystack ? (
-                <button onClick={handleSubmit} type="submit" name="submit">
+                <Button onClick={handleSubmit} type="submit" name="submit">
                   Donate With Paystack
-                </button>
+                </Button>
               ) : (
-                <button onClick={handleClick} type="submit" name="submit">
+                <Button onClick={handleClick} type="submit" name="submit">
                   Donate With Stripe
-                </button>
+                </Button>
               )}
               <Button
                 disabled={activeStep === 0}
@@ -391,6 +381,14 @@ const DonateCashForm = ({ fund_cash, setCurrentOpenForm, setIsDonateCardButtonsO
                 color="primary"
               >
                 Back
+              </Button>
+              <Button
+                disabled={activeStep === 0}
+                onClick={handleReset}
+                className="mr-2 float-left"
+                color="primary"
+              >
+                Cancel
               </Button>
             </>
           )}

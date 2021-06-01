@@ -1,10 +1,21 @@
-.c-subheader-nav-link{
+.c-subheader-nav-link, .c-subheader-nav{
     text-decoration: none;
     color:inherit;
     &:hover{
         text-decoration: none;
         color:inherit;
     }
+     &:focus{
+     background-color:#0C5421 !important;
+    
+ }
+}
+.c-header-nav, .dropdown-item{
+    text-decoration: none;
+    color:inherit;
+     &:focus{
+     background-color:#0C5421 !important;
+ }
 }
 
 .c-sidebar{
@@ -24,3 +35,4 @@ background-color:#0F6929 !important;
     background-color:#C75A00 !important;
   }
 }
+

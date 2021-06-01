@@ -1,25 +1,20 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import {ReactComponent as LoaderSpinn} from 'assets/images/244.svg'
 
- const RaisePrompt = ({ setIsRaiseCardButtonsOpen, handleCurrentOpenForm }) => {
-   const handleRaiseItemFormOpen = () => {
-    handleCurrentOpenForm('RaiseItemForm');
-    setIsRaiseCardButtonsOpen(true)
-   }
 
-   const handleRaiseCashFormOpen = () => {
-    handleCurrentOpenForm('RaiseCashForm');
-    setIsRaiseCardButtonsOpen(true)
-   }
-   const isLoading = useSelector(state => state.fundDonateReducer.loading);
+const RaisePrompt = ({ setIsRaiseCardButtonsOpen, handleCurrentOpenForm }) => {
+  const handleRaiseItemFormOpen = () => {
+    handleCurrentOpenForm("RaiseItemForm");
+    setIsRaiseCardButtonsOpen(true);
+  };
+
+  const handleRaiseCashFormOpen = () => {
+    handleCurrentOpenForm("RaiseCashForm");
+    setIsRaiseCardButtonsOpen(true);
+  };
+
   return (
     <>
-    {isLoading ? <div className='d-flex justify-content-center'><LoaderSpinn  />
-        <LoaderSpinn />
-        <LoaderSpinn /></div>
-        : null}
       <div className="ogaDonasi" style={{ backgroundColor: "#05591B" }}>
         <div className="ikon">
           <Link
@@ -36,7 +31,6 @@ import {ReactComponent as LoaderSpinn} from 'assets/images/244.svg'
           Get that item
         </div>
       </div>
-
       <div className="ogaDonasi" style={{ backgroundColor: "#05591B" }}>
         <div className="ikon">
           <Link
@@ -47,12 +41,12 @@ import {ReactComponent as LoaderSpinn} from 'assets/images/244.svg'
           >
             <span className="text-capitalize">Raise Cash Fund</span>
           </Link>
-        </div>
+        </div>{" "}
         <div className="deskripsi text-white">
           <span className="judul">RAISE CASH</span>
-          Raise cash to solve a problem
-        </div>
-      </div>
+          Raise cash to solve a problem{" "}
+        </div>{" "}
+      </div>{" "}
     </>
   );
 };

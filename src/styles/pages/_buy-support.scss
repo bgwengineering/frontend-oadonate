@@ -20,6 +20,7 @@
 .market-card {
   border-color: transparent;
   transition: all 1s linear;
+  height:350px;
   &:hover {
     border: 0.04rem solid rgba(0, 0, 0, 0.2);
     box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.02);
@@ -33,9 +34,31 @@
       background: rgba(247, 247, 247);
   }
 }
+.item-name{
+  font-size:1.2rem;
+  font-weight:600;
+}
+.bid-item-name{
+  font-size:1.2rem;
+  font-weight:600;
+}
 .img-container {
   position: relative;
-  overflow: hidden;
+  overflow:hidden;
+  .bid-btn-container{
+  position:absolute;
+  z-index:130;
+  top:138px;
+  width:100%;
+  .bid-btn-subdiv{  
+    width:50%;
+     margin-left:auto;
+     margin-right:auto;
+  }
+}
+  .card-img-top {
+    transition: all 1s linear;
+  }
   & :hover{
     .cart-btn {
         transform: translate(0, 0);
@@ -44,10 +67,8 @@
       .card-img-top {
         transform: scale(1.2);
       }
+
   }
-}
-.card-img-top {
-  transition: all 1s linear;
 }
 
 .cart-btn {

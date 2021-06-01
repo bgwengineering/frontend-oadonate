@@ -10,7 +10,7 @@ import {
 import CIcon from '@coreui/icons-react'
 
 const TheHeaderDropdownNotif = () => {
-  const itemsCount = 5
+  const itemsCount = 0
   return (
     <CDropdown
       inNav
@@ -20,7 +20,8 @@ const TheHeaderDropdownNotif = () => {
         <CIcon name="cil-bell"/>
         <CBadge shape="pill" color="danger">{itemsCount}</CBadge>
       </CDropdownToggle>
-      <CDropdownMenu  placement="bottom-end" className="pt-0">
+      <CDropdownMenu placement="bottom-end" className="pt-0">
+        {/*
         <CDropdownItem
           header
           tag="div"
@@ -61,7 +62,7 @@ const TheHeaderDropdownNotif = () => {
           </div>
           <CProgress size="xs" color="danger" value={90} />
           <small className="text-muted">243GB/256GB</small>
-        </CDropdownItem>
+        </CDropdownItem> */}
       </CDropdownMenu>
     </CDropdown>
   )

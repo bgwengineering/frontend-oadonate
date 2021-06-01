@@ -1,25 +1,32 @@
-import React from 'react'
-import {
-  TheContent,
-  TheSidebar,
-  TheFooter,
-  TheHeader
-} from './index'
+import React from "react";
+import { TheContent, TheSidebar, TheFooter, TheHeader } from "./index";
+import { useSelector } from "react-redux";
+import { ReactComponent as LoaderSpinn } from "assets/images/244.svg";
+
 
 const TheLayout = () => {
-
+  const isLoading = useSelector((state) => state.commonReducer.loading);
   return (
     <div className="c-app c-default-layout">
-      <TheSidebar/>
+      <TheSidebar />
       <div className="c-wrapper">
-        <TheHeader/>
+        <TheHeader />
         <div className="c-body">
-          <TheContent/>
+          {isLoading ? (
+            <div className="d-flex justify-content-center">
+              <LoaderSpinn />
+              <LoaderSpinn />
+              <LoaderSpinn />
+              <LoaderSpinn />
+              <LoaderSpinn />
+            </div>
+          ) : null}
+          <TheContent />
         </div>
-        <TheFooter/>
+        <TheFooter />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default TheLayout
+export default TheLayout;

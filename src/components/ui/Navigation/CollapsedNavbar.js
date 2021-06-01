@@ -1,5 +1,5 @@
-import React, {useState} from "react";
-import {withRouter, NavLink } from "react-router-dom";
+import React, { useState } from "react";
+import { withRouter, NavLink } from "react-router-dom";
 import Logo from "assets/images/logo.jpeg";
 
 const CollapsedNavbar = () => {
@@ -7,38 +7,31 @@ const CollapsedNavbar = () => {
 
   const arrowUp = () => {
     setShowUpArrow(!showUpArrow);
-  }
-
+  };
 
   return (
     <>
-      <nav className="navbar__donate toolbar">
-        {/* nav-center */}
-        <div className="navbar-center-container p-t-20">
-          <ul className="navbar-center">
-            <li className="nav-item">
-              <NavLink
-                to="/"
-                exact
-                activeClassName="navigation-link--active"
-                className="navigation-link text-white"
-              >
-                Home
-              </NavLink>
-            </li>
-          </ul>
+      <nav className="navbar__donate">
+        <div className="">
+          <NavLink
+            to="/"
+            exact
+            activeClassName="navigation-link--active"
+            className="navigation-link"
+          >
+            Home
+          </NavLink>
         </div>
-         
         {/* logo */}
-        <div className="nav-left">
-        <NavLink
-                to="/"
-                exact
-                activeClassName="navigation-link--active"
-                className="navigation-link text-white"
-              >
-          <img src={Logo} alt="log" className="logo" style={{width:'150px'}} />
-        </NavLink>
+        <div className="home-icon-container d-flex justify-content-center">
+          <NavLink
+            to="/"
+            exact
+            activeClassName="navigation-link--active"
+            className="navigation-link"
+          >
+            <img src={Logo} alt="log" className="logo" style={{ width: "150px" }} />
+          </NavLink>
         </div>
       </nav>
     </>

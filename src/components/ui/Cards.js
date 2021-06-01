@@ -4,7 +4,7 @@ import LinearProgress from "@material-ui/core/LinearProgress";
 import Button from "@material-ui/core/Button";
 import { AiOutlineFolderOpen } from "react-icons/ai";
 import { useSelector } from "react-redux";
-import {ReactComponent as LoadingSpinner} from 'assets/images/spinner.svg'
+
 var numeral = require('numeral');
 
 
@@ -115,7 +115,7 @@ const Cards = () => {
             );
           })
         : <div className='spinner-container mx-auto'>
-            <LoadingSpinner className='spinner'/>
+            <p>No Fund Available. Create a new Fund</p>
         </div>}
     </>
   );

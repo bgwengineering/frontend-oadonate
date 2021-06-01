@@ -2,7 +2,10 @@ import * as actionTypes from "../ActionTypes"
 import axios from '../../../util/api';
 import {tokenConfig} from '../../../util/TokenConfig'
 import _ from "lodash";
-import { setLoading } from 'store/actions/Common';
+import { setLoading,offLoading } from 'store/actions/Common';
+import axiosInstance from "../../../util/api";
+
+
 export const toggleCartHidden = () => ({
     type:actionTypes.TOGGLE_CART_HIDDEN 
 })
@@ -22,35 +25,38 @@ export const removeItem = item => ({
     payload:item
 })
 
-
-export const placeOrder = (items) => async (dispatch, getState) => {
-    let totalPrice = 0;
+export const clearCartItems  = () =>{
+  return {
+    type:actionTypes.CLEAR_CART}
+}
+export const placeOrder = (orders) => async (dispatch, getState) => {
+    const totalPrice = orders.totalPrice
     let productsArr = [];
     let quantitiesArr = [];
-  
-    _.forEach(items, (element) => {
-      totalPrice += element.product.price * element.quantity;
-      productsArr.push(element.product.item);
+    orders.orderItem.forEach(items => {
+      productsArr.push(items.donate_item_name);
       console.log(productsArr);
-      quantitiesArr.push(element.quantity);
+      quantitiesArr.push(items.quantity);
+      console.log(quantitiesArr);
       });
       dispatch(setLoading())
     try {
       const { data } = await axios.post(
-        "/api/orders",
+        "buy-to-support/orders",
         {
           products: productsArr,
           quantities: quantitiesArr,
-          total_price: totalPrice.toFixed(2),
+          total_price: totalPrice,
           ordered: true,
+          payment_method:orders.payment_method,
+          delivery_method: orders.delivery_method    
         },
         tokenConfig(getState)
       );
-      dispatch({ type: actionTypes.PLACE_ORDERS_SUCCESS, payload: data });
-      dispatch(clearItemFromCart())
+      dispatch({ type: actionTypes.PLACE_ORDERS_PAYSTACK_SUCCESS, payload: data });
+      dispatch(clearCartItems());
     } catch (error) {
-      dispatch({ type: actionTypes.PLACE_ORDER_FAILS });
+      dispatch({ type: actionTypes.PLACE_ORDERS_PAYSTACK_FAIL });
     }
   };
-  
   
