@@ -13,6 +13,7 @@ const DonationReceived = () => {
     dispatch(fetchUserDonationsReceived())
   }, [])
 
+  
   return (
     <>
     {/* Cash Donations received */}
@@ -47,10 +48,9 @@ const DonationReceived = () => {
                         fund_cash,
                         fund_title,
                         fund_category,
-                        fund_cash_amount,  
-                        Cash
+                        fund_cash_amount  
                       } = data;  
-                      if (fund_type === Cash) {
+                      if (fund_type === "Cash") {
                         return (
                           <tr>
                             <td className="text-center">

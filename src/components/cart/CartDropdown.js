@@ -30,7 +30,11 @@ import ClickAwayListener from "@material-ui/core/ClickAwayListener";
            <div className="d-flex flex-column justify-content-center align-items-center mt-4">
              <Button
                onClick={() => {
-                 history.push("/cart");
+                 window.scrollTo({
+                   top: 0,
+                   behaviour:'smooth'
+                 }, history.push("/cart"))
+                 
                  dispatch(toggleCartHidden());
                }}
                className="add_cart_btn"

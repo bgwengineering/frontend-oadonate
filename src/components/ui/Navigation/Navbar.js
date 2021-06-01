@@ -30,14 +30,15 @@ const Navbar = ({ menuOpen }) => {
         (accumulatedQuantity, cartItem) => accumulatedQuantity + cartItem.quantity,
         0
     );
-
     const dispatch = useDispatch();
 
+  
     const refreshState = () => {
         dispatch(fetchAllCampaign());
         dispatch(updateMarketCollections());
     }
 
+  
     const [showUpArrow, setShowUpArrow] = useState({
         raiseFundsArrow: false,
         donateArrow: false,

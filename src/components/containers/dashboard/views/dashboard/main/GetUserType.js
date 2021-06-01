@@ -7,7 +7,7 @@ const GetUserType = () => {
     return (
         <div className="user-type-container">
                    <div>
-                    <h4 className='text-center fs-2 mt-5'>Create an individual profile or register for corporate auction ?</h4> 
+                    <h4 className='text-center fs-2 mt-5'>Create an individual profile or register for corporate auction?</h4> 
                     <p className='text-center'>Choose below </p>  
 
                     <div className='user-type-row'>    
@@ -18,7 +18,7 @@ const GetUserType = () => {
                     </Link>
                       <Link to='/corporate-auction' className='main-link'>
                       <Button className="get-userType-button  ml-4" id="company">
-                        Corporate Auction Profile
+                        Corporate Auction 
                       </Button> 
                     </Link>
                      </div>

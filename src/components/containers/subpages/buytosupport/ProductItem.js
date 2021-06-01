@@ -9,6 +9,8 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 var numeral = require('numeral')
 
+
+
 const ProductItem = () => {  
   const dispatch = useDispatch()
   const marketState = useSelector(state=>state.marketPlaceReducer)
@@ -73,9 +75,9 @@ return (
                 </p>
                 <div>
                   {/* <AiOutlineFolderOpen />
-              <span className="card-text text-muted ml-1">
-                {donate_item_condition}
-              </span> */}
+                <span className="card-text text-muted ml-1">
+                 {donate_item_condition}
+                 </span> */}
                   <h5 className="d-flex  justify-content-center text-blue font-italic mt-2 mb-0">
                     <span className="ml-1">{donate_currency}</span>
                     {marketPrice}
