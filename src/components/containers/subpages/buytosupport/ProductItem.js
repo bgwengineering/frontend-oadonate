@@ -7,9 +7,8 @@ import {useDispatch, useSelector} from 'react-redux'
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
+
 var numeral = require('numeral')
-
-
 
 const ProductItem = () => {  
   const dispatch = useDispatch()
@@ -25,7 +24,10 @@ const ProductItem = () => {
   const indexOfLastCard = BuyToSupportPage * supportCardPerPage
   const indexOfFirstCard = indexOfLastCard + supportCardPerPage
 
+  const [inCart, setInCart] = useState(false);
+  
 
+  
 
    const controlSingleOrMultipleItemClick = (num) => {
      if (num === 1){
@@ -44,7 +46,6 @@ return (
   <>
     {collections.length ? (
       collections.slice(indexOfLastCard, indexOfFirstCard).map(itemValues => {
-        console.log(collections);
 
         const {
           donate_item_img,
@@ -53,9 +54,8 @@ return (
           donate_item_name,
           donate_currency,
           id,
-          donate_item_condition
         } = itemValues;
-        const marketPrice = numeral(donate_mkt_price).format("0,0");
+        const marketPrice = numeral(donate_mkt_price).format("0, 0");
 
         if (donate_determine_price || donate_mkt_price) {
           return (
@@ -92,10 +92,11 @@ return (
                       dispatch(addItem(itemValues));
                       setOpen(true);
                       setCount(count + 1);
+                      setInCart(true)
                     }}
-                    disabled={dispatch(addItem(itemValues))}
-                    >
-                    Add to Cart
+                     disabled={inCart}
+                  >
+                    {inCart ? "in Cart" : "Add to Cart"}             
                   </Button>
                 </div>
               </div>

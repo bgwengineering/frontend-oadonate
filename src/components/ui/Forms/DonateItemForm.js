@@ -85,24 +85,7 @@ const DonateItemForm = ({
       fund_item, fund_item,
       ...postData
     }
-    // formData.append("donate_comment", postData.donate_comment);
-    // formData.append("donate_item_name", postData.donate_item_name);
-    // formData.append("donate_item_desc", postData.donate_item_desc);
-    // formData.append("donate_item_condition", postData.donate_item_condition);
-    // formData.append("donate_as_unknown", postData.donate_as_unknown);
-    // formData.append("donate_accept", postData.donate_accept);
-    // formData.append("donate_item_img", postData.donate_item_img);
-    // // formData.append("donate_item_validation", postData.donate_item_validation ?  postData.donate_item_validation: noImg);
-    // formData.append("donate_mkt_bid", postData.donate_mkt_bid);
-    // formData.append("donate_mkt_price", postData.donate_mkt_price);
-    // formData.append("donate_currency", postData.donate_currency);
-    // formData.append("donate_determine_price", postData.donate_determine_price);
-    // formData.append("donate_determine_by", postData.donate_determine_by);
-    // formData.append("donate_percentage_value", postData.donate_percentage_value);
-    // formData.append("donate_product_category", postData.donate_product_category);
-    // formData.append("fund_item", fund_item);
 
-    
     const config = {
       headers: {
         "Content-Type": "application/json",
@@ -276,7 +259,6 @@ const DonateItemForm = ({
           }}
         >
           {/* percentage value */}
-
           <div className="d-block">
             <label>Percentage Value</label>
             <Field
@@ -311,7 +293,7 @@ const DonateItemForm = ({
               Price Determined by <span className="text-danger">*</span>
             </label>
             <Field name="donate_determine_by" className="mb-4" component="select">
-              <option value=" " disabled></option>
+              <option value="" disabled>select</option>
               <option value="Market" onClick={handleDetermineAuctionPrice}>
                 Auction Market
               </option>
@@ -325,7 +307,7 @@ const DonateItemForm = ({
                 Currency <span className="text-danger">*</span>
               </label>
               <Field name="donate_currency" className="mb-4" component="select">
-                <option value=" " disabled></option>
+                <option value="" disabled>Currency</option>
                 <option value="$">$</option>
                 <option value="₦">₦</option>
               </Field>
