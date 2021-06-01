@@ -10,9 +10,8 @@
         display:flex;
         flex-direction: column;
         justify-content: flex-end;
-         border:1px solid magenta; 
          align-items:flex-end;
-          padding-top: 5px;
+        padding:15px 5px;
       }
     .image-container {
       width: 23%;
@@ -24,7 +23,7 @@
     }
     .checkout-name-price-container{
          display:flex;
-        //  justify-content:space-between;
+         justify-content:space-between;
          width:58%;
          @media screen and (max-width:490px){
           display:flex;
@@ -32,18 +31,18 @@
           justify-content: flex-end;
           align-items:flex-end;
           width:100%;
-        border:1px solid forestgreen;      
+           margin-top:14px;  
         }
       .name,
     .price {
       width: 23%;
        @media screen and (max-width:490px){  
-          border:1px solid olive; 
           width:100%;  
-            display:flex;
+          display:flex;
           flex-direction: column;  
           justify-content: flex-end;
           align-items:flex-end;  
+          padding:0px  0px 15px 0px;
           }
     }
     }  
@@ -52,7 +51,7 @@
       margin: 0 10px;
     }
     .remove-button {
-      padding-left: 12px;
+      padding-left: 52px;
       cursor: pointer;
       color:red;
     }

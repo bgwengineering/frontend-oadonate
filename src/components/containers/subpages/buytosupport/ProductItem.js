@@ -93,7 +93,8 @@ return (
                       setOpen(true);
                       setCount(count + 1);
                     }}
-                  >
+                    disabled={dispatch(addItem(itemValues))}
+                    >
                     Add to Cart
                   </Button>
                 </div>

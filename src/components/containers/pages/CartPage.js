@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import CheckoutItem from "components/cart/CheckoutItem";
 import { useSelector } from "react-redux";
-import CheckoutForm from './CheckoutPage';
+
 var numeral = require('numeral')
 
 const CartPage = () => {
@@ -17,7 +17,6 @@ const CartPage = () => {
   );
 
   let formatTotal = numeral(mapTotal).format("0,0.00");
-  console.log(typeof (formatTotal));
   // let total = 0;
   let total = formatTotal
   const currency = cartItems.map(cartItem => cartItem.donate_currency)
@@ -36,7 +35,7 @@ const CartPage = () => {
             <span className="header-block-item">Price</span>
         </div>
         <div className="header-block">
-            <span className="header-block-item">Sub Total</span>
+            <span className="sub-total header-block-item">Sub Total</span>
         </div>
         <div className="header-block">
           <span></span>
