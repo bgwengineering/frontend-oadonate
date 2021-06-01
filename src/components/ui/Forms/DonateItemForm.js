@@ -23,12 +23,10 @@ const DonateItemForm = ({
     setIsDonateCardButtonsOpen,
     pristine,
     submitting,
-    handleSubmit
 }) => {
     const [isPriceOgadonate, setIsPriceOgadonate] = useState(false);
     const [isPriceAuction, setIsPriceAuction] = useState(false);
-    const [postData, setPostData] = ({
-        donate_item_img: "",
+    const [postData, setPostData] = useState({
         donate_item_name: "",
         donate_item_desc: "",
         donate_item_condition: "",
@@ -42,7 +40,12 @@ const DonateItemForm = ({
         donate_determine_by: "",
         donate_percentage_value: "",
         donate_product_category: "",
+        donate_bid_min_val: "",
+        donate_bid_endAt: "",
     })
+    const [itemImage, setItemImage] = useState(null);
+  
+
     const handlePriceForOgadonate = () => {
         setIsPriceOgadonate(true);
         setIsPriceAuction(false);
@@ -52,21 +55,20 @@ const DonateItemForm = ({
         setIsPriceAuction(true);
         setIsPriceOgadonate(false);
     };
-
+ 
     const [currentQuestionnaireOpen, setCurrentQuestionnaireOpen] = useState(null);
     const [isQuestionAnswerShown, setIsQuestionAnswerShown] = useState(false);
 
     const handleSwitchCurrentQuestion = (formToShow) => {
         setCurrentQuestionnaireOpen(formToShow);
     };
-
-    // dispatch
+   
     const dispatch = useDispatch();
 
     const handleChange = (e) => {
         setPostData({ ...postData, [e.target.name]: e.target.value })
     }
-    const handleImgChange = (event, input) => {
+    const handleImgChange = (event) => {
         event.preventDefault();
         let imageFile = event.target.files[0];
         if(imageFile) {
@@ -76,32 +78,35 @@ const DonateItemForm = ({
             imageObject.onload = () => {
                 imageFile.width = imageObject.naturalWidth;
                 imageFile.height = imageObject.naturalHeight;
-                input.onChange(imageFile);
                 URL.revokeObjectURL(imageFile);
             };
             imageObject.src = localImageUrl;
+            setItemImage({
+              donate_item_img: imageFile
+          });
         }
     };
 
-    const onSubmitForm = async () => {
-        let formData = new FormData()
-        // formData.append("donate_item_img", postData.donate_item_img);
-        // formData.append("donate_item_name", postData.donate_item_name);
-        // formData.append("donate_item_desc", postData.donate_item_desc);
-        // formData.append("donate_item_condition", postData.donate_item_condition);
-        // formData.append("donate_as_unknown", postData.donate_as_unknown);
-        // formData.append("donate_accept", postData.donate_accept);
-        // formData.append("donate_item_img", postData.donate_item_img);
-        // // formData.append("donate_item_validation", postData.donate_item_validation ?  postData.donate_item_validation: noImg);
-        // formData.append("donate_mkt_bid ", postData.donate_mkt_bid);
-        // formData.append("donate_mkt_price", postData.donate_mkt_price);
-        // formData.append("donate_currency", postData.donate_currency);
-        // formData.append("donate_determine_price", postData.donate_determine_price);
-        // formData.append("donate_determine_by", postData.donate_determine_by);
-        // formData.append("donate_percentage_value", postData.donate_percentage_value);
-        // formData.append("donate_product_category", postData.donate_product_category);
-        // formData.append("fund_item", fund_item);
-
+    const onSubmitForm = async (e) => {
+      e.preventDefault();
+        let formData = new FormData();
+        formData.append("donate_item_img", itemImage.donate_item_img);
+        formData.append("donate_bid_endAt", postData.donate_bid_endAt);
+        formData.append("donate_bid_min_val", postData.donate_bid_min_val);
+        formData.append("donate_item_name", postData.donate_item_name);
+        formData.append("donate_item_desc", postData.donate_item_desc);
+        formData.append("donate_item_condition", postData.donate_item_condition);
+        formData.append("donate_as_unknown", postData.donate_as_unknown);
+        formData.append("donate_accept", postData.donate_accept);
+        formData.append("donate_mkt_bid ", postData.donate_mkt_bid);
+        formData.append("donate_mkt_price", postData.donate_mkt_price);
+        formData.append("donate_currency", postData.donate_currency);
+        formData.append("donate_determine_price", postData.donate_determine_price);
+        formData.append("donate_determine_by", postData.donate_determine_by);
+        formData.append("donate_percentage_value", postData.donate_percentage_value);
+        formData.append("donate_product_category", postData.donate_product_category);
+        formData.append("fund_item", fund_item);
+      console.log(formData)
         const config = {
             headers: {
                 "Content-Type": "application/json",
@@ -121,23 +126,23 @@ const DonateItemForm = ({
             if(error.response.data) {
                 error.response.data.donate_item_name.map((err) => {
                     return dispatch({ type: SHOW_ERROR_MESSAGE, payload: `Item Name: Can not be empty` });
-                    dispatch(offLoading());
-                });
+                  });
+                  dispatch(offLoading());
             } else if(error.response.data) {
                 error.response.data.donate_item_img.map((err) => {
                     return dispatch({ type: SHOW_ERROR_MESSAGE, payload: `Image Field: No file selected` });
-                    dispatch(offLoading());
-                });
+                  });
+                  dispatch(offLoading());
             } else if(error.response.data) {
-                error.response.data.donate_item_img.map((err) => {
+                error.response.data.donate_item_condition.map((err) => {
                     return dispatch({ type: SHOW_ERROR_MESSAGE, payload: `Item Image Field: ${err}` });
-                    dispatch(offLoading());
-                });
+                  });
+                  dispatch(offLoading());
             } else {
                 error.response.data.donate_item_img.map((err) => {
                     return dispatch({ type: SHOW_ERROR_MESSAGE, payload: `Validiate Image Field: ${err}` });
-                    dispatch(offLoading());
-                });
+                  });
+                  dispatch(offLoading());
             }
         }
 
@@ -190,7 +195,7 @@ const DonateItemForm = ({
         <div className="d-flex mt-3 mb-3">
           <h2 className="fs-title mr-2">Item Category</h2>
           <select onChange={handleChange} name="donate_product_category">
-            <option value="" disabled>Select
+            <option value="">
             </option>
             <option value="Health & Beauty">Health & Beauty</option>
             <option value="Home & Office">Home & Office</option>
@@ -206,7 +211,7 @@ const DonateItemForm = ({
 
           <h2 className="fs-title mr-2">Item Condition</h2>
           <select component="select" name="donate_item_condition">
-            <option value="" disabled>Select
+            <option value="">
             </option>
             <option value="New">New</option>
             <option value="Good">Good</option>
@@ -227,7 +232,7 @@ const DonateItemForm = ({
           Upload image of item you wish to donate
           <span className="text-danger">*</span>
         </h2>
-        <input name="donate_item_img" type="file" accept="image/*" onChange={handleImgChange} className="input-file" />
+        <input name="donate_item_img" type="file" accept="image/png, image/jpeg" onChange={handleImgChange} className="input-file" />
         {/* <h2 className="fs-title mt-3">
           upload image of proof of ownership on items above
           <b>one million naira</b>
@@ -307,7 +312,7 @@ const DonateItemForm = ({
               Price Determined by <span className="text-danger">*</span>
             </label>
             <select name="donate_determine_by" className="mb-4" onChange={handleChange}>
-              <option value=" " disabled>Select</option>
+              <option value=" "></option>
               <option value="Market" onClick={handleDetermineAuctionPrice}>
                 Auction Market
               </option>
@@ -316,17 +321,26 @@ const DonateItemForm = ({
               </option>
             </select>
 
+            <div className="d-flex">
             <div>
               <label className="mr-3">
                 Currency <span className="text-danger">*</span>
               </label>
               <select name="donate_currency" className="mb-4" onChange={handleChange}>
-                <option value=" " disabled>Select</option>
+                <option value=" "></option>
                 <option value="$">$</option>
                 <option value="₦">₦</option>
               </select>
             </div>
-
+            <div style={{ display: isPriceAuction ? "block" : "none" }}>
+              <label className="mt-3 mr-3">Auction Type <span className="text-danger">*</span></label>
+              <select onChange={handleChange} name="donate_mkt_bid">
+                <option value="" ></option>
+                <option value="Open">Open</option>
+                <option value="Close">Close</option>
+              </select>
+            </div>
+            </div>
             <div
               className="item-cash-value"
               style={{ display: isPriceOgadonate ? "block" : "none" }}
@@ -335,8 +349,8 @@ const DonateItemForm = ({
                 Item Cash Value <span className="text-danger">*</span>
               </label>
               <input
-                id="price_determination"
-                name="donate_determine_price"
+                id="donate_bid_val"
+                name="donate_bid_min_val"
                 onChange={handleChange}
                 data-msg-required="Please enter a valid number"
                 type="number"
@@ -346,14 +360,38 @@ const DonateItemForm = ({
               />
             </div>
 
-            {/* item category */}
-            <div style={{ display: isPriceAuction ? "block" : "none" }}>
-              <label className="mt-3 mr-3">Auction Type</label>
-              <select onChange={handleChange} name="donate_mkt_bid">
-                <option value="" disabled></option>
-                <option value="Open">Open</option>
-                <option value="Close">Close</option>
-              </select>
+            <div
+              className="item-cash-value"
+              style={{ display:  isPriceAuction ? "block" : "none" }}
+            >
+              <label>
+                Auction Price <span className="text-danger">*</span>
+              </label>
+              <input
+                id="price_determination"
+                name="donate_determine_price"
+                onChange={handleChange}
+                data-msg-required="Please enter a valid number"
+                type="number"
+                normalize={(val) => (val || "").replace(/[^\d]/g, "")}
+                className="input-number"
+                placeholder="What's the minimum value of the item for auction bid(e.g 50,000)"
+              />
+            </div>
+            
+            <div
+              className="item-cash-value"
+            >
+              <label>
+                Auction End Date <span className="text-danger">*</span>
+              </label>
+              <input
+                id="donate_bid_endAt"
+                name="donate_bid_endAt"
+                onChange={handleChange}
+                type="date"
+                className="input-date"
+              />
             </div>
           </>
         </div>
@@ -406,7 +444,7 @@ const DonateItemForm = ({
 
     return ( 
     <>
-        <form onSubmit={handleSubmit(onSubmitForm)} className="fundforms_container">
+        <form onSubmit={onSubmitForm} className="fundforms_container">
         <div className="w-80">
           <Stepper activeStep={activeStep} alternativeLabel className="horizontal-stepper-linear">
             {steps.map((label, index) => {

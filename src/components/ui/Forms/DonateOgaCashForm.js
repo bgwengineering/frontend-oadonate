@@ -71,7 +71,7 @@ const DonateOgaCashForm = ({ fund_cash, setIsDonateOgaForm, setCurrentOpenForm }
     donate_accept,
   } = donateFields;
 
-  const handleSubmit = (e, response) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const formData = {
       donate_amount,
