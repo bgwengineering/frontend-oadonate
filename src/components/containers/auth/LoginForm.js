@@ -18,7 +18,7 @@ const LoginForm = ({ handleSubmit, submitting, pristine }) => {
     dispatch(login(formValues));
   };
   if (isAuthenticated) {
-    return <Redirect to="/dashboard" />;
+    return <Redirect to="/dashboard"/>;
   }
   const handleShowPassword = () => {
     setIsPasswordShown(!isPasswordShown);
