@@ -140,10 +140,10 @@ export const signup = ({ first_name, last_name, email, password }) => async (dis
       type: SIGNUP_SUCCESS,
       payload: res.data,
     });
-    dispatch(offLoading());
     dispatch({ type: SHOW_SUCCESS_MESSAGE, payload: "Account Created: Please check your email to verify your account."})
     dispatch(stopSubmit("SignupForm"));
     dispatch(reset("SignupForm"));
+    dispatch(offLoading());
   } catch (err) {
     dispatch(setLoading())
     dispatch({ type: SIGNUP_FAIL });

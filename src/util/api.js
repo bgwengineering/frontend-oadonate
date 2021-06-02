@@ -2,12 +2,12 @@ import axios from 'axios';
 
 
 const baseURL = 'https://ogadonate.herokuapp.com/api/';
-// const baseURL = 'http://127.0.0.1:8000/api/';
+// const baseURL = 'https://fb5668a68c5f.ngrok.io/api/';
 
 
 const axiosInstance = axios.create({
     baseURL: baseURL,
-    timeout: 5000,
+    timeout: 50000,
     headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
