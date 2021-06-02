@@ -10,7 +10,6 @@ const TheLayout = () => {
     <div className="c-app c-default-layout">
       <TheSidebar />
       <div className="c-wrapper">
-        <TheHeader />
         <div className="c-body">
           {isLoading ? (
             <div className="d-flex justify-content-center">
@@ -21,6 +20,7 @@ const TheLayout = () => {
               <LoaderSpinn />
             </div>
           ) : null}
+          <TheHeader />
           <TheContent />
         </div>
         <TheFooter />

@@ -8,7 +8,7 @@ import { validateShipping, checkoutRenderField } from "util/RenderValidate";
 import {Link} from 'react-router-dom'
 
 
-const EditShipping = ({ nextPage, previousPage, handleSubmit, id }) => {
+const EditShipping = ({ nextPage, handleSubmit, id }) => {
   
   const dispatch = useDispatch();
   useEffect(() => {
@@ -168,7 +168,10 @@ const EditShipping = ({ nextPage, previousPage, handleSubmit, id }) => {
                     Cancel
                   </Button>
                   </Link>
-                  <Button className="shipping-next-btn" type="submit">
+                  <Button 
+                  className="shipping-next-btn" 
+                  type="submit"
+                  onClick={()=>{updateShipping(); setTimeout(() => {nextPage();},10000)}}>
                     Next
                   </Button>
                 </div>

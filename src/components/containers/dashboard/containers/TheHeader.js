@@ -3,7 +3,7 @@ import {
   toggleDashboardSideNav,
   toggleDashboardMobileSideNav
 } from "store/actions/Settings";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 
 import {
   CHeader,
@@ -30,6 +30,7 @@ import {
 
 const TheHeader = () => {
   const dispatch = useDispatch();
+  const User = useSelector(state => state.authReducer.user)
 
   const toggleSidebar = () => {
     dispatch(toggleDashboardSideNav());
@@ -73,14 +74,8 @@ const TheHeader = () => {
         />
         <div className="d-md-down-none mfe-2 c-subheader-nav">
           <CLink className="c-subheader-nav-link" href="#">
-            <CIcon name="cil-speech" alt="Settings" />
+          {User ? <p>Welcome: <span><strong> {User.first_name}</strong></span></p>:null}
           </CLink>
-          
-          <CLink
-            className="c-subheader-nav-link"
-            aria-current="page"
-            to="/dashboard"
-          ></CLink>
         </div>
       </CSubheader>
     </CHeader>
