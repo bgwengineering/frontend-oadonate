@@ -171,7 +171,7 @@ const NewShipping = ({ handleSubmit, pristine, submitting, nextPage }) => {
                   <Button
                     className="shipping-next-btn"
                     type="submit"
-                    onClick={() => nextPage()}
+                    onClick={()=>{createShipping(); setTimeout(() => {nextPage();},10000)}}
                     disabled={pristine || submitting}
                     >
                     Next

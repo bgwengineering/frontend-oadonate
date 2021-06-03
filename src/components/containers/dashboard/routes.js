@@ -29,9 +29,9 @@ const routes = [{
     { path: '/dashboard/profile/edit/', name: 'Change Password', component: ChangePassword },
     { path: '/dashboard/profile/shipping', name: 'Add shipping', component: shipping },
     { path: '/dashboard/profile/Coorporate', name: 'Cooporate', component: Coorporate },
-    { path: '/dashboard/donation/donation-received', name: 'Your Donation', component: donationReceived },
-    { path: '/dashboard/funds/yourFunds/cash-distribution', name: 'Cash Distribution', component: cashDistribution },
-    { path: '/dashboard/funds/yourFunds/item-distribution', name: 'Item Distribution', component: itemDistribution },
+    { path: '/dashboard/donation/donation-received', name: 'Donation Recieved', component: donationReceived },
+    { path: '/dashboard/funds/yourFunds/cash-distribution', name: 'Cash Fund', component: cashDistribution },
+    { path: '/dashboard/funds/yourFunds/item-distribution', name: 'Item Fund', component: itemDistribution },
     { path: '/dashboard/withdrawal', name: 'Withdrawal', component: withdrawal },
     {path: '/dashboard/products/auction', name:'Auction', component: auction},
     {path: '/dashboard/products/orders', name:'Order', component: order}

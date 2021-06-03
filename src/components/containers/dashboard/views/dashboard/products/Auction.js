@@ -35,7 +35,7 @@ const Auction = () => {
                 {/* table body */}
                 {auction.length ? (
                   auction.map((bid) => {
-                    const { id,bidding_for, bid_amount,create_date} = bid
+                    const { id,auction_item, bid_amount,create_date} = bid
                     return (
                       <tbody>
                         <tr key={id}>
@@ -46,7 +46,7 @@ const Auction = () => {
                             <div>Open</div>
                           </td>
                           <td className="text-center">
-                            <div>{bidding_for}</div>
+                            <div>{auction_item}</div>
                           </td>
                           <td className="text-center">
                             <div>{create_date.substring(0, 10)}</div>

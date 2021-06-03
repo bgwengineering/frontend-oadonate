@@ -326,7 +326,7 @@ const DonateItemForm = ({
                 Currency <span className="text-danger">*</span>
               </label>
               <select name="donate_currency" className="mb-4" onChange={handleChange}>
-                <option value=" "></option>
+                <option value=" ">Sele</option>
                 <option value="$">$</option>
                 <option value="₦">₦</option>
               </select>
@@ -349,7 +349,7 @@ const DonateItemForm = ({
               </label>
               <input
                 id="donate_bid_val"
-                name="donate_bid_min_val"
+                name="donate_determine_price"
                 onChange={handleChange}
                 data-msg-required="Please enter a valid number"
                 type="number"
@@ -368,7 +368,7 @@ const DonateItemForm = ({
               </label>
               <input
                 id="price_determination"
-                name="donate_determine_price"
+                name="donate_bid_min_val"
                 onChange={handleChange}
                 data-msg-required="Please enter a valid number"
                 type="number"
@@ -477,6 +477,7 @@ const DonateItemForm = ({
                     onClick={() => {
                       setCurrentOpenForm(null);
                       setIsDonateCardButtonsOpen(false);
+                      handleReset();
                     }}
                     className="mr-2 ml-2 float-left"
                     color="primary"
