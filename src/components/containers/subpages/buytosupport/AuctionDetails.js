@@ -12,6 +12,9 @@ import Box from "@material-ui/core/Box";
 import { RiAuctionFill } from "react-icons/ri";
 import { BsEyeSlash } from "react-icons/bs";
 import { BsEye } from "react-icons/bs";
+import { RiUserHeartFill} from "react-icons/ri";
+import { RiUserHeartLine} from "react-icons/ri";
+import { AiOutlineShop} from "react-icons/ai";
 import Countdown from "react-countdown";
 import { auctionBid } from "store/actions/auth/Dashboard";
 
@@ -64,7 +67,7 @@ const AuctionDetails = ({ match }) => {
 
   const handleSubmit = () => {
     const bidValues = {
-      bidding_for: bid_id,
+      auction_item: bid_id,
       bid_amount: typeBidAmount,
       bid_anonymously: anonymously,
     };
@@ -107,8 +110,28 @@ const AuctionDetails = ({ match }) => {
     donate_item_condition,
     donate_currency,
     donate_bid_endAt,
-    auction_item
+    auction_item,
+    user
   } = singleCollections;
+const [AuctionType, setauction] = useState(donate_mkt_bid)
+  const auction = auction_item && auction_item.map(user_bid=>{
+    const {user,bid_amount, bid_anonymously,id,create_date} = user_bid
+    return (
+      <div key={id}>
+        {bid_anonymously ? 
+        (<div><RiUserHeartLine/> <p>Anonymous{}₦{bid_amount}</p>{create_date.substring(0,10)}</div>)
+        : (<div><RiUserHeartFill/> <p>{user.first_name}{" "}{user.last_name}{" "}₦{bid_amount}</p>{create_date.substring(0,10)}</div>)}
+        {/* {bid_amount} */}
+      </div>
+    )
+  })
+  const currentBid = auction_item && auction_item.map((user_bid,i,arr)=> {
+    if(arr.length - 1 === i){
+      return user_bid.bid_amount
+    }
+  })
+ const Auction = donate_mkt_bid === "Open" ? <div>{auction}</div>:<h4>Auction is a close Bid</h4>
+
   return (
     <>
       <div className="auction-container">
@@ -123,7 +146,7 @@ const AuctionDetails = ({ match }) => {
             <div className="pl-5">
               <h2>{donate_item_name}</h2>
               <h4 className="text-title text-uppercase text-muted mb-2 font-weight-bold">
-                <span className="text-capitalize">Current Bid:{donate_currency}Amount will be here in progress</span>
+                <span className="text-capitalize">Current Bid:{donate_currency}{currentBid}</span>
               </h4>
 
               <p className="text-capitalize font-weight-bold mt-3 mb-0">
@@ -135,7 +158,7 @@ const AuctionDetails = ({ match }) => {
               <p className="text-muted lead">Auction ends: {donate_bid_endAt} </p>
               <p className="text-muted lead">
                 Time Left:
-                <Countdown date="2021-09-30" renderer={renderer} />{" "}
+                <Countdown date={String(donate_bid_endAt)} renderer={renderer} />
               </p>
               <p className="text-muted lead">Category: {donate_product_category}</p>
 
@@ -163,7 +186,7 @@ const AuctionDetails = ({ match }) => {
                       </span>
                     </p>
                     <button className="btn-bidding text-uppercase" onClick={handleSubmit}>
-                      Bid now{" "}
+                      Bid now
                       <span>
                         <RiAuctionFill className="riauction-icon" />
                       </span>
@@ -199,25 +222,29 @@ const AuctionDetails = ({ match }) => {
           <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
             <Tab label="BIDDING HISTORY" {...a11yProps(0)} />
             <Tab label="DESCRIPTION" {...a11yProps(1)} />
-            <Tab label="MORE INFORMATION" {...a11yProps(2)} />
+            <Tab label="VENDOR" {...a11yProps(2)} />
           </Tabs>
         </AppBar>
 
         <TabPanel value={value} index={0}>
           <div>
             <div className="col-lg-8">
-            Auction history will be here in progress
+            {Auction}
           </div>
           </div>
         </TabPanel>
         <TabPanel value={value} index={1}>
           <div>
-            <div className="col-lg-8"></div>
+            <div className="col-lg-8">
+              {donate_item_desc}
+            </div>
           </div>
         </TabPanel>
         <TabPanel value={value} index={2}>
           <div>
-            <div className="col-lg-8"></div>
+            <div className="col-lg-8 d-flex">
+              <AiOutlineShop/> Vendor: {user && <p>{user.first_name}{" "}{user.last_name}</p>}
+            </div>
           </div>
         </TabPanel>
       </div>
