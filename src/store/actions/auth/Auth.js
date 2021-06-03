@@ -91,6 +91,7 @@ export const login = ({ email, password }) => async (dispatch) => {
   const body = { email, password };
   try {
     const res = await axiosInstance.post("auth/jwt/create/", body);
+    dispatch(load_user());
     dispatch({
       type: LOGIN_SUCCESS,
       payload: res.data,
@@ -102,7 +103,6 @@ export const login = ({ email, password }) => async (dispatch) => {
     });
     dispatch(stopSubmit("LoginForm"));
     dispatch(reset("LoginForm"));
-    dispatch(load_user());
   } catch (err) {
     dispatch(setLoading());
     dispatch({ type: LOGIN_FAIL });

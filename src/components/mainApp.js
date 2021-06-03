@@ -29,7 +29,7 @@ const MainApp = () => {
  
   return (
       <>
-        <BrowserRouter>
+    <BrowserRouter>
       <Switch>         
         <Route path="/auth" component={AuthMain} />
         <Route path="/activate/:uid/:token" component={Activate} />

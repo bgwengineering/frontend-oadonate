@@ -20,7 +20,8 @@ const TheHeaderDropdown = ({history}) => {
   const dispatch = useDispatch();
   const authenticatedState = useSelector(state => state.authReducer)
   const {isAuthenticated} = authenticatedState;
-
+  // const { first_name, last_name } = user;
+  const User = useSelector(state => state.authReducer.user)
   const logoutUser = () => {
     dispatch(logout());
     history.push('/');
@@ -28,8 +29,7 @@ const TheHeaderDropdown = ({history}) => {
 
   const profileState = useSelector(state => state.userTypeReducer)
   const { profile_user } = profileState;
-  const userState = useSelector(state => state.authReducer.user);
-  const { first_name, last_name } = userState;
+  
 
 
   const profile_img = profile_user.length && profile_user.map(profile => profile.profile_image)
@@ -50,7 +50,18 @@ const TheHeaderDropdown = ({history}) => {
 
       <CDropdownMenu className="pt-0" placement="bottom-end">
         <CDropdownItem header tag="div" color="light" className="text-center">
-          {userState ?<strong> {first_name + " " + last_name}</strong>:null}
+          <CIcon content="" className="mfe-2" />
+          <CLink
+            className="c-subheader-nav-link text-center"
+            aria-current="page"
+            to="/dashboard/profile"
+          >
+            {User ? (
+              <strong>
+                {User.first_name} {User.last_name}
+              </strong>
+            ) : null}
+          </CLink>
         </CDropdownItem>
 
         <CDropdownItem>
@@ -59,7 +70,7 @@ const TheHeaderDropdown = ({history}) => {
             className="c-subheader-nav-link"
             aria-current="page"
             to="/dashboard"
-           >
+          >
             Dashboard
           </CLink>
         </CDropdownItem>
