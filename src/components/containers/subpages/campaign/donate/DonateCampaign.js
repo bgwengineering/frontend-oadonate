@@ -19,7 +19,7 @@ const DonateCampaign = ({ match }) => {
 
   const singleCampaign = useSelector((state) => state.fundDonateReducer.singleCampaign);
 
-  const { fund_img, fund_purpose, id } = singleCampaign;
+  const { fund_img, fund_purpose, id, fund_cash, fund_item } = singleCampaign;
 
   const [currentOpenForm, setCurrentOpenForm] = useState(null);
   const [isDonateCardButtonsOpen, setIsDonateCardButtonsOpen] = useState(false);
@@ -42,7 +42,7 @@ const DonateCampaign = ({ match }) => {
 
             {/* Donat tabs */}
             <div className="mt-4">
-              <DonateTabs story={fund_purpose} />
+              <DonateTabs story={fund_purpose} singleCampaign={singleCampaign} />
             </div>
           </div>
 
@@ -64,7 +64,7 @@ const DonateCampaign = ({ match }) => {
               display: isDonateCardButtonsOpen && !currentOpenForm ? "block" : "none",
             }}
           >
-            <DonatePrompt handleSwitchCurrentForm={handleSwitchCurrentForm} />
+            <DonatePrompt handleSwitchCurrentForm={handleSwitchCurrentForm}  />
           </div>
 
           <div

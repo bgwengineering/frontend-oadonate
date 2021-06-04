@@ -1,5 +1,5 @@
 import React from 'react'
-import ProductItem from './ProductItem'
+import ProductList from './ProductList'
 
 
 
@@ -9,7 +9,7 @@ const MarketCollection = () => {
         <>
         <div className="container">
         <div className="row">       
-            <ProductItem/> 
+            <ProductList/> 
       </div>   
     </div>  
      </>

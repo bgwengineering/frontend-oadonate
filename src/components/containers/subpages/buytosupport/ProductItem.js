@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import  {AiOutlineFolderOpen} from "react-icons/ai"
 import {Link} from 'react-router-dom'
 import { Button } from '@material-ui/core';
@@ -10,7 +10,18 @@ import CloseIcon from '@material-ui/icons/Close';
 
 var numeral = require('numeral')
 
-const ProductItem = () => {  
+const ProductItem = ({product,indx}) => { 
+  console.log(product)
+const {
+          donate_item_img,
+          donate_determine_price,
+          donate_mkt_price,
+          donate_item_name,
+          donate_currency,
+          id,
+          donate_item_condition
+        } = product;
+
   const dispatch = useDispatch()
   const marketState = useSelector(state=>state.marketPlaceReducer)
   const {collections} = marketState
@@ -42,24 +53,12 @@ const ProductItem = () => {
     }
     setOpen(false);
   };
+
+
 return (
   <>
-    {collections.length ? (
-      collections.slice(indexOfLastCard, indexOfFirstCard).map(itemValues => {
-
-        const {
-          donate_item_img,
-          donate_determine_price,
-          donate_mkt_price,
-          donate_item_name,
-          donate_currency,
-          id,
-        } = itemValues;
-        const marketPrice = numeral(donate_mkt_price).format("0, 0");
-
-        if (donate_determine_price || donate_mkt_price) {
-          return (
-            <div className="col-md-6 col-lg-3 my-3" key={id}>
+    
+            <div className="col-md-6 col-lg-3 my-3" key={indx}>
               <div className="card market-card">
                 <div className="img-container">
                   <Link to={`marketplace/products/${id}/details`}>
@@ -80,7 +79,7 @@ return (
                  </span> */}
                   <h5 className="d-flex  justify-content-center text-blue font-italic mt-2 mb-0">
                     <span className="ml-1">{donate_currency}</span>
-                    {marketPrice}
+                    {/* {marketPrice} */}
                   </h5>
                 </div>
 
@@ -88,12 +87,11 @@ return (
                 <div className="card-footer mt-5">
                   <Button
                     className="card-text add_cart_btn"
-                    onClick={() => {
-                      dispatch(addItem(itemValues));
-                      setOpen(true);
-                      setCount(count + 1);
-                      setInCart(true)
-                    }}
+                    // onClick={() => {
+                    //   dispatch(addItem(itemValues));
+                    //   setOpen(true);
+                    //   setCount(count + 1);
+                    // }}
                      disabled={inCart}
                   >
                     {inCart ? "in Cart" : "Add to Cart"}             
@@ -101,14 +99,8 @@ return (
                 </div>
               </div>
             </div>
-          );
-        }
-      })
-    ) : (
-        <div className="d-flex justify-content-center align-items-center w-100">
-        <h4>no available item for sale</h4>
-      </div>
-    )}
+      
+   
 
     <Snackbar
       anchorOrigin={{

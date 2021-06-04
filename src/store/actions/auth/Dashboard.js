@@ -208,7 +208,7 @@ try {
 // FETCH AUCTION
 export const fetchAuctionBid = () => async(dispatch,getState) =>{
 try {
-  const res= await axiosInstance.get("buy-to-support/auction",tokenConfig(getState))
+  const res= await axiosInstance.get("buy-to-support/user-auction",tokenConfig(getState))
   dispatch({type: actionTypes.FETCH_AUCTION_SUCCESS, payload: res.data});
 } catch (error) {
   dispatch({type: actionTypes.FETCH_AUCTION_FAIL,payload: error});
