@@ -2,7 +2,7 @@ import axios from 'axios';
 
 
 const baseURL = 'https://ogadonate.herokuapp.com/api/';
-// const baseURL = 'http://127.0.0.1:8000/api/';
+// const baseURL = 'https://fb5668a68c5f.ngrok.io/api/';
 
 
 const axiosInstance = axios.create({
@@ -31,7 +31,6 @@ axiosInstance.interceptors.response.use(
             if (refreshToken) {
                 const tokenParts = JSON.parse(atob(refreshToken.split('.')[1]));
 
-                // exp date in token is expressed in seconds, while now() returns milliseconds:
                 // exp date in token is expressed in seconds, while now() returns milliseconds:
                 const now = Math.ceil(Date.now() / 1000);
                 console.log(tokenParts.exp);

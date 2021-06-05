@@ -343,8 +343,6 @@
   }
 }
 
-
-
 // 
 .donate-cash-submit{
 	width: 100px;
@@ -401,14 +399,11 @@
 .MuiStepIcon-root.MuiStepIcon-completed{
   color: $logo_green !important;
 }
+
 .swiper-container-horizontal > .swiper-pagination-bullets, .swiper-pagination-bullet{
   // margin-top:400px;    
 }
 
-.MuiButton-containedPrimary {
-  background-color: $logo_green !important;
-}
-.MuiButton-textPrimary{
   color:#000 !important;
 }
 .MuiSnackbarContent-root{
@@ -428,17 +423,18 @@
     opacity:.8;
   }
 }
+
+
+
+
 .bid_btn{
   background-color: $logo_orange !important;
   width:125px !important;
   color:#fff !important;
+
   &:hover{
     opacity:.8;
-  }
-}
-
 .back_product{
-  background-color: $logo_green !important;
   width:195px !important;
   color:#fff !important;
 }
@@ -459,23 +455,20 @@
    border:none;
    background-color:#fff;
    &:hover{
+
        color:#0F6929;
    }
  }
-.cart-paybtn{
-  width: 180px;
+
+       color:#0F6929;   
+        outline: 2px solid #0F6929;
+   }
+ }
+.buy-btn-bidding{
+  width: 220px;
   height: 40px;
   border-top-left-radius: 50px;
   border-bottom-left-radius: 50px;
   border-top-right-radius: 50px;
   border-bottom-right-radius: 50px;
-  font-size:1rem;
-   color: #000;
-   outline: 2px solid #C75A00;
-   border:none;
-   background-color:#fff;
-   &:hover{
-       opacity:.8;
-   }
- }
-
+   color: #C75A00;

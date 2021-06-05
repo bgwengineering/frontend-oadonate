@@ -25,14 +25,11 @@
     border: 0.04rem solid rgba(0, 0, 0, 0.2);
     box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.02);
   }
+  
 .card-footer {
-  background: transparent;
-  border-top: transparent;
+  background: none;
   transition: all 1s linear;
   width:100%;
-  &:hover {
-      background: rgba(247, 247, 247);
-  }
 }
 .item-name{
   font-size:1.2rem;

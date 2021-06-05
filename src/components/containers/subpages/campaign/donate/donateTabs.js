@@ -34,14 +34,13 @@ const  a11yProps = (index) => {
   };
 }
 
-const SimpleTabs = ({story,singleCampaign}) => {
+const SimpleTabs = ({singleCampaign}) => {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-const {fund_cash,fund_item} = singleCampaign;
-console.log(typeof(fund_cash))
+const {fund_cash,fund_item,fund_purpose} = singleCampaign;
  const cash_donation = fund_cash && fund_cash.map(user_donate=>{
     const {user,donate_as_unknown,donate_comment,donate_currency,donate_amount,id,donate_createdAt} = user_donate
     return (
@@ -79,7 +78,7 @@ console.log(typeof(fund_cash))
          :<div><h6>No donation, you can support fund by donating.</h6></div>}
       </TabPanel>
       <TabPanel value={value} index={1}>
-        {story}
+        {fund_purpose}
       </TabPanel>
       <TabPanel value={value} index={2}>
       {fund_cash? <div>{donate_message}</div>:  <div><h6>No message yet.</h6></div>}

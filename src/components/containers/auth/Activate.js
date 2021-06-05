@@ -26,12 +26,14 @@ const Activate = ({ verify, match }) => {
     <>
       <CollapsedNavbar />
       <div className="verify-container d-flex flex-column justify-content-center align-items-center">
-        <div className="border border-primary">
+        <div>
           <h1>Verify your Account:</h1>
           <p>Kindly verify your account to enable you login</p>
+          <div className='justify-content-center d-flex'>
           <Button onClick={verify_account} type="button" className="verify-btn">
-            Verify
+             Verify
           </Button>
+          </div>
         </div>
       </div>
     </>

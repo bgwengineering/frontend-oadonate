@@ -14,7 +14,10 @@ import { setLoading } from "store/actions/Common";
 const stripePromise = "";
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> fa873ad9394819f043d4a4b44cc90c1bdb6ff999
 const DonateCashForm = ({ fund_cash, setCurrentOpenForm, setIsDonateCardButtonsOpen }) => {
   const paystackUrl = useSelector((state) => state.fundDonateReducer.paystackUrl);
   useEffect(() => {
@@ -132,6 +135,10 @@ const DonateCashForm = ({ fund_cash, setCurrentOpenForm, setIsDonateCardButtonsO
     setDonateFields({ ...donateFields, [e.target.name]: e.target.value });
   };
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> fa873ad9394819f043d4a4b44cc90c1bdb6ff999
   const ToggleSwitch = ({ checked, onChange, id, name }) => (
     <div>
       <input
@@ -210,7 +217,10 @@ const DonateCashForm = ({ fund_cash, setCurrentOpenForm, setIsDonateCardButtonsO
         <div className="d-flex">
           <h6 className="mr-3">currency type :</h6>
           <select name="donate_currency" className="mb-4" onChange={handleChange}>
+<<<<<<< HEAD
             <option value="" disabled></option>
+=======
+>>>>>>> fa873ad9394819f043d4a4b44cc90c1bdb6ff999
             <option value="$">$</option>
             <option value="₦">₦</option>
           </select>

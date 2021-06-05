@@ -42,7 +42,7 @@ const DonateCampaign = ({ match }) => {
 
             {/* Donat tabs */}
             <div className="mt-4">
-              <DonateTabs story={fund_purpose} singleCampaign={singleCampaign} />
+              <DonateTabs singleCampaign={singleCampaign} />
             </div>
           </div>
 
