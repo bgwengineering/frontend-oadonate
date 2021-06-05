@@ -44,7 +44,7 @@ const DonateItemForm = ({
         donate_bid_endAt: "",
     })
     const [itemImage, setItemImage] = useState(null);
-  
+
 
     const handlePriceForOgadonate = () => {
         setIsPriceOgadonate(true);
@@ -55,14 +55,14 @@ const DonateItemForm = ({
         setIsPriceAuction(true);
         setIsPriceOgadonate(false);
     };
- 
+
     const [currentQuestionnaireOpen, setCurrentQuestionnaireOpen] = useState(null);
     const [isQuestionAnswerShown, setIsQuestionAnswerShown] = useState(false);
 
     const handleSwitchCurrentQuestion = (formToShow) => {
         setCurrentQuestionnaireOpen(formToShow);
     };
-   
+
     const dispatch = useDispatch();
 
     const handleChange = (e) => {
@@ -82,13 +82,13 @@ const DonateItemForm = ({
             };
             imageObject.src = localImageUrl;
             setItemImage({
-              donate_item_img: imageFile
-          });
+                donate_item_img: imageFile
+            });
         }
     };
 
     const onSubmitForm = async (e) => {
-      e.preventDefault();
+        e.preventDefault();
         let formData = new FormData();
         formData.append("donate_item_img", itemImage.donate_item_img);
         formData.append("donate_bid_endAt", postData.donate_bid_endAt);
@@ -106,7 +106,7 @@ const DonateItemForm = ({
         formData.append("donate_percentage_value", postData.donate_percentage_value);
         formData.append("donate_product_category", postData.donate_product_category);
         formData.append("fund_item", fund_item);
-      
+
         const config = {
             headers: {
                 "Content-Type": "application/json",
@@ -123,22 +123,22 @@ const DonateItemForm = ({
             dispatch(reset("donateItemForm"));
             dispatch(offLoading());
         } catch (error) {
-          if (error.response.data) {
-            error.response.data.donate_item_name.map((err) => {
-              return dispatch({ type: SHOW_ERROR_MESSAGE, payload: `Item Name: Can not be empty` });
-            });
-            dispatch(offLoading());
-          } else if (error.response.data) {
-            error.response.data.donate_item_img.map((err) => {
-              return dispatch({ type: SHOW_ERROR_MESSAGE, payload: `Image Field: No file selected` });
-            });
-            dispatch(offLoading());
-          } else if (error.response.data) {
-            error.response.data.donate_item_condition.map((err) => {
-              return dispatch({ type: SHOW_ERROR_MESSAGE, payload: `Item Image Field: ${err}` });
-            });
-            dispatch(offLoading());
-        }
+            if(error.response.data) {
+                error.response.data.donate_item_name.map((err) => {
+                    return dispatch({ type: SHOW_ERROR_MESSAGE, payload: `Item Name: Can not be empty` });
+                });
+                dispatch(offLoading());
+            } else if(error.response.data) {
+                error.response.data.donate_item_img.map((err) => {
+                    return dispatch({ type: SHOW_ERROR_MESSAGE, payload: `Image Field: No file selected` });
+                });
+                dispatch(offLoading());
+            } else if(error.response.data) {
+                error.response.data.donate_item_condition.map((err) => {
+                    return dispatch({ type: SHOW_ERROR_MESSAGE, payload: `Item Image Field: ${err}` });
+                });
+                dispatch(offLoading());
+            }
             // } else {
             //     error.response.data.donate_item_img.map((err) => {
             //         return dispatch({ type: SHOW_ERROR_MESSAGE, payload: `Validiate Image Field: ${err}` });
@@ -441,8 +441,8 @@ const DonateItemForm = ({
         setActiveStep(0);
     };
 
-    return ( 
-    <>
+    return ( <
+        >
         <form onSubmit={onSubmitForm} className="fundforms_container">
         <div className="w-80">
           <Stepper activeStep={activeStep} alternativeLabel className="horizontal-stepper-linear">
@@ -516,8 +516,8 @@ const DonateItemForm = ({
             )}
           </div>
         </div>
-      </form> 
-      </>
+      </form> <
+        />
     );
 };
 

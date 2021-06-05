@@ -41,6 +41,7 @@ const SimpleTabs = ({story,singleCampaign}) => {
     setValue(newValue);
   };
 const {fund_cash,fund_item} = singleCampaign;
+console.log(typeof(fund_cash))
  const cash_donation = fund_cash && fund_cash.map(user_donate=>{
     const {user,donate_as_unknown,donate_comment,donate_currency,donate_amount,id,donate_createdAt} = user_donate
     return (
@@ -72,13 +73,16 @@ const {fund_cash,fund_item} = singleCampaign;
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-        {fund_cash.id ? <div>{cash_donation}</div>: <div><h6>No donation, you can support fund by donating.</h6></div>}
+        {/* not done check for empty object */}
+        {fund_cash?
+        <div>{cash_donation}</div> 
+         :<div><h6>No donation, you can support fund by donating.</h6></div>}
       </TabPanel>
       <TabPanel value={value} index={1}>
         {story}
       </TabPanel>
       <TabPanel value={value} index={2}>
-      {fund_cash.id ? <div>{donate_message}</div>: <div><h6>No message yet.</h6></div>}
+      {fund_cash? <div>{donate_message}</div>:  <div><h6>No message yet.</h6></div>}
       </TabPanel>
     </div>
   );

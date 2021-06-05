@@ -33,9 +33,7 @@ const fundDonate = (state = initialState, action) => {
                 fund: payload,
             };
         case actionTypes.CREATE_CASH_DONATION_OGAFUND_SUCCESS:
-            return {
-                ...state,
-                Ogadonate_cash: payload,
+            return {...state, Ogadonate_cash: payload,
                 loading: false,
             };
         case actionTypes.CREATE_ITEM_DONATION_OGAFUND_SUCCESS:
