@@ -1,0 +1,21 @@
+
+.description-container {
+ @media screen and (min-width:1200px){
+    max-width:890px !important;
+ }
+  .description-text{
+    text-align: justify;
+    text-justify: inter-character; 
+    word-wrap:break-word;
+    letter-spacing: -2px;
+    word-spacing:1px;  
+    font-size:1.7rem;
+    line-height:40px
+  }
+  .description-sub-text{
+    font-size:1.4rem;
+    text-align: justify;
+    text-justify: inter-character;
+    
+  }
+}

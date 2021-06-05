@@ -1,0 +1,377 @@
+
+// $logo_green: #0F6929;
+
+
+*{
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+// Nav Style
+.nav-toolbar {
+  background-color: $logo_green;
+  height: 80px;
+  width:100%; 
+  position:sticky;
+  top:0px;
+  z-index:600;
+}
+
+// top nav section
+.topbar__nav{
+ height:67px;
+ background-color:#F5F5F5;
+}
+
+.top__nav_menu{
+  list-style-type:none;
+  .top-nav-item {
+    text-decoration: none;
+    color:#000;
+    @media screen and (max-width:630px) {
+      display:none;
+    }
+    & .top-nav-item:hover, .top-navigation-link:hover{
+      text-decoration: none;
+    }
+   }
+   .top-subnav-item {
+    position: relative;
+      &:hover{
+        .top-nav__submenu{
+          list-style:none;
+          visibility: visible;
+          opacity: 1;
+          transition: 0.3s visibility ease-in 0.1s, 0.4s opacity ease-out;
+        }
+      }     
+    & .top-nav__submenu{
+      list-style:none;
+      position: absolute;
+      z-index: 1000;
+      width: 200px;
+      background-color:$white;
+      padding:0px;
+      top: 20px;
+      border-radius: 8px;
+      visibility: hidden;
+      opacity: 0;
+      & .top-nav__submenu-item{
+        padding: 7px 0px 7px 0px; 
+        &:hover{
+          background-color: $logo_orange;
+          color:#fff;
+        }
+        & #tel, #gmail{      
+          color:#000; 
+          padding: 7px 132px 7px 4px;
+          &:hover{
+            color:#fff;
+              background-color: $logo_orange;
+          }
+        } 
+      }
+      } 
+  } 
+
+  .top-navigation-link{
+    font-size:1rem;
+    text-decoration: none;
+    color:inherit;
+    &:hover{
+      text-decoration:none;
+    }
+  }
+  .button-top-navigation-link{
+    text-decoration: none;
+    color:inherit;
+    &:hover{
+      text-decoration:none;
+    }
+  }
+
+
+ 
+// nav item
+  .nav-item {
+   text-decoration: none;
+   & a:hover, .navigation-link:hover, .nav-item, .sub-navigation-link:hover{
+     text-decoration: none;
+   }
+   & a:focus, .navigation-link:focus, .navigation-link:hover{
+     text-decoration: none;
+   }
+  }
+
+  .nav-fitwitter, .nav-imfacebook, .nav-ioinstagram{
+     font-size:1rem;
+     color:$top_nav;
+     &:hover{
+       color:$logo_orange;
+     }
+  }
+}
+
+// second-navbar
+.navbar__donate {
+  height: 100%;
+  display:flex;
+  align-items:center;
+      .home-icon-container{
+      width:65%;
+    }
+   // collasped navbar
+  .collapsednav-item {
+     padding: 0px 20px; 
+    text-decoration: none;  
+     .colnavigation-link {
+      padding: 0px 10px !important;
+      color:#000;
+      &:hover{
+        color:#000; 
+        opacity:.8;
+        text-decoration:none;
+      }
+    }
+  }
+
+  .nav-center{
+    width:30%;
+    @media screen and (max-width:1390px){
+      width:15%;
+    }
+    @media(max-width:1078px) {
+      margin-left:-140px;
+      width:25%;
+    }
+    @media screen and (max-width:881px) {
+      margin-right:50px;
+      width:15%;
+    }
+    @media screen and (max-width:674px) {
+      margin-left:95px;
+      width:15%;
+    }
+    @media screen and (max-width:540px) {
+      margin-left:15px;
+      width:15%;
+    }
+    .logo {
+      width: 150px;
+    }
+  }
+ 
+  ul {
+    list-style-type: none;
+  }
+   .nav-item {
+     padding: 0px 6px; 
+    text-decoration: none;
+     .navigation-link {
+      padding: 0px 10px !important;
+      color:#000;
+      &:hover{
+        color:$white; 
+        opacity:.8;
+      }
+    }
+  //  
+    & a:hover, .navigation-link:hover, .nav-item, .sub-navigation-link:hover{
+      text-decoration: none;
+    }
+    & a:focus, .navigation-link:focus, .navigation-link:hover{
+      text-decoration: none;
+    }
+  
+    .navigation-link--active {
+      border-bottom: 2px solid $logo_orange;
+      transition: border-bottom .5s ease-in-out; 
+      &:hover{
+        border:none;
+      }
+    }
+  }
+
+  .navbar-left-container{
+    width:45%;
+
+  .navbar-left {
+    display: flex; 
+    flex-wrap: nowrap;
+    width:100%;
+    @media screen and (max-width:1084px){
+      display: flex; 
+      flex-wrap: wrap;
+    }
+      @media screen and (max-width:1078px) {
+        display:none;
+     
+      }
+  
+    .fund-nav-item, .donate-nav-item {
+      position: relative;
+        &:hover{
+          .nav__submenu{
+            visibility: visible;
+            opacity: 1;
+            transition: 0.3s visibility ease-in 0.1s, 0.4s opacity ease-out;
+          }
+        }     
+      & .nav__submenu{
+        position: absolute;
+        z-index: 1000;
+        width: 200px;
+        background-color:$white;
+        padding:0px;
+        top: 20px;
+        border-radius: 8px;
+        visibility: hidden;
+        opacity: 0;
+       
+        & .nav__submenu-item{
+          padding: 7px 0px 7px 0px;
+         
+          &:hover{
+            background-color: $logo_orange;
+          }
+          & #personal, #business, #community,  #startup{      
+            color:#000; 
+            padding: 7px 132px 7px 4px;
+            &:hover{
+              color:#fff;
+                background-color: $logo_orange;
+            }
+          }
+          #startup, #see-all{
+            color:#000; 
+            padding: 7px 139px 7px 4px;
+            &:hover{
+              color:#fff;
+                background-color: $logo_orange;
+          }
+        }
+          #ngo{
+            color:#000; 
+            padding: 7px 159px 7px 4px;
+            &:hover{
+              color:#fff;
+                background-color: $logo_orange;
+            }
+          }
+          #community{  
+            color:#000; 
+            padding: 7px 114px 7px 4px;
+            &:hover{
+              color:#fff;
+                background-color: $logo_orange;
+            }
+          }
+          #contact{    
+            color:#000; 
+            padding: 7px 120px 7px 4px;
+            &:hover{
+               color:#fff;
+                background-color: $logo_orange;
+            }
+          }
+          #about{    
+            color:#000; 
+            padding: 7px 130px 7px 4px;
+            &:hover{
+               color:#fff;
+                background-color: $logo_orange;
+            }
+          }
+          #auction{
+            color:#000; 
+            padding: 7px 68px 7px 4px;
+            &:hover{
+               color:#fff;
+                background-color: $logo_orange;
+            }
+          }
+          #donate-cash, #donate-item{
+            color:#000; 
+            padding: 7px 104px 7px 4px;
+            &:hover{
+               color:#fff;
+                background-color: $logo_orange;
+            }
+          }
+          #donate-ogadonate{
+            color:#000; 
+            padding: 7px 40px 7px 4px;
+            &:hover{
+               color:#fff;
+                background-color: $logo_orange;
+            }
+          }
+        }
+   
+        }
+       
+    } 
+  }
+  }
+
+  // right container
+  .__end-right-container {
+      display:flex;
+      @media screen and (max-width:1390px){
+        width:40%;
+      }
+      @media screen and (max-width:915px){
+        width:50%;
+      }
+       @media screen and (max-width:881px) {
+        width:70%;
+      }
+   
+     .bar-right {
+      display: flex;
+      align-items:center;
+      justify-content: space-between;
+      @media screen and (max-width:1390px){
+      display:flex;
+      width:100%;
+      justify-content: flex-end;
+      padding-right:20px;
+      }
+      @media screen and (max-width:342px){
+        padding-right:0px;
+      }
+      .navbar-right-hidden{
+        @media screen and (max-width:674px) {
+          display:none;
+        }
+      }
+      .navbar-right-loggedin-hidden{
+         @media screen and (max-width:500px) {
+          display:none;
+        }
+      }
+  }
+}
+.shopping-cart{
+  font-size: 32px;
+}
+}
+.cart-badge{
+  position:relative;
+  .bill-badge{
+    position:absolute;
+    vertical-align: top;
+    right:-14px;
+    top:-5px;
+  }
+  .badge-pill{
+     padding-left:0.4em 0.7em;
+  }
+  .badge{
+    font-size:85% !important;
+    background-color:#C75A00 !important;
+    color:#fff !important;
+  }
+}
+

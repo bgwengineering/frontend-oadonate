@@ -1,0 +1,32 @@
+.personal-form-container{
+    width:100%;
+    margin-right:auto;
+    margin-left: auto;
+    max-width:550px;
+    box-shadow: rgba(78, 38, 38, 0.35)  0 5px 15px 0px;
+    background-color: #fff;
+    height:700px;
+    .personal-reg-heading{
+        background-color: $logo_green;
+    }
+    .all-fields{
+        margin:0 auto;
+        max-width:500px;
+    }
+    .personal-reg-fields {
+        width:100%; 
+      
+    }
+   
+}
+
+   .password-inputs{
+            width:80% !important;
+            padding:15px !important;
+            border-radius:3px !important;
+            outline:none !important;
+            border:1px solid #ccc !important;
+            &:focus{
+                border:1px solid #05591B !important;
+            }
+        }
