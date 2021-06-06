@@ -8,16 +8,12 @@ import Button from "@material-ui/core/Button";
 import axiosInstance from "util/api";
 import { setLoading } from "store/actions/Common";
 
-// const stripePromise = window.Stripe(
-//   "pk_test_51Ihz1EJtAhKBp45zJXZLT2RmTKQLDbpZRPerC1uKcnQ69N1R1IchlmRhCBMp3cwJ4DIVpSf9iHe4Hnq9wUdAC6OA00DNznJtw5"
-// );
-const stripePromise = "";
+const stripePromise = window.Stripe(
+  "pk_test_51Ihz1EJtAhKBp45zJXZLT2RmTKQLDbpZRPerC1uKcnQ69N1R1IchlmRhCBMp3cwJ4DIVpSf9iHe4Hnq9wUdAC6OA00DNznJtw5"
+);
 
 
-<<<<<<< HEAD
 
-=======
->>>>>>> fa873ad9394819f043d4a4b44cc90c1bdb6ff999
 const DonateCashForm = ({ fund_cash, setCurrentOpenForm, setIsDonateCardButtonsOpen }) => {
   const paystackUrl = useSelector((state) => state.fundDonateReducer.paystackUrl);
   useEffect(() => {
@@ -135,10 +131,6 @@ const DonateCashForm = ({ fund_cash, setCurrentOpenForm, setIsDonateCardButtonsO
     setDonateFields({ ...donateFields, [e.target.name]: e.target.value });
   };
 
-<<<<<<< HEAD
-=======
-
->>>>>>> fa873ad9394819f043d4a4b44cc90c1bdb6ff999
   const ToggleSwitch = ({ checked, onChange, id, name }) => (
     <div>
       <input
@@ -217,10 +209,7 @@ const DonateCashForm = ({ fund_cash, setCurrentOpenForm, setIsDonateCardButtonsO
         <div className="d-flex">
           <h6 className="mr-3">currency type :</h6>
           <select name="donate_currency" className="mb-4" onChange={handleChange}>
-<<<<<<< HEAD
-            <option value="" disabled></option>
-=======
->>>>>>> fa873ad9394819f043d4a4b44cc90c1bdb6ff999
+            <option value="">select currency</option>
             <option value="$">$</option>
             <option value="₦">₦</option>
           </select>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink,withRouter } from "react-router-dom";
 import Logo from "assets/images/ogdonate-logo.jpeg";
 import Button from "@material-ui/core/Button";
 import { IoIosArrowDown } from "react-icons/io";
@@ -17,7 +17,8 @@ import { updateMarketCollections } from "store/actions/MarketPlace";
 
 
 
-const Navbar = ({ menuOpen }) => {
+const Navbar = ({ menuOpen,history}) => {
+  const authState = useSelector(state => state.authReducer);
   const { isAuthenticated } = authState;
 
   const hiddenState = useSelector(state => state.cartReducer);
@@ -391,6 +392,7 @@ const Navbar = ({ menuOpen }) => {
             exact
             activeClassName="navigation-link--active"
             className="navigation-link text-white"
+            onClick={refreshState}
           >
             <img
               src={Logo}

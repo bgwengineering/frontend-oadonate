@@ -7,97 +7,16 @@ import StepLabel from "@material-ui/core/StepLabel";
 import Button from "@material-ui/core/Button";
 import { setLoading } from "store/actions/Common";
 
-// const stripePromise = window.Stripe(
-//   "pk_test_51Ihz1EJtAhKBp45zJXZLT2RmTKQLDbpZRPerC1uKcnQ69N1R1IchlmRhCBMp3cwJ4DIVpSf9iHe4Hnq9wUdAC6OA00DNznJtw5"
-// );
-const stripePromise = "";
+const stripePromise = window.Stripe(
+  "pk_test_51Ihz1EJtAhKBp45zJXZLT2RmTKQLDbpZRPerC1uKcnQ69N1R1IchlmRhCBMp3cwJ4DIVpSf9iHe4Hnq9wUdAC6OA00DNznJtw5"
+);
+
 const Message = ({ message }) => (
-<<<<<<< HEAD
-    <section>
-=======
   <section>
->>>>>>> fa873ad9394819f043d4a4b44cc90c1bdb6ff999
     <p>{message}</p>
   </section>
 );
 const DonateOgaCashForm = ({ fund_cash, setIsDonateOgaForm, setCurrentOpenForm }) => {
-<<<<<<< HEAD
-    const paystackUrl = useSelector((state) => state.fundDonateReducer.paystackUrl);
-    useEffect(() => {
-        if(paystackUrl.length) {
-            window.location = paystackUrl;
-        }
-    }, [paystackUrl]);
-    useEffect(() => {
-        // Check to see if this is a redirect back from Checkout
-        const query = new URLSearchParams(window.location.search);
-        if(query.get("success")) {
-            setMessage("Order placed! You will receive an email confirmation.");
-        }
-        if(query.get("canceled")) {
-            setMessage("Order canceled -- continue to shop around and checkout when you're ready.");
-        }
-    }, []);
-
-    const [giveOgadonate, setGiveOgadonate] = useState(false);
-    const [message, setMessage] = useState("");
-    const [donateFields, setDonateFields] = useState({
-        donate_amount: "",
-        donate_payment_method: "",
-        donate_comment: "",
-        donate_currency: "",
-        donate_collect_per: false,
-        donate_as_unknown: "",
-        donate_accept: "",
-    });
-
-    const [paystack, setPaystack] = useState(true);
-    const [stripe, setStripe] = useState(false);
-
-    const setPaystackBtn = () => {
-        setStripe(false);
-        setPaystack(true);
-    };
-    const setStripeBtn = () => {
-        setPaystack(false);
-        setStripe(true);
-    };
-    const dispatch = useDispatch();
-    const UserEmail = useSelector((state) => state.authReducer.user) || "Customer@gmail.com";
-    const { email } = UserEmail;
-
-    const {
-        donate_amount,
-        donate_payment_method,
-        donate_comment,
-        donate_currency,
-        donate_collect_per,
-        donate_as_unknown,
-        donate_accept,
-    } = donateFields;
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const formData = {
-            donate_amount,
-            donate_payment_method,
-            donate_comment,
-            donate_currency,
-            donate_collect_per: giveOgadonate,
-            donate_as_unknown,
-            donate_accept,
-            fund_cash: fund_cash,
-        };
-        dispatch(donateCashToOga(formData));
-    };
-
-    const handleChange = (e) => {
-        setDonateFields({ ...donateFields, [e.target.name]: e.target.value });
-    };
-
-    const ToggleSwitch = ({ checked, onChange, id, name }) => (
-        <div>
-=======
   const paystackUrl = useSelector((state) => state.fundDonateReducer.paystackUrl);
   useEffect(() => {
     if (paystackUrl.length) {
@@ -147,12 +66,25 @@ const DonateOgaCashForm = ({ fund_cash, setIsDonateOgaForm, setCurrentOpenForm }
     donate_payment_method,
     donate_comment,
     donate_currency,
-    donate_collect_per,
     donate_as_unknown,
     donate_accept,
   } = donateFields;
 
-  const handleSubmit = (e) => {
+  const handleSubmitPaystack = (e) => {
+    e.preventDefault();
+    const formData = {
+      donate_amount,
+      donate_payment_method,
+      donate_comment,
+      donate_currency,
+      donate_collect_per: giveOgadonate,
+      donate_as_unknown,
+      donate_accept,
+      fund_cash: fund_cash,
+    };
+    dispatch(donateCashToOga(formData));
+  };
+  const handleSubmitStripe = (e) => {
     e.preventDefault();
     const formData = {
       donate_amount,
@@ -171,45 +103,7 @@ const DonateOgaCashForm = ({ fund_cash, setIsDonateOgaForm, setCurrentOpenForm }
     setDonateFields({ ...donateFields, [e.target.name]: e.target.value });
   };
 
-  const ToggleSwitch = ({ checked, onChange, id, name }) => (
-    <div>
->>>>>>> fa873ad9394819f043d4a4b44cc90c1bdb6ff999
-      <input
-        name={name}
-        type="checkbox"
-        checked={checked}
-        onChange={(e) => onChange(e.target.checked)}
-        id={id}
-      />
-    </div>
-<<<<<<< HEAD
-    );
-    const [activeStep, setActiveStep] = useState(0);
-    const getSteps = () => {
-        return ["Amount", "Attestation", "Payment Information"];
-    };
 
-    const steps = getSteps();
-    const getStepContent = (stepIndex) => {
-        switch (stepIndex) {
-            case 0:
-                return getPersonalInformation();
-            case 1:
-                return getTrack();
-            case 2:
-                return getItems();
-            default:
-                return "Uknown stepIndex";
-        }
-    };
-
-    // you can call this function anything
-
-    const getPersonalInformation = () => {
-        return (
-            <fieldset>
-=======
-  );
   const [activeStep, setActiveStep] = useState(0);
   const getSteps = () => {
     return ["Amount", "Attestation", "Payment Information"];
@@ -234,7 +128,6 @@ const DonateOgaCashForm = ({ fund_cash, setIsDonateOgaForm, setCurrentOpenForm }
   const getPersonalInformation = () => {
     return (
       <fieldset>
->>>>>>> fa873ad9394819f043d4a4b44cc90c1bdb6ff999
         <h2 className="fs-title">
           How much do you want to donate <span className="text-danger">*</span>
         </h2>
@@ -258,21 +151,12 @@ const DonateOgaCashForm = ({ fund_cash, setIsDonateOgaForm, setCurrentOpenForm }
           onChange={handleChange}
         />
       </fieldset>
-<<<<<<< HEAD
-        );
-    };
-
-    const getTrack = () => {
-        return (
-            <fieldset>
-=======
     );
   };
 
   const getTrack = () => {
     return (
       <fieldset>
->>>>>>> fa873ad9394819f043d4a4b44cc90c1bdb6ff999
         <label> Message</label>
         <textarea
           className="donate-message-comment all-input-fields"
@@ -283,15 +167,6 @@ const DonateOgaCashForm = ({ fund_cash, setIsDonateOgaForm, setCurrentOpenForm }
           name="donate_comment"
         />
       </fieldset>
-<<<<<<< HEAD
-        );
-    };
-
-    const getItems = () => {
-        return ( <
-            >
-            <fieldset>
-=======
     );
   };
 
@@ -299,16 +174,14 @@ const DonateOgaCashForm = ({ fund_cash, setIsDonateOgaForm, setCurrentOpenForm }
     return (
       <>
         <fieldset>
->>>>>>> fa873ad9394819f043d4a4b44cc90c1bdb6ff999
           {giveOgadonate ? (
             <input
               type="number"
               id="fixins"
-              className="input-number"
               placeholder="I authorize Ogadonate to take .."
               name="donate_percentage_value"
               onChange={handleChange}
-              className="all-input-fields"
+              className="all-input-fields input-number"
             />
           ) : null}
           <h2 className="fs-title mt-3">Payment Information</h2>
@@ -322,9 +195,8 @@ const DonateOgaCashForm = ({ fund_cash, setIsDonateOgaForm, setCurrentOpenForm }
               onClick={setPaystackBtn}
             />
             <p className="mt-4">PayStack</p>
-            <p className="mt-4 ">Bank transfer</p>
 
-            <input
+            {/* <input
               name="donate_payment_method"
               type="radio"
               className="mr-1 mt-2 ml-3"
@@ -332,30 +204,8 @@ const DonateOgaCashForm = ({ fund_cash, setIsDonateOgaForm, setCurrentOpenForm }
               value="Stripe"
               onClick={setStripeBtn}
             />
-            <p className="mt-4">Stripe</p>
+            <p className="mt-4">Stripe</p> */}
           </div>
-<<<<<<< HEAD
-        </fieldset> <
-            />
-        );
-    };
-
-    //
-    const handleNext = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    };
-
-    const handleBack = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep - 1);
-    };
-    const handleReset = () => {
-        setActiveStep(0);
-    };
-
-    return ( <
-        >
-        <div className="fundforms_container">
-=======
         </fieldset>
       </>
     );
@@ -376,7 +226,6 @@ const DonateOgaCashForm = ({ fund_cash, setIsDonateOgaForm, setCurrentOpenForm }
   return (
     <>
       <div className="fundforms_container">
->>>>>>> fa873ad9394819f043d4a4b44cc90c1bdb6ff999
         <form className="w-80">
           <Stepper activeStep={activeStep} alternativeLabel className="horizontal-stepper-linear">
             {steps.map((label, index) => {
@@ -410,6 +259,7 @@ const DonateOgaCashForm = ({ fund_cash, setIsDonateOgaForm, setCurrentOpenForm }
                     onClick={() => {
                       setIsDonateOgaForm(false);
                       setCurrentOpenForm(null);
+                      handleReset();
                     }}
                     className="mr-2 ml-2 float-left"
                     color="primary"
@@ -463,42 +313,44 @@ const DonateOgaCashForm = ({ fund_cash, setIsDonateOgaForm, setCurrentOpenForm }
                 >
                   Back
                 </Button>
-
+                <Button
+                    onClick={() => {
+                      setIsDonateOgaForm(false);
+                      setCurrentOpenForm(null);
+                      handleReset();
+                    }}
+                    className="mr-2 ml-2 float-left"
+                    color="primary"
+                  >
+                    Cancel
+                  </Button>
                 {paystack ? (
                   <Button
                     type="submit"
                     name="submit"
                     className="MuiButton-containedPrimary"
-                    onClick={handleSubmit}
+                    onClick={handleSubmitPaystack}
                   >
                     Paystack
                   </Button>
                 ) : (
-                  <Button
-                    type="submit"
-                    name="submit"
-                    className="MuiButton-containedPrimary"
-                    onClick={handleSubmit}
-                  >
-                    Stripe
-                  </Button>
+                  // <Button
+                  //   type="submit"
+                  //   name="submit"
+                  //   className="MuiButton-containedPrimary"
+                  //   onClick={handleSubmitStripe}
+                  // >
+                  //   Stripe
+                  // </Button>
+                  null
                 )}
               </>
             )}
           </div>
         </form>
-<<<<<<< HEAD
-      </div> <
-        />
-    );
-};
-
-export default DonateOgaCashForm;
-=======
       </div>
     </>
   );
 };
 
 export default DonateOgaCashForm;
->>>>>>> fa873ad9394819f043d4a4b44cc90c1bdb6ff999

@@ -1,14 +1,10 @@
 import React, { useState } from "react";
-import { AiOutlineFolderOpen } from "react-icons/ai";
-import { Link } from "react-router-dom";
-import { Button } from "@material-ui/core";
-import { addItem } from "store/actions/cart/cart.actions";
 import { useDispatch, useSelector } from "react-redux";
 import Snackbar from "@material-ui/core/Snackbar";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import ProductItem from "./ProductItem";
-var numeral = require("numeral");
+
 // 2705-0058-3193
 
 const ProductList = () => {
@@ -19,10 +15,9 @@ const ProductList = () => {
 
   const indexOfLastCard = BuyToSupportPage * supportCardPerPage;
   const indexOfFirstCard = indexOfLastCard + supportCardPerPage;
-  const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const [count, setCount] = useState(0);
-  const [inCart, setInCart] = useState(false);
+  
   const controlSingleOrMultipleItemClick = (num) => {
     if (num === 1) {
       return "item added";

@@ -13,7 +13,7 @@ import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
 import Button from "@material-ui/core/Button";
 import { setLoading, offLoading } from "store/actions/Common";
-import noImg from "assets/images/logo.jpeg";
+
 
 
 
@@ -44,11 +44,7 @@ const DonateItemForm = ({
         donate_bid_endAt: "",
     })
     const [itemImage, setItemImage] = useState(null);
-<<<<<<< HEAD
-
-=======
   
->>>>>>> fa873ad9394819f043d4a4b44cc90c1bdb6ff999
 
     const handlePriceForOgadonate = () => {
         setIsPriceOgadonate(true);
@@ -59,22 +55,14 @@ const DonateItemForm = ({
         setIsPriceAuction(true);
         setIsPriceOgadonate(false);
     };
-<<<<<<< HEAD
-
-=======
  
->>>>>>> fa873ad9394819f043d4a4b44cc90c1bdb6ff999
     const [currentQuestionnaireOpen, setCurrentQuestionnaireOpen] = useState(null);
     const [isQuestionAnswerShown, setIsQuestionAnswerShown] = useState(false);
 
     const handleSwitchCurrentQuestion = (formToShow) => {
         setCurrentQuestionnaireOpen(formToShow);
     };
-<<<<<<< HEAD
-
-=======
    
->>>>>>> fa873ad9394819f043d4a4b44cc90c1bdb6ff999
     const dispatch = useDispatch();
 
     const handleChange = (e) => {
@@ -94,22 +82,13 @@ const DonateItemForm = ({
             };
             imageObject.src = localImageUrl;
             setItemImage({
-<<<<<<< HEAD
-                donate_item_img: imageFile
-            });
-=======
               donate_item_img: imageFile
           });
->>>>>>> fa873ad9394819f043d4a4b44cc90c1bdb6ff999
         }
     };
 
     const onSubmitForm = async (e) => {
-<<<<<<< HEAD
-        e.preventDefault();
-=======
       e.preventDefault();
->>>>>>> fa873ad9394819f043d4a4b44cc90c1bdb6ff999
         let formData = new FormData();
         formData.append("donate_item_img", itemImage.donate_item_img);
         formData.append("donate_bid_endAt", postData.donate_bid_endAt);
@@ -127,11 +106,7 @@ const DonateItemForm = ({
         formData.append("donate_percentage_value", postData.donate_percentage_value);
         formData.append("donate_product_category", postData.donate_product_category);
         formData.append("fund_item", fund_item);
-<<<<<<< HEAD
-
-=======
       
->>>>>>> fa873ad9394819f043d4a4b44cc90c1bdb6ff999
         const config = {
             headers: {
                 "Content-Type": "application/json",
@@ -148,24 +123,6 @@ const DonateItemForm = ({
             dispatch(reset("donateItemForm"));
             dispatch(offLoading());
         } catch (error) {
-<<<<<<< HEAD
-            if(error.response.data) {
-                error.response.data.donate_item_name.map((err) => {
-                    return dispatch({ type: SHOW_ERROR_MESSAGE, payload: `Item Name: Can not be empty` });
-                });
-                dispatch(offLoading());
-            } else if(error.response.data) {
-                error.response.data.donate_item_img.map((err) => {
-                    return dispatch({ type: SHOW_ERROR_MESSAGE, payload: `Image Field: No file selected` });
-                });
-                dispatch(offLoading());
-            } else if(error.response.data) {
-                error.response.data.donate_item_condition.map((err) => {
-                    return dispatch({ type: SHOW_ERROR_MESSAGE, payload: `Item Image Field: ${err}` });
-                });
-                dispatch(offLoading());
-            }
-=======
           if (error.response.data) {
             error.response.data.donate_item_name.map((err) => {
               return dispatch({ type: SHOW_ERROR_MESSAGE, payload: `Item Name: Can not be empty` });
@@ -182,7 +139,6 @@ const DonateItemForm = ({
             });
             dispatch(offLoading());
         }
->>>>>>> fa873ad9394819f043d4a4b44cc90c1bdb6ff999
             // } else {
             //     error.response.data.donate_item_img.map((err) => {
             //         return dispatch({ type: SHOW_ERROR_MESSAGE, payload: `Validiate Image Field: ${err}` });
@@ -239,8 +195,7 @@ const DonateItemForm = ({
         <div className="d-flex mt-3 mb-3">
           <h2 className="fs-title mr-2">Item Category</h2>
           <select onChange={handleChange} name="donate_product_category">
-            <option value="">
-            </option>
+          <option value="">select category</option>
             <option value="Health & Beauty">Health & Beauty</option>
             <option value="Home & Office">Home & Office</option>
             <option value="Phones & Tablets">Phones & Tablets</option>
@@ -255,8 +210,7 @@ const DonateItemForm = ({
 
           <h2 className="fs-title mr-2">Item Condition</h2>
           <select component="select" name="donate_item_condition">
-            <option value="">
-            </option>
+            <option value="">select condition</option>
             <option value="New">New</option>
             <option value="Good">Good</option>
             <option value="Very Good">Very Good</option>
@@ -355,7 +309,7 @@ const DonateItemForm = ({
               Price Determined by <span className="text-danger">*</span>
             </label>
             <select name="donate_determine_by" className="mb-4" onChange={handleChange}>
-              <option value=" "></option>
+            <option value="">select market</option>
               <option value="Market" onClick={handleDetermineAuctionPrice}>
                 Auction Market
               </option>
@@ -370,7 +324,7 @@ const DonateItemForm = ({
                 Currency <span className="text-danger">*</span>
               </label>
               <select name="donate_currency" className="mb-4" onChange={handleChange}>
-                <option value=" ">Sele</option>
+              <option value="">select currency</option>
                 <option value="$">$</option>
                 <option value="₦">₦</option>
               </select>
@@ -378,7 +332,7 @@ const DonateItemForm = ({
             <div style={{ display: isPriceAuction ? "block" : "none" }}>
               <label className="mt-3 mr-3">Auction Type <span className="text-danger">*</span></label>
               <select onChange={handleChange} name="donate_mkt_bid">
-                <option value="" ></option>
+              <option value="">select auction type</option>
                 <option value="Open">Open</option>
                 <option value="Close">Close</option>
               </select>
@@ -485,13 +439,8 @@ const DonateItemForm = ({
         setActiveStep(0);
     };
 
-<<<<<<< HEAD
-    return ( <
-        >
-=======
     return ( 
     <>
->>>>>>> fa873ad9394819f043d4a4b44cc90c1bdb6ff999
         <form onSubmit={onSubmitForm} className="fundforms_container">
         <div className="w-80">
           <Stepper activeStep={activeStep} alternativeLabel className="horizontal-stepper-linear">
@@ -565,13 +514,8 @@ const DonateItemForm = ({
             )}
           </div>
         </div>
-<<<<<<< HEAD
-      </form> <
-        />
-=======
       </form> 
       </>
->>>>>>> fa873ad9394819f043d4a4b44cc90c1bdb6ff999
     );
 };
 
