@@ -1,17 +1,25 @@
-import React, { useEffect } from "react";
+import React, {useState,  useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { CCard, CCardBody, CCol, CRow } from "@coreui/react";
 import { fetchUserDonationsReceived } from "store/actions/auth/Dashboard";
-import { FaBeer } from "react-icons/fa";
+import { FaPlus, FaMinus } from "react-icons/fa";
+
 
 const DonationReceived = () => {
   const dispatch = useDispatch();
   const fundDonateState = useSelector(state => state.userTypeReducer);
   const { user_donations_received } = fundDonateState;
 
+  const [tableClick, setTableClick] = useState(false)
+
+  const handleTableClick = tableId => {
+    setTableClick(!tableClick)
+  }
+
   useEffect(() => {
     dispatch(fetchUserDonationsReceived());
   }, []);
+
 
   return (
     <>
@@ -38,30 +46,44 @@ const DonationReceived = () => {
                         </thead>
                         <tbody>
                           {user_donations_received.length ? (
-                            user_donations_received.map(data => {
-                              const {
+                            user_donations_received.map((data,index) => {
+                              let {
                                 fund_type,
                                 fund_cash,
                                 fund_title,
                                 fund_category,
                                 fund_cash_amount,
                                 fund_currency_type,
-                                id
+                             
                               } = data;
-                              const hashId = "#" + id;
-                              if (fund_type === "Cash") {
+                             
+                              
+                              if (fund_type === "Cash") {                           
+                                const hash = "#"
+                                const hashDd = hash.concat("a" + index)
+                                                             
                                 return (
                                   // toggle table row
                                   <>
+                                
                                     <tr
                                       data-toggle="collapse"
-                                      data-target={hashId}
-                                      className="accordion-toggle"
-                                       key={id}
+                                      data-target={hashDd}
+                                      className="accordion-toggle"  
+                                      onClick={handleTableClick}
                                     >
-                                      <td>
-                                        <FaBeer />
-                                      </td>
+                                      {tableClick ?
+                                       
+                                        <td>
+                                          <FaMinus />
+                                        </td> 
+                                        :
+                                        <td>
+                                          <FaPlus />
+                                        </td>
+                                        
+                                    }
+                                     
                                       <td>{fund_title}</td>
                                       <td>
                                         {fund_currency_type}
@@ -75,8 +97,7 @@ const DonationReceived = () => {
                                       <td colspan="12" className="hiddenRow">
                                         <div
                                           className="accordian-body collapse"
-                                          id={id}
-                                      
+                                          id={"a" + index }                                      
                                            >
                                           <table className="table table-striped">
                                             <thead>
@@ -189,44 +210,42 @@ const DonationReceived = () => {
 
                         <tbody>
                           {user_donations_received.length ? (
-                            user_donations_received.map(data => {
+                            user_donations_received.map((data,index) => {
                               const {
                                 fund_type,
                                 fund_item,
                                 fund_title,
                                 fund_category,
-                                id
+                                 id
                               } = data;
-                  
-                              const wrap = ""
-                              const itemHashedId = "#" + String(id)
-                              const stringHashed = String(itemHashedId)
-                              console.log(itemHashedId)
-                              
-                              const stringifyId = String(id);
+                                       
                               if (fund_type === "Item") {
+                              
+                                const hash = "#"
+                                const hashDd = hash.concat("a" + index)
+
+                                
                                 return (
                                   // toggle table row
                                   <>
                                     <tr
                                       data-toggle="collapse"
-                                      data-target={stringHashed}
+                                      data-target={hashDd}
                                       className="accordion-toggle"
-                                      key={id}
-                                    >
+                                     >
                                       <td>
-                                        <FaBeer />
+                                        <FaPlus />
                                       </td>
                                       <td>{fund_title}</td>
                                       <td>{fund_category}</td>
                                     </tr>
-
+                                       
                                     {/* hidden */}
                                     <tr>
                                       <td colspan="12" className="hiddenRow">
                                         <div
                                           className="accordian-body collapse"
-                                          id={stringifyId}
+                                          id={"a" + index}
                                         >
                                           <table className="table table-striped">
                                             <thead>
@@ -261,7 +280,7 @@ const DonationReceived = () => {
                                                     : null;
 
                                                   return (
-                                                    <tr key={id}>
+                                                    <tr key={data.id}>
                                                       <td>
                                                         {first_name +
                                                           " " +

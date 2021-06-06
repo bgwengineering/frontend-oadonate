@@ -11,21 +11,19 @@ const ChangePasswordForm = ({ pristine, reset, submitting, handleSubmit, history
   
   const handleChange = (event, newValue) => {
     setValue(newValue);
-  };
-  
+  };  
+
   const dispatch = useDispatch()
-
-  const editProfileSubmit = values => {
-
+  const changePasswordSubmit = values => {
   }
 
   return (
     <div>
       {/* password */}
-        <form onSubmit={handleSubmit(editProfileSubmit)}>
-        <div>
+      <form onSubmit={handleSubmit(changePasswordSubmit)}>
+        <div className="edit-password-fields">
           <label className="mt-3">Current Password</label>
-          <div className="profile-reg-fields ">
+          <div className="password-reg-fields">
             <Field
               name="password"
               component="input"
@@ -34,9 +32,9 @@ const ChangePasswordForm = ({ pristine, reset, submitting, handleSubmit, history
             />
           </div>
         </div>
-        <div>
+        <div className="edit-password-fields mt-2">
           <label>New Password</label>
-          <div className="profile-reg-fields">
+          <div className="password-reg-fields">
             <Field
               name="new_password"
               component="input"
@@ -45,25 +43,26 @@ const ChangePasswordForm = ({ pristine, reset, submitting, handleSubmit, history
             />
           </div>
         </div>
-        <div>
+        <div className="edit-password-fields mt-2">
           <label>Confirm Password</label>
-          <div className="profile-reg-fields">
+          <div className="password-reg-fields">
             <Field
               name="new_password"
               component="input"
               type="password"
-              className="password-inputs "
+              className="password-inputs"
             />
           </div>
         </div>
-        <div className="mt-4">
+
+        <div className="edit-password-fields mt-4">
           <button
             disabled={pristine || submitting}
             onClick={reset}
-            className="cancel-btn mr-2"
-            >
-              <Link className='link-router-inverted' to='/dashboard/profile'>
-            Cancel
+            className="cancel-btn mr-4"
+          >
+            <Link className="link-router-darkcolor" to="/dashboard/profile">
+              Cancel
             </Link>
           </button>
           <button
@@ -73,7 +72,7 @@ const ChangePasswordForm = ({ pristine, reset, submitting, handleSubmit, history
             Change Password
           </button>
         </div>
-        </form>
+      </form>
     </div>
   );
 };
