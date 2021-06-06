@@ -9,7 +9,6 @@ import AuctionCollection from './AuctionCollection';
 const MarketIndex = ({match}) => {
     return (
       <div>    
-            <h2 className='text-center mt-3'>Products</h2> 
             <Switch>
             <Route
               exact

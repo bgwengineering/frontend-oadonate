@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink,withRouter } from "react-router-dom";
 import Logo from "assets/images/ogdonate-logo.jpeg";
 import Button from "@material-ui/core/Button";
 import { IoIosArrowDown } from "react-icons/io";
@@ -14,9 +14,10 @@ import CartDropdown from "components/cart/CartDropdown";
 import { toggleCartHidden } from "store/actions/cart/cart.actions";
 import { fetchAllCampaign } from "store/actions/fund_donate/FundDonate";
 import { updateMarketCollections } from "store/actions/MarketPlace";
-import { withRouter } from "react-router-dom";
 
-const Navbar = ({ menuOpen, history }) => {
+
+
+const Navbar = ({ menuOpen,history}) => {
   const authState = useSelector(state => state.authReducer);
   const { isAuthenticated } = authState;
 
@@ -391,6 +392,7 @@ const Navbar = ({ menuOpen, history }) => {
             exact
             activeClassName="navigation-link--active"
             className="navigation-link text-white"
+            onClick={refreshState}
           >
             <img
               src={Logo}
@@ -454,3 +456,4 @@ const Navbar = ({ menuOpen, history }) => {
 };
 
 export default withRouter(Navbar);
+

@@ -13,7 +13,7 @@ import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
 import Button from "@material-ui/core/Button";
 import { setLoading, offLoading } from "store/actions/Common";
-import noImg from "assets/images/logo.jpeg";
+
 
 
 
@@ -195,8 +195,7 @@ const DonateItemForm = ({
         <div className="d-flex mt-3 mb-3">
           <h2 className="fs-title mr-2">Item Category</h2>
           <select onChange={handleChange} name="donate_product_category">
-            <option value="">
-            </option>
+          <option value="">select category</option>
             <option value="Health & Beauty">Health & Beauty</option>
             <option value="Home & Office">Home & Office</option>
             <option value="Phones & Tablets">Phones & Tablets</option>
@@ -211,8 +210,7 @@ const DonateItemForm = ({
 
           <h2 className="fs-title mr-2">Item Condition</h2>
           <select component="select" name="donate_item_condition">
-            <option value="">
-            </option>
+            <option value="">select condition</option>
             <option value="New">New</option>
             <option value="Good">Good</option>
             <option value="Very Good">Very Good</option>
@@ -311,7 +309,7 @@ const DonateItemForm = ({
               Price Determined by <span className="text-danger">*</span>
             </label>
             <select name="donate_determine_by" className="mb-4" onChange={handleChange}>
-              <option value=" "></option>
+            <option value="">select market</option>
               <option value="Market" onClick={handleDetermineAuctionPrice}>
                 Auction Market
               </option>
@@ -326,7 +324,7 @@ const DonateItemForm = ({
                 Currency <span className="text-danger">*</span>
               </label>
               <select name="donate_currency" className="mb-4" onChange={handleChange}>
-                <option value=" ">Sele</option>
+              <option value="">select currency</option>
                 <option value="$">$</option>
                 <option value="₦">₦</option>
               </select>
@@ -334,7 +332,7 @@ const DonateItemForm = ({
             <div style={{ display: isPriceAuction ? "block" : "none" }}>
               <label className="mt-3 mr-3">Auction Type <span className="text-danger">*</span></label>
               <select onChange={handleChange} name="donate_mkt_bid">
-                <option value="" ></option>
+              <option value="">select auction type</option>
                 <option value="Open">Open</option>
                 <option value="Close">Close</option>
               </select>

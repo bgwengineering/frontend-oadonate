@@ -38,7 +38,7 @@ const AuctionItem = () => {
             donate_currency,
             donate_bid_endAt,
             id,
-            donate_item_condition
+            donate_item_condition,
           } = itemValues;
 
           if (donate_determine_by === "Market") {

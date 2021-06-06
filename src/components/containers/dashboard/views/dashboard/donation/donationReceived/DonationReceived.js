@@ -7,7 +7,7 @@ import { FaPlus, FaMinus } from "react-icons/fa";
 
 const DonationReceived = () => {
   const dispatch = useDispatch();
-  const fundDonateState = useSelector(state => state.userTypeReducer);
+  const fundDonateState = useSelector((state) => state.userTypeReducer);
   const { user_donations_received } = fundDonateState;
 
   const [tableClick, setTableClick] = useState(false)
@@ -24,9 +24,7 @@ const DonationReceived = () => {
   return (
     <>
       {/* Cash Donations received */}
-      <h4 className="text-uppercase text-center mb-4 mt-4">
-        Cash Donations Received
-      </h4>
+      <h4 className="text-uppercase text-center mb-4 mt-4">Cash Donations Received</h4>
       <CRow>
         <CCol>
           <CCard>
@@ -114,7 +112,7 @@ const DonationReceived = () => {
                                             {/* map hidden */}
                                             <tbody>
                                               {fund_cash.length &&
-                                                fund_cash.map(donations => {
+                                                fund_cash.map((donations) => {
                                                   const {
                                                     donate_amount,
                                                     donate_payment_method,
@@ -122,38 +120,23 @@ const DonationReceived = () => {
                                                     donate_payment_status,
                                                     donate_createdAt,
                                                     donate_currency,
-                                                    id
+                                                    id,
                                                   } = donations;
 
-                                                  const {
-                                                    first_name,
-                                                    last_name,
-                                                    email
-                                                  } = user;
+                                                  const { first_name, last_name, email } = user;
                                                   return (
                                                     <tr key={id}>
-                                                      <td>
-                                                        {first_name +
-                                                          " " +
-                                                          last_name}
-                                                      </td>
+                                                      <td>{first_name + " " + last_name}</td>
                                                       <td>{email}</td>
                                                       <td>
                                                         {donate_currency}
                                                         {donate_amount}
                                                       </td>
-                                                      <td>
-                                                        {donate_payment_method}
-                                                      </td>
-                                                      <td>
-                                                        {donate_payment_status}
-                                                      </td>
+                                                      <td>{donate_payment_method}</td>
+                                                      <td>{donate_payment_status}</td>
                                                       <td>
                                                         <div>
-                                                          {donate_createdAt.substring(
-                                                            0,
-                                                            10
-                                                          )}
+                                                          {donate_createdAt.substring(0, 10)}
                                                         </div>
                                                       </td>
                                                     </tr>
@@ -169,10 +152,7 @@ const DonationReceived = () => {
                               }
                             })
                           ) : (
-                            <div>
-                              You have not recieved any donation on your Cash
-                              cause
-                            </div>
+                            <div>You have not recieved any donation on your Cash cause</div>
                           )}
                         </tbody>
                       </table>
@@ -185,12 +165,8 @@ const DonationReceived = () => {
         </CCol>
       </CRow>
 
-      
-
       {/* donation item */}
-      <h4 className="text-uppercase text-center mb-4 mt-4">
-        Item Donations Received
-      </h4>
+      <h4 className="text-uppercase text-center mb-4 mt-4">Item Donations Received</h4>
       <CRow>
         <CCol>
           <CCard>
@@ -203,7 +179,7 @@ const DonationReceived = () => {
                         <thead>
                           <tr>
                             <th></th>
-                            <th>Title</th>      
+                            <th>Title</th>
                             <th>Category</th>
                           </tr>
                         </thead>
@@ -261,22 +237,16 @@ const DonationReceived = () => {
                                             {/* map hidden */}
                                             <tbody>
                                               {fund_item.length &&
-                                                fund_item.map(donations => {
+                                                fund_item.map((donations) => {
                                                   const {
                                                     donate_item_name,
                                                     user,
                                                     donate_item_condition,
-                                                    donate_createdAt
+                                                    donate_createdAt,
                                                   } = donations;
-                                                  const {
-                                                    first_name,
-                                                    last_name,
-                                                    email
-                                                  } = user;
+                                                  const { first_name, last_name, email } = user;
                                                   const userName = user
-                                                    ? first_name +
-                                                      " " +
-                                                      last_name
+                                                    ? first_name + " " + last_name
                                                     : null;
 
                                                   return (
@@ -288,24 +258,15 @@ const DonationReceived = () => {
                                                       </td>
                                                       <td>{email}</td>
                                                       <td>
-                                                        <div>
-                                                          {donate_item_name}
-                                                        </div>
+                                                        <div>{donate_item_name}</div>
                                                       </td>
                                                       <td>
-                                                        <div>
-                                                          {
-                                                            donate_item_condition
-                                                          }
-                                                        </div>
+                                                        <div>{donate_item_condition}</div>
                                                       </td>
 
                                                       <td>
                                                         <div>
-                                                          {donate_createdAt.substring(
-                                                            0,
-                                                            10
-                                                          )}
+                                                          {donate_createdAt.substring(0, 10)}
                                                         </div>
                                                       </td>
                                                     </tr>
@@ -321,10 +282,8 @@ const DonationReceived = () => {
                               }
                             })
                           ) : (
-                              <div>
-                                You have not recieved any donation on your item cause
-                             </div>
-                            )}
+                            <div>You have not recieved any donation on your item cause</div>
+                          )}
                         </tbody>
                       </table>
                     </div>

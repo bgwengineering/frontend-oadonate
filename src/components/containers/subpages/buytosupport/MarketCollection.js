@@ -1,17 +1,19 @@
 import React from 'react'
-import ProductItem from './ProductItem'
+import ProductList from './ProductList'
+
+
+
 
 const MarketCollection = () => {  
     return (
         <>
         <div className="container">
         <div className="row">       
-        <ProductItem/> 
+            <ProductList/> 
       </div>   
     </div>  
      </>
     )
 }
-
 
 export default MarketCollection

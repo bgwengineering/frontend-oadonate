@@ -77,44 +77,22 @@ export const getdonateToItem = () => async(dispatch,getState) =>{
  }
 
 
-// GET DONATE TO SELL
-export const getdonateToSell = () => async(dispatch,getState) =>{
-    try{
-      const res = await axiosInstance.get('campaign/create/donation-itemsell',tokenConfig(getState))
-      dispatch({type:  actionTypes.FETCH_DONATION_ITEMSELL_SUCCESS, payload:res.data})
-    }catch(error){
-      dispatch({type: actionTypes.FETCH_DONATION_ITEMSELL_FAIL})
-      dispatch({type:actionTypes.SHOW_ERROR_MESSAGE, payload:error.message})
-    }
- }
-// map error donateto sell
 
 //POST DONATE CASH TO OGADONATE
 export const donateCashToOga = (formValues) => async(dispatch, getState) => {
   dispatch(setLoading());
   try{
-    const res = await axiosInstance.post('admin/give/donate/donate-cash', {...formValues}, tokenConfig(getState));
+    const res = await axiosInstance.post('admin/donate/donate-cash', {...formValues}, tokenConfig(getState));
     dispatch({type: actionTypes.CREATE_CASH_DONATION_OGAFUND_SUCCESS, payload:res.data})
     dispatch({type:actionTypes.SHOW_SUCCESS_MESSAGE, payload:"successfully donated to ogadonate"})
+    dispatch(offLoading());
     }catch(error){
       dispatch({type:actionTypes.CREATE_CASH_DONATION_OGAFUND_FAIL})
       dispatch({type:actionTypes.SHOW_ERROR_MESSAGE, payload:error.message})
+      dispatch(offLoading());
   }
 }
 
-
-//POST DONATE ITEM TO OGADONATE
-export const donateItemToOga = (formValues) => async(dispatch, getState) => {
-  dispatch(setLoading());
-  try{
-    const res = await axiosInstance.post('admin/give/donate/donate-item', {...formValues}, tokenConfig(getState));
-    dispatch({type: actionTypes.CREATE_ITEM_DONATION_OGAFUND_SUCCESS, payload:res.data})
-    dispatch({type:actionTypes.SHOW_SUCCESS_MESSAGE, payload:"successfully donated to ogadonate"})
-   }catch(error){
-      dispatch({type:actionTypes.CREATE_ITEM_DONATION_OGAFUND_FAIL})
-      dispatch({type:actionTypes.SHOW_ERROR_MESSAGE, payload:error.message})
-  }
-}
 
 //GET DONATE CASH TO OGADONATE
 export const getdonateCashToOga = () => async(dispatch, getState) => {

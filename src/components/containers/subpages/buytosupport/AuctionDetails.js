@@ -49,7 +49,6 @@ const AuctionDetails = ({ match }) => {
   const [anonymously, setAnonymously] = useState(false);
   const [typeBidAmount, setTypeBidAmount] = useState(1);
 
-
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -69,7 +68,7 @@ const AuctionDetails = ({ match }) => {
     const bidValues = {
       auction_item: bid_id,
       bid_amount: typeBidAmount,
-      bid_anonymously: anonymously
+      bid_anonymously: anonymously,
     };
     dispatch(auctionBid(bidValues));
   };

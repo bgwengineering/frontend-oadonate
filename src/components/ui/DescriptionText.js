@@ -15,9 +15,9 @@ const DescriptionText = () => {
       <h5 className="description-text">
         The global marketplace for fund raising and item exchange for
         individuals, NGOS, communities, startups or corporates.    
+
         <ul>
           <li>Ask for help</li>
-          <li>Donate cash to help</li>Give exchange or trade an item to help
           <li>Buy to support a cause/need</li>
         </ul>
         <Button variant="contained" className="slider-btn text-capitalize mt-2"

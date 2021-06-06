@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import axiosInstance from "util/api";
 import { useDispatch } from "react-redux";
 import { SHOW_ERROR_MESSAGE, SHOW_SUCCESS_MESSAGE } from "store/actions/ActionTypes";
-// import DonateItemSellForm from "./DonateItemSellForm";
-import DonateShareQuestionnaire from "components/containers/subpages/campaign/donate/DonateShareQuestionnaire";
-import { setLoading } from "store/actions/Common";
+import { setLoading, offLoading } from "store/actions/Common";
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
@@ -28,14 +26,8 @@ const DonateOgaItemForm = ({ fund_item_sell, setCurrentOpenForm, setIsDonateOgaF
     donate_percentage_value: "",
   });
   const [itemImage, setItemImage] = useState(null);
-  const [validiateImage, setValidateImage] = useState(null);
+  // const [validiateImage, setValidateImage] = useState(null);
 
-  const [currentQuestionnaireOpen, setCurrentQuestionnaireOpen] = useState(null);
-  const [isQuestionAnswerShown, setIsQuestionAnswerShown] = useState(false);
-
-  const handleSwitchCurrentQuestion = (formToShow) => {
-    setCurrentQuestionnaireOpen(formToShow);
-  };
 
   // dispatch
   const dispatch = useDispatch();
@@ -44,12 +36,6 @@ const DonateOgaItemForm = ({ fund_item_sell, setCurrentOpenForm, setIsDonateOgaF
     if ([e.target.name] == "donate_item_img") {
       setItemImage({
         donate_item_img: e.target.files,
-      });
-      console.log(e.target.files);
-    }
-    if ([e.target.name] == "donate_item_validation") {
-      setValidateImage({
-        donate_item_validation: e.target.files,
       });
       console.log(e.target.files);
     }
@@ -66,7 +52,7 @@ const DonateOgaItemForm = ({ fund_item_sell, setCurrentOpenForm, setIsDonateOgaF
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     let formData = new FormData();
     formData.append("donate_comment", postData.donate_comment);
@@ -76,17 +62,12 @@ const DonateOgaItemForm = ({ fund_item_sell, setCurrentOpenForm, setIsDonateOgaF
     formData.append("donate_as_unknown", postData.donate_as_unknown);
     formData.append("donate_accept", postData.donate_accept);
     formData.append("donate_item_img", itemImage.donate_item_img[0]);
-
-    formData.append("donate_item_validation", validiateImage.donate_item_validation[0]);
-    //  selll
     formData.append("donate_mkt_bid", postData.donate_mkt_bid);
     formData.append("donate_mkt_price", postData.donate_mkt_price);
     formData.append("donate_currency", postData.donate_currency);
     formData.append("donate_determine_price", postData.donate_determine_price);
     formData.append("doante_determine_by", postData.doante_determine_by);
     formData.append("donate_percentage_value", postData.donate_percentage_value);
-
-    formData.append("fund_item_sell", fund_item_sell);
 
     const config = {
       headers: {
@@ -95,15 +76,15 @@ const DonateOgaItemForm = ({ fund_item_sell, setCurrentOpenForm, setIsDonateOgaF
         Accept: "application/json",
       },
     };
-    axiosInstance
-      .post(`campaign/create/donation-itemsell`, formData, config)
-      .then((res) => {
-        dispatch({
-          type: SHOW_SUCCESS_MESSAGE,
-          payload: "Thank you for donating!",
-        });
-      })
-      .catch((error) => {
+    dispatch(setLoading());
+    try{
+      const res = await axiosInstance.post('admin/donate/donate-item', formData, config)
+          dispatch({
+            type: SHOW_SUCCESS_MESSAGE,
+            payload: "Thank you for donating!",
+          });
+          dispatch(offLoading());
+    }catch(error){
         if (error.response.data) {
           error.response.data.donate_item_name.map((err) => {
             return dispatch({
@@ -111,6 +92,7 @@ const DonateOgaItemForm = ({ fund_item_sell, setCurrentOpenForm, setIsDonateOgaF
               payload: `Item Name Field: ${err}`,
             });
           });
+          dispatch(offLoading());
         }
         if (error.response.data) {
           error.response.data.donate_item_img.map((err) => {
@@ -119,16 +101,18 @@ const DonateOgaItemForm = ({ fund_item_sell, setCurrentOpenForm, setIsDonateOgaF
               payload: `Item Image Field: ${err}`,
             });
           });
+          dispatch(offLoading());
         }
         if (error.response.data) {
-          error.response.data.donate_item_img.map((err) => {
+          error.response.data.donate_item_condition.map((err) => {
             return dispatch({
               type: SHOW_ERROR_MESSAGE,
-              payload: `Validiate Image Field: ${err}`,
+              payload: `Item Condition Field: ${err}`,
             });
           });
+          dispatch(offLoading());
         }
-      });
+      };
   };
 
   const [activeStep, setActiveStep] = useState(0);
@@ -177,7 +161,7 @@ const DonateOgaItemForm = ({ fund_item_sell, setCurrentOpenForm, setIsDonateOgaF
         <div className="d-flex mt-3 mb-3">
           <h2 className="fs-title mr-2">Item Condition</h2>
           <select onChange={handleChange} name="donate_item_condition">
-            <option value="">Select</option>
+            <option value="">Select Condition</option>
             <option value="New">New</option>
             <option value="Good">Good</option>
             <option value="Very Good">Very Good</option>
@@ -204,7 +188,7 @@ const DonateOgaItemForm = ({ fund_item_sell, setCurrentOpenForm, setIsDonateOgaF
           onChange={handleChange}
           className="input-file"
         />
-        <h2 className="fs-title mt-3">
+        {/* <h2 className="fs-title mt-3">
           {" "}
           upload image of proof of ownership on items above <b>one million naira</b>
         </h2>
@@ -214,7 +198,7 @@ const DonateOgaItemForm = ({ fund_item_sell, setCurrentOpenForm, setIsDonateOgaF
           accept="image/*"
           onChange={handleChange}
           className="input-file"
-        />
+        /> */}
         <div className="d-block">
           <h2 className="fs-title mt-3">Your message</h2>
           <textarea
@@ -228,54 +212,6 @@ const DonateOgaItemForm = ({ fund_item_sell, setCurrentOpenForm, setIsDonateOgaF
       </fieldset>
     );
   };
-  // const getItems = () => {
-  //   return (
-  //     <fieldset>
-  //       <div
-  //         id="donate__share__questionnaire"
-  //         style={{ display: !currentQuestionnaireOpen ? "block" : "none" }}
-  //       >
-  //         <DonateShareQuestionnaire
-  //           setIsQuestionAnswerShown={setIsQuestionAnswerShown}
-  //           handleSwitchCurrentQuestion={handleSwitchCurrentQuestion}
-  //         />
-  //       </div>
-  //       <div
-  //         id="donation__share__percentage"
-  //         style={{
-  //           display:
-  //             isQuestionAnswerShown &&
-  //             currentQuestionnaireOpen === "donation__share__percentage"
-  //               ? "block"
-  //               : "none"
-  //         }}
-  //       >
-  //         <div className="d-block">
-  //           <label>Percentage Value</label>
-  //           <input
-  //             type="text"
-  //             onChange={handleChange}
-  //             name="donate_percentage_value"
-  //             className="input-text"
-  //           />
-  //         </div>
-  //       </div>
-
-  //       {/* item sell, auction */}
-  //       <div
-  //         id="donate__item__sell__form"
-  //         style={{
-  //           display:
-  //             currentQuestionnaireOpen === "donate__item__sell__form"
-  //               ? "block"
-  //               : "none"
-  //         }}
-  //       >
-  //         <DonateItemSellForm />
-  //       </div>
-  //     </fieldset>
-  //   );
-  // };
 
   //  getAttestation
   const getAttestation = () => {
