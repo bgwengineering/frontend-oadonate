@@ -18,7 +18,7 @@ $logo_orange:#C75A00;
   position:relative;
   margin: 5px auto 5px auto;
   width: 400px;
-  height: 268px;
+  // height: 148px;
   transform: translateY(25%);
   .btn-container {
   // Set the button
@@ -38,7 +38,6 @@ $logo_orange:#C75A00;
     text-align: center;
 
     // Styling for button labels. They are the same, so the default and hover states live here.
-
     span {
       line-height: $button-height;
       transition: $soft-transition;
@@ -315,7 +314,6 @@ $logo_orange:#C75A00;
     width: 100%;
     height: 285px;
     border-top: 0;
-    // Needs to be revisited
   }
 
   100% {
@@ -325,8 +323,32 @@ $logo_orange:#C75A00;
   }
 }
 
-.find_cause_text{
+.all_donate_item_cards{
+  position:relative;
+}
 
-  margin:80px auto 0px auto;
 
+.searched-data-container{
+   width:100%;
+   position:absolute;
+   z-index:400 !important;
+  .searched-data-subcontainer{
+    width:100%;
+    max-width:360px;
+    margin:0 auto;
+    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+    background-color: #fff;
+    border-radius:3px;
+    height:auto;
+    border:1px solid #ccc;
+    .searched-data-list{
+      list-style-type:none;
+      cursor:pointer;
+       padding:8px 5px 8px 5px;
+      &:hover{
+        background-color:#ccc;
+       
+      }
+    }
+  }
 }

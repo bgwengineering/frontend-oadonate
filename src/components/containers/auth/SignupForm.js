@@ -1,20 +1,20 @@
-import React, {useState} from 'react'
-import {Field, reduxForm} from 'redux-form'
-import {useDispatch} from 'react-redux'
-import {signup} from "store/actions/auth/Auth"
+import React, { useState } from 'react'
+import { Field, reduxForm } from 'redux-form'
+import { useDispatch } from 'react-redux'
+import { signup } from "store/actions/auth/Auth"
 import { renderField, validate } from 'util/RenderValidate';
-import {BiShow} from 'react-icons/bi'
-import {BiHide} from 'react-icons/bi'
+import { BiShow } from 'react-icons/bi'
+import { BiHide } from 'react-icons/bi'
 
 
 
-const SignupForm = ({handleSubmit, submitting, pristine}) => {
+const SignupForm = ({ handleSubmit, submitting, pristine }) => {
     const [isPasswordShown, setIsPasswordShown] = useState(false)
     const handleShowPassword = () => {
         setIsPasswordShown(!isPasswordShown)
     }
 
-   const dispatch = useDispatch()
+    const dispatch = useDispatch()
     const submit = values => {
         dispatch(signup(values))
     }
@@ -22,17 +22,17 @@ const SignupForm = ({handleSubmit, submitting, pristine}) => {
         <form onSubmit={handleSubmit(submit)}>
         <>
            <fieldset>
-            <Field component={renderField} label="First Name" name='first_name' type='text'/>
+            <Field component={renderField} className='input' label="First Name" name='first_name' type='text'/>
             </fieldset>
             <fieldset>
-            <Field component={renderField} label="Last Name" name='last_name' type='text'/>
+            <Field component={renderField} className='input' label="Last Name" name='last_name' type='text'/>
             </fieldset>
             <fieldset>
-            <Field component={renderField} label="Email" name='email' type='email' />
+              <Field component={renderField} className='input' label="Email" name='email' type='email' />
             </fieldset>
 
             <fieldset className='d-flex form-eye-field'>    
-            <Field type={isPasswordShown ? 'text' :'password'} name="password"  component={renderField} label='password'/>     
+                    <Field type={isPasswordShown ? 'text' : 'password'} className='input' name="password"  component={renderField} label='password'/>     
              <span className='password-icon' onClick={handleShowPassword}><BiShow /></span>
              <span className='password-icon' onClick={handleShowPassword} style={{display:isPasswordShown ? 'none' : 'block' }}><BiHide /></span>
             </fieldset>
@@ -48,6 +48,6 @@ const SignupForm = ({handleSubmit, submitting, pristine}) => {
 }
 
 export default reduxForm({
-  form:'SignupForm',
-  validate,
+    form: 'SignupForm',
+    validate,
 })(SignupForm)

@@ -9,12 +9,22 @@
     color:#fff !important;
   }
 }
-.shipping-btn{
-  background-color: $logo_orange !important;
+.shipping-next-btn{
+  background-color: $logo_green !important;
   padding:9px 5px 9px 5px !important;
-  width:200px !important;
+  width:120px !important;
   color:#fff !important;
 }
+.shipping-cancel-btn{
+    background-color:none;
+  padding:9px 5px 9px 5px !important;
+  width:100px !important;
+  color:#000 !important;
+  &:hover{
+    background-color:#fefefe;
+  }
+}
+
 .billing-btn{
   background-color: $logo_orange !important;
   padding:9px 5px 9px 5px !important;
@@ -24,6 +34,30 @@
 .edit-btn{
   background-color: $logo_green !important;
   color:#fff !important;
+  &:hover{
+     background-color: $logo_orange !important;
+  }
+}
+.profile-sbm-btn{
+   background-color: $logo_orange !important;
+  color:#fff !important;
+   &:hover{
+      background-color: $logo_green !important;
+  }
+}
+.affiliate-login-btn{
+   background-color: $logo_orange !important;
+  color:#fff !important;
+   &:hover{
+      background-color: $logo_green !important;
+  }
+}
+.affiliate-signup-btn{
+   background-color: $logo_green !important;
+  color:#fff !important;
+   &:hover{
+      background-color: $logo_orange !important;
+  }
 }
 .top-nav-btn{
   background-color: $logo_orange !important;
@@ -269,6 +303,33 @@
     background-color:$logo_green !important;
   }
 }
+ .next-action-btn{
+  background-color:$logo_green !important;
+  outline:none !important;
+  border:none !important;
+  color:#fff !important;
+  padding:7px 15px;
+  border-radius:4px;
+  &:hover{
+    cursor:pointer !important;
+    opacity:.9;
+    outline:none
+  }
+}
+ .cancel-btn, .previous-action-btn{
+  outline:none !important;
+  border:none !important;
+  color:#000 !important;
+  padding:7px 15px;
+  border-radius:4px;
+  background:none;
+  &:hover{
+    cursor:pointer !important;
+    background-color:#f3f3f3!important;
+    outline:none
+  }
+}
+
 .coorporate-form-but{
   background-color:$logo_orange !important;
   outline:none !important;
@@ -281,8 +342,6 @@
     background-color:$logo_green !important;
   }
 }
-
-
 
 // 
 .donate-cash-submit{
@@ -340,9 +399,6 @@
 .MuiStepIcon-root.MuiStepIcon-completed{
   color: $logo_green !important;
 }
-.swiper-container-horizontal > .swiper-pagination-bullets, .swiper-pagination-bullet{
-  // margin-top:400px;    
-}
 
 .MuiButton-containedPrimary {
   background-color: $logo_green !important;
@@ -361,19 +417,24 @@
 
 .add_cart_btn{
   background-color: $logo_orange !important;
-  width:125px !important;
+  width:100% !important;
   color:#fff !important;
   &:hover{
     opacity:.8;
   }
 }
+
+.bid_btn{
+  background-color: $logo_orange !important;
+  width:125px !important;
+  color:#fff !important;
+}
+
 .back_product{
   background-color: $logo_green !important;
   width:195px !important;
   color:#fff !important;
 }
-
-
 
 .PrivateTabIndicator-colorSecondary-3 {
   border-bottom: 2px solid #C75A00 !important;
@@ -391,9 +452,27 @@
    border:none;
    background-color:#fff;
    &:hover{
-       color:#0F6929;
+       color:#0F6929;   
+        outline: 2px solid #0F6929;
    }
  }
+.buy-btn-bidding{
+  width: 220px;
+  height: 40px;
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+   color: #C75A00;
+   outline: 2px solid #C75A00;
+   border:none;
+   background-color:#fff;
+   &:hover{
+       color:#0F6929;
+       outline: 2px solid #0F6929;
+   }
+ }
+ 
 .cart-paybtn{
   width: 180px;
   height: 40px;
@@ -402,12 +481,12 @@
   border-top-right-radius: 50px;
   border-bottom-right-radius: 50px;
   font-size:1rem;
-   color: #C75A00;
+   color: #000;
    outline: 2px solid #C75A00;
    border:none;
    background-color:#fff;
    &:hover{
-       color:#0F6929;
+       opacity:.8;
    }
  }
 

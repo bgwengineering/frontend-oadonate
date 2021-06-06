@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink,withRouter } from "react-router-dom";
 import Logo from "assets/images/ogdonate-logo.jpeg";
 import Button from "@material-ui/core/Button";
 import { IoIosArrowDown } from "react-icons/io";
@@ -17,7 +17,7 @@ import { updateMarketCollections } from "store/actions/MarketPlace";
 
 
 
-const Navbar = ({ menuOpen }) => {
+const Navbar = ({ menuOpen,history}) => {
   const authState = useSelector(state => state.authReducer);
   const { isAuthenticated } = authState;
 
@@ -31,13 +31,12 @@ const Navbar = ({ menuOpen }) => {
     (accumulatedQuantity, cartItem) => accumulatedQuantity + cartItem.quantity,
     0
   );
-
   const dispatch = useDispatch();
 
   const refreshState = () => {
     dispatch(fetchAllCampaign());
     dispatch(updateMarketCollections());
-  }
+  };
 
   const [showUpArrow, setShowUpArrow] = useState({
     raiseFundsArrow: false,
@@ -62,7 +61,7 @@ const Navbar = ({ menuOpen }) => {
                 activeClassName="navigation-link--active"
                 className="navigation-link text-white"
                 onClick={refreshState}
-               >
+              >
                 Home
               </NavLink>
             </li>
@@ -106,69 +105,113 @@ const Navbar = ({ menuOpen }) => {
                 }
               >
                 <li className="nav__submenu-item">
-                  <NavLink
-                    to="/categories/personal-fundraising"
+                  <Link
                     exact
                     activeClassName="navigation-link--active"
                     className=" sub-navigation-link"
                     id="personal"
-                    onClick={() => dispatch(FUNDRAISECATEGORIES())}
+                    onClick={() => {
+                      dispatch(FUNDRAISECATEGORIES());
+                      window.scrollTo(
+                        {
+                          top: 0,
+                          behavior: "smooth"
+                        },
+                        history.push("/categories/personal-fundraising")
+                      );
+                    }}
                   >
                     Personal
-                  </NavLink>
+                  </Link>
                 </li>
                 <li className="nav__submenu-item">
-                  <NavLink
-                    to="/categories/ngo-fundraising"
+                  <Link
                     exact
                     activeClassName="navigation-link--active"
                     className="sub-navigation-link"
                     id="ngo"
-                    onClick={() => dispatch(FUNDRAISECATEGORIES())}
+                    onClick={() => {
+                      dispatch(FUNDRAISECATEGORIES());
+                      window.scrollTo(
+                        {
+                          top: 0,
+                          behavior: "smooth"
+                        },
+                        history.push("/categories/ngo-fundraising")
+                      );
+                    }}
                   >
                     NGO
-                  </NavLink>
+                  </Link>
                 </li>
                 <li className="nav__submenu-item">
-                  <NavLink
-                    to="/categories/community-fundraising"
+                  <Link
                     exact
                     activeClassName="navigation-link--active"
                     className="sub-navigation-link"
                     id="community"
-                    onClick={() => dispatch(FUNDRAISECATEGORIES())}
-                  >
-                    Community
-                  </NavLink>
+                    onClick={() => {
+                      dispatch(FUNDRAISECATEGORIES())
+                      window.scrollTo(
+                        {
+                          top: 0,
+                          behavior: "smooth"
+                        },
+                        history.push("/categories/community-fundraising")
+                      );
+                    }
+                  }
+                >
+                  Community
+                  </Link>
                 </li>
                 <li className="nav__submenu-item">
-                  <NavLink
-                    to="/categories/startup-fundraising"
+                  <Link
                     exact
                     activeClassName="navigation-link--active"
                     className="sub-navigation-link"
                     id="startup"
-                    onClick={() => dispatch(FUNDRAISECATEGORIES())}
-                  >
-                    Start up
-                  </NavLink>
+                    onClick={() => {
+                      dispatch(FUNDRAISECATEGORIES())
+                      window.scrollTo(
+                        {
+                          top: 0,
+                          behavior: "smooth"
+                        },
+                        history.push("/categories/startup-fundraising")
+                      );
+                    }
+                   }
+              >
+                  Start up
+                  </Link>
                 </li>
                 <hr />
                 <li className="nav__submenu-item">
-                  <NavLink
-                    to="/categories"
+                  <Link
                     exact
                     activeClassName="navigation-link--active"
                     className="sub-navigation-link"
                     id="see-all"
-                    onClick={() => dispatch(FUNDRAISECATEGORIES())}
-                  >
-                    See all
-                  </NavLink>
+                    onClick={() => {
+                      dispatch(FUNDRAISECATEGORIES())              
+                      window.scrollTo(
+                        {
+                          top: 0,
+                          behavior: "smooth"
+                        },
+                        history.push("/categories")
+                      );
+                    }
+                 }
+                 >
+                 See all
+                  </Link>
                 </li>
               </ul>
             </li>
 
+            
             {/* donate */}
             <li className="nav-item donate-nav-item navigation-link text-white">
               <NavLink
@@ -181,7 +224,10 @@ const Navbar = ({ menuOpen }) => {
                   }))
                 }
                 onMouseLeave={() =>
-                  setShowUpArrow(() => ({ ...showUpArrow, donateArrow: false }))
+                  setShowUpArrow(() => ({
+                    ...showUpArrow,
+                    donateArrow: false
+                  }))
                 }
               >
                 Donate
@@ -200,41 +246,62 @@ const Navbar = ({ menuOpen }) => {
                   }))
                 }
                 onMouseLeave={() =>
-                  setShowUpArrow(() => ({ ...showUpArrow, donateArrow: false }))
+                  setShowUpArrow(() => ({
+                    ...showUpArrow,
+                    donateArrow: false
+                  }))
                 }
               >
                 <li className="nav__submenu-item" id="about">
-                  <NavLink
-                    to="/donate/cash"
+                  <Link
                     exact
                     activeClassName="navigation-link--active"
                     className="sub-navigation-link"
                     id="donate-cash"
-                  >
+                    onClick={() => window.scrollTo(
+                      {
+                        top: 0,
+                        behavior: "smooth"
+                      },
+                      history.push("/donate/cash")
+                    )}
+                   >
                     Donate Cash
-                  </NavLink>
+                  </Link>
                 </li>
                 <li className="nav__submenu-item" id="contact">
-                  <NavLink
-                    to="/donate/item"
+                  <Link
                     exact
                     activeClassName="navigation-link--active"
                     className="sub-navigation-link"
                     id="donate-item"
+                    onClick={() => window.scrollTo(
+                      {
+                        top: 0,
+                        behavior: "smooth"
+                      },
+                      history.push("/donate/item")
+                    )}
                   >
                     Donate Item
-                  </NavLink>
+                  </Link>
                 </li>
                 <li className="nav__submenu-item" id="contact">
-                  <NavLink
-                    to="/donate/ogadonate"
+                  <Link
                     exact
                     activeClassName="navigation-link--active"
                     className="sub-navigation-link"
                     id="donate-ogadonate"
-                  >
+                    onClick={() => window.scrollTo(
+                      {
+                        top: 0,
+                        behavior: "smooth"
+                      },
+                      history.push("/donate/ogadonate")
+                    )}
+                    >
                     Donate to ogadonate
-                  </NavLink>
+                  </Link>
                 </li>
               </ul>
             </li>
@@ -280,26 +347,38 @@ const Navbar = ({ menuOpen }) => {
                 }
               >
                 <li className="nav__submenu-item" id="about">
-                  <NavLink
-                    to="/about"
+                  <Link
                     exact
                     activeClassName="navigation-link--active"
                     className="sub-navigation-link"
                     id="about"
+                    onClick={() => window.scrollTo(
+                      {
+                        top: 0,
+                        behavior: "smooth"
+                      },
+                      history.push("/about")
+                    )}
                   >
                     About us
-                  </NavLink>
+                  </Link>
                 </li>
                 <li className="nav__submenu-item" id="contact">
-                  <NavLink
-                    to="/contact"
+                  <Link
                     exact
                     activeClassName="navigation-link--active"
                     className="sub-navigation-link"
                     id="contact"
+                    onClick={() => window.scrollTo(
+                      {
+                        top: 0,
+                        behavior: "smooth"
+                      },
+                      history.push("/contact")
+                    )}
                   >
                     Contact us
-                  </NavLink>
+                  </Link>
                 </li>
               </ul>
             </li>
@@ -313,6 +392,7 @@ const Navbar = ({ menuOpen }) => {
             exact
             activeClassName="navigation-link--active"
             className="navigation-link text-white"
+            onClick={refreshState}
           >
             <img
               src={Logo}
@@ -327,7 +407,9 @@ const Navbar = ({ menuOpen }) => {
         <div className="__end-right-container pt-3">
           <ul className="bar-right">
             {isAuthenticated ? (
-              <TheHeaderDropdown />
+              <li className="nav-item nav-signup-login navbar-right-loggedin-hidden">
+                <TheHeaderDropdown />
+              </li>
             ) : (
               <li className="nav-item nav-signup-login navbar-right-hidden">
                 <NavLink
@@ -355,7 +437,7 @@ const Navbar = ({ menuOpen }) => {
             {/* cart icons and count */}
             <li className="nav-item navigation-btn-item">
               <div className="cart-badge">
-                <span onClick={() => dispatch(toggleCartHidden())}>
+                <span onMouseEnter={() => dispatch(toggleCartHidden())}>
                   <FiShoppingCart color="#fff" className="shopping-cart" />
                 </span>
                 <span className="badge-container">
@@ -373,4 +455,5 @@ const Navbar = ({ menuOpen }) => {
   );
 };
 
-export default Navbar;
+export default withRouter(Navbar);
+

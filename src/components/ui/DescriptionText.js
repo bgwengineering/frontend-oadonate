@@ -1,20 +1,40 @@
-import React from "react";
+import React,{useState} from "react";
+import { Button } from '@material-ui/core';
+import EyeIndicator from './EyeIndicator';
+
 
 const DescriptionText = () => {
+  const [readMore, setReadMore] = useState(false) 
+  const readDescriptionText = () => {
+    setReadMore(!readMore)
+  }
+
   return (
     <div className="container description-container mt-4">
+    
       <h5 className="description-text">
-      According to a 2020 report by the U.N. Development Program. About 1.3 Billion people in 107 developing countries are multidimensionally poor: yet, some percentage of the population have a resource or items they consider idle but can still be of great value to others.
+        The global marketplace for fund raising and item exchange for
+        individuals, NGOS, communities, startups or corporates.    
 
-At OgaDonate, we provide rare linkage for the re-allocation of cash or item, from those who care about others in need to those who need a hand; matching these deficits with the surplus economy. 
+        <ul>
+          <li>Ask for help</li>
+          <li>Buy to support a cause/need</li>
+        </ul>
+        <Button variant="contained" className="slider-btn text-capitalize mt-2"
+          onClick={readDescriptionText}>
+          Read more
+        </Button>
 
-We work to eliminate waste, by linking an individual or organizations who want to get rid of an item considered old or no longer needed by the owner to someone who would derive value from such items.
+        <p style={{ display: readMore ? 'block' : 'none' }}>
+        According to a 2020 report by the U.N. Development Program. About 1.3
+        Billion people in 107 developing countries are multidimensional poor:
+        yet, some of us have the resource or items we consider idle which can
+        still be of grea.t value to others. At OgaDonate, we provide rare
+        linkage for the re-allocation of cash or item, from those who care about
+        others in need to those who need a hand; extracting values from (idle)
+        surplus to those in need.
+        </p>
       </h5>
-      {/* <p className='description-sub-text'>
-        <i>At OgaDonate, we aim at making sure we limit waste by linking an
-          individual/organizations who want to get rid of an item because it's old
-          or no longer fits them to someone who would derive value from such
-        products.</i></p> */}
     </div>
   );
 };

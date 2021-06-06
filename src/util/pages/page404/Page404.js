@@ -1,20 +1,20 @@
 import React from 'react'
 import {
-  CButton,
-  CCol,
-  CContainer,
-  CInput,
-  CInputGroup,
-  CInputGroupPrepend,
-  CInputGroupAppend,
-  CInputGroupText,
-  CRow
+    CButton,
+    CCol,
+    CContainer,
+    CInput,
+    CInputGroup,
+    CInputGroupPrepend,
+    CInputGroupAppend,
+    CInputGroupText,
+    CRow
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 
 const Page404 = () => {
-  return (
-    <div className="c-app c-default-layout flex-row align-items-center">
+    return (
+        <div className="c-app c-default-layout flex-row align-items-center">
       <CContainer>
         <CRow className="justify-content-center">
           <CCol md="6">
@@ -38,7 +38,7 @@ const Page404 = () => {
         </CRow>
       </CContainer>
     </div>
-  )
+    )
 }
 
 export default Page404

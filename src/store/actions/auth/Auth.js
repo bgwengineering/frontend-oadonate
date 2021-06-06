@@ -91,22 +91,21 @@ export const login = ({ email, password }) => async (dispatch) => {
   const body = { email, password };
   try {
     const res = await axiosInstance.post("auth/jwt/create/", body);
+    dispatch(load_user());
     dispatch({
       type: LOGIN_SUCCESS,
       payload: res.data,
     });
+    dispatch(offLoading());
     dispatch({
       type: SHOW_SUCCESS_MESSAGE,
       payload: "You've successfully logged in",
     });
     dispatch(stopSubmit("LoginForm"));
     dispatch(reset("LoginForm"));
-    dispatch(load_user());
   } catch (err) {
+    dispatch(setLoading());
     dispatch({ type: LOGIN_FAIL });
-    dispatch(offLoading());
-    dispatch(stopSubmit("LoginForm"));
-    dispatch(reset("LoginForm"));
     if (err.response.data) {
       err.response.data.email &&
         err.response.data.email.map((err) => { return(
@@ -123,36 +122,38 @@ export const login = ({ email, password }) => async (dispatch) => {
         err.response.data.detail &&
           dispatch({ type: SHOW_ERROR_MESSAGE, payload: `Detail: ${err.response.data.detail}` });
     };
-  }
-  
+    dispatch(offLoading());
+    dispatch(stopSubmit("LoginForm"));
+    dispatch(reset("LoginForm"));
+  }  
 };
 
 
 // signup
+
 export const signup = ({ first_name, last_name, email, password }) => async (dispatch) => {
   dispatch(setLoading())
   const body = { first_name, last_name, email, password };
   try {
     const res = await axiosInstance.post("auth/users/", body);
-    dispatch({
+     dispatch({
       type: SIGNUP_SUCCESS,
       payload: res.data,
     });
-    dispatch(stopSubmit("SignupForm"));
-    dispatch(reset("SignupForm"));
     dispatch({ type: SHOW_SUCCESS_MESSAGE, payload: "Account Created: Please check your email to verify your account."})
-  } catch (err) {
-    dispatch({ type: SIGNUP_FAIL });
-    dispatch(offLoading());
     dispatch(stopSubmit("SignupForm"));
     dispatch(reset("SignupForm"));
+    dispatch(offLoading());
+  } catch (err) {
+    dispatch(setLoading())
+    dispatch({ type: SIGNUP_FAIL });
     if (err.response.data) {
       err.response.data.email &&
         err.response.data.email.map((err) => { return(
           dispatch({ type: SHOW_ERROR_MESSAGE, payload:`Email: ${err}` })
           )
         });
-      err.response.data.password &&
+       err.response.data.password &&
         err.response.data.password.map((err) => {return(
             dispatch({ type: SHOW_ERROR_MESSAGE, payload: `Password: ${err}` })
           )
@@ -168,6 +169,9 @@ export const signup = ({ first_name, last_name, email, password }) => async (dis
           )
         });
     }
+    dispatch(offLoading());
+    dispatch(stopSubmit("SignupForm"));
+    dispatch(reset("SignupForm"));
   }
 };
 

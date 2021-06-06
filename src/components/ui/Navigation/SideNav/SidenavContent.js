@@ -11,7 +11,7 @@ import { ImFacebook } from 'react-icons/im'
 import { IoLogoInstagram } from 'react-icons/io'
 
 
-const SidenavContent = ({ history, handleClickAway }) => {
+const SidenavContent = ({ handleClickAway, history }) => {
   const authState = useSelector((state) => state.authReducer);
   const { isAuthenticated } = authState;
   const [showUpArrow, setShowUpArrow] = useState(false);
@@ -19,6 +19,22 @@ const SidenavContent = ({ history, handleClickAway }) => {
   const arrowUp = () => {
     setShowUpArrow(!showUpArrow);
   };
+
+  const pushToAffiliate = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    }, history.push('/affiliate'));
+    handleClickAway();
+  }
+  const pushToCorporate = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    }, history.push('/corporate-auction'));
+    handleClickAway();
+  }
+
   return (
     <>
       <nav className='side-navbar-content'>
@@ -216,8 +232,9 @@ const SidenavContent = ({ history, handleClickAway }) => {
               </ul>
             </li>
             <li
-              className="side-nav-item donate-side-nav-item side-navigation-link text-black"
+              className="side-nav-item donate-side-nav-item side-navigation-link text-black side-nav-affiliate"
               id="auction"
+              onClick={pushToAffiliate}
             >
               Become an affiliate
             </li>
@@ -251,15 +268,9 @@ const SidenavContent = ({ history, handleClickAway }) => {
                 </NavLink>
               </Button>     
             </li>
-            <li className="side-nav-item navigation-btn-item">
-              <Button variant="contained" className="nav-btn mt-1">
-                <NavLink
-                  to="/marketplace"
-                  className="side-navigation-link text-white"
-                  onClick={()=>handleClickAway()}
-                >
-                  Corporate auction
-                </NavLink>
+          <li className="side-nav-item navigation-btn-item" onClick={pushToCorporate}>
+              <Button variant="contained" className="nav-btn mt-1 text-white">      
+                  Corporate auction           
               </Button>     
             </li>
             

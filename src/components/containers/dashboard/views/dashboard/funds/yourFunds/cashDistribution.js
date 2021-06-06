@@ -7,10 +7,10 @@ import {
   CRow
 } from '@coreui/react';
 import { getfundCashCampaigns } from 'store/actions/fund_donate/FundDonate';
+import { Button } from '@material-ui/core';
 
 
 
-// import { fetchPersonalProfile, fetchCompanyProfile } from 'store/actions/auth/UserType';
 
 const YourFunds = ({match}) => {
   const dispatch = useDispatch()
@@ -38,13 +38,14 @@ const YourFunds = ({match}) => {
                     <th>Funds raised</th>
                     <th>Created Date</th>
                     <th className="text-center">End date</th>
+                    <th className="text-center">Actions</th>
                   </tr>
                 </thead>
 
                 {/* table body */}
                 <tbody>
-                {singleCampaign.length && singleCampaign.map(data =>{
-                    const {fund_title, fund_category, fund_type, fund_cash_amount, fund_endAt} = data
+                {singleCampaign.length ? singleCampaign.map(data =>{
+                    const {fund_title, fund_category, fund_createdAt, fund_currency_type,fund_cash_amount, fund_endAt} = data
                     return(
                     <tr>  
                     <td className="text-center">
@@ -54,15 +55,22 @@ const YourFunds = ({match}) => {
                      <div>{fund_category}</div>
                     </td>
                     <td className="text-center">
-                     <div>{fund_cash_amount}</div>
+                     <div>{fund_currency_type}{fund_cash_amount}</div>
                     </td>
                     <td className="text-center">
-                     <div>-</div>
+                     <div>{fund_createdAt.substring(0,10)}</div>
                     </td>
                     <td className="text-center">
-                     <div>{fund_endAt}</div>
+                     <div>{fund_endAt.substring(0,10)}</div>
                     </td>
-                  </tr>)})}
+                    <td className="text-center">
+                     <div><Button>Edit</Button></div>
+                    </td>
+                  </tr>)}):
+                  <div className="justify-content-center">
+                    <p className="text-center">You have no Raised any cause yet Create one now</p>
+                  </div>
+                  }
                 </tbody>
               </table>
             </CCardBody>

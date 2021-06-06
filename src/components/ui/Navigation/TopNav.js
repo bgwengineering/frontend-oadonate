@@ -21,7 +21,7 @@ const TopNav = () => {
           {/* coorporate auction */}
           <li className="top-nav-item">
             <Button variant="contained" className="top-nav-btn mr-3">
-              <NavLink to="" className="button-top-navigation-link text-white">
+              <NavLink to="/corporate-auction" className="button-top-navigation-link text-white">
                 Corporate Auction
               </NavLink>
             </Button>
@@ -88,14 +88,7 @@ const TopNav = () => {
                 </a>
               </li>
 
-              {/* <li className="top-nav__submenu-item pl-1" id="tel">
-                <a
-                  href="mailto:ogadonateng@gmail.com"
-                  className="top-navigation-link text-black"
-                >
-                  ogadonateng@gmail.com
-                </a>
-              </li> */}
+           
               <li className="top-nav__submenu-item pl-1">
               <div>
                <FcCallback/> +16514045620

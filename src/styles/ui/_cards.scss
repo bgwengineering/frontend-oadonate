@@ -2,6 +2,7 @@
         .card-img-top{
             height:170px;
             z-index:300 !important;
+            cursor:pointer;
         }
         .card-title{
             &:hover{
@@ -27,14 +28,6 @@
         }
     }
      
-    // .card-feature{
-    //     transition:transform 1s;
-    //     transform: scale(.9);
-    //     // z-index:0 !important;
-    //     &:hover {
-    //         transform: scale(1);
-    //     }
-    // }
   
     #share-modal{
         z-index:2300 !important

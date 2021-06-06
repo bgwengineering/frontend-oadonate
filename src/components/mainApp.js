@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch,withRouter } from "react-router-dom";
 import ResetPassword from "./containers/auth/ResetPassword";
 import ResetPasswordConfirm from "./containers/auth/ResetPasswordConfirm";
 import Google from "./containers/auth/Google";
@@ -20,12 +20,16 @@ import PaymentSuccess from "util/PaymentSuccess";
 import PaymentCancel from "util/PaymentCancel";
 import MarketIndex from './containers/subpages/buytosupport/MarketIndex';
 import CheckoutPage from "./containers/pages/CheckoutPage";
+import Affiliate from './containers/pages/Affiliate/Affiliate';
+import SignupAffiliate from './containers/pages/Affiliate/SignupAffiliate';
+import CorporateAuction from './containers/pages/CorporateAuction/CorporateAuction';
 
 
 const MainApp = () => {
-
-   return (
-   <BrowserRouter>
+ 
+  return (
+      <>
+    <BrowserRouter>
       <Switch>         
         <Route path="/auth" component={AuthMain} />
         <Route path="/activate/:uid/:token" component={Activate} />
@@ -45,6 +49,9 @@ const MainApp = () => {
         <Route path='/checkout' component={CheckoutPage} />
         <Route path='/payment-success/' component={PaymentSuccess} />
         <Route path='/payment-cancel/' component={PaymentCancel} />
+        <Route path='/affiliate' component={Affiliate} />
+          <Route path='/affiliate-signup' component={SignupAffiliate} />
+          <Route path='/corporate-auction' component={CorporateAuction} />
         <Route
           exact
           path="/password/reset/confirm/:uid/:token"
@@ -53,6 +60,8 @@ const MainApp = () => {
       </Layout>
       </Switch>
   </BrowserRouter>
-   )}
+  </>
+    );
+};
 
 export default MainApp;

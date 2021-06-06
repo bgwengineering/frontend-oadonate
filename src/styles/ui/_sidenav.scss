@@ -11,12 +11,14 @@ $top_nav:#f39a8e;
 }
 
 // Side Nav styles
-
 .side-navbar-content{
   display:flex;
   flex-direction: column;
   .side-nav-bullet{
     list-style: none;
+  }
+  .side-nav-affiliate{
+    cursor:pointer;
   }
 // second-navbar
   ul {

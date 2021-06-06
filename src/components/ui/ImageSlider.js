@@ -4,11 +4,16 @@ import cart from "assets/images/homepage/cart.jpeg";
 import donate from "assets/images/homepage/donate.jpeg";
 import { Slide } from 'react-slideshow-image';
 import  Button  from '@material-ui/core/Button';
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { cartHidden } from 'store/actions/cart/cart.actions';
+
 
 const ImageSlider = () => {
+  const dispatch = useDispatch()
+
     return (
-        <>
+        <div onClick={()=>dispatch(cartHidden())}>
         <Slide>
         <div className='each-slide'>
         <div className='image-slide'>
@@ -64,7 +69,7 @@ const ImageSlider = () => {
       </div>
       </div>
       </Slide>
-      </>
+      </div>
     )
 }
 

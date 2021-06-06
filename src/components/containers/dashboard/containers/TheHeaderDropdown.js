@@ -14,39 +14,68 @@ import {
   CLink,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
+import { freeSet } from '@coreui/icons'
 
 const TheHeaderDropdown = ({history}) => {
   const dispatch = useDispatch();
   const authenticatedState = useSelector(state => state.authReducer)
   const {isAuthenticated} = authenticatedState;
-
+  // const { first_name, last_name } = user;
+  const User = useSelector(state => state.authReducer.user)
   const logoutUser = () => {
     dispatch(logout());
     history.push('/');
   }
+
+  const profileState = useSelector(state => state.userTypeReducer)
+  const { profile_user } = profileState;
+  
+
+
+  const profile_img = profile_user.length && profile_user.map(profile => profile.profile_image)
+ 
+ 
+  
   return (
     <CDropdown inNav className="c-header-nav-items mx-2" direction="down">
       <CDropdownToggle className="c-header-nav-link" caret={false}>
         <div className="c-avatar">
-          <Avatar src='{""}' className="c-avatar-img" alt="" />
+          <Avatar
+            src={profile_img}
+            className="c-avatar-img"
+            alt="profile_image"
+          />
         </div>
       </CDropdownToggle>
+
       <CDropdownMenu className="pt-0" placement="bottom-end">
         <CDropdownItem header tag="div" color="light" className="text-center">
-          <strong>Account</strong>
-        </CDropdownItem>
-
-        <CDropdownItem>
-          <CIcon name="" className="mfe-2" />
-        <CLink className="c-subheader-nav-link"
+          <CIcon content="" className="mfe-2" />
+          <CLink
+            className="c-subheader-nav-link text-center"
             aria-current="page"
-            to="/dashboard">
-         
-          Dashboard
+            to="/dashboard/profile"
+          >
+            {User ? (
+              <strong>
+                {User.first_name} {User.last_name}
+              </strong>
+            ) : null}
           </CLink>
         </CDropdownItem>
 
-{/* 
+        <CDropdownItem>
+          <CIcon content={freeSet.cilSpeedometer} className="mfe-2" />
+          <CLink
+            className="c-subheader-nav-link"
+            aria-current="page"
+            to="/dashboard"
+          >
+            Dashboard
+          </CLink>
+        </CDropdownItem>
+
+        {/* 
         <CDropdownItem>
           <CIcon name="cil-envelope-open" className="mfe-2" />
           Messages
@@ -65,27 +94,19 @@ const TheHeaderDropdown = ({history}) => {
           <strong>Settings</strong>
         </CDropdownItem> */}
         <CDropdownItem>
-        <CLink
+          <CLink
             className="c-subheader-nav-link"
             aria-current="page"
             to="/dashboard/profile"
           >
-          <CIcon name="cil-user" className="mfe-2" />
-          
+            <CIcon name="cil-user" className="mfe-2" />
             Profile
           </CLink>
         </CDropdownItem>
-
-
-
-        <CDropdownItem>
-          <CIcon name="cil-settings" className="mfe-2" />
-          Settings
-        </CDropdownItem>
         <CDropdownItem divider />
         <CDropdownItem onClick={logoutUser}>
-          <CIcon name="cil-lock-locked" className="mfe-2"/>
-         {isAuthenticated ? "Log out" : "Login" }
+          <CIcon name="cil-lock-locked" className="mfe-2" />
+          {isAuthenticated ? "Log out" : "Login"}
         </CDropdownItem>
       </CDropdownMenu>
     </CDropdown>

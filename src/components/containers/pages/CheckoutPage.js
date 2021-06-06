@@ -1,22 +1,22 @@
-import React, { Component, useState, useEffect } from "react";
-import { connect, useDispatch } from "react-redux";
+import React, {useState,useEffect } from "react";
+import {useSelector } from "react-redux";
 import PropTypes from "prop-types";
-import Billing from '../../checkout/Billing'
-import Shipping from '../../checkout/Shipping'
+import ShippingPrompt from './ShippingPrompt'
 import OrderPreview from '../../checkout/OrderPreview'
-import {fetchAddressBook, fetchShippingAddress} from '../../../store/actions/auth/Dashboard'
+import {fetchAddressBook, fetchShippingAddress} from 'store/actions/auth/Dashboard'
 import {placeOrder} from '../../../store/actions/cart/cart.actions'
 import Stepper from '../../checkout/Stepper'
 import { withRouter } from "react-router-dom";
 import CheckLogin from '../../checkout/CheckLogin';
 
 
-const CheckoutForm = ({ currentUser, cartItems, }) => {
-  const dispatch = useDispatch()
+const CheckoutForm = () => {
   useEffect(() => {
-    dispatch(fetchAddressBook());
-    dispatch(fetchShippingAddress());
+    document.title = 'Ogadonate | Checkout'
   }, []);
+  const shippingState = useSelector((state) => state.userTypeReducer);
+  const id = shippingState.shippingAddress.map(_id=>_id.id)
+  const currentUser = useSelector((state) => state.authReducer.isAuthenticated);
   const [page, setPage] = useState(1);
 
   const nextPage = () => {
@@ -24,24 +24,30 @@ const CheckoutForm = ({ currentUser, cartItems, }) => {
   };  
   const previousPage = () => {
     setPage(page - 1);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   };
 
   const showStep = () => {
     switch (page) {
       case 1:
-        return <Billing nextPage={nextPage} previousPage={previousPage} />;
+        return (
+           <ShippingPrompt
+          nextPage={nextPage}
+          shippingState={shippingState}
+           previousPage={previousPage} 
+           id={id}
+          />
+        );  
       case 2:
         return (
-          <Shipping
-            nextPage={nextPage}
-            previousPage={previousPage}
+          <OrderPreview 
+          nextPage={nextPage}
+           previousPage={previousPage} 
           />
         );
-      case 3:
-        return (
-          <OrderPreview nextPage={nextPage} previousPage={previousPage} cartItems={cartItems} />
-        );
-
       default:
         return;
     }
@@ -58,14 +64,4 @@ const CheckoutForm = ({ currentUser, cartItems, }) => {
   );
 };
 
-
-CheckoutForm.propTypes = {
-  cartItems: PropTypes.array.isRequired,
-};
-
-const mapStateToProps = (state) => ({
-  cartItems: state.cartReducer,
-  currentUser: state.authReducer.isAuthenticated,
-});
-
-export default withRouter(connect(mapStateToProps, { placeOrder, fetchAddressBook, fetchShippingAddress })(CheckoutForm));
+export default CheckoutForm;

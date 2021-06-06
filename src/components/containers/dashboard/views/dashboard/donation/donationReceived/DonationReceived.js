@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { CCard, CCardBody, CCol, CRow } from "@coreui/react";
-import { fetchUserDonationsReceived } from 'store/actions/auth/Dashboard'
-
+import { fetchUserDonationsReceived } from "store/actions/auth/Dashboard";
+import { FaBeer } from "react-icons/fa";
 
 const DonationReceived = () => {
   const dispatch = useDispatch();
@@ -10,181 +10,250 @@ const DonationReceived = () => {
   const { user_donations_received } = fundDonateState;
 
   useEffect(() => {
-    dispatch(fetchUserDonationsReceived())
-  }, [])
+    dispatch(fetchUserDonationsReceived());
+  }, []);
 
- 
   return (
     <>
-      <h4 className='text-uppercase text-center mb-4 mt-4'>Cash Donations Received</h4>
+      {/* Cash Donations received */}
+      <h4 className="text-uppercase text-center mb-4 mt-4">Cash Donations Received</h4>
       <CRow>
         <CCol>
           <CCard>
             <CCardBody>
-              {/* table */}
-              <table className="table table-hover table-outline mb-0 d-sm-table">
-                {/* table header */}
-                <thead className="thead-light">
-                  <tr>
-                    <th className="text-center">Fund Title</th>
-                    <th className="text-center">Fund Amount</th>
-                    <th className="text-center">Fund Category</th>
-                    <th className="text-center">Donor's Name</th>
-                    <th className="text-center">Donor's Email</th>
-                    <th className="text-center">Amount donated</th>
-                    <th className="text-center">payment method</th>
-                    <th className="text-center">payment Status</th>
-                    <th className="text-center">Date</th>
-                  </tr>
-                </thead>
+              <div className="container">
+                <div className="col-md-12">
+                  <div className="panel panel-default">
+                    <div className="panel-body">
+                      <table className="table table-condensed table-striped">
+                        <thead>
+                          <tr>
+                            <th></th>
+                            <th>Title</th>
+                            <th>Amount</th>
+                            <th>Category</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {user_donations_received.length ? (
+                            user_donations_received.map((data) => {
+                              const {
+                                fund_type,
+                                fund_cash,
+                                fund_title,
+                                fund_category,
+                                fund_cash_amount,
+                                fund_currency_type,
+                                id,
+                              } = data;
+                              const hashId = "#" + id;
+                              if (fund_type === "Cash") {
+                                return (
+                                  // toggle table row
+                                  <>
+                                    <tr
+                                      data-toggle="collapse"
+                                      data-target={hashId}
+                                      className="accordion-toggle"
+                                      key={id}
+                                    >
+                                      <td>
+                                        <FaBeer />
+                                      </td>
+                                      <td>{fund_title}</td>
+                                      <td>
+                                        {fund_currency_type}
+                                        {fund_cash_amount}
+                                      </td>
+                                      <td>{fund_category}</td>
+                                    </tr>
 
-                {/* table body */}
-                <tbody>
-                  {user_donations_received.length ?
-                    user_donations_received.map(data => {
-                      const {
-                        fund_type,
-                        fund_cash,
-                        fund_title,
-                        fund_category,
-                        fund_cash_amount,             
-                      } = data;   
-                        return (
-                        <tr>
-                          <td className="text-center">
-                            <div>{fund_title}</div>
-                          </td>
-                          <td className="text-center">
-                            <div>{fund_cash_amount}</div>
-                          </td>
-                          <td className="text-center">
-                            <div>{fund_category}</div>
-                          </td>
-                          {fund_cash.length && fund_cash.map(donations => {
-                               const {donate_amount, donate_curency,  donate_payment_method, user, donate_payment_status, donate_createdAt} = donations
-                                   const {first_name, last_name, email} = user
-                             return(
-                            <>
-                              <td className="text-center">
-                              <div>{first_name + " " +  last_name}</div>
-                            </td>
-                            <td className="text-center">
-                              <div>{email}</div>
-                            </td>
-                            <td className="text-center">
-                              <div>{donate_amount}</div>
-                            </td>
-                            <td className="text-center">
-                              <div>{donate_payment_method}</div>
-                            </td>
-                            <td className="text-center">
-                              <div>{donate_payment_status}</div>
-                            </td>
-                            <td className="text-center">
-                              <div>{donate_createdAt}</div>
-                            </td>
-                            </>
-                             )
-                          })}
-                        
-                        </tr>
-                      )
-                    }):
-                    <div>
-                      You have not recieved any donation on your Cash cause
+                                    {/* hidden */}
+                                    <tr>
+                                      <td colspan="12" className="hiddenRow">
+                                        <div className="accordian-body collapse" id={id}>
+                                          <table className="table table-striped">
+                                            <thead>
+                                              <tr className="info">
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                                <th>Cash Donated</th>
+                                                <th>Method</th>
+                                                <th>Status</th>
+                                                <th>Date</th>
+                                              </tr>
+                                            </thead>
+
+                                            {/* map hidden */}
+                                            <tbody>
+                                              {fund_cash.length &&
+                                                fund_cash.map((donations) => {
+                                                  const {
+                                                    donate_amount,
+                                                    donate_payment_method,
+                                                    user,
+                                                    donate_payment_status,
+                                                    donate_createdAt,
+                                                    donate_currency,
+                                                    id,
+                                                  } = donations;
+
+                                                  const { first_name, last_name, email } = user;
+                                                  return (
+                                                    <tr key={id}>
+                                                      <td>{first_name + " " + last_name}</td>
+                                                      <td>{email}</td>
+                                                      <td>
+                                                        {donate_currency}
+                                                        {donate_amount}
+                                                      </td>
+                                                      <td>{donate_payment_method}</td>
+                                                      <td>{donate_payment_status}</td>
+                                                      <td>
+                                                        <div>
+                                                          {donate_createdAt.substring(0, 10)}
+                                                        </div>
+                                                      </td>
+                                                    </tr>
+                                                  );
+                                                })}
+                                            </tbody>
+                                          </table>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                  </>
+                                );
+                              }
+                            })
+                          ) : (
+                            <div>You have not recieved any donation on your Cash cause</div>
+                          )}
+                        </tbody>
+                      </table>
                     </div>
-                    }
-                </tbody>
-              </table>
+                  </div>
+                </div>
+              </div>
             </CCardBody>
           </CCard>
         </CCol>
       </CRow>
 
       {/* donation item */}
-      <h4 className='text-uppercase text-center mb-4 mt-4'>Item Donations Received</h4>
+      <h4 className="text-uppercase text-center mb-4 mt-4">Item Donations Received</h4>
       <CRow>
         <CCol>
           <CCard>
             <CCardBody>
-              {/* table */}
-              <table className="table table-hover table-outline mb-0 d-sm-table">
-                {/* table header */}
-                <thead className="thead-light">
-                  <tr>
-                  <th className="text-center">Fund Title</th>
-                    <th className="text-center">Fund Amount</th>
-                    <th className="text-center">Fund Category</th>
-                    <th className="text-center">Donor's Name</th>
-                    <th className="text-center">Donor's Email</th>
-                    <th className="text-center">Amount donated</th>
-                    <th className="text-center">Donation payment method</th>
-                    <th className="text-center">Donation payment Status</th>
-                    <th className="text-center">Donation Date</th>
-                    <th className="text-center">Item Name</th>
-                    <th className='text-center'>Item Condition</th>
-                    <th className="text-center">Value of Item to Cash</th>
-                  </tr>
-                </thead>
+              <div className="container">
+                <div className="col-md-12">
+                  <div className="panel panel-default">
+                    <div className="panel-body">
+                      <table className="table table-condensed table-striped">
+                        <thead>
+                          <tr>
+                            <th></th>
+                            <th>Title</th>
+                            <th>Category</th>
+                          </tr>
+                        </thead>
 
-                {/* table body */}
-                <tbody>
-                  {/* {user_donations_received.length ?
-                    user_donations_received.map(data => {
-                      const {
-                        fund_type,
-                        fund_item_sell,
-                        fund_title,
-                        fund_category,
-                        fund_cash_amount,             
-                      } = data;   
-                        return (
-                        <tr>
-                          <td className="text-center">
-                            <div>{fund_title}</div>
-                          </td>
-                          <td className="text-center">
-                            <div>{fund_cash_amount}</div>
-                          </td>
-                          <td className="text-center">
-                            <div>{fund_category}</div>
-                          </td>
-                          {fund_item_sell.length && fund_item_sell.map(donations => {
-                               const {donate_amount, donate_curency,  donate_payment_method, user, donate_payment_status, donate_createdAt} = donations
-                                   const {first_name, last_name, email} = user
-                             return(
-                            <>
-                              <td className="text-center">
-                              <div>{first_name + " " +  last_name}</div>
-                            </td>
-                            <td className="text-center">
-                              <div>{email}</div>
-                            </td>
-                            <td className="text-center">
-                              <div>{donate_amount}</div>
-                            </td>
-                            <td className="text-center">
-                              <div>{donate_payment_method}</div>
-                            </td>
-                            <td className="text-center">
-                              <div>{donate_payment_status}</div>
-                            </td>
-                            <td className="text-center">
-                              <div>{donate_createdAt}</div>
-                            </td>
-                            </>
-                             )
-                          })}
-                        
-                        </tr>
-                      )
-                    }):
-                    <div>
-                      You have not recieved any donation for your Item cause
+                        <tbody>
+                          {user_donations_received.length ? (
+                            user_donations_received.map((data) => {
+                              const { fund_type, fund_item, fund_title, fund_category, id } = data;
+
+                              const wrap = "";
+                              const itemHashedId = "#" + String(id);
+                              const stringHashed = String(itemHashedId);
+                              console.log(itemHashedId);
+
+                              const stringifyId = String(id);
+                              if (fund_type === "Item") {
+                                return (
+                                  // toggle table row
+                                  <>
+                                    <tr
+                                      data-toggle="collapse"
+                                      data-target={stringHashed}
+                                      className="accordion-toggle"
+                                      key={id}
+                                    >
+                                      <td>
+                                        <FaBeer />
+                                      </td>
+                                      <td>{fund_title}</td>
+                                      <td>{fund_category}</td>
+                                    </tr>
+
+                                    {/* hidden */}
+                                    <tr>
+                                      <td colspan="12" className="hiddenRow">
+                                        <div className="accordian-body collapse" id={stringifyId}>
+                                          <table className="table table-striped">
+                                            <thead>
+                                              <tr className="info">
+                                                <th>Name</th>
+                                                <th> Email</th>
+                                                <th>Item Donated</th>
+                                                <th>Condition</th>
+                                                <th>Date</th>
+                                              </tr>
+                                            </thead>
+
+                                            {/* map hidden */}
+                                            <tbody>
+                                              {fund_item.length &&
+                                                fund_item.map((donations) => {
+                                                  const {
+                                                    donate_item_name,
+                                                    user,
+                                                    donate_item_condition,
+                                                    donate_createdAt,
+                                                  } = donations;
+                                                  const { first_name, last_name, email } = user;
+                                                  const userName = user
+                                                    ? first_name + " " + last_name
+                                                    : null;
+
+                                                  return (
+                                                    <tr key={id}>
+                                                      <td>{first_name + " " + last_name}</td>
+                                                      <td>{email}</td>
+                                                      <td>
+                                                        <div>{donate_item_name}</div>
+                                                      </td>
+                                                      <td>
+                                                        <div>{donate_item_condition}</div>
+                                                      </td>
+
+                                                      <td>
+                                                        <div>
+                                                          {donate_createdAt.substring(0, 10)}
+                                                        </div>
+                                                      </td>
+                                                    </tr>
+                                                  );
+                                                })}
+                                            </tbody>
+                                          </table>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                  </>
+                                );
+                              }
+                            })
+                          ) : (
+                            <div>You have not recieved any donation on your item cause</div>
+                          )}
+                        </tbody>
+                      </table>
                     </div>
-                    } */}
-                </tbody>
-              </table>
+                  </div>
+                </div>
+              </div>
             </CCardBody>
           </CCard>
         </CCol>

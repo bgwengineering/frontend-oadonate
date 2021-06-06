@@ -6,6 +6,7 @@ import { renderField, validate, hiddenField } from 'util/RenderValidate';
 import { BiShow } from 'react-icons/bi';
 import { BiHide } from 'react-icons/bi';
 import { useDispatch, useSelector } from 'react-redux';
+import Button  from '@material-ui/core/Button';
 
 
 const LoginForm = ({handleSubmit, submitting, pristine}) => {
@@ -26,19 +27,76 @@ const LoginForm = ({handleSubmit, submitting, pristine}) => {
     }
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
-            <>
-           <fieldset>
-            <Field component={renderField} label="Email" name='email' type='email'/> 
-            </fieldset>     
-            <fieldset className='d-flex form-eye-field'>    
-            <Field type={isPasswordShown ? 'text' :'password'} name="password"  component={renderField} label='password'/>     
-             <span className='password-icon' onClick={handleShowPassword}><BiShow /></span>
-             <span className='password-icon' onClick={handleShowPassword} style={{display:isPasswordShown ? 'none' : 'block' }}><BiHide /></span>
-            </fieldset>
-            <button disabled= {pristine || submitting} className="auth-button mt-3">Sign In</button>    
-            </>
-        </form>   
+      <div className="container-fluid mt--7">
+        <div className="row">
+          <div className="col-md-7 col-xl-7 order-xl-1 mx-auto mt-5">
+            <div className="card shadow">
+              <div className="card-header bg-white border-0"></div>
+              <div className="card-body">
+                <h6 className="heading-small text-muted all-heading mb-4">
+                  Sign In
+                </h6>
+                <hr className="my-4" />
+
+                {/* form */}
+                <form onSubmit={handleSubmit(onSubmit)}>
+                  <div className="pl-lg-2">
+                    <div className="row">
+                      <div className="col-lg-12">
+                        <div className="form-group">
+                          <label
+                            className="profile-control-label"
+                            for="input-first_name"
+                          >
+                            Email<span className='text-danger'>*</span>
+                          </label>
+                          <Field
+                            component="input"
+                            type="text"
+                            id="input-first_name"
+                            name="email"
+                            className="form-control form-control-alternative"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="row">
+                      <div className="col-lg-12">
+                        <div className="form-group">
+                          <label
+                            className="profile-control-label"
+                            for="input-first_name"
+                          >
+                            Password<span className='text-danger'>*</span>
+                          </label>
+                          <Field
+                            component="input"
+                            type="password"
+                            id="input-first_name"
+                            name="password"
+                            className="form-control form-control-alternative"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <hr className="profile_hr my-4" />
+                  <div className="d-flex justify-content-end">
+                    <Button
+                      className="profile-form-but"
+                      type="submit"
+                      disabled={pristine || submitting}
+                     >
+                      Login
+                    </Button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     );
 }
 

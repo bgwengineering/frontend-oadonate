@@ -2,11 +2,11 @@ import React from 'react'
 import SidenavContent from './SidenavContent';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener'; 
 
-function SideDrawer({handleClickAway}){
 
+function SideDrawer({handleClickAway}){
         return (   
         <ClickAwayListener onClickAway={handleClickAway}>
-          <div className= "SideDrawer Open" >   
+          <div className= "SideDrawer Open">   
           <div className='times_utf'>
               <div className="times-bt-container">
                   <button className="times-bt" onClick={()=>handleClickAway()}>&times;</button>
@@ -19,7 +19,5 @@ function SideDrawer({handleClickAway}){
       </ClickAwayListener>
     )
 }
-
-
 
 export default SideDrawer;
