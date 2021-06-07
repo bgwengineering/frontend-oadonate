@@ -43,13 +43,7 @@ const Categoryindex = ({ match }) => {
             />
           </Switch>
 
-          <div className="start-fund-raise-btn-container" id='fund__raise_btn'>
-             <div className="start-raise-fund-sub-container">
-              <Button className="start-fund-raise-btn" onClick={()=>dispatch(FUNDRAISEBUTTONCLICKED())}>
-                Start FundRaise
-             </Button>
-             </div>
-           </div>
+        
         </div>   
         
           <div id="RaiseFundQuestionnaire" style={{display: startFundRaise ? 'block' : 'none' }}>

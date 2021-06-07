@@ -21,7 +21,7 @@ const AllCategories = () => {
                   src={CommImg}
                   alt="community-imgs"
                   className="business-img"
-                  style={{ width: "100%", height: "300px" }}
+                  style={{ width: "100%", height: "360px" }}
                 />
               </div>
             </div>

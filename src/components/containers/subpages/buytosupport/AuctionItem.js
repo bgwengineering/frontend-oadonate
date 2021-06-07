@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { AiOutlineFolderOpen } from "react-icons/ai";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@material-ui/core";
-
 import { useSelector } from "react-redux";
+import {withRouter} from 'react-router-dom'
+import { isTSImportType } from "@babel/types";
 
 
-const AuctionItem = () => {
+
+const AuctionItem = ({history}) => {
   const marketState = useSelector(state => state.marketPlaceReducer);
   const { collections } = marketState;
 
@@ -24,6 +25,7 @@ const AuctionItem = () => {
     }
     setOpen(false);
   };
+
 
   return (
     <>
@@ -59,13 +61,13 @@ const AuctionItem = () => {
 
                     <div className="bid-btn-container">
                       <div className="bid-btn-subdiv">
-                        <Button className="card-text bid_btn">
-                          <Link
-                            className="link-router-inverted"
-                            to={`marketplace/auction/${id}/details`}
-                          >
-                            Bid Now
-                          </Link>
+                        <Button className="card-text bid_btn"
+                          onClick={() => window.scrollTo({
+                            top: 0,
+                            behavior:'smooth'
+                          }, history.push(`marketplace/auction/${id}/details`))}
+                         >           
+                          Bid Now
                         </Button>
                       </div>
                     </div>
@@ -104,4 +106,4 @@ const AuctionItem = () => {
     </>
   );
 };
-export default AuctionItem;
+export default withRouter(AuctionItem)

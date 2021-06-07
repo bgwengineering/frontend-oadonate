@@ -22,6 +22,11 @@
            @media screen and(max-width:575.99px){
             margin-top:75px;
            }
+      .community-img{
+              @media (min-width:768px) and (max-width:991px){
+          height:460px;
+        }
+      }
     }
 }
 

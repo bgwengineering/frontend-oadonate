@@ -11,9 +11,8 @@ const initialState = {
     Ogadonate_item: [],
     userFund: [],
     paystackUrl: "",
+    ogadonatePaystackUrl: "",
     submitted: false
-
-
 };
 
 const fundDonate = (state = initialState, action) => {
@@ -34,9 +33,9 @@ const fundDonate = (state = initialState, action) => {
             };
         case actionTypes.CREATE_CASH_DONATION_OGAFUND_SUCCESS:
             return {
-                ...state,
-                Ogadonate_cash: payload,
-                loading: false,
+              ...state,
+              ogadonatePaystackUrl: payload,
+              loading: false
             };
         case actionTypes.CREATE_ITEM_DONATION_OGAFUND_SUCCESS:
             return {

@@ -5,20 +5,22 @@ import { fetchUserDonationsReceived } from "store/actions/auth/Dashboard";
 import { FaPlus, FaMinus } from "react-icons/fa";
 
 
+
 const DonationReceived = () => {
   const dispatch = useDispatch();
   const fundDonateState = useSelector((state) => state.userTypeReducer);
   const { user_donations_received } = fundDonateState;
-
   const [tableClick, setTableClick] = useState(false)
+
 
   const handleTableClick = tableId => {
     setTableClick(!tableClick)
   }
 
-  useEffect(() => {
+
+   useEffect(() => {
     dispatch(fetchUserDonationsReceived());
-  }, []);
+    }, []);
 
 
   return (
@@ -70,17 +72,12 @@ const DonationReceived = () => {
                                       className="accordion-toggle"  
                                       onClick={handleTableClick}
                                     >
-                                      {tableClick ?
-                                       
-                                        <td>
-                                          <FaMinus />
-                                        </td> 
-                                        :
+                                    
                                         <td>
                                           <FaPlus />
                                         </td>
                                         
-                                    }
+                                    
                                      
                                       <td>{fund_title}</td>
                                       <td>
@@ -111,8 +108,8 @@ const DonationReceived = () => {
 
                                             {/* map hidden */}
                                             <tbody>
-                                              {fund_cash.length &&
-                                                fund_cash.map((donations) => {
+                                              {fund_cash.length > 0 &&
+                                                fund_cash.map(donations => {
                                                   const {
                                                     donate_amount,
                                                     donate_payment_method,
@@ -124,7 +121,7 @@ const DonationReceived = () => {
                                                   } = donations;
 
                                                   const { first_name, last_name, email } = user;
-                                                  return (
+                                                return (
                                                     <tr key={id}>
                                                       <td>{first_name + " " + last_name}</td>
                                                       <td>{email}</td>
@@ -195,12 +192,9 @@ const DonationReceived = () => {
                                  id
                               } = data;
                                        
-                              if (fund_type === "Item") {
-                              
+                              if (fund_type === "Item") {                  
                                 const hash = "#"
-                                const hashDd = hash.concat("a" + index)
-
-                                
+                                const hashDd = hash.concat("a" + index)                          
                                 return (
                                   // toggle table row
                                   <>

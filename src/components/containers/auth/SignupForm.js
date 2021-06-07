@@ -30,9 +30,12 @@ const SignupForm = ({ handleSubmit, submitting, pristine }) => {
             <fieldset>
               <Field component={renderField} className='input' label="Email" name='email' type='email' />
             </fieldset>
+            <fieldset>
+              <Field component={renderField} className='input' label="Referral Code(Optional)" name='affiliate_code' type='text' />
+            </fieldset>
 
             <fieldset className='d-flex form-eye-field'>    
-                    <Field type={isPasswordShown ? 'text' : 'password'} className='input' name="password"  component={renderField} label='password'/>     
+            <Field type={isPasswordShown ? 'text' : 'password'} className='input' name="password"  component={renderField} label='password'/>     
              <span className='password-icon' onClick={handleShowPassword}><BiShow /></span>
              <span className='password-icon' onClick={handleShowPassword} style={{display:isPasswordShown ? 'none' : 'block' }}><BiHide /></span>
             </fieldset>

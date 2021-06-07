@@ -17,7 +17,10 @@ const ProductList = () => {
   const indexOfFirstCard = indexOfLastCard + supportCardPerPage;
   const [open, setOpen] = useState(false);
   const [count, setCount] = useState(0);
+
   
+
+
   const controlSingleOrMultipleItemClick = (num) => {
     if (num === 1) {
       return "item added";
@@ -35,7 +38,13 @@ const ProductList = () => {
     collections.length &&
     collections.slice(indexOfLastCard, indexOfFirstCard).map((product, indx) => {
       if (product.donate_determine_price || product.donate_mkt_price) {
-        return <ProductItem product={product} indx={indx} />;
+        return (
+          <ProductItem
+            product={product}
+            indx={indx}
+            controlSingleOrMultipleItemClick={controlSingleOrMultipleItemClick}
+          />
+        );
       }
     });
   return (

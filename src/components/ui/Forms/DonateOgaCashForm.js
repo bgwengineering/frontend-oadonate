@@ -17,7 +17,7 @@ const Message = ({ message }) => (
   </section>
 );
 const DonateOgaCashForm = ({ fund_cash, setIsDonateOgaForm, setCurrentOpenForm }) => {
-  const paystackUrl = useSelector((state) => state.fundDonateReducer.paystackUrl);
+  const paystackUrl = useSelector((state) => state.fundDonateReducer.ogadonatePaystackUrl);
   useEffect(() => {
     if (paystackUrl.length) {
       window.location = paystackUrl;
@@ -84,6 +84,7 @@ const DonateOgaCashForm = ({ fund_cash, setIsDonateOgaForm, setCurrentOpenForm }
     };
     dispatch(donateCashToOga(formData));
   };
+  
   const handleSubmitStripe = (e) => {
     e.preventDefault();
     const formData = {

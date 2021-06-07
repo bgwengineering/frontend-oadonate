@@ -43,15 +43,16 @@ const AllDonateItemCards = () => {
             const {first_name, last_name} = user
             let fundCash = numeral(fund_cash_amount).format('0, 0');
             let fundAmount = numeral(fund_amount_raised).format('0, 0');
-            const percentageCompleted = Number(fund_percentage_completed).toFixed(1)
-            if(fund_type == "Item"){
+              const percentageCompleted = Number(fund_percentage_completed).toFixed(1)
+              
+          
               return (
                 <div className="col-sm-6 col-md-6 col-lg-4 p-t-10">
                   <div className="card card-feature" key={id}>
                     <Link
                       to={`/campaign/${fund_category}/${id}/details`}
                       className="link-router"
-                      onClick={()=>scrollToTop()}
+                      onClick={() => scrollToTop()}
                     >
                       <img
                         className="card-img-top"
@@ -61,49 +62,74 @@ const AllDonateItemCards = () => {
                     </Link>
                     <div className="card-body">
                       <div>
-                        <div className='d-flex'>
-                          <div className='ai-outline'>
-                           <AiOutlineFolderOpen />
-                        </div>
-                        <span className="card-text text-muted ml-2 fund-category">
-                          {fund_category}
-                        </span>
-                        <span>Type:<span className='font-weight-bold ml-2'>{fund_type}</span></span>
+                        <div className="d-flex">
+                          <div className="ai-outline">
+                            <AiOutlineFolderOpen />
+                          </div>
+                          <span className="card-text text-muted ml-2 fund-category">
+                            {fund_category}
+                          </span>
+                          <span>
+                            Type:
+                            <span className="font-weight-bold ml-2">
+                              {fund_type}
+                            </span>
+                          </span>
                         </div>
                         <Link
                           to={`/campaign/${fund_category}/${id}/details`}
                           className="link-router"
-                          onClick={()=>scrollToTop()}
+                          onClick={() => scrollToTop()}
                         >
                           <h4 className="card-title pt-2">{fund_title}</h4>
                         </Link>
-                        <LinearProgress value={fund_percentage_completed} variant="determinate"/>
+                        {fund_type == "Item" ? null : (
+                          <LinearProgress
+                            value={fund_percentage_completed}
+                            variant="determinate"
+                          />
+                        )}
+                        <div className="mt-3 mb-2 truncate">{fund_purpose}</div>
                         
-                        <div className='mt-3 mb-2 truncate'>
-                           {fund_purpose}
-                        </div>
-                        <div className="row justify-content-between mt-2 contributed-progress-view">
-                          <p className="contributed-amount m-l-15 font-weight-bold">
-                            {fund_currency_type + fundAmount}  
-                          </p>
-                          <span className="m-r-12 font-weight-bold">{percentageCompleted + '%'}</span>
-                        </div>
-                      <p className='pt-0'>raised of <span>{fund_currency_type + fundCash}</span></p>   
+                        {fund_type == "Item" ? null : (
+                          <div>
+                            <div className="row justify-content-between mt-2 contributed-progress-view">
+                              <p className="contributed-amount m-l-15 font-weight-bold">
+                                {fund_currency_type + fundAmount}
+                              </p>
+                              <span className="m-r-12 font-weight-bold">
+                                {percentageCompleted + "%"}
+                              </span>
+                            </div>
+
+                            <p className="pt-0">
+                              raised of{" "}
+                              <span>{fund_currency_type + fundCash}</span>
+                            </p>
+                          </div>
+                        )}
                         <div className="card-donate-btn-container">
-                          <Button variant="contained" className="card-donate-btn">
+                          <Button
+                            variant="contained"
+                            className="card-donate-btn"
+                          >
                             <Link
                               to={`/campaign/${fund_category}/${id}/details`}
                               className="link-router-btn"
-                              onClick={()=>scrollToTop()}
-                              >
+                              onClick={() => scrollToTop()}
+                            >
                               Donate
                             </Link>
                           </Button>
                         </div>
                         <hr />
                         <div className="row donated-ws">
-                          <p className="m-l-15">by {first_name + " " + last_name}</p>
-                          <span className="m-r-12">End date : {fund_endAt}</span>
+                          <p className="m-l-15">
+                            by {first_name + " " + last_name.substring(0, 1)}
+                          </p>
+                          <span className="m-r-12">
+                            End date : {fund_endAt}
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -112,7 +138,7 @@ const AllDonateItemCards = () => {
               );
             }
             
-          })
+          )
         : <div className='spinner-container mx-auto'>
             <LoadingSpinner className='spinner'/>
         </div>}

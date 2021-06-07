@@ -4,7 +4,8 @@ import LinearProgress from "@material-ui/core/LinearProgress";
 import Button from "@material-ui/core/Button";
 import { AiOutlineFolderOpen } from "react-icons/ai";
 import { useSelector } from "react-redux";
-import {ReactComponent as LoadingSpinner} from 'assets/images/spinner.svg'
+import { ReactComponent as LoadingSpinner } from 'assets/images/spinner.svg'
+
 var numeral = require('numeral');
 
 
@@ -51,7 +52,8 @@ const scrollToTop = () => {
             const {first_name, last_name} = user
             let fundCash = numeral(fund_cash_amount).format('0, 0');
             let fundAmount = numeral(fund_amount_raised).format('0, 0');
-            const percentageCompleted = Number(fund_percentage_completed).toFixed(1)
+          const percentageCompleted = Number(fund_percentage_completed).toFixed(1)
+          
           if (fund_category == "Personal_need"){
             return (   
                 <div className="col-sm-6 col-md-6 col-lg-4 p-t-10">
@@ -107,7 +109,7 @@ const scrollToTop = () => {
                         </div>
                         <hr />
                         <div className="row donated-ws">
-                          <p className="m-l-15">by {first_name + " " + last_name}</p>
+                        <p className="m-l-15">by {first_name + " " + last_name.substring(0, 1)}</p>
                           <span className="m-r-12">End date : {fund_endAt}</span>
                         </div>
                       </div>
