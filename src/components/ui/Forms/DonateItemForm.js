@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Field, reduxForm, stopSubmit, reset } from "redux-form";
+import { stopSubmit, reset } from "redux-form";
 import axiosInstance from "util/api";
 import { useDispatch } from "react-redux";
 import {
@@ -13,9 +13,8 @@ import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
 import Button from "@material-ui/core/Button";
 import { setLoading, offLoading } from "store/actions/Common";
-
-
-
+import { useMediaQuery } from "react-responsive";
+import { Field, reduxForm } from "redux-form";
 
 const DonateItemForm = ({
     fund_item,
@@ -43,8 +42,10 @@ const DonateItemForm = ({
         donate_bid_min_val: "",
         donate_bid_endAt: "",
     })
-    const [itemImage, setItemImage] = useState(null);
+  const [itemImage, setItemImage] = useState(null);
   
+  const isDesktopOrLaptop = useMediaQuery({ query: '(min-width: 992px)' })
+  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 991px)' })
 
     const handlePriceForOgadonate = () => {
         setIsPriceOgadonate(true);
@@ -148,7 +149,8 @@ const DonateItemForm = ({
         }
     };
 
-    const [activeStep, setActiveStep] = useState(0);
+  const [activeStep, setActiveStep] = useState(0);
+  
     const getSteps = () => {
         return [
             "Item Information",
@@ -158,7 +160,8 @@ const DonateItemForm = ({
         ];
     };
 
-    const steps = getSteps();
+  const steps = getSteps();
+  
     const getStepContent = (stepIndex) => {
         switch (stepIndex) {
             case 0:
@@ -191,9 +194,12 @@ const DonateItemForm = ({
           placeholder=" Explain the state of the item, does it need minor or major repair"
           onChange={handleChange}
           className="input-textarea"
-        />
-        <div className="d-flex mt-3 mb-3">
-          <h2 className="fs-title mr-2">Item Category</h2>
+            />
+
+       
+          <div className='item-category-condition'>
+            <div className="d-flex flex-column mt-3 mb-3">
+            <h2 className="fs-title mr-2">Item Category</h2>
           <select onChange={handleChange} name="donate_product_category">
           <option value="">select category</option>
             <option value="Health & Beauty">Health & Beauty</option>
@@ -207,7 +213,9 @@ const DonateItemForm = ({
             <option value="Automobile">Automobile</option>
             <option value="Other categories">Other categories</option>
           </select>
-
+          </div>
+            
+          <div className="d-flex flex-column mt-3 mb-3">
           <h2 className="fs-title mr-2">Item Condition</h2>
           <select component="select" name="donate_item_condition">
             <option value="">select condition</option>
@@ -218,7 +226,8 @@ const DonateItemForm = ({
             <option value="Bad">Bad</option>
             <option value="Fairly Used">Fairly used</option>
           </select>
-        </div>
+          </div>
+          </div>
       </fieldset>
         );
     };
@@ -374,11 +383,10 @@ const DonateItemForm = ({
                 className="input-number"
                 placeholder="What's the minimum value of the item for auction bid(e.g 50,000)"
               />
-            </div>
-            
+            </div>       
             <div
               className="item-cash-value"
-            >
+              >
               <label>
                 Auction End Date <span className="text-danger">*</span>
               </label>
@@ -398,7 +406,7 @@ const DonateItemForm = ({
 
     const getAttestation = () => {
         return (
-            <fieldset>
+        <fieldset>
         <h2 className="fs-title">Attestation</h2>
         <div className="d-flex">
           <input
@@ -442,20 +450,44 @@ const DonateItemForm = ({
     return ( 
     <>
         <form onSubmit={onSubmitForm} className="fundforms_container">
-        <div className="w-80">
-          <Stepper activeStep={activeStep} alternativeLabel className="horizontal-stepper-linear">
-            {steps.map((label, index) => {
-              return (
-                <Step
-                  key={label}
-                  className={`horizontal-stepper ${index === activeStep ? "active" : ""}`}
-                >
-                  <StepLabel className="stepperlabel">{label}</StepLabel>
-                </Step>
-              );
-            })}
-          </Stepper>
-
+  
+          <div>
+            {isDesktopOrLaptop &&
+              <div>
+                <Stepper activeStep={activeStep} alternativeLabel className="horizontal-stepper-linear">
+                  {steps.map((label, index) => {
+                    return (
+                      <Step
+                        key={label}
+                        className={`horizontal-stepper ${index === activeStep ? "active" : ""}`}
+                      >
+                        <StepLabel className="stepperlabel">{label}</StepLabel>
+                      </Step>
+                    );
+                  })}
+              </Stepper> 
+              </div>
+            }
+            
+      
+            {isTabletOrMobile &&
+              <>
+                <div style={{ marginTop: 20, textAlign: 'center' }}>
+                  <span>{steps[activeStep]}</span>
+                </div>
+                <Stepper activeStep={activeStep} style={{ padding: '24px 0px 24px 0px' }}>
+                  {steps.map((label, index) => {
+                    const props = {};
+                    return (
+                      <Step style={{ width: 24, padding: 0 }} key={label} {...props}>
+                        {/* <StepLabel {...labelProps}></StepLabel> */}
+                      </Step>
+                    );
+                  })}
+                </Stepper>
+              </>
+            }
+     
           <div>
             {activeStep !== steps.length ? (
               <div>
@@ -507,7 +539,7 @@ const DonateItemForm = ({
                   name="submit"
                   className="MuiButton-containedPrimary"
                   disabled={pristine || submitting}
-                >
+                 >
                   Submit
                 </Button>
               </>
@@ -519,4 +551,4 @@ const DonateItemForm = ({
     );
 };
 
-export default DonateItemForm;
+export default reduxForm({ form: "DonateItemForm" })(DonateItemForm)

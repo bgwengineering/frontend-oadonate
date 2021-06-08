@@ -4,9 +4,9 @@ import axiosInstance from "util/api";
 import { clearCartItems, placeOrder } from "store/actions/cart/cart.actions";
 import { Link } from 'react-router-dom';
 
-const stripePromise = window.Stripe(
-  "pk_test_51Ihz1EJtAhKBp45zJXZLT2RmTKQLDbpZRPerC1uKcnQ69N1R1IchlmRhCBMp3cwJ4DIVpSf9iHe4Hnq9wUdAC6OA00DNznJtw5"
-);
+// const stripePromise = window.Stripe(
+//   "pk_test_51Ihz1EJtAhKBp45zJXZLT2RmTKQLDbpZRPerC1uKcnQ69N1R1IchlmRhCBMp3cwJ4DIVpSf9iHe4Hnq9wUdAC6OA00DNznJtw5"
+// );
 
 const Message = ({ message }) => (
   <section>
@@ -107,15 +107,15 @@ const OrderPreview = ({ nextPage, previousPage, history }) => {
         Accept: "application/json",
       },
     };
-    const stripe = stripePromise;
+    // const stripe = stripePromise;
     axiosInstance
       .post("buy-to-support/orders", formData, config)
       .then((res) => {
         const session = res.data;
-        const result = stripe.redirectToCheckout({ sessionId: session });
-        if (result.error) {
-          setMessage(result.error.message);
-        }
+        // const result = stripe.redirectToCheckout({ sessionId: session });
+        // if (result.error) {
+        //   setMessage(result.error.message);
+        // }
         return message ? <Message message={message} /> : null;
       })
       .catch((error) => {

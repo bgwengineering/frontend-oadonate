@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
-import DonateCardImport from "../campaign/CampaignCardImport";
 import { Link } from "react-router-dom";
 import SearchSvg from "components/ui/Svg/SearchSvg";
 import ArrowSvg from "components/ui/Svg/ArrowSvg";
 import AllDonateCashCards from './AllDonateCashCards';
 import axios from 'axios';
+
+
+
 
 const DonateCash = ({history}) => {
   const [data, setData] = useState({
@@ -15,6 +17,8 @@ const DonateCash = ({history}) => {
   const [searchValue, setSearchValue] = useState("")
   const [filteredData, setFilteredData] = useState([])
   const [selectValue, setSelectValue] = useState("");
+
+
 
   useEffect(() => {
     const handleCampaignData = async () => {
@@ -156,9 +160,10 @@ const DonateCash = ({history}) => {
       </div>
       <div className="all_donate_item_cards">
         <h4 className="text-uppercase text-center mt-5">
-          Find a cause to donate to
+           Find a cause to donate to
         </h4>
         <AllDonateCashCards />
+    
       </div>
     </>
   );

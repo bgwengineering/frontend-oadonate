@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { withRouter, NavLink } from "react-router-dom";
+import { withRouter, NavLink, Link } from "react-router-dom";
 import Logo from "assets/images/logo.jpeg";
 import Button from "@material-ui/core/Button";
 import {IoIosArrowDown} from 'react-icons/io'
@@ -259,13 +259,22 @@ const SidenavContent = ({ handleClickAway, history }) => {
             )}
             <li className="side-nav-item navigation-btn-item">
               <Button variant="contained" className="nav-btn mt-2">
-                <NavLink
-                  to="/marketplace"
-                  className="side-navigation-link text-white"
-                  onClick={()=>handleClickAway()}
+                <Link
+                className="side-navigation-link text-white"
+                onClick={() => {
+                  handleClickAway();
+                  window.scrollTo(
+                    {
+                      top: 0,
+                      behavior: "smooth"
+                    },
+                    history.push("/marketplace/products")
+                  );
+                }
+                }
                 >
                   Buy To Support
-                </NavLink>
+                </Link>
               </Button>     
             </li>
           <li className="side-nav-item navigation-btn-item" onClick={pushToCorporate}>

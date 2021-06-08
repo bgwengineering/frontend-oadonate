@@ -8,9 +8,9 @@ import Button from "@material-ui/core/Button";
 import axiosInstance from "util/api";
 import { setLoading } from "store/actions/Common";
 
-const stripePromise = window.Stripe(
-  "pk_test_51Ihz1EJtAhKBp45zJXZLT2RmTKQLDbpZRPerC1uKcnQ69N1R1IchlmRhCBMp3cwJ4DIVpSf9iHe4Hnq9wUdAC6OA00DNznJtw5"
-);
+// const stripePromise = window.Stripe(
+//   "pk_test_51Ihz1EJtAhKBp45zJXZLT2RmTKQLDbpZRPerC1uKcnQ69N1R1IchlmRhCBMp3cwJ4DIVpSf9iHe4Hnq9wUdAC6OA00DNznJtw5"
+// );
 
 
 
@@ -117,14 +117,14 @@ const DonateCashForm = ({ fund_cash, setCurrentOpenForm, setIsDonateCardButtonsO
         Accept: "application/json",
       },
     };
-    const stripe = stripePromise;
-      const res = await axiosInstance.post("campaign/create/donation-cash", formData, config)
-      const session = res.data;
-      const result = stripe.redirectToCheckout({ sessionId: session });
-      if(result.error){
-        setMessage(true);
-        return message ? <Message message={result.error.message} /> : null;
-      }
+    // const stripe = stripePromise;
+    //   const res = await axiosInstance.post("campaign/create/donation-cash", formData, config)
+    //   const session = res.data;
+    //   const result = stripe.redirectToCheckout({ sessionId: session });
+    //   if(result.error){
+    //     setMessage(true);
+    //     return message ? <Message message={result.error.message} /> : null;
+    //   }
     }
   
   const handleChange = (e) => {
