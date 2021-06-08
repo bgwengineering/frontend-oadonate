@@ -107,7 +107,7 @@ const OrderPreview = ({ nextPage, previousPage, history }) => {
         Accept: "application/json",
       },
     };
-    // const stripe = stripePromise;
+    const stripe = stripePromise;
     axiosInstance
       .post("buy-to-support/orders", formData, config)
       .then((res) => {
@@ -288,6 +288,5 @@ const OrderPreview = ({ nextPage, previousPage, history }) => {
     </div>
   );
 };
-
 
 export default OrderPreview;
