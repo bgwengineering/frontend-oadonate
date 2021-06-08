@@ -159,7 +159,9 @@ const RaiseItem = ({ setCurrentOpenForm, setIsRaiseCardButtonsOpen,mime, handleS
   const getPersonalInformation = () => {
     return (
       <fieldset>
-        <h2 className="fs-title">Fundraise Title</h2>
+        <h2 className="fs-title text-uppercase font-weight-bold">
+          Fundraise Title
+        </h2>
         <Field
           type="text"
           className="input-text"
@@ -168,7 +170,9 @@ const RaiseItem = ({ setCurrentOpenForm, setIsRaiseCardButtonsOpen,mime, handleS
           name="fund_title"
         />
         <div className="d-flex mt-3">
-          <h2 className="fs-title mr-4">Select fund raise categories</h2>
+          <h2 className="fs-title mr-4 text-uppercase font-weight-bold">
+            Select fund raise categories
+          </h2>
           <Field component="select" name="fund_category" id="categories">
             <option value="" disabled></option>
             <option value="Personal_need">Personal</option>
@@ -184,7 +188,7 @@ const RaiseItem = ({ setCurrentOpenForm, setIsRaiseCardButtonsOpen,mime, handleS
   const getTrack = () => {
     return (
       <fieldset>
-        <h2 className="fs-title">
+        <h2 className="fs-title text-uppercase font-weight-bold">
           <i>item description</i>
         </h2>
         <Field
@@ -196,7 +200,7 @@ const RaiseItem = ({ setCurrentOpenForm, setIsRaiseCardButtonsOpen,mime, handleS
         />
 
         <div className="d-flex mt-3">
-          <h2 className="fs-title mr-3">
+          <h2 className="fs-title mr-3 text-uppercase font-weight-bold">
             <i>Select currency type</i>
           </h2>
           <Field component="select" name="fund_currency_type">
@@ -205,7 +209,7 @@ const RaiseItem = ({ setCurrentOpenForm, setIsRaiseCardButtonsOpen,mime, handleS
             <option value="₦">₦</option>
           </Field>
         </div>
-        <h2 className="fs-title mt-4">
+        <h2 className="fs-title mt-4 text-uppercase font-weight-bold">
           <i>item cash value</i>
         </h2>
         <Field
@@ -225,11 +229,15 @@ const RaiseItem = ({ setCurrentOpenForm, setIsRaiseCardButtonsOpen,mime, handleS
   const getItems = () => {
     return (
       <fieldset>
-        <h2 className="fs-title">Add a cover photo</h2>
-        <h3 className="fs-subtitle">
+        <h2 className="fs-title text-uppercase font-weight-bold">
+          Add a cover photo
+        </h2>
+        <h3 className="fs-subtitle text-uppercase font-weight-bold">
           Please upload a picture that describes your need
         </h3>
-        <label>Choose your image file</label>
+        <label className="text-uppercase font-weight-bold">
+          Choose your image file
+        </label>
 
         <div>
           <Field
@@ -240,14 +248,18 @@ const RaiseItem = ({ setCurrentOpenForm, setIsRaiseCardButtonsOpen,mime, handleS
           />
         </div>
 
-        <h2 className="fs-title mt-4">Campaign end date</h2>
+        <h2 className="fs-title mt-4 text-uppercase font-weight-bold">
+          Campaign end date
+        </h2>
         <Field
           type="date"
           name="fund_endAt"
           component="input"
           className="input-date"
         />
-        <h2 className="fs-title mt-4">Tell your story</h2>
+        <h2 className="fs-title mt-4 text-uppercase font-weight-bold">
+          Tell your story
+        </h2>
         <Field
           name="fund_purpose"
           className="input-textarea"

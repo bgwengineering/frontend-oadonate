@@ -7,9 +7,9 @@ import StepLabel from "@material-ui/core/StepLabel";
 import Button from "@material-ui/core/Button";
 import { setLoading } from "store/actions/Common";
 
-// const stripePromise = window.Stripe(
-//   "pk_test_51Ihz1EJtAhKBp45zJXZLT2RmTKQLDbpZRPerC1uKcnQ69N1R1IchlmRhCBMp3cwJ4DIVpSf9iHe4Hnq9wUdAC6OA00DNznJtw5"
-// );
+const stripePromise = window.Stripe(
+  "pk_test_51Ihz1EJtAhKBp45zJXZLT2RmTKQLDbpZRPerC1uKcnQ69N1R1IchlmRhCBMp3cwJ4DIVpSf9iHe4Hnq9wUdAC6OA00DNznJtw5"
+);
 
 const Message = ({ message }) => (
   <section>
@@ -197,7 +197,7 @@ const DonateOgaCashForm = ({ fund_cash, setIsDonateOgaForm, setCurrentOpenForm }
             />
             <p className="mt-4">PayStack</p>
 
-            {/* <input
+            <input
               name="donate_payment_method"
               type="radio"
               className="mr-1 mt-2 ml-3"
@@ -205,7 +205,7 @@ const DonateOgaCashForm = ({ fund_cash, setIsDonateOgaForm, setCurrentOpenForm }
               value="Stripe"
               onClick={setStripeBtn}
             />
-            <p className="mt-4">Stripe</p> */}
+            <p className="mt-4">Stripe</p>
           </div>
         </fieldset>
       </>

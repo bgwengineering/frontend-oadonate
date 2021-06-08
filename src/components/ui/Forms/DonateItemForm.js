@@ -47,8 +47,8 @@ const DonateItemForm = ({
     })
   const [itemImage, setItemImage] = useState(null);
   
-  const isDesktopOrLaptop = useMediaQuery({ query: '(min-width: 992px)' })
-  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 991px)' })
+  const isDesktopOrLaptop = useMediaQuery({ query: '(min-width: 768px)' })
+  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 767px)' })
 
     const handlePriceForOgadonate = () => {
         setIsPriceOgadonate(true);
@@ -187,7 +187,7 @@ const DonateItemForm = ({
     const getPersonalInformation = () => {
         return (
           <fieldset className="mb-3">
-            <h2 className="fs-title">
+            <h2 className="fs-title text-uppercase font-weight-bold">
               Item Name <span className="text-danger">*</span>
             </h2>
             <input
@@ -197,7 +197,7 @@ const DonateItemForm = ({
               className="input-text"
               value={postData.donate_item_name}
             />
-            <h2 className="fs-title mt-3">
+            <h2 className="fs-title mt-3 text-uppercase font-weight-bold">
               Item Description <span className="text-danger">*</span>
             </h2>
             <textarea
@@ -212,7 +212,9 @@ const DonateItemForm = ({
 
             <div className="item-category-condition">
               <div className="d-flex flex-column mt-3 mb-3">
-                <h2 className="fs-title mr-2">Item Category</h2>
+                <h2 className="fs-title mr-2 text-uppercase font-weight-bold">
+                  Item Category
+                </h2>
                 <select onChange={handleChange} name="donate_product_category">
                   <option value="">select category</option>
                   <option value="Health & Beauty">Health & Beauty</option>
@@ -229,7 +231,9 @@ const DonateItemForm = ({
               </div>
 
               <div className="d-flex flex-column mt-3 mb-3">
-                <h2 className="fs-title mr-2">Item Condition</h2>
+                <h2 className="fs-title mr-2 text-uppercase font-weight-bold">
+                  Item Condition
+                </h2>
                 <select component="select" name="donate_item_condition">
                   <option value="">select condition</option>
                   <option value="New">New</option>
@@ -248,7 +252,7 @@ const DonateItemForm = ({
     const getTrack = () => {
         return (
             <fieldset>
-        <h2 className="fs-title mt-3">
+            <h2 className="fs-title mt-3 text-uppercase font-weight-bold">
           Upload image of item you wish to donate
           <span className="text-danger">*</span>
         </h2>
@@ -266,7 +270,7 @@ const DonateItemForm = ({
           className="input-file"
         /> */}
         <div className="d-block">
-          <h2 className="fs-title mt-3">Your message</h2>
+              <h2 className="fs-title mt-3 text-uppercase font-weight-bold">Your message</h2>
           <textarea
             placeholder="Give a brief message on the item"
             onChange={handleChange}
@@ -331,7 +335,7 @@ const DonateItemForm = ({
           {/* donate items market form */}
           <>
             {/* item sell*/}
-            <h2 className="fs-title">How do you want the price to be determined?</h2>
+                <h2 className="fs-title text-uppercase font-weight-bold">How do you want the price to be determined?</h2>
             <label className="mr-3">
               Price Determined by <span className="text-danger">*</span>
             </label>
@@ -428,7 +432,7 @@ const DonateItemForm = ({
     const getAttestation = () => {
         return (
         <fieldset>
-        <h2 className="fs-title">Attestation</h2>
+            <h2 className="fs-title text-uppercase font-weight-bold">Attestation</h2>
         <div className="d-flex">
           <input
             type="checkbox"
@@ -513,14 +517,15 @@ const DonateItemForm = ({
             {activeStep !== steps.length ? (
               <div>
                 {getStepContent(activeStep)}
-                <div className="mt-4">
+                  <div className="mt-4 flex-wrap d-flex justify-content-between">
+                    <div>
                   {activeStep !== 0 && (
                     <Button
                       disabled={activeStep === 0}
                       onClick={handleBack}
-                      className="mr-2 float-left"
+                      className="mr-2 "
                       color="primary"
-                    >
+                      >
                       Back
                     </Button>
                   )}
@@ -530,13 +535,14 @@ const DonateItemForm = ({
                       setIsDonateCardButtonsOpen(false);
                       handleReset();
                     }}
-                    className="mr-2 ml-2 float-left"
+                    className="mr-2 ml-2"
                     color="primary"
                   >
                     Cancel
                   </Button>
+                    </div>
                   <Button
-                    className="mr-2 float-right"
+                    className="mr-2"
                     variant="contained"
                     color="primary"
                     onClick={handleNext}

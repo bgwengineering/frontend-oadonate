@@ -166,7 +166,9 @@ const RaiseCash = ({
   const getPersonalInformation = () => {
     return (
       <fieldset>
-        <h2 className="fs-title text-capitalize">Fundraise Title</h2>
+        <h2 className="fs-title text-uppercase font-weight-bold">
+          Fundraise Title
+        </h2>
         <Field
           component="input"
           type="text"
@@ -175,10 +177,11 @@ const RaiseCash = ({
           className="input-text"
         />
         <div>
-          <label className="mr-3 mt-3">Select fund raise categories</label>
+          <label className="mr-3 mt-3 text-uppercase font-weight-bold">
+            Select fund raise categories
+          </label>
           <Field name="fund_category" id="categories" component="select">
-            <option value="" disabled>
-            </option>
+            <option value="" disabled></option>
             <option value="Personal_need">Personal</option>
             <option value="Community">Community</option>
             <option value="Start_up">Start up</option>
@@ -186,13 +189,14 @@ const RaiseCash = ({
           </Field>
         </div>
         <div className="mt-4 d-flex">
-          <h2 className="fs-title mr-2">How much would you like to raise?</h2>
+          <h2 className="fs-title mr-2 text-uppercase font-weight-bold">
+            How much would you like to raise?
+          </h2>
         </div>
         <span>
           <i className="mr-3">select option for dollar, naira, euro</i>
           <Field name="fund_currency_type" component="select">
-            <option value="" disabled>
-            </option>
+            <option value="" disabled></option>
             <option value="$">$</option>
             <option value="₦">₦</option>
           </Field>
@@ -205,15 +209,15 @@ const RaiseCash = ({
           component="input"
           data-msg-required="Please enter a valid number"
           type="number"
-          normalize={(val) => (val || "").replace(/[^\d]/g, "")}
+          normalize={val => (val || "").replace(/[^\d]/g, "")}
           className="mt-3 input-number"
           placeholder="Type the amount you need"
         />
 
         <p>
           <i>
-            Keep in mind that transaction fees of (5%) including credit and debit charges are
-            deducted from each donation
+            Keep in mind that transaction fees of (5%) including credit and
+            debit charges are deducted from each donation
           </i>
         </p>
       </fieldset>
@@ -223,16 +227,34 @@ const RaiseCash = ({
   const getPhoto = () => {
     return (
       <fieldset>
-        <h2 className="fs-title">Add a cover photo</h2>
-        <h3 className="fs-subtitle">Please upload a picture that describes your need</h3>
+        <h2 className="fs-title text-uppercase font-weight-bold">
+          Add a cover photo
+        </h2>
+        <h3 className="fs-subtitle">
+          Please upload a picture that describes your need
+        </h3>
         <label>Choose your image file</label>
         <div>
-          <Field name="fund_img" type="file" component={renderInput} className="input-number" />
+          <Field
+            name="fund_img"
+            type="file"
+            component={renderInput}
+            className="input-number"
+          />
         </div>
-        <h2 className="fs-title mt-4">Campaign End date</h2>
-        <Field type="date" name="fund_endAt" component="input" className="input-date" />
+        <h2 className="fs-title mt-4 text-uppercase font-weight-bold">
+          Campaign End date
+        </h2>
+        <Field
+          type="date"
+          name="fund_endAt"
+          component="input"
+          className="input-date"
+        />
 
-        <h2 className="fs-title mt-4">Tell your story</h2>
+        <h2 className="fs-title mt-4 text-uppercase font-weight-bold">
+          Tell your story
+        </h2>
         <Field
           type="text"
           name="fund_purpose"

@@ -7,10 +7,11 @@ import StepLabel from "@material-ui/core/StepLabel";
 import Button from "@material-ui/core/Button";
 import axiosInstance from "util/api";
 import { setLoading } from "store/actions/Common";
+import { useMediaQuery } from "react-responsive";
 
-// const stripePromise = window.Stripe(
-//   "pk_test_51Ihz1EJtAhKBp45zJXZLT2RmTKQLDbpZRPerC1uKcnQ69N1R1IchlmRhCBMp3cwJ4DIVpSf9iHe4Hnq9wUdAC6OA00DNznJtw5"
-// );
+const stripePromise = window.Stripe(
+  "pk_test_51Ihz1EJtAhKBp45zJXZLT2RmTKQLDbpZRPerC1uKcnQ69N1R1IchlmRhCBMp3cwJ4DIVpSf9iHe4Hnq9wUdAC6OA00DNznJtw5"
+);
 
 const DonateCashForm = ({
   fund_cash,
@@ -62,6 +63,8 @@ const DonateCashForm = ({
     setPaystack(false);
     setStripebtn(true);
   };
+  const isDesktopOrLaptop = useMediaQuery({ query: '(min-width: 768px)' })
+  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 767px)' })
 
   const dispatch = useDispatch();
 
@@ -126,14 +129,14 @@ const DonateCashForm = ({
         Accept: "application/json"
       }
     };
-    // const stripe = stripePromise;
-    //   const res = await axiosInstance.post("campaign/create/donation-cash", formData, config)
-    //   const session = res.data;
-    //   const result = stripe.redirectToCheckout({ sessionId: session });
-    //   if(result.error){
-    //     setMessage(true);
-    //     return message ? <Message message={result.error.message} /> : null;
-    //   }
+    const stripe = stripePromise;
+      const res = await axiosInstance.post("campaign/create/donation-cash", formData, config)
+      const session = res.data;
+      const result = stripe.redirectToCheckout({ sessionId: session });
+      if(result.error){
+        setMessage(true);
+        return message ? <Message message={result.error.message} /> : null;
+      }
   };
 
   const handleChange = e => {
@@ -336,36 +339,68 @@ const DonateCashForm = ({
     <>
       <div className="fundforms_container">
         <form className="w-80">
-          <Stepper
-            activeStep={activeStep}
-            alternativeLabel
-            className="horizontal-stepper-linear"
-          >
-            {steps.map((label, index) => {
-              return (
-                <Step
-                  key={label}
-                  className={`horizontal-stepper ${
-                    index === activeStep ? "active" : ""
-                  }`}
+          <div>
+            {isDesktopOrLaptop && (
+              <div>
+                <Stepper
+                  activeStep={activeStep}
+                  alternativeLabel
+                  className="horizontal-stepper-linear"
                 >
-                  <StepLabel className="stepperlabel">{label}</StepLabel>
-                </Step>
-              );
-            })}
-          </Stepper>
+                  {steps.map((label, index) => {
+                    return (
+                      <Step
+                        key={label}
+                        className={`horizontal-stepper ${
+                          index === activeStep ? "active" : ""
+                        }`}
+                      >
+                        <StepLabel className="stepperlabel">{label}</StepLabel>
+                      </Step>
+                    );
+                  })}
+                </Stepper>
+              </div>
+            )}
+
+            {isTabletOrMobile && (
+              <>
+                <div style={{ marginTop: 20, textAlign: "center" }}>
+                  <span>{steps[activeStep]}</span>
+                </div>
+                <Stepper
+                  activeStep={activeStep}
+                  style={{ padding: "24px 0px 24px 0px" }}
+                >
+                  {steps.map((label, index) => {
+                    const props = {};
+                    return (
+                      <Step
+                        style={{ width: 24, padding: 0 }}
+                        key={label}
+                        {...props}
+                      >
+                        {/* <StepLabel {...labelProps}></StepLabel> */}
+                      </Step>
+                    );
+                  })}
+                </Stepper>
+              </>
+            )}
+          </div>
 
           {activeStep !== steps.length ? (
             <div>
               {getStepContent(activeStep)}
-              <div className="mt-4">
+              <div className="mt-4 flex-wrap d-flex justify-content-between">
+                <div>
                 {activeStep !== 0 && (
                   <Button
                     disabled={activeStep === 0}
                     onClick={handleBack}
-                    className="mr-2 float-left"
+                    className="mr-2"
                     color="primary"
-                  >
+                   >
                     Back
                   </Button>
                 )}
@@ -374,13 +409,15 @@ const DonateCashForm = ({
                     setCurrentOpenForm(null);
                     setIsDonateCardButtonsOpen(false);
                   }}
-                  className="mr-2 ml-2 float-left"
+                  className="mr-2 ml-2"
                   color="primary"
                 >
                   Cancel
                 </Button>
+                </div>
+
                 <Button
-                  className="mr-2 float-right"
+                  className="mr-2"
                   variant="contained"
                   color="primary"
                   onClick={handleNext}
@@ -389,7 +426,7 @@ const DonateCashForm = ({
                     ? "Proceed to payment"
                     : "Next"}
                 </Button>
-              </div>
+              </div>        
             </div>
           ) : (
             <>
@@ -398,22 +435,23 @@ const DonateCashForm = ({
                   onClick={handleSubmit}
                   type="submit"
                   name="submit"
-                    color="primary"
-                    variant="contained"
+                  color="primary"
+                  variant="contained"
                 >
                   Donate With Paystack
                 </Button>
-               ) : (
+              ) : (
                 <Button
                   onClick={handleClick}
                   type="submit"
                   name="submit"
                   color="primary"
-                      variant="contained"
+                  variant="contained"
                 >
                   Donate With Stripe
                 </Button>
               )}
+
               <Button
                 disabled={activeStep === 0}
                 onClick={handleBack}
