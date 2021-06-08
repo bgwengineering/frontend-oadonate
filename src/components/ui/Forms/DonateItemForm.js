@@ -14,7 +14,7 @@ import StepLabel from "@material-ui/core/StepLabel";
 import Button from "@material-ui/core/Button";
 import { setLoading, offLoading } from "store/actions/Common";
 import { useMediaQuery } from "react-responsive";
-import { Field, reduxForm } from "redux-form";
+
 
 const DonateItemForm = ({
     fund_item,
@@ -23,8 +23,11 @@ const DonateItemForm = ({
     pristine,
     submitting,
 }) => {
+  
+
     const [isPriceOgadonate, setIsPriceOgadonate] = useState(false);
-    const [isPriceAuction, setIsPriceAuction] = useState(false);
+  const [isPriceAuction, setIsPriceAuction] = useState(false);
+  
     const [postData, setPostData] = useState({
         donate_item_name: "",
         donate_item_desc: "",
@@ -62,17 +65,18 @@ const DonateItemForm = ({
 
     const handleSwitchCurrentQuestion = (formToShow) => {
         setCurrentQuestionnaireOpen(formToShow);
-    };
-   
+  };
+  
     const dispatch = useDispatch();
 
     const handleChange = (e) => {
         setPostData({ ...postData, [e.target.name]: e.target.value })
-    }
+  }
+  
     const handleImgChange = (event) => {
         event.preventDefault();
-        let imageFile = event.target.files[0];
-        if(imageFile) {
+         let imageFile = event.target.files[0];
+         if(imageFile) {
             const localImageUrl = URL.createObjectURL(imageFile);
             const imageObject = new window.Image();
 
@@ -88,8 +92,9 @@ const DonateItemForm = ({
         }
     };
 
+  
     const onSubmitForm = async (e) => {
-      e.preventDefault();
+       e.preventDefault();
         let formData = new FormData();
         formData.append("donate_item_img", itemImage.donate_item_img);
         formData.append("donate_bid_endAt", postData.donate_bid_endAt);
@@ -108,13 +113,15 @@ const DonateItemForm = ({
         formData.append("donate_product_category", postData.donate_product_category);
         formData.append("fund_item", fund_item);
       
+      
         const config = {
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `JWT ${localStorage.getItem("access")}`,
                 Accept: "application/json",
             },
-        };
+      };
+      
         dispatch(setLoading());
         try {
             const res = await axiosInstance.post(`campaign/create/donation-itemsell`, formData, config);
@@ -179,56 +186,62 @@ const DonateItemForm = ({
 
     const getPersonalInformation = () => {
         return (
-            <fieldset className="mb-3">
-        <h2 className="fs-title">
-          Item Name <span className="text-danger">*</span>
-        </h2>
-        <input type="text" onChange={handleChange} name="donate_item_name" className="input-text" />
-        <h2 className="fs-title mt-3">
-          Item Description <span className="text-danger">*</span>
-        </h2>
-        <textarea
-          col="50"
-          row="40"
-          name="donate_item_desc"
-          placeholder=" Explain the state of the item, does it need minor or major repair"
-          onChange={handleChange}
-          className="input-textarea"
+          <fieldset className="mb-3">
+            <h2 className="fs-title">
+              Item Name <span className="text-danger">*</span>
+            </h2>
+            <input
+              type="text"
+              onChange={handleChange}
+              name="donate_item_name"
+              className="input-text"
+              value={postData.donate_item_name}
+            />
+            <h2 className="fs-title mt-3">
+              Item Description <span className="text-danger">*</span>
+            </h2>
+            <textarea
+              col="50"
+              row="40"
+              name="donate_item_desc"
+              placeholder=" Explain the state of the item, does it need minor or major repair"
+              onChange={handleChange}
+              className="input-textarea"
+              value={postData.donate_item_desc}
             />
 
-       
-          <div className='item-category-condition'>
-            <div className="d-flex flex-column mt-3 mb-3">
-            <h2 className="fs-title mr-2">Item Category</h2>
-          <select onChange={handleChange} name="donate_product_category">
-          <option value="">select category</option>
-            <option value="Health & Beauty">Health & Beauty</option>
-            <option value="Home & Office">Home & Office</option>
-            <option value="Phones & Tablets">Phones & Tablets</option>
-            <option value="Computing">Computing</option>
-            <option value="Electronics">Electronics</option>
-            <option value="Fashion">Fashion</option>
-            <option value="Baby Products">Baby Products</option>
-            <option value="Gaming">Gaming</option>
-            <option value="Automobile">Automobile</option>
-            <option value="Other categories">Other categories</option>
-          </select>
-          </div>
-            
-          <div className="d-flex flex-column mt-3 mb-3">
-          <h2 className="fs-title mr-2">Item Condition</h2>
-          <select component="select" name="donate_item_condition">
-            <option value="">select condition</option>
-            <option value="New">New</option>
-            <option value="Good">Good</option>
-            <option value="Very Good">Very Good</option>
-            <option value="Acceptable">Acceptable</option>
-            <option value="Bad">Bad</option>
-            <option value="Fairly Used">Fairly used</option>
-          </select>
-          </div>
-          </div>
-      </fieldset>
+            <div className="item-category-condition">
+              <div className="d-flex flex-column mt-3 mb-3">
+                <h2 className="fs-title mr-2">Item Category</h2>
+                <select onChange={handleChange} name="donate_product_category">
+                  <option value="">select category</option>
+                  <option value="Health & Beauty">Health & Beauty</option>
+                  <option value="Home & Office">Home & Office</option>
+                  <option value="Phones & Tablets">Phones & Tablets</option>
+                  <option value="Computing">Computing</option>
+                  <option value="Electronics">Electronics</option>
+                  <option value="Fashion">Fashion</option>
+                  <option value="Baby Products">Baby Products</option>
+                  <option value="Gaming">Gaming</option>
+                  <option value="Automobile">Automobile</option>
+                  <option value="Other categories">Other categories</option>
+                </select>
+              </div>
+
+              <div className="d-flex flex-column mt-3 mb-3">
+                <h2 className="fs-title mr-2">Item Condition</h2>
+                <select component="select" name="donate_item_condition">
+                  <option value="">select condition</option>
+                  <option value="New">New</option>
+                  <option value="Good">Good</option>
+                  <option value="Very Good">Very Good</option>
+                  <option value="Acceptable">Acceptable</option>
+                  <option value="Bad">Bad</option>
+                  <option value="Fairly Used">Fairly used</option>
+                </select>
+              </div>
+            </div>
+          </fieldset>
         );
     };
 
@@ -239,7 +252,9 @@ const DonateItemForm = ({
           Upload image of item you wish to donate
           <span className="text-danger">*</span>
         </h2>
-        <input name="donate_item_img" type="file" accept="image/png, image/jpeg" onChange={handleImgChange} className="input-file" />
+            <input name="donate_item_img" type="file" accept="image/png, image/jpeg" onChange={handleImgChange} className="input-file"
+          
+            />
         {/* <h2 className="fs-title mt-3">
           upload image of proof of ownership on items above
           <b>one million naira</b>
@@ -256,7 +271,8 @@ const DonateItemForm = ({
             placeholder="Give a brief message on the item"
             onChange={handleChange}
             name="donate_comment"
-            className="input-textarea"
+                className="input-textarea"
+                value={postData.donate_comment}
           />
         </div>
       </fieldset>
@@ -264,7 +280,7 @@ const DonateItemForm = ({
     };
     const getItems = () => {
         return (
-            <fieldset>
+        <fieldset>
         <div
           id="donate__share__questionnaire"
           style={{ display: !currentQuestionnaireOpen ? "block" : "none" }}
@@ -290,14 +306,16 @@ const DonateItemForm = ({
               onChange={handleChange}
               name="donate_percentage_value"
               className="input-textarea"
-              placeholder="what's the percentage share you want if the item is sold?"
+                  placeholder="what's the percentage share you want if the item is sold?"
+                  value={postData.donate_percentage_value}
             />
             <label>Enter the price</label>
             <input
               onChange={handleChange}
               name="donate_mkt_price"
               className="input-textarea"
-              placeholder="how much do you want it to be sold"
+                  placeholder="how much do you want it to be sold"
+                  value={postData.donate_mkt_price}
             />
           </div>
         </div>
@@ -362,7 +380,8 @@ const DonateItemForm = ({
                 type="number"
                 normalize={(val) => (val || "").replace(/[^\d]/g, "")}
                 className="input-number"
-                placeholder="What's the value of the item when converted to cash"
+                    placeholder="What's the value of the item when converted to cash"
+                    value={postData.donate_determine_price}
               />
             </div>
 
@@ -381,7 +400,8 @@ const DonateItemForm = ({
                 type="number"
                 normalize={(val) => (val || "").replace(/[^\d]/g, "")}
                 className="input-number"
-                placeholder="What's the minimum value of the item for auction bid(e.g 50,000)"
+                    placeholder="What's the minimum value of the item for auction bid(e.g 50,000)"
+                    value={postData.donate_bid_min_val}
               />
             </div>       
             <div
@@ -396,6 +416,7 @@ const DonateItemForm = ({
                 onChange={handleChange}
                 type="date"
                 className="input-date"
+                value={postData.donate_bid_endAt}
               />
             </div>
           </>
@@ -460,7 +481,7 @@ const DonateItemForm = ({
                       <Step
                         key={label}
                         className={`horizontal-stepper ${index === activeStep ? "active" : ""}`}
-                      >
+                         >
                         <StepLabel className="stepperlabel">{label}</StepLabel>
                       </Step>
                     );
@@ -551,4 +572,4 @@ const DonateItemForm = ({
     );
 };
 
-export default reduxForm({ form: "DonateItemForm" })(DonateItemForm)
+export default  DonateItemForm
