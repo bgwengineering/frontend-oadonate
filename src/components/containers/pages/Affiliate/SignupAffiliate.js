@@ -6,6 +6,21 @@ import { Field, reduxForm } from "redux-form";
 
 
 const SignupAffiliate = ({ handleSubmit }) => {
+
+  const profileState = useSelector(state => state.userTypeReducer);
+  const { profile_user } = profileState;
+
+
+  // profile_user.length &&
+  //   profile_user.map(profile => {
+  //    gender = profile.gender; 
+  //     profile_img = profile.profile_image;
+  //   });
+  
+  const userState = useSelector(state => state.authReducer.user);
+  const { email, first_name, last_name } = userState;
+  console.log(userState.email)
+
     const Submit = formValues => {   
     }
 
@@ -42,8 +57,9 @@ const SignupAffiliate = ({ handleSubmit }) => {
                         id="input-first-name"
                         className="form-control form-control-alternative"
                         placeholder="First name"
-                        value="first_name"
+                        value={first_name}
                         component="input"
+                        name={first_name}
                       />
                     </div>
                   </div>
@@ -60,8 +76,9 @@ const SignupAffiliate = ({ handleSubmit }) => {
                         id="input-last-name"
                         className="form-control form-control-alternative"
                         placeholder="Last name"
-                        value="last_name"
+                        value={last_name}
                         component="input"
+                        name={last_name}
                       />
                     </div>
                   </div>
@@ -80,8 +97,9 @@ const SignupAffiliate = ({ handleSubmit }) => {
                         id="input-email"
                         className="form-control form-control-alternative"
                         placeholder="email"
-                        value="email"
+                        value="myEmail"
                         component="input"
+                        name='email'
                       />
                     </div>
                   </div>
@@ -97,6 +115,7 @@ const SignupAffiliate = ({ handleSubmit }) => {
                         placeholder="phone"
                         value="phone"
                         component="input"
+                        name="phone"
                       />
                     </div>
                   </div>

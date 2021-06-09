@@ -12,14 +12,18 @@ const LoginForm = ({ handleSubmit, submitting, pristine }) => {
   const [isPasswordShown, setIsPasswordShown] = useState(false);
 
   const authState = useSelector(state => state.authReducer);
-  const { isAuthenticated } = authState;
+  const { isAuthenticated} = authState;
+  
+
 
   const onSubmit = formValues => {
     dispatch(login(formValues));
   };
+  
   if (isAuthenticated) {
-    return <Redirect to="/dashboard"/>;
+    return <Redirect to="/dashboard" />;
   }
+
   const handleShowPassword = () => {
     setIsPasswordShown(!isPasswordShown);
   };
