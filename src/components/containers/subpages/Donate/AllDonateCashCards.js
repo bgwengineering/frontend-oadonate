@@ -20,11 +20,11 @@ const AllDonateCashCards = () => {
     });
   };
 
-  const [page, setPage] = useState(0);
-  const [cardPerPage, setCardPerPage] = useState(6);
+  const [page, setPage] = useState(1);
+  const [cardPerPage, setCardPerPage] = useState(3);
 
   const indexOfLastCard = page * cardPerPage
-  const indexOfFirstCard = indexOfLastCard + cardPerPage
+  const indexOfFirstCard = indexOfLastCard - cardPerPage
 
 
   const paginate = pageNumber => setPage(pageNumber)
@@ -34,7 +34,7 @@ const AllDonateCashCards = () => {
       <div className="container">
         <div className="row">
           {allCampaign.length > 0 ? (
-            allCampaign.slice(indexOfLastCard, indexOfFirstCard).map(funds => {
+            allCampaign.slice(indexOfFirstCard, indexOfLastCard).map(funds => {
               const {
                 fund_img,
                 fund_category,
@@ -64,7 +64,7 @@ const AllDonateCashCards = () => {
                       to={`/campaign/${fund_category}/${id}/details`}
                       className="link-router"
                       onClick={scrollToTop}
-                    >
+                     >
                       <img
                         className="card-img-top"
                         src={fund_img}
@@ -122,7 +122,7 @@ const AllDonateCashCards = () => {
                           <Button
                             variant="contained"
                             className="card-donate-btn"
-                          >
+                            >
                             <Link
                               to={`/campaign/${fund_category}/${id}/details`}
                               className="link-router-btn"
@@ -152,10 +152,10 @@ const AllDonateCashCards = () => {
             <div className="spinner-container mx-auto">
               <h4>No available product to donate to</h4>
             </div>
-          )}
-  
+          )}  
         </div>
       </div>
+
       <Pagination cardPerPage={cardPerPage} allCampaign={allCampaign.length} paginate={paginate}/>
     </>
   );

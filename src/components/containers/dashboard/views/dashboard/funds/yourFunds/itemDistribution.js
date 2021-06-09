@@ -10,16 +10,15 @@ import { getfundITEMCampaigns } from 'store/actions/fund_donate/FundDonate';
 import { Button } from '@material-ui/core';
 
 
-
-
-
 const YourFunds = () => {
   const dispatch = useDispatch()
   const fundDoanteState =  useSelector(state => state.fundDonateReducer)
-  const {singleCampaignItem} = fundDoanteState;
+  const { singleCampaignItem } = fundDoanteState;
+  
  useEffect(() => {
   dispatch(getfundITEMCampaigns())
- },[])
+  }, [])
+  
     return (
         <>
          <CRow>
@@ -44,7 +43,7 @@ const YourFunds = () => {
                 {/* table body */}
                 <tbody>
                   {singleCampaignItem.length ? singleCampaignItem.map(data =>{
-                    const {fund_title, fund_category,fund_item_value, fund_createdAt,fund_endAt} = data
+                    const {fund_title, fund_category,fund_item_value, fund_createdAt, fund_endAt} = data
                     return(
                     <tr>
                     
@@ -58,7 +57,7 @@ const YourFunds = () => {
                      <div>{fund_item_value}</div>
                     </td>
                     <td className="text-center">
-                     <div>{fund_createdAt.substring(0,12)}</div>
+                     <div>{fund_createdAt.substring(0,14)}</div>
                     </td>
                     <td className="text-center">
                      <div>{fund_endAt.substring(0,12)}</div>
@@ -68,7 +67,7 @@ const YourFunds = () => {
                     </td>
                   </tr>)}):
                    <div className="justify-content-center">
-                   <p className="text-center">You have no Raised any cause yet Create one now</p>
+                   <p className="text-center">You have not raised any cause yet, create one now</p>
                  </div>}
                 </tbody>
               </table>
@@ -76,7 +75,7 @@ const YourFunds = () => {
           </CCard>
         </CCol>
       </CRow>
-       </>
+      </>
       )
       
 }

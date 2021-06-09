@@ -5,7 +5,8 @@ import LinearProgress from "@material-ui/core/LinearProgress";
 import Button from "@material-ui/core/Button";
 import { AiOutlineFolderOpen } from "react-icons/ai";
 import { useSelector } from "react-redux";
-import {ReactComponent as LoadingSpinner} from 'assets/images/spinner.svg'
+import { ReactComponent as LoadingSpinner } from 'assets/images/spinner.svg';
+import Pagination from "components/ui/Pagination/Pagination";
 var numeral = require('numeral');
 
 
@@ -13,18 +14,26 @@ const AllDonateItemCards = () => {
   const fundState = useSelector((state) => state.fundDonateReducer);
   const { allCampaign } = fundState;
 
+  const [page, setPage] = useState(1)
+  const [cardPerPage, setCardPerPage] = useState(3)
+  const indexOfLastCard = page * cardPerPage
+  const indexOfFirstCard = indexOfLastCard - cardPerPage; 
+  
+
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
   };
+  const paginate = pageNumber => setPage(pageNumber)
+
   return (
     <>
     <div className="container">
       <div className="row">
       {allCampaign.length > 0
-        ? allCampaign.map(funds => {    
+        ? allCampaign.slice(indexOfFirstCard, indexOfLastCard).map(funds => {    
             const {
               fund_img,
               fund_category,
@@ -143,7 +152,8 @@ const AllDonateItemCards = () => {
             <LoadingSpinner className='spinner'/>
         </div>}
         </div>
-        </div>
+      </div>
+      <Pagination allCampaign={allCampaign.length} cardPerPage={cardPerPage} paginate={paginate}/>
     </>
   );
 };

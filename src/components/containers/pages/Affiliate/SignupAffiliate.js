@@ -11,61 +11,23 @@ const SignupAffiliate = ({ handleSubmit }) => {
 
   return (
     <div className="container-fluid mt-5">
-      
-        {/* account info */}
-        <div className="col-xl-8 order-xl-1 mx-auto">
-          <div className="card shadow">
-            <div className="card-header bg-white border-0">
-              <div className="row align-items-center">
-                <div className="col-8">
-                  <h3 className="all-heading mb-0 mx-auto text-capitalize">
-                    Create Your affiliate account
-                  </h3>
-                </div>
+      {/* account info */}
+      <div className="col-xl-8 order-xl-1 mx-auto">
+        <div className="card shadow">
+          <div className="card-header bg-white border-0">
+            <div className="row align-items-center">
+              <div className="col-8">
+                <h3 className="all-heading mb-0 mx-auto text-capitalize">
+                  Create Your affiliate account
+                </h3>
               </div>
             </div>
-            <div className="card-body">
-              <h6 className="heading-small text-muted mb-4">
-                Basic information
-              </h6>
-            
+          </div>
+          <div className="card-body">
+            <h6 className="heading-small text-muted mb-4">Basic information</h6>
+
             <form onSubmit={handleSubmit(Submit)}>
               <div className="pl-lg-4">
-                <div className="row">
-                  <div className="col-lg-6">
-                    <div className="form-group">
-                      <label
-                        className="profile-control-label"
-                        for="input-email"
-                      >
-                        Email address
-                      </label>
-                      <Field
-                        type="email"
-                        id="input-email"
-                        className="form-control form-control-alternative"
-                        placeholder="email"
-                        value="email"
-                        component='input'
-                      />
-                    </div>
-                  </div>
-                  <div className="col-lg-6">
-                    <div className="form-group">
-                      <label className="profile-control-label" for="phone">
-                        Phone
-                      </label>
-                      <Field
-                        type="text"
-                        id="phone"
-                        className="form-control form-control-alternative"
-                        placeholder="phone"
-                        value="phone"
-                        component='input'
-                      />
-                    </div>
-                  </div>
-                </div>
                 <div className="row">
                   <div className="col-lg-6">
                     <div className="form-group ">
@@ -81,7 +43,7 @@ const SignupAffiliate = ({ handleSubmit }) => {
                         className="form-control form-control-alternative"
                         placeholder="First name"
                         value="first_name"
-                        component='input'
+                        component="input"
                       />
                     </div>
                   </div>
@@ -99,7 +61,42 @@ const SignupAffiliate = ({ handleSubmit }) => {
                         className="form-control form-control-alternative"
                         placeholder="Last name"
                         value="last_name"
-                        component='input'
+                        component="input"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-lg-6">
+                    <div className="form-group">
+                      <label
+                        className="profile-control-label"
+                        for="input-email"
+                      >
+                        Email address
+                      </label>
+                      <Field
+                        type="email"
+                        id="input-email"
+                        className="form-control form-control-alternative"
+                        placeholder="email"
+                        value="email"
+                        component="input"
+                      />
+                    </div>
+                  </div>
+                  <div className="col-lg-6">
+                    <div className="form-group">
+                      <label className="profile-control-label" for="phone">
+                        Phone
+                      </label>
+                      <Field
+                        type="text"
+                        id="phone"
+                        className="form-control form-control-alternative"
+                        placeholder="phone"
+                        value="phone"
+                        component="input"
                       />
                     </div>
                   </div>
@@ -128,13 +125,9 @@ const SignupAffiliate = ({ handleSubmit }) => {
               </div>
               <hr className="my-4" />
 
-              
               {/* Affiliate Choice */}
               <div>
-                <label
-                  className="profile-control-label"
-                  for="input-contact"
-                >
+                <label className="profile-control-label" for="input-contact">
                   Affiliate Choice:
                 </label>
                 <div className="row">
@@ -181,12 +174,10 @@ const SignupAffiliate = ({ handleSubmit }) => {
                 </div>
               </div>
 
-              <hr className="my-4" />
-
-
+              {/* <hr className="my-4" /> */}
 
               {/* Guarantor information */}
-              <h6 className="heading-small text-muted all-heading mb-4">
+              {/* <h6 className="heading-small text-muted all-heading mb-4">
                 Guarantor Details
               </h6>  
               <div className="pl-lg-4">
@@ -263,9 +254,9 @@ const SignupAffiliate = ({ handleSubmit }) => {
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> */}
               {/* address */}
-              <div className="pl-lg-4">
+              {/* <div className="pl-lg-4">
                 <div className="row">
                   <div className="col-md-12">
                     <div className="form-group ">
@@ -284,23 +275,22 @@ const SignupAffiliate = ({ handleSubmit }) => {
                     </div>
                   </div>
                 </div>
-              </div>  
-       
-                {/* SUBMIT */} 
-                <hr className="profile_hr my-4" />
-                <div className="pl-lg-4">
-                  <div className="form-group">     
-                    <button className="btn btn-sm profile-sbm-btn ml-3">
-                      Submit
-                    </button>
-                  </div>
+              </div>   */}
+
+              {/* SUBMIT */}
+              <hr className="profile_hr my-4" />
+              <div className="pl-lg-4">
+                <div className="form-group">
+                  <button className="btn btn-sm profile-sbm-btn ml-3">
+                    Submit
+                  </button>
                 </div>
-                
-              </form>
-            </div>
+              </div>
+            </form>
           </div>
         </div>
       </div>
+    </div>
   );
 };
 

@@ -8,15 +8,15 @@ import { FaPlus, FaMinus } from "react-icons/fa";
 
 const DonationReceived = () => {
   const dispatch = useDispatch();
-  const fundDonateState = useSelector((state) => state.userTypeReducer);
+  const fundDonateState = useSelector(state => state.userTypeReducer);
   const { user_donations_received } = fundDonateState;
   const [tableClick, setTableClick] = useState(false)
 
 
+  
   const handleTableClick = tableId => {
     setTableClick(!tableClick)
   }
-
 
    useEffect(() => {
     dispatch(fetchUserDonationsReceived());
