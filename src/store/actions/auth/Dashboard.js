@@ -205,8 +205,9 @@ try {
   dispatch(offLoading());
 }
 }
+
 // FETCH AUCTION
-export const fetchAuctionBid = () => async(dispatch,getState) =>{
+export const fetchAuctionBid = () => async(dispatch, getState) =>{
 try {
   const res= await axiosInstance.get("buy-to-support/user-auction",tokenConfig(getState))
   dispatch({type: actionTypes.FETCH_AUCTION_SUCCESS, payload: res.data});

@@ -97,7 +97,8 @@ const Cards = ({history}) => {
                           variant="determinate"
                         />
                       }
-                      <div className="mt-1 mb-3 truncate">{fund_purpose}</div>
+                      {fund_type == 'Item' && <div className="mt-1 mb-3 truncate">{fund_purpose}</div>}
+                   
                       {fund_type == 'Item' ? null :
                         <div>
                           <div className="row justify-content-between mt-2 contributed-progress-view">
