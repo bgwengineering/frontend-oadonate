@@ -21,10 +21,9 @@ var numeral = require("numeral");
   const { singleCampaign } = fundRaiseCashState;
 
     // CASH DONATION 
-    const cashDonateState = useSelector(state => state.fundDonateReducer);
-    const { singleDonateCash } = cashDonateState
-    console.log(singleDonateCash);
-    
+  const cashDonateState = useSelector(state => state.fundDonateReducer);
+  const { singleDonateCash } = cashDonateState
+
     
   // order
   const orderState = useSelector(state => state.orderReducer);

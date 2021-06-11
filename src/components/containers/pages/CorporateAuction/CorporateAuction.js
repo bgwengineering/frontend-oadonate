@@ -20,17 +20,17 @@ const CorporateAuction = () => {
     color: "#0F6929",
   };
   return (
-      <>
+    <>
       <div
         className="container affiliate-container"
         style={{ backgroundImage: `url(${Corporate})` }}
       >
         <h4 className="font-weight-bold text-uppercase d-flex align-items-center boss-text">
-         Corporate Auction
+          Corporate Auction
         </h4>
         <div className="mt-5">
           <button className="btn btn-lg affiliate-signup-btn">
-            <Link className="link-router-inverted" to="affiliate-signup">
+            <Link className="link-router-inverted" to="/corporate-signup">
               Sign up
             </Link>
           </button>
@@ -61,7 +61,7 @@ const CorporateAuction = () => {
               data-line-height="25.2px"
             >
               <div className="listar-feature-item listar-feature-has-link">
-                <a href='#'></a>
+                <a href="#"></a>
                 <div className="listar-feature-item-inner">
                   <div className="listar-feature-right-border"></div>
 
@@ -100,7 +100,7 @@ const CorporateAuction = () => {
               data-line-height="25.2px"
             >
               <div className="listar-feature-item listar-feature-has-link">
-                <a href='#'></a>
+                <a href="#"></a>
                 <div className="listar-feature-item-inner">
                   <div className="listar-feature-right-border"></div>
 
@@ -120,7 +120,7 @@ const CorporateAuction = () => {
                       <div className="listar-feature-item-title listar-feature-counter-added">
                         <span>
                           <span>02</span>
-                         Create Profile
+                          Create Profile
                         </span>
                       </div>
 
@@ -141,7 +141,7 @@ const CorporateAuction = () => {
               data-line-height="25.2px"
             >
               <div className="listar-feature-item listar-feature-has-link">
-                <a href='#'></a>
+                <a href="#"></a>
                 <div className="listar-feature-item-inner">
                   <div className="listar-feature-right-border"></div>
 
@@ -177,8 +177,8 @@ const CorporateAuction = () => {
           </div>
         </div>
       </div>
-      </>
-    );
+    </>
+  );
 }
 
 export default CorporateAuction;

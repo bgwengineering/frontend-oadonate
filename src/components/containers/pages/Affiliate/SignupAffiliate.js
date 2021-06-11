@@ -10,13 +10,6 @@ const SignupAffiliate = ({ handleSubmit }) => {
   const profileState = useSelector(state => state.userTypeReducer);
   const { profile_user } = profileState;
 
-
-  // profile_user.length &&
-  //   profile_user.map(profile => {
-  //    gender = profile.gender; 
-  //     profile_img = profile.profile_image;
-  //   });
-  
   const userState = useSelector(state => state.authReducer.user);
   const { email, first_name, last_name } = userState;
   console.log(userState.email)
