@@ -208,7 +208,7 @@ $green_color: #0f6929;
 
     // order preview
     .orderpreview {
-      border: 1px solid #ccc;
+      border: 1px solid blue;
       background-color: #fff;
       border-radius: 3px;
       box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
@@ -216,6 +216,10 @@ $green_color: #0f6929;
       box-sizing: border-box;
       width: 100%;
       position: relative;
+      @media screen and (max-width:356px){
+        margin-bottom:2400px;
+      }
+    
       .product-subtotal-row, .subtotal-price-row{
         height:22px;
       }
@@ -228,20 +232,25 @@ $green_color: #0f6929;
       .order-payment-mode {
         height: 120px;
         background-color: whitesmoke;
-        margin-top: 20px;
         font-weight: 400px;
         border: $input_border;
-      }
-     .next-prev--container{
-       @media screen and (max-width:508px){
-         display:flex;
-         flex-wrap:wrap;
-      }
-      .order-end-button-container{
-           width:80%;
+        @media screen and (max-width:380px){
+          height:150px;
         }
-     }
-
+      
+        }
+          .pay-method-container {
+             margin-top:0px;
+           height:50px;
+           display:flex;
+           flex-wrap:wrap;
+          .stripe-paytext{
+           @media screen and (max-width:369px){
+          margin-top:8px;
+        }
+          } 
+      }
+   
       .order-payment-button-container{
            margin:20px auto;
            width:100%;
@@ -249,13 +258,13 @@ $green_color: #0f6929;
           justify-content:center;
           display:flex;
         .order-payment-button {
-          width: 50%;
-          padding: 10px 15px 10px 15px;
-          height: 65px;
+          width: 220px;
+          padding: 5px 10px 10px 10px;
+          height: 45px;
           background-color: #0f6929;
           border: 0px outset #f15822;
           outline: none;
-          font-size: 25px;   
+          font-size: 22px;   
           cursor: pointer;
           border-top-left-radius: 50px;
           border-bottom-left-radius: 50px;
@@ -267,6 +276,16 @@ $green_color: #0f6929;
           }
         }
       }
+
+      .next-prev--container{
+        .order-end-button-container{
+          display:flex;    
+          @media screen and (max-width:317px){
+            display:block;
+          }
+        }
+      }
+
       .order-product-total{
         .order-list{
           list-style-type: none;

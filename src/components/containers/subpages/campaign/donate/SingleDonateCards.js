@@ -9,11 +9,11 @@ import SocialMediaButtons from "components/ui/ShareSocialLinks/SocialMediaButton
 import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import CopyShared from "components/ui/ShareSocialLinks/CopySharedLink";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-var numeral = require("numeral");
+import { Link, withRouter } from "react-router-dom";
 
+var numeral = require("numeral")
 
-const SingleDonateCards = ({ shareUrl, className, setIsDonateCardButtonsOpen }) => {
+const SingleDonateCards = ({ shareUrl, className, setIsDonateCardButtonsOpen, history }) => {
   const [modal, setModal] = useState(false);
 
   const toggle = () => setModal(!modal);
@@ -22,7 +22,7 @@ const SingleDonateCards = ({ shareUrl, className, setIsDonateCardButtonsOpen }) 
     state => state.fundDonateReducer.singleCampaign
   );
 
-  
+  const isAuthenticated = useSelector(state => state.authReducer.isAuthenticated);
   const {
     fund_cash_amount,
     fund_created_date,
@@ -85,7 +85,10 @@ const SingleDonateCards = ({ shareUrl, className, setIsDonateCardButtonsOpen }) 
                 variant="contained"
                 className="card-campaign-btn"
                 id="DoncardBtn"
-                onClick={() => setIsDonateCardButtonsOpen(true)}
+                onClick={() => {
+                
+                  isAuthenticated ? setIsDonateCardButtonsOpen(true) : history.push('/auth')
+                }}
               >
                 Donate
               </Button>
@@ -127,4 +130,4 @@ const SingleDonateCards = ({ shareUrl, className, setIsDonateCardButtonsOpen }) 
   );
 };
 
-export default SingleDonateCards;
+export default withRouter(SingleDonateCards);

@@ -15,7 +15,9 @@ const CheckoutForm = () => {
     document.title = 'Ogadonate | Checkout'
   }, []);
   const shippingState = useSelector((state) => state.userTypeReducer);
-  const id = shippingState.shippingAddress.map(_id=>_id.id)
+  const id = shippingState.shippingAddress.length && shippingState.shippingAddress.map(
+    _id => _id.id
+  );
   const currentUser = useSelector((state) => state.authReducer.isAuthenticated);
   const [page, setPage] = useState(1);
 
@@ -47,8 +49,8 @@ const CheckoutForm = () => {
           nextPage={nextPage}
            previousPage={previousPage} 
           />
-        );
-      default:
+         );
+       default:
         return;
     }
   };

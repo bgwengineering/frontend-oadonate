@@ -43,7 +43,7 @@ const ImageSlider = () => {
         Buy an item at the most affordable price<br/> to support a need 
         </h4>
         <Button variant="contained" className="slider-btn text-capitalize mt-5">
-          <Link to='/marketplace' className='slider-link'>
+          <Link to='/marketplace/products' className='slider-link'>
          Start Now
          </Link>
         </Button>

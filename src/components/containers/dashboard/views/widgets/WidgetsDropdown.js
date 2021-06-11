@@ -1,13 +1,13 @@
 import React from "react";
-import { CWidgetDropdown, CRow, CCol } from "@coreui/react";
+import { CRow, CCol } from "@coreui/react";
 import { GiReceiveMoney } from "react-icons/gi";
 import { RiFundsLine } from "react-icons/ri";
 import { TiShoppingCart } from "react-icons/ti";
 import { useSelector } from "react-redux";
+
 var numeral = require("numeral");
 
-
-const WidgetsDropDown = () => {
+  const WidgetsDropDown = () => {
   // donations
   const fundDonateState = useSelector(state => state.userTypeReducer);
   const { user_donations_received } = fundDonateState;
@@ -20,26 +20,40 @@ const WidgetsDropDown = () => {
   const fundRaiseCashState = useSelector(state => state.fundDonateReducer);
   const { singleCampaign } = fundRaiseCashState;
 
+    // CASH DONATION 
+    const cashDonateState = useSelector(state => state.fundDonateReducer);
+    const { singleDonateCash } = cashDonateState
+    console.log(singleDonateCash);
+    
+    
   // order
   const orderState = useSelector(state => state.orderReducer);
   const { orders } = orderState;
 
+  // auction
+  const auctionState = useSelector(state => state.orderReducer);
+  const { auction } = auctionState;
 
-// item funds 
+    
+    // cash donation 
+    const cashDonated = singleDonateCash.length && singleDonateCash.map(data => {
+      console.log(data);
+      
+      return (
+        data
+      )
+    })
+  // item funds
   const itemFundsRaised =
     singleCampaignItem.length &&
     singleCampaignItem.map(data => data.fund_title);
   const totalItemFundsRaised = itemFundsRaised.length;
- 
-  
-  const cashFundsRaised =
-    singleCampaign.length &&
-    singleCampaign.map(data => data.fund_title);
 
-  
+  const cashFundsRaised =
+    singleCampaign.length && singleCampaign.map(data => data.fund_title);
+
   // total cash funds
-   const totalCashFundsRaised = cashFundsRaised.length;
- 
+  const totalCashFundsRaised = cashFundsRaised.length;
 
   // total donations
   const donations =
@@ -48,21 +62,24 @@ const WidgetsDropDown = () => {
       parseInt(donation.fund_cash_amount)
     );
 
-  
   const totalDonations =
     donations.length &&
     donations.reduce((acc, val) => {
       return acc + val;
     }, 0);
 
-  
   // total orders
   const ordersMade = orders.length && orders.map(order => order.total_price);
-      
-      
-  const totalOrders = ordersMade.length
-  
-   
+  const totalOrders = ordersMade.length;
+
+  // total auction bids
+  const auctionMade =
+    auction.length && auction.map(auct => parseInt(auct.bid_amount));
+  const totalBidAmount =
+    auctionMade.length &&
+    auctionMade.reduce((acc, val) => {
+      return acc + val;
+    }, 0);
 
   return (
     <CRow>
@@ -106,9 +123,7 @@ const WidgetsDropDown = () => {
             </p>
           </div>
           <div className="d-flex justify-content-between pr-3">
-            <p className="mt-2">
-              Total cash funds raised 
-            </p>
+            <p className="mt-2">Total cash funds raised</p>
             <p className="font-weight-bold total-donations-received">
               {totalCashFundsRaised}
             </p>
@@ -122,7 +137,7 @@ const WidgetsDropDown = () => {
           style={{ height: "170px", backgroundColor: "#C75A00", color: "#fff" }}
         >
           <div className="d-flex justify-content-between pr-3">
-            <h4>Total Order</h4>
+            <h4>Total Orders</h4>
             <span className="text-white icon-position">
               <TiShoppingCart className="fs-3" />
             </span>
@@ -133,7 +148,12 @@ const WidgetsDropDown = () => {
               {numeral(totalOrders).format("0,0")}
             </p>
           </div>
-          <p>Total Auctions bidded</p>
+          <div className="d-flex justify-content-between pr-3">
+            <p className="mt-2">Total Bid amount</p>
+            <p className="font-weight-bold total-donations-received">
+              {numeral(totalBidAmount).format("0,0")}
+            </p>
+          </div>
         </div>
       </CCol>
     </CRow>

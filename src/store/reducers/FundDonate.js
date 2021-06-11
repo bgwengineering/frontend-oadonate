@@ -26,7 +26,7 @@ const fundDonate = (state = initialState, action) => {
             return {
                 ...state,
                 fund_cash: payload,
-            };
+            };  
         case actionTypes.CREATE_FUND_ITEM_SUCCESS:
             return {
                 ...state,

@@ -16,11 +16,12 @@ const CartPage = () => {
     0
   );
 
-  let formatTotal = numeral(mapTotal).format("0,0.00");
-  // let total = 0;
+  let formatTotal = numeral(mapTotal).format("0, 0.00");
+
   let total = formatTotal
   const currency = cartItems.map(cartItem => cartItem.donate_currency)
-
+  console.log(currency);
+  
   return (
     <div className="cart-page">
       <div className='cart-subpage'>
@@ -46,7 +47,7 @@ const CartPage = () => {
         ))}
       </div>
       <div className="total">
-        <span>TOTAL: {currency + total}</span>
+        <span>TOTAL: {currency}  {total}</span>
       </div>
       {cartItems.length > 0 ? (
         <div className='w-100 d-flex justify-content-end mt-5'>

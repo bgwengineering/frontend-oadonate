@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import DonateCards from "./SingleDonateCards";
 import DonateTabs from "./donateTabs";
+import { Redirect } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import DonateCashForm from "components/ui/Forms/DonateCashForm";
 import DonateItemForm from "components/ui/Forms/DonateItemForm";
 import DonatePrompt from "./DonatePrompt";
 import { fetchSingleCampaign } from "store/actions/fund_donate/FundDonate";
+import  AuthLayout  from 'components/containers/auth/Auth';
 
 
 const DonateCampaign = ({ match }) => {
@@ -15,9 +17,9 @@ const DonateCampaign = ({ match }) => {
     dispatch(fetchSingleCampaign(match.params.id));
   }, []);
 
-  const isAuthenticated = useSelector((state) => state.authReducer.isAuthenticated);
+  const isAuthenticated = useSelector(state=> state.authReducer.isAuthenticated);
 
-  const singleCampaign = useSelector((state) => state.fundDonateReducer.singleCampaign);
+  const singleCampaign = useSelector(state => state.fundDonateReducer.singleCampaign);
 
   const { fund_img, fund_purpose, id, fund_cash, fund_item } = singleCampaign;
 
@@ -33,6 +35,7 @@ const DonateCampaign = ({ match }) => {
     <>
       <div className="container-fluid">
         <div className="row">
+   
           <div className="col-md-6 col-lg-6 mt-5">
             <img
               src={fund_img}
@@ -51,27 +54,31 @@ const DonateCampaign = ({ match }) => {
             className="col-md-6 col-lg-6 mt-5"
             id="DonCard"
             style={{ display: isDonateCardButtonsOpen ? "none" : "block" }}
-          >
+           >
             <DonateCards
               shareUrl={shareUrl}
               setIsDonateCardButtonsOpen={setIsDonateCardButtonsOpen}
             />
           </div>
-          <div
-            className="col-md-6 col-lg-6 mt-5"
-            id="DonPrompt"
-            style={{
-              display: isDonateCardButtonsOpen && !currentOpenForm ? "block" : "none",
-            }}
-          >
-            <DonatePrompt handleSwitchCurrentForm={handleSwitchCurrentForm}  />
-          </div>
+     
+            <div
+              className="col-md-6 col-lg-6 mt-5"
+              id="DonPrompt"
+              style={{
+                display:
+                  isDonateCardButtonsOpen && !currentOpenForm ? "block" : "none"
+              }}
+              >
+              <DonatePrompt handleSwitchCurrentForm={handleSwitchCurrentForm} />
+            </div>
+         
 
           <div
             className="col-md-6 col-lg-6 mt-5"
             id="donate__cash__form"
             style={{
-              display: currentOpenForm === "donate__cash__form" ? "block" : "none",
+              display:
+                currentOpenForm === "donate__cash__form" ? "block" : "none"
             }}
           >
             <DonateCashForm
@@ -85,7 +92,8 @@ const DonateCampaign = ({ match }) => {
             className="col-md-6 col-lg-6 mt-5"
             id="donate__item__form"
             style={{
-              display: currentOpenForm === "donate__item__form" ? "block" : "none",
+              display:
+                currentOpenForm === "donate__item__form" ? "block" : "none"
             }}
           >
             <DonateItemForm

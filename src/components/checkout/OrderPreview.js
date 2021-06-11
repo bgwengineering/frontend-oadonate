@@ -202,35 +202,39 @@ const OrderPreview = ({ nextPage, previousPage, history }) => {
       </div>
 
       <div>
-        <h4 className="text-uppercase ">Payment</h4>
+        <h4 className="order-shipping-heading text-uppercase">Payment</h4>
         {/* payment order box */}
         <div className="order-payment-mode">
           <p className="font-weight-bold ml-2 mt-2">
             Make payment using your debit and credit cards
           </p>
-          <div className="d-flex">
+          <div className="pay-method-container">
+            <div className='mr-3'>
             <input
               name="payment_method"
               type="radio"
-              className="mr-1 ml-2 mt-2"
+              className="mr-1 ml-2 border-alert-secondary"
               onChange={handleChange}
               value="PayStack"
               onClick={setPaystackBtn}
             />
-            <p className="mt-4">PayStack Gateway</p>
+              <span className='paystack-text'>PayStack Gateway</span>
+            </div>
+            <div className='stripe-paytext'>
             <input
               name="payment_method"
               type="radio"
-              className="mr-1 ml-3 mt-2"
+              className="mr-1 ml-2"
               onChange={handleChange}
               value="Stripe"
               onClick={setStripeBtn}
-            />
-            <p className="mt-4 ">Stripe Gateway</p>
+               />
+              <span >Stripe Gateway</span>
+            </div>
           </div>
         </div>
 
-        <p className="order-note">
+        <p className="order-note mt-3">
           Your personal data will be used to process your order, support your
           experience throughout this website, and for other purposes described
           in our privacy policy.
@@ -269,13 +273,15 @@ const OrderPreview = ({ nextPage, previousPage, history }) => {
       </div>
       <hr className="profile_hr my-4" />
       {/* cancel next button */}
-      <div className="next-prev--container d-flex justify-content-between">
+      <div className="next-prev--container d-flex justify-content-between flex-wrap">
         <div className="order-cancel-btn-container">
-          <Link className='link-router-inverted' to='/cart'>
-            <button className="cancel-btn" onClick={scrollToTop}>Cancel</button>
+          <Link className="link-router-inverted" to="/cart">
+            <button className="cancel-btn" onClick={scrollToTop}>
+              Cancel
+            </button>
           </Link>
         </div>
-        <div className="order-end-button-container d-flex justify-content-end">
+        <div className="order-end-button-container justify-content-end">
           <button
             className="previous-action-btn mr-3"
             onClick={() => previousPage()}
