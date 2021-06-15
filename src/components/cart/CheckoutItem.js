@@ -18,15 +18,20 @@ const CheckoutItem = ({ cartItem }) => {
         <div className="image-container">
           <img src={donate_item_img} alt="item" />
         </div>
-        <div className='checkout-name-price-container'>
-        <span className="name">{donate_item_name}</span>
-        <span className="price">{numeral(donate_mkt_price).format('0,0')}</span>
-          <span className="price">{numeral(subTotal).format('0,0.00')}</span>
+        <div className="checkout-name-price-container">
+          <span className="name">{donate_item_name}</span>
+          <span className="price">
+            {numeral(donate_mkt_price).format("0,0")}
+          </span>
+          <span className="quantity">{quantity}</span>
+          <span className="price">{numeral(subTotal).format("0,0.00")}</span>
         </div>
-        <div className="remove-button" onClick={() => dispatch(clearItemFromCart(cartItem))}>
+        <div
+          className="remove-button"
+          onClick={() => dispatch(clearItemFromCart(cartItem))}
+        >
           &#10005;
-      </div>
-
+        </div>
       </div>
     </>
   );

@@ -15,8 +15,8 @@ const cart = (state = INITIAL_STATE, action) => {
                 ...state,
                 hidden: !state.hidden
             };
-        case actionTypes.ADD_ITEM:
-            return {
+         case actionTypes.ADD_ITEM:
+             return {
                 ...state,
                 cartItems: addItemToCart(state.cartItems, action.payload)
             };

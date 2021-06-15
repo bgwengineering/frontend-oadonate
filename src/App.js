@@ -33,7 +33,7 @@ const App = () => {
   }, [isAuthenticated]);
 
   // check auth state
-  const commonState = useSelector((state) => state.commonReducer);
+  const commonState = useSelector(state => state.commonReducer);
   const { showMessage, Message, error } = commonState;
 
   // alert func
@@ -51,7 +51,7 @@ const App = () => {
           open={showMessage}
           autoHideDuration={4000}
           onClose={handleClose}
-          anchorOrigin={{ vertical: "top", horizontal: "right" }}
+          anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
         >
         <AlertSnackBar severity={error ? "error" : "success"}>{Message}</AlertSnackBar>
         </Snackbar>

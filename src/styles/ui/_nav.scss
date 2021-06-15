@@ -357,7 +357,16 @@
   font-size: 32px;
 }
 }
-.cart-badge{
+
+.cart-container{
+height:40px;
+  &:hover{
+    .cartdropdown-hidden{
+        visibility:visible;
+        opacity:1;
+    } 
+  }
+   .cart-badge{
   position:relative;
   .bill-badge{
     position:absolute;
@@ -374,4 +383,24 @@
     color:#fff !important;
   }
 }
+}
 
+.cartdropdown-hidden{
+    position: absolute;
+    width: 240px;
+    height: 340px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border: 1px solid black;
+    background-color: white;
+    top: 37px;
+    right: -2px;
+    z-index: 5;
+  visibility:hidden;
+  opacity:0;
+  &:hover{
+    visibility:visible;
+    opacity:1;
+  }
+}

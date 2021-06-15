@@ -27,13 +27,16 @@ const CartPage = () => {
       <div className='cart-subpage'>
       <div className="cart-header">
         <div className="header-block">
-            <span className="header-block-item">Product</span>
+          <span className="header-block-item">Product</span>
         </div>
         <div className="header-block">
-            <span className="header-block-item">Description</span>
+          <span className="header-block-item">Description</span>
         </div>
         <div className="header-block">
             <span className="header-block-item">Price</span>
+        </div>
+        <div className="header-block">
+            <span className="header-block-item">Quantity</span>
         </div>
         <div className="header-block">
             <span className="sub-total header-block-item">Sub Total</span>

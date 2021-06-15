@@ -33,19 +33,18 @@ export const clearCartItems  = () =>{
   return {
     type:actionTypes.CLEAR_CART}
 }
+
 export const placeOrder = (orders) => async (dispatch, getState) => {
     const totalPrice = orders.totalPrice
     let productsArr = [];
     let quantitiesArr = [];
     orders.orderItem.forEach(items => {
       productsArr.push(items.donate_item_name);
-      console.log(productsArr);
       quantitiesArr.push(items.quantity);
-      console.log(quantitiesArr);
       });
       dispatch(setLoading())
-    try {
-      const { data } = await axios.post(
+       try {
+       const { data } = await axios.post(
         "buy-to-support/orders",
         {
           products: productsArr,

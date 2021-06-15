@@ -59,7 +59,15 @@ const LoginForm = ({ handleSubmit, submitting, pristine }) => {
             <BiHide />
           </span>
         </fieldset>
-        <button disabled={pristine || submitting} className="auth-button mt-3">
+        <button disabled={pristine || submitting} className="auth-button mt-3" onClick={() => {
+          window.scrollTo(
+            {
+              top: 0,
+              behavior: "smooth"
+            }
+          )
+        }
+        }>
           Sign In
         </button>
       </>
