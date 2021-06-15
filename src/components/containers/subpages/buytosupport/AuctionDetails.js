@@ -135,6 +135,7 @@ const AuctionDetails = ({ match }) => {
 
   const [AuctionType, setauction] = useState(donate_mkt_bid);
 
+
   const auction =
     auction_item &&
     auction_item.map(user_bid => {
@@ -193,7 +194,6 @@ const AuctionDetails = ({ match }) => {
     ) : (
       <h4>Auction is a close Bid</h4>
     );
-
   return (
     <>
       <div className="auction-container">
@@ -325,12 +325,12 @@ const AuctionDetails = ({ match }) => {
           </Tabs>
         </AppBar>
 
-        
+         
         <TabPanel value={value} index={0}>
           <div>
             <div className="col-lg-8">{Auction}</div>
           </div>
-        </TabPanel>
+        </TabPanel> 
 
         <TabPanel value={value} index={1}>
           <div>

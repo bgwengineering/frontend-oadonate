@@ -168,7 +168,7 @@
 .item-radio:checked ~ .main { transform: rotate(68deg) scale(0.8); }
 #no:checked ~ .main { transform: rotate(21deg) scale(0.8); }
 
-.yes-no-label{
+.yes-label{
  	position: absolute;
   bottom: 0;
   font-size: 30px;
@@ -180,7 +180,7 @@
   transform: scaleX(0.8); 
 }
 
-.yes-no-label:before {
+.yes-label:before {
  	content: "";
   width: 16px;
   height: 16px;
@@ -190,6 +190,29 @@
   margin-left: -8px;
   position: absolute;
   box-shadow: #0F6929 0px 30px 60px -12px inset, #0F6929 0px 18px 36px -18px inset;
+}
+.no-label{
+ 	position: absolute;
+  bottom: 0;
+  font-size: 30px;
+  font-family: "HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+  color: rgba(0,0,0,0.15);
+  text-shadow: 0 1px 0 white, 0 -1px 0 rgba(150,100,100,0.1); 
+  text-transform: uppercase;
+  cursor: pointer;
+  transform: scaleX(0.8); 
+}
+
+.no-label:before {
+ 	content: "";
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  top: -25px;
+  left: 50%;
+  margin-left: -8px;
+  position: absolute;
+ box-shadow: #C75A00 0px 14px 28px inset,  #C75A00 0px 10px 10px inset;
 }
 
 label[for=yes] {

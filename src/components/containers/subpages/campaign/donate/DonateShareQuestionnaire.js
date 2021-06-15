@@ -7,7 +7,6 @@ import React from "react";
     setIsQuestionAnswerShown(true)
   }
 
-  
   return (
     <div>
       <h2 className="fs-title text-uppercase font-weight-bold">
@@ -24,18 +23,19 @@ import React from "react";
             id="yes"
             onClick={handleYesAnswer}
           />
-          <label className="text-dark yes-no-label" htmlFor="yes">
+          <label className="text-dark yes-label" htmlFor="yes">
             Yes
           </label>
         </div>
         <input type="radio" className="item-radio" name="choice" id="no" />
+
         <label
-          className="text-dark yes-no-label"
+          className="text-dark no-label"
           htmlFor="no"
           onClick={() =>
             handleSwitchCurrentQuestion("donate__item__sell__form")
           }
-        >
+          >
           No
         </label>
       </div>
