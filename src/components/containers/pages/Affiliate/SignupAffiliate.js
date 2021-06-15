@@ -1,20 +1,13 @@
 import React, { useState } from "react";
-import { Button } from "@material-ui/core";
-import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Field, reduxForm } from "redux-form";
+import { affiliateSignup } from 'store/actions/auth/Affiliate';
 
 
-const SignupAffiliate = ({ handleSubmit }) => {
-
-  const profileState = useSelector(state => state.userTypeReducer);
-  const { profile_user } = profileState;
-
-  const userState = useSelector(state => state.authReducer.user);
-  const { email, first_name, last_name } = userState;
-  console.log(userState.email)
-
-    const Submit = formValues => {   
+const SignupAffiliate = ({ handleSubmit, pristine, submitting }) => {
+  const dispatch = useDispatch()
+  const submit = formValues => {   
+      dispatch(affiliateSignup(formValues))
     }
 
   return (
@@ -34,7 +27,7 @@ const SignupAffiliate = ({ handleSubmit }) => {
           <div className="card-body">
             <h6 className="heading-small text-muted mb-4">Basic information</h6>
 
-            <form onSubmit={handleSubmit(Submit)}>
+            <form onSubmit={handleSubmit(submit)}>
               <div className="pl-lg-4">
                 <div className="row">
                   <div className="col-lg-6">
@@ -50,9 +43,9 @@ const SignupAffiliate = ({ handleSubmit }) => {
                         id="input-first-name"
                         className="form-control form-control-alternative"
                         placeholder="First name"
-                        value={first_name}
+                        value="first_name"
                         component="input"
-                        name={first_name}
+                        name="first_name"
                       />
                     </div>
                   </div>
@@ -69,9 +62,9 @@ const SignupAffiliate = ({ handleSubmit }) => {
                         id="input-last-name"
                         className="form-control form-control-alternative"
                         placeholder="Last name"
-                        value={last_name}
+                        value="last_name"
                         component="input"
-                        name={last_name}
+                        name="last_name"
                       />
                     </div>
                   </div>
@@ -90,9 +83,9 @@ const SignupAffiliate = ({ handleSubmit }) => {
                         id="input-email"
                         className="form-control form-control-alternative"
                         placeholder="email"
-                        value="myEmail"
+                        value="email"
                         component="input"
-                        name='email'
+                        name="email"
                       />
                     </div>
                   </div>
@@ -102,7 +95,7 @@ const SignupAffiliate = ({ handleSubmit }) => {
                         Password
                       </label>
                       <Field
-                        type="text"
+                        type="password"
                         id="password"
                         className="form-control form-control-alternative"
                         placeholder="password"
@@ -116,9 +109,7 @@ const SignupAffiliate = ({ handleSubmit }) => {
               </div>
 
               {/* address */}
-      
               <hr className="my-4" />
-
               {/* Affiliate Choice */}
               <div>
                 <label className="profile-control-label" for="input-contact">
@@ -128,18 +119,18 @@ const SignupAffiliate = ({ handleSubmit }) => {
                   <div className="form-group">
                     <label className="ml-4"> Contact Point(warehouse)</label>
                     <Field
-                      name="contact_method"
+                      name="affiliate_user_role"
                       component="input"
                       value="Contact Point"
                       type="radio"
                       className="field-inputs ml-2"
                     />
                   </div>
-                 
+
                   <div className="form-group">
                     <label className="ml-4">Referrer</label>
                     <Field
-                      name="contact_method"
+                      name="affiliate_user_role"
                       component="input"
                       value="Referrer"
                       type="radio"
@@ -155,7 +146,10 @@ const SignupAffiliate = ({ handleSubmit }) => {
               <hr className="profile_hr my-4" />
               <div className="pl-lg-4">
                 <div className="form-group">
-                  <button className="btn btn-sm profile-sbm-btn ml-3">
+                  <button
+                    disabled={pristine || submitting}
+                    className="btn btn-sm profile-sbm-btn ml-3"
+                  >
                     Submit
                   </button>
                 </div>

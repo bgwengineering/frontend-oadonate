@@ -16,6 +16,7 @@ const SignupForm = ({ handleSubmit, submitting, pristine }) => {
   const submit = values => {
     dispatch(signup(values));
   };
+  
   return (
     <form onSubmit={handleSubmit(submit)}>
       <>

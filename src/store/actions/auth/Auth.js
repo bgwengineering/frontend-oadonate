@@ -175,6 +175,7 @@ export const signup = ({ first_name, last_name, email, password }) => async (dis
   }
 };
 
+
 export const verify = ({ uid, token }) => async (dispatch) => {
   const body = { uid, token };
   const config = {
@@ -240,7 +241,6 @@ export const reset_password_confirm = (
       body,
       config
     );
-
     dispatch({
       type: PASSWORD_RESET_CONFIRM_SUCCESS,
     });
@@ -250,6 +250,7 @@ export const reset_password_confirm = (
     });
   }
 };
+
 
 // logout
 export const logout = () => (dispatch) => {
