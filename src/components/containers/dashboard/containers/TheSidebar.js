@@ -25,36 +25,36 @@ import saleAffiliateNav from './affiliateNav/saleAffiliateNav'
   const dispatch = useDispatch()
   const authState = useSelector(state => state.authReducer);
   const { user } = authState;
-  const name = user.first_name;  
+
   const show = useSelector(state => state.settings)
   const {sidebarShow} = show
 
     const checkAffiliateType = () => {
-      switch (name) {
-        case 'John':
-          return (
-            <CCreateElement
-              items={saleAffiliateNav}
-              components={{
-                CSidebarNavDivider,
-                CSidebarNavDropdown,
-                CSidebarNavItem,
-                CSidebarNavTitle
-              }}
-            />
-          )
-        default: return (
-          <CCreateElement
-            items={navigation}
-            components={{
-              CSidebarNavDivider,
-              CSidebarNavDropdown,
-              CSidebarNavItem,
-              CSidebarNavTitle
-            }}
-          />
-        )
-      }
+      // switch (user.is_affiliate) {
+      //   case true:
+      //     return (
+      //       <CCreateElement
+      //         items={saleAffiliateNav}
+      //         components={{
+      //           CSidebarNavDivider,
+      //           CSidebarNavDropdown,
+      //           CSidebarNavItem,
+      //           CSidebarNavTitle
+      //         }}
+      //       />
+      //     )
+      //   default: return (
+      //     <CCreateElement
+      //       items={navigation}
+      //       components={{
+      //         CSidebarNavDivider,
+      //         CSidebarNavDropdown,
+      //         CSidebarNavItem,
+      //         CSidebarNavTitle
+      //       }}
+      //     />
+      //   )
+      // }
     }
   return (
     <CSidebar
@@ -77,7 +77,15 @@ import saleAffiliateNav from './affiliateNav/saleAffiliateNav'
       </CSidebarBrand>
       <CSidebarNav>
 
-        {checkAffiliateType()}
+        <CCreateElement
+          items={navigation}
+          components={{
+            CSidebarNavDivider,
+            CSidebarNavDropdown,
+            CSidebarNavItem,
+            CSidebarNavTitle
+          }}
+        />  
       </CSidebarNav>
       <CSidebarMinimizer className="c-d-md-down-none"/>
     </CSidebar>

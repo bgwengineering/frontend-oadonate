@@ -25,16 +25,16 @@
          display:flex;
          justify-content:space-between;
          width:69%;
-         @media screen and (max-width:490px){
+          @media screen and (max-width:490px){
           display:flex;
           flex-direction: column;  
           justify-content: flex-end;
           align-items:flex-end;
           width:100%;
-           margin-top:14px;  
-        }
-      .name,
-    .quantity, .price {
+          margin-top:14px;  
+    }
+
+    .name, .quantity, .price {
        width: 23%;
        @media screen and (max-width:490px){  
           width:100%;  
@@ -43,8 +43,7 @@
           justify-content: flex-end;
           align-items:flex-end;  
           padding:0px  0px 15px 0px;
-          }
-      
+      }
     }
     }  
    
