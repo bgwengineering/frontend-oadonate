@@ -49,7 +49,7 @@ const Footer = ({history}) => {
               social or community needs to people (individual or corporate) who
               are willing to donate IDLE ITEMS which are auctioned through our
               solution to meet their needs and track the record of such
-              corporate or individual social responsibility.{" "}
+              corporate or individual social responsibility.
             </p>
           </div>
 

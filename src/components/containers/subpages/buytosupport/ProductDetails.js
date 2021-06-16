@@ -108,7 +108,7 @@ const Details = ({ match }) => {
       <TabPanel value={value} index={0}>
       <div>
         <div className="col-lg-8">
-    </div>
+       </div>
     </div>
       </TabPanel>
       <TabPanel value={value} index={1}>

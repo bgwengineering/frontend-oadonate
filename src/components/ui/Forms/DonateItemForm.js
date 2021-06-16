@@ -24,8 +24,6 @@ const DonateItemForm = ({
   submitting
 }) => {
 
-  const [isPriceOgadonate, setIsPriceOgadonate] = useState(false);
-  const [isPriceAuction, setIsPriceAuction] = useState(false);
 
   const [postData, setPostData] = useState({
     donate_item_name: "",
@@ -59,15 +57,17 @@ const DonateItemForm = ({
   const isDesktopOrLaptop = useMediaQuery({ query: "(min-width: 768px)" });
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 767px)" });
 
+  const [isPriceOgadonate, setIsPriceOgadonate] = useState(false);
+  const [isPriceAuction, setIsPriceAuction] = useState(false);
 
   const handlePriceForOgadonate = () => {
-    setIsPriceOgadonate(true);
+    setIsPriceOgadonate(prevState => ({isPriceOgadonate:!prevState.isPriceOgadonate}));
     setIsPriceAuction(false);
   };
 
 
   const handleDetermineAuctionPrice = () => {
-    setIsPriceAuction(true);
+    setIsPriceAuction(prevState => ({ isPriceAuction: !prevState.isPriceAuction }));
     setIsPriceOgadonate(false);
   };
 
@@ -80,6 +80,7 @@ const DonateItemForm = ({
   };
 
   const dispatch = useDispatch();
+
   const handleChange = e => {
     setPostData({ ...postData, [e.target.name]: e.target.value });
   };
@@ -427,26 +428,27 @@ const DonateItemForm = ({
               )}
             </div>
 
-            {/* <div
-              style={{ display: isPriceOgadonate ? "block" : "none" }}
-            >
-              <label>
-                Item Cash Value <span className="text-danger">*</span>
-              </label>
+            {isPriceOgadonate &&
+              <div>
+                <label>
+                  Item Cash Value <span className="text-danger">*</span>
+                </label>
 
-              <input
-                id="donate_bid_val"
-                name="donate_determine_price"
-                onChange={handleChange}
-                data-msg-required="Please enter a valid number"
-                type="number"
-                normalize={val => (val || "").replace(/[^\d]/g, "")}
-                className="input-number"
-                placeholder="What's the value of the item when converted to cash"
-                value={postData.donate_determine_price}
-              />
-            </div> */}
+                <input
+                  id="donate_bid_val"
+                  name="donate_determine_price"
+                  onChange={handleChange}
+                  data-msg-required="Please enter a valid number"
+                  type="number"
+                  normalize={val => (val || "").replace(/[^\d]/g, "")}
+                  className="input-number"
+                  placeholder="What's the value of the item when converted to cash"
+                  value={postData.donate_determine_price}
+                />
+              </div>
+            }
 
+            
             {isPriceAuction &&
             <div>
               <label>

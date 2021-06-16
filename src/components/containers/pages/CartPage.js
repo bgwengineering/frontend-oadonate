@@ -20,7 +20,7 @@ const CartPage = () => {
 
   let total = formatTotal
   const currency = cartItems.map(cartItem => cartItem.donate_currency)
-  console.log(currency);
+
   
   return (
     <div className="cart-page">

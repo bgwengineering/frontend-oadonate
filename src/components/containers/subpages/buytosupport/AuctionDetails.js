@@ -191,9 +191,10 @@ const AuctionDetails = ({ match }) => {
   const Auction =
     donate_mkt_bid === "Open" ? (
       <div>{auction}</div>
-    ) : (
+      ) : (
       <h4>Auction is a close Bid</h4>
-    );
+      );
+  
   return (
     <>
       <div className="auction-container">
