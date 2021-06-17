@@ -27,12 +27,13 @@ const Affiliate = () => {
         style={{ backgroundImage: `url(${Boss})` }}
       >
         <h4 className="font-weight-bold text-uppercase  boss-text">
-          Become your own boss by <br/> joining our affiliate <br/>program
+          Become your own boss by <br /> joining our affiliate <br />
+          program
         </h4>
         <div className="mt-5">
           <button className="btn btn-lg affiliate-signup-btn">
             <Link className="link-router-inverted" to="affiliate-signup">
-              Sign up
+              Get Started
             </Link>
           </button>
         </div>
@@ -63,7 +64,7 @@ const Affiliate = () => {
               data-line-height="25.2px"
             >
               <div className="listar-feature-item listar-feature-has-link">
-                <a href='#'></a>
+                <a href="#"></a>
                 <div className="listar-feature-item-inner">
                   <div className="listar-feature-right-border"></div>
 
@@ -86,8 +87,8 @@ const Affiliate = () => {
                       </div>
 
                       <div className="listar-feature-item-excerpt">
-                        Join tens of thousands of creators, publishers and
-                        bloggers who are earning with Ogadonate affiliate
+                        Join tens of thousands of people who are earning with
+                        Ogadonate Affiliate
                       </div>
                     </div>
                   </div>
@@ -103,7 +104,7 @@ const Affiliate = () => {
               data-line-height="25.2px"
             >
               <div className="listar-feature-item listar-feature-has-link">
-                <a href='#'></a>
+                <a href="#"></a>
                 <div className="listar-feature-item-inner">
                   <div className="listar-feature-right-border"></div>
 
@@ -123,12 +124,13 @@ const Affiliate = () => {
                       <div className="listar-feature-item-title listar-feature-counter-added">
                         <span>
                           <span>02</span>
-                         Recommend
+                          Recommend
                         </span>
                       </div>
 
                       <div className="listar-feature-item-excerpt">
-                        Share links with your audience
+                        Share links with your audience, friends and family and
+                        get amazing rewards.
                       </div>
                     </div>
                   </div>
@@ -144,7 +146,7 @@ const Affiliate = () => {
               data-line-height="25.2px"
             >
               <div className="listar-feature-item listar-feature-has-link">
-                <a href='#'></a>
+                <a href="#"></a>
                 <div className="listar-feature-item-inner">
                   <div className="listar-feature-right-border"></div>
 
@@ -164,13 +166,14 @@ const Affiliate = () => {
                       <div className="listar-feature-item-title listar-feature-counter-added">
                         <span>
                           <span>03</span>
-                            Earn
+                          Earn
                         </span>
                       </div>
 
                       <div className="listar-feature-item-excerpt">
-                        Earn up to 10% in commissions from qualifying
-                        purchases and programs.
+                        Earn up to 5% in commissions for every donor referred
+                        and increase your coupon wallet for every buyer
+                        referred.
                       </div>
                     </div>
                   </div>

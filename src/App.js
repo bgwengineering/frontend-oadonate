@@ -13,6 +13,9 @@ import {
   fetchUserDonationsReceived,
 } from "store/actions/auth/Dashboard";
 import "./styles/style.js";
+import { Route, BrowserRouter,Switch } from 'react-router-dom'
+import Page404 from './util/pages/page404/Page404';
+
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -45,20 +48,26 @@ const App = () => {
   };
   return (
     <>
-      {isLoading ? null : <MainApp />}
+      <BrowserRouter>
+        <Switch>
+
+      {isLoading ? null : <Route exact path='' component={MainApp} />}
       {showMessage && (
         <Snackbar
-          open={showMessage}
-          autoHideDuration={4000}
-          onClose={handleClose}
-          anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+        open={showMessage}
+        autoHideDuration={4000}
+        onClose={handleClose}
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
         >
         <AlertSnackBar severity={error ? "error" : "success"}>{Message}</AlertSnackBar>
         </Snackbar>
     )
-    }
-    </>
-    );
+  }
+  <Route component={Page404}/>
+  </Switch>
+  </BrowserRouter>
+  </>
+  );
 };
 
 export default App;

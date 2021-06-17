@@ -326,7 +326,7 @@ const DonateItemForm = ({
         <div
           id="donate__share__questionnaire"
           style={{ display: !currentQuestionnaireOpen ? "block" : "none" }}
-        >
+         >
           <DonateShareQuestionnaire
             setIsQuestionAnswerShown={setIsQuestionAnswerShown}
             handleSwitchCurrentQuestion={handleSwitchCurrentQuestion}

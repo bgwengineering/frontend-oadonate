@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Switch,withRouter } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import ResetPassword from "./containers/auth/ResetPassword";
 import ResetPasswordConfirm from "./containers/auth/ResetPasswordConfirm";
 import Google from "./containers/auth/Google";
@@ -28,22 +28,25 @@ import SignupCorporate from "./containers/pages/CorporateAuction/SignupCorporate
 
 const MainApp = () => {
   return (
-      <>
-    <BrowserRouter>
-      <Switch>         
-        <Route path="/auth" component={AuthMain} />
-        <Route path="/activate/:uid/:token" component={Activate} />
-        <PrivateRoute path='/dashboard' name='Home' render={props => <TheLayout {...props}/>} />    
-       <Layout id='content'> 
+    <>
+        <Switch>
+          <Route path="/activate/:uid/:token" component={Activate} />
+          <PrivateRoute
+            path="/dashboard"
+            name="Home"
+            render={props => <TheLayout {...props} />}
+          />
+        <Layout id='content'>      
         <Route path="/categories" render={(props) => <Categoryindex  {...props}/>}  />
         <Route path= '/marketplace/'  component={MarketIndex} />
         <Route path="/campaign/:id/:id/details/"  component={DonateCampaign} />
         <Route path="/about" component={About} />
-        <Route exact path="/" component={Home} />
+        <Route path="/auth" component={AuthMain} />
         <Route path="/contact" component={Contact} />
-        <Route exact path="/google" component={Google} />
-        <Route exact path="/reset-password" component={ResetPassword} />
+        <Route path="/google" component={Google} />
+        <Route path="/reset-password" component={ResetPassword} />
         <Route path='/donate' render={props => <MainDonateIndex {...props}/>} />
+          <Route exact path="/" component={Home} />
         <Route path="/user-type" component={GetUserInfo} />
         <Route path='/cart' component={CartPage} />
         <Route path='/checkout' component={CheckoutPage} />
@@ -54,15 +57,13 @@ const MainApp = () => {
         <Route path='/corporate-auction' component={CorporateAuction} />
         <Route path='/corporate-signup' component={SignupCorporate} />    
         <Route
-          exact
           path="/password/reset/confirm/:uid/:token"
           component={ResetPasswordConfirm}
         />
       </Layout>
       </Switch>
-  </BrowserRouter>
-  </>
-    );
+    </>
+  );
 };
 
 export default MainApp;
