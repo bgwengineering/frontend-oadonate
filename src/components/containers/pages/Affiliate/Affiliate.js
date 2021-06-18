@@ -25,7 +25,7 @@ const Affiliate = () => {
       <div
         className="container affiliate-container"
         style={{ backgroundImage: `url(${Boss})` }}
-      >
+       >
         <h4 className="font-weight-bold text-uppercase  boss-text">
           Become your own boss by <br /> joining our affiliate <br />
           program

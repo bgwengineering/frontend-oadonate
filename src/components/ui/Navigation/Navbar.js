@@ -16,8 +16,7 @@ import { fetchAllCampaign } from "store/actions/fund_donate/FundDonate";
 import { updateMarketCollections } from "store/actions/MarketPlace";
 
 
-
-const Navbar = ({ menuOpen, history}) => {
+ const Navbar = ({ menuOpen, history}) => {
   const authState = useSelector(state => state.authReducer);
   const { isAuthenticated } = authState;
 
@@ -27,9 +26,9 @@ const Navbar = ({ menuOpen, history}) => {
   const cartState = useSelector(state => state.cartReducer);
   const { cartItems } = cartState;
 
-  const itemCount = cartItems.reduce(
-    (accumulatedQuantity, cartItem) => accumulatedQuantity + cartItem.quantity,
-    0);
+  // const itemCount = cartItems.reduce(
+  //   (accumulatedQuantity, cartItem) => accumulatedQuantity + cartItem.quantity,
+  //   0);
   const dispatch = useDispatch();
 
   const refreshState = () => {
@@ -60,7 +59,7 @@ const Navbar = ({ menuOpen, history}) => {
                 activeClassName="navigation-link--active"
                 className="navigation-link text-white"
                 onClick={refreshState}
-              >
+               >
                 Home
               </NavLink>
             </li>
@@ -447,7 +446,7 @@ const Navbar = ({ menuOpen, history}) => {
                 </span>
                 <span className="badge-container">
                   <CBadge className="bill-badge" shape="pill">
-                    {itemCount}
+                    {/* {itemCount} */}
                   </CBadge>
                 </span>
                 <div className="cartdropdown-hidden">

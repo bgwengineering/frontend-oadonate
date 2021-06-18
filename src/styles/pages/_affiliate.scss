@@ -17,7 +17,12 @@
   }
  }
 
-
+.corporate-auction-p-text{
+  font-size:1.2rem;
+}
+.step-3{
+  font-size:18px;
+}
  .header-design {
   background-color: #0F6929;
   background-image: linear-gradient(326deg, #0F6929 30%, #C75A00 54%);
@@ -31,8 +36,8 @@
   display: table;
   right: 0;
   top: 680px;
-  height: 200px;
-  line-height: 164px;
+  height: 70px;
+  line-height: 124px;
   white-space: nowrap;
   font-size: 0;
 }
@@ -47,6 +52,7 @@
   background-color: #fff;
   color: #252525;
   text-shadow: none;
+ 
 }
 
 .listar-page-header-content .listar-map-button-text span {
@@ -240,6 +246,7 @@ header .footer-wave {
   -moz-flex-wrap: wrap;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
+  margin-top:118px;
 }
 
 .listar-feature-right-border:before,
@@ -441,7 +448,7 @@ header .footer-wave {
 }
 
 .pset {
-  padding-top: 180px;
+  padding-top: 100px;
   padding-bottom: 80px;
   background-color:#F4F4F4;
 }
@@ -450,7 +457,7 @@ header .footer-wave {
   position: relative;
   display: inline-block;
   vertical-align: middle;
-  font-size: 15px;
+  font-size: 18px;
   height: 44px;
   line-height: 1.6;
   padding: 10px 25px;
@@ -484,6 +491,7 @@ header .footer-wave {
   width: calc(100% + 28px);
   height: calc(100% + 28px);
   border-radius: 36px;
+ 
 }
 
 .listar-map-button:hover .listar-map-button-text span {
@@ -493,6 +501,7 @@ header .footer-wave {
   -ms-transition: all 0.2s ease-in;
   -o-transition: all 0.2s ease-in;
   transition: all 0.2s ease-in;
+
 }
 
 .listar-feature-with-image .listar-feature-item a:before {
