@@ -22,6 +22,7 @@ import {
   SHOW_ERROR_MESSAGE
 } from "../ActionTypes";
 
+
 export const load_user = () => async (dispatch) => {
   if (localStorage.getItem("access")) {
     const config = {
@@ -56,13 +57,11 @@ export const load_user = () => async (dispatch) => {
 export const checkAuthenticated = () => async (dispatch) => {
   if (localStorage.getItem("access")) {
     const body = { token: localStorage.getItem("access") };
-
     try {
       const res = await axiosInstance.post(
         "auth/jwt/verify/",
         body
       );
-
       if (res.data.code !== "token_not_valid") {
         dispatch({
           type: AUTHENTICATED_SUCCESS,
@@ -195,6 +194,7 @@ export const verify = ({ uid, token }) => async (dispatch) => {
  
   }
 };
+
 
 // request password change
 export const reset_password = ({ email }) => async (dispatch) => {

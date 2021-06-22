@@ -6,6 +6,9 @@ import Counter from "components/ui/Counter";
 import CategoriesMainSwiper from "../subpages/categories/CategoriesMainSwiper";
 import DescriptionText from './../../ui/DescriptionText';
 import BidAuction from "components/containers/subpages/buytosupport/BidAuction";
+import MoreFeaturedCategoriesButton from './../subpages/categories/MoreFeaturedCategoriesButton';
+
+
 
 const Home = () => {
     return (
@@ -14,6 +17,7 @@ const Home = () => {
         <DescriptionText/>
         <CategoriesMainSwiper /> 
         <FeaturedCauses /> 
+        <MoreFeaturedCategoriesButton/>
         <BuyToSupport /> 
         <BidAuction />
         <Counter /> 

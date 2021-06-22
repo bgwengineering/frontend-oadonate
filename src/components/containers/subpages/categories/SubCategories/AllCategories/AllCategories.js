@@ -4,12 +4,14 @@ import TrendingCampaignCard from '../Trending';
 import { Button } from "@material-ui/core";
 import { FUNDRAISEBUTTONCLICKED } from "store/actions/Category";
 import { useDispatch } from "react-redux";
+import AllCauseCards from '../../../Donate/AllCauseCards'
 
 
 const AllCategories = () => {
   const dispatch = useDispatch()
     return (
-        <div>
+      <div>
+     
             <div className="container sub-category-container">
             <div className="row align-items-center">
               <div className="col-lg-6 mt-3">
@@ -49,8 +51,12 @@ const AllCategories = () => {
             <p>Campaign selected by our team</p>
           </div>
           <div className="trending-container mt-3">
-            <TrendingCampaignCard />
+          <div className='container'>
+            <div className='row'>
+              <AllCauseCards />
+            </div>
           </div>
+        </div>
         </div>
     )
 }

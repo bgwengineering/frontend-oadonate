@@ -2,8 +2,7 @@ import * as actionTypes from "../ActionTypes"
 import axios from '../../../util/api';
 import {tokenConfig} from '../../../util/TokenConfig'
 import _ from "lodash";
-import { setLoading,offLoading } from 'store/actions/Common';
-import axiosInstance from "../../../util/api";
+import { setLoading, offLoading } from 'store/actions/Common';
 
 
 export const toggleCartHidden = () => ({

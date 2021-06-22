@@ -9,7 +9,7 @@ import CartItem from './CartItem'
 
  const CartDropdown = ({history}) => { 
  const dispatch = useDispatch()
-   const cartState = useSelector(state=>state.cartReducer)
+  //  const cartState = useSelector(state=>state.cartReducer)
 
   //  const {cartItems} = cartState
     // const cartItemsMap = 

@@ -12,6 +12,7 @@ import Box from '@material-ui/core/Box';
 import { addItem } from 'store/actions/cart/cart.actions';
 
 
+
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
   return (
@@ -37,7 +38,6 @@ const a11yProps = (index) => {
     'aria-controls': `simple-tabpanel-${index}`,
   };
 }
-
 
 const Details = ({ match }) => {  
   const [value, setValue] = React.useState(0);

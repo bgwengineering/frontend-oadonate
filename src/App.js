@@ -19,8 +19,9 @@ import Page404 from './util/pages/page404/Page404';
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const isAuthenticated = useSelector((state) => state.authReducer.isAuthenticated);
+  const isAuthenticated = useSelector(state => state.authReducer.isAuthenticated);
   const dispatch = useDispatch();
+  
   useEffect(() => {
     document.title = "Ogadonate | Home";
     dispatch(checkAuthenticated());
@@ -49,22 +50,24 @@ const App = () => {
   return (
     <>
       <BrowserRouter>
-        <Switch>
-
-      {isLoading ? null : <Route exact path='' component={MainApp} />}
+      <Switch>
+      {isLoading ? null : <Route exact  component={MainApp} />}
       {showMessage && (
         <Snackbar
         open={showMessage}
         autoHideDuration={4000}
         onClose={handleClose}
-        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-        >
-        <AlertSnackBar severity={error ? "error" : "success"}>{Message}</AlertSnackBar>
-        </Snackbar>
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'left',
+              }}
+              message='message'
+        
+        />
     )
   }
-  <Route component={Page404}/>
-  </Switch>
+    <Route component={Page404}/>
+   </Switch>
   </BrowserRouter>
   </>
   );

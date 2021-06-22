@@ -14,6 +14,7 @@ import {persistReducer} from 'redux-persist';
 import { LOGOUT } from 'store/actions/ActionTypes';
 
 
+
   const appReducer = combineReducers({
     form:formReducer,
     authReducer:auth,

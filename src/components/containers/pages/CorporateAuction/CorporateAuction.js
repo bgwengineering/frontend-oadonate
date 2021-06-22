@@ -134,7 +134,7 @@ const CorporateAuction = () => {
                     <div
                       className="listar-feature-content-wrapper"
                       style={{ paddingTop: "0px" }}
-                    >
+                       >
                       <div className="listar-feature-item-title listar-feature-counter-added">
                         <span>
                           <span>02</span>

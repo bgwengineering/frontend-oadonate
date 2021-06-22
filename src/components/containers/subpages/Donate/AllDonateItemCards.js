@@ -1,17 +1,17 @@
 import React, {useState} from "react";
 import { Link } from "react-router-dom";
 import LinearProgress from "@material-ui/core/LinearProgress";
-// import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import { AiOutlineFolderOpen } from "react-icons/ai";
 import { useSelector } from "react-redux";
 import { ReactComponent as LoadingSpinner } from 'assets/images/spinner.svg';
 import Pagination from "components/ui/Pagination/Pagination";
+
 var numeral = require('numeral');
 
-
 const AllDonateItemCards = () => {
-  const fundState = useSelector((state) => state.fundDonateReducer);
+
+  const fundState = useSelector(state => state.fundDonateReducer);
   const { allCampaign } = fundState;
 
   const [page, setPage] = useState(1)
@@ -57,17 +57,17 @@ const AllDonateItemCards = () => {
           
               return (
                 <div className="col-sm-6 col-md-6 col-lg-4 p-t-10">
-                  <div className="card card-feature" key={id}>
+                  <div className="card" key={id}>
                     <Link
                       to={`/campaign/${fund_category}/${id}/details`}
                       className="link-router"
                       onClick={() => scrollToTop()}
                     >
-                      <img
+                    <img
                         className="card-img-top"
                         src={fund_img}
                         alt="imageCard"
-                      />
+                    />
                     </Link>
                     <div className="card-body">
                       <div>
@@ -112,7 +112,7 @@ const AllDonateItemCards = () => {
                             </div>
 
                             <p className="pt-0">
-                              raised of{" "}
+                              raised of
                               <span>{fund_currency_type + fundCash}</span>
                             </p>
                           </div>

@@ -179,14 +179,7 @@ const Footer = ({history}) => {
             <span className="mr-1">&copy;</span>2021 Ogadonate
           </span>
           <span className="social-icons mt-3">
-            <span className="twitter-icon ">
-              <a
-                href="https://twitter.com/ogadonate"
-                className="fitwitter fs-1"
-              >
-                <FiTwitter />
-              </a>
-            </span>
+        
             <span className="facebook-icon">
               <a
                 href="https://web.facebook.com/ogadonate"

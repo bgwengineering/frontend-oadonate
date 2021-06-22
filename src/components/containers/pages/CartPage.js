@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 
 var numeral = require('numeral')
 
+
 const CartPage = () => {
   const cartItemState = useSelector(state => state.cartReducer);
   const { cartItems } = cartItemState;

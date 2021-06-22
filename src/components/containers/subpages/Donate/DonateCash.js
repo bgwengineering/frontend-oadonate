@@ -6,8 +6,6 @@ import AllDonateCashCards from './AllDonateCashCards';
 import axios from 'axios';
 
 
-
-
 const DonateCash = ({history}) => {
   const [data, setData] = useState({
     loading:false,
@@ -17,7 +15,6 @@ const DonateCash = ({history}) => {
   const [searchValue, setSearchValue] = useState("")
   const [filteredData, setFilteredData] = useState([])
   const [selectValue, setSelectValue] = useState("");
-
 
 
   useEffect(() => {

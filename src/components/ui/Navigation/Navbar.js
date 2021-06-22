@@ -23,12 +23,14 @@ import { updateMarketCollections } from "store/actions/MarketPlace";
   const hiddenState = useSelector(state => state.cartReducer);
   const { hidden } = hiddenState;
 
-  const cartState = useSelector(state => state.cartReducer);
-  const { cartItems } = cartState;
+   
+  // const cartState = useSelector(state => state.cartReducer);
+  // const { cartItems } = cartState;
 
   // const itemCount = cartItems.reduce(
   //   (accumulatedQuantity, cartItem) => accumulatedQuantity + cartItem.quantity,
-  //   0);
+  //    0);
+   
   const dispatch = useDispatch();
 
   const refreshState = () => {

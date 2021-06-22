@@ -12,11 +12,10 @@ const AuthMain = () => {
         <div className="d-flex justify-content-center">
           <LoaderSpinn />
           <LoaderSpinn />
+          <LoaderSpinn />  
           <LoaderSpinn />
           <LoaderSpinn />
-          <LoaderSpinn />
-          <LoaderSpinn />
-          <LoaderSpinn />
+          <LoaderSpinn />  
         </div>
       ) : null}
       <CollapsedNavbar />

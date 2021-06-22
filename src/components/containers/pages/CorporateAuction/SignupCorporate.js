@@ -50,7 +50,7 @@ const SignupCorporate = ({ handleSubmit }) => {
                         className="profile-control-label"
                         htmlFor="input-company-name"
                       >
-                        Organisational Name
+                        Organisational/Religious Name
                       </label>
                       <Field
                         type="text"
@@ -70,16 +70,16 @@ const SignupCorporate = ({ handleSubmit }) => {
                         className="profile-control-label"
                         htmlFor="input-company-address"
                       >
-                        Company Address
+                        Password
                       </label>
                       <Field
-                        type="text"
-                        id="input-last-name"
+                        type="password"
+                        id="password"
                         className="form-control form-control-alternative"
-                        placeholder="Last name"
-                        value="company_address"
+                        placeholder="Password"
+                        value="company_password"
                         component="input"
-                        name="company_address"
+                        name="company_password"
                       />
                     </div>
                   </div>
@@ -91,7 +91,7 @@ const SignupCorporate = ({ handleSubmit }) => {
                         className="profile-control-label"
                         htmlFor="input-email"
                       >
-                        Organisational Email Address
+                        Organisational Email
                       </label>
                       <Field
                         type="email"
@@ -145,13 +145,50 @@ const SignupCorporate = ({ handleSubmit }) => {
               </div>
               <hr className="my-4" />
 
-              {/* Affiliate Choice */}
+              <div className="row">
+                <div className="col-lg-6">
+                  <div className="form-group">
+                    <label className="profile-control-label" htmlFor="Representative_Name">
+                       Representative Name
+                      </label>
+                    <Field
+                      type="text"
+                      id="phone"
+                      className="form-control form-control-alternative"
+                      placeholder="Rep Name"
+                      value="representative_name"
+                      component="input"
+                      name="representative_name"
+                    />
+                  </div>
+                </div>
+                <div className="col-lg-6">
+                  <div className="form-group">
+                    <label
+                      className="profile-control-label"
+                      htmlFor="input-email"
+                    >
+                      Representative Email
+                      </label>
+                    <Field
+                      type="email"
+                      id="input-email"
+                      className="form-control form-control-alternative"
+                      placeholder="email"
+                      value="myEmail"
+                      component="input"
+                      name="email"
+                    />
+                  </div>
+                </div>
+             
+              </div>
               <div>
                 <label
                   className="profile-control-label"
                   htmlFor="input-contact"
-                >
-                  Organsational Roles:
+                 >
+                 Representative Roles:
                 </label>
                 <div className="row">
                   <div className="form-group">
@@ -192,25 +229,63 @@ const SignupCorporate = ({ handleSubmit }) => {
                     onChange={setChecked}
                   />
                   <span className="shipping-msg ml-2">
-                    User managing the organisational auction?
+                    Add Supervisor
                   </span>
                 </div>
                 {checked && (
-                  <select>
-                    <option value="otherAdmin_fullname">
-                     
-                      Other admin full names
-                    </option>
-                    <option value="otherAdmin_email">Other admin email</option>
-                  </select>
+                  <>
+                  <div className="row">
+                  
+                    <div className="col-lg-6">
+                      <div className="form-group">
+                        <label className="profile-control-label" htmlFor="phone">
+                          Supervisor's Name
+                      </label>
+                        <Field
+                          type="text"
+                          id="phone"
+                          className="form-control form-control-alternative"
+                          placeholder="company phone number"
+                          value="company_phone"
+                          component="input"
+                          name="company_phone"
+                        />
+                      </div>
+                        </div>
+                   
+                      <div className="col-lg-6">
+                        <div className="form-group">
+                          <label
+                            className="profile-control-label"
+                            htmlFor="input-email"
+                            >
+                            Supervisor's Email
+                           </label>
+                          <Field
+                            type="email"
+                            id="input-email"
+                            className="form-control form-control-alternative"
+                            placeholder="email"
+                            value="myEmail"
+                            component="input"
+                            name="email"
+                          />
+                        </div>
+                        </div>
+                
+                  </div>
+             
+  
+           
+                    </>
                 )}
               </div>
-
+             
               {/* SUBMIT */}
               <hr className="profile_hr my-4" />
               <div className="pl-lg-4">
                 <div className="form-group">
-                  <button className="btn btn-sm profile-sbm-btn ml-3">
+                  <button className="btn btn-sm profile-sbm-btn">
                     Submit
                   </button>
                 </div>

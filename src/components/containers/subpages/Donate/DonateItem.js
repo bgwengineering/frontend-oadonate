@@ -132,7 +132,7 @@ const DonateItem = ({ history }) => {
         <h4 className="text-uppercase text-center mt-5">
           Find a cause to donate to
         </h4>
-        <AllDonateItemCards />
+         <AllDonateItemCards />
       </div>
     </>
   );

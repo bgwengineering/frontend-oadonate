@@ -19,8 +19,6 @@ const ProductList = () => {
   const [count, setCount] = useState(0);
 
   
-
-
   const controlSingleOrMultipleItemClick = (num) => {
     if (num === 1) {
       return "item added";
