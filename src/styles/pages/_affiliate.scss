@@ -11,14 +11,22 @@
   transition:transform 100ms ease-in;
  .boss-text{
       padding-top:100px;
+     
       @media screen and(max-width:1198px){
         color:#EF8508;
       }
   }
  }
 
-.corporate-auction-p-text{
-  font-size:1.2rem;
+ .corporate-auction-text{
+   padding-top:100px;
+      font-weight:3rem;
+ }
+.corporate-auction-sub-text{
+  font-size:1.7rem;
+  width:100%;
+  max-width:900px;
+  
 }
 .step-3{
   font-size:18px;
@@ -26,7 +34,7 @@
  .header-design {
   background-color: #0F6929;
   background-image: linear-gradient(326deg, #0F6929 30%, #C75A00 54%);
-  height: 120px;
+  height: 60px;
   text-align: center;
 }
 
@@ -246,7 +254,7 @@ header .footer-wave {
   -moz-flex-wrap: wrap;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  margin-top:118px;
+  margin-top:198px;
 }
 
 .listar-feature-right-border:before,

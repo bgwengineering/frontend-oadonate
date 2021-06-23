@@ -25,7 +25,7 @@ const ProductItem = ({ product, indx}) => {
   const cartState = useSelector(state => state.cartReducer);
   const { cartItems } = cartState;
 
-  // const itemInCart = cartItems.find(item => item.id === id);
+  const itemInCart = cartItems.find(item => item.id === id);
 
   return (
     <>
@@ -58,9 +58,9 @@ const ProductItem = ({ product, indx}) => {
           <div className="card-footer mt-5">
             <Button
               className="card-text add_cart_btn"
-              // onClick={() => (!itemInCart ? dispatch(addItem(product)) : null)}
+              onClick={() => (!itemInCart ? dispatch(addItem(product)) : null)}
           >
-              {/* {!itemInCart ? "Add to Cart" : "In Cart"} */}
+              {!itemInCart ? "Add to Cart" : "In Cart"}
             </Button>
           </div>
         </div>

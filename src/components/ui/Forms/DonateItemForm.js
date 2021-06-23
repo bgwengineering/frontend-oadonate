@@ -638,7 +638,11 @@ const DonateItemForm = ({
                   type="submit"
                   name="submit"
                   className="MuiButton-containedPrimary"
-                  disabled={pristine || submitting}
+                    disabled={pristine || submitting}
+                    onClick={() => window.scrollTo({
+                      top: 0,
+                      behavior:'smooth'
+                    })}
                 >
                   Submit
                 </Button>

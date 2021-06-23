@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import {Route, Switch } from "react-router-dom";
 import ResetPassword from "./containers/auth/ResetPassword";
 import ResetPasswordConfirm from "./containers/auth/ResetPasswordConfirm";
 import Google from "./containers/auth/Google";
@@ -24,6 +24,7 @@ import Affiliate from './containers/pages/Affiliate/Affiliate';
 import SignupAffiliate from './containers/pages/Affiliate/SignupAffiliate';
 import CorporateAuction from './containers/pages/CorporateAuction/CorporateAuction';
 import SignupCorporate from "./containers/pages/CorporateAuction/SignupCorporate";
+import Page404 from './../util/pages/page404/Page404';
 
 
 const MainApp = () => {
@@ -36,12 +37,12 @@ const MainApp = () => {
             name="Home"
             render={props => <TheLayout {...props} />}
           />
-        <Layout id='content'>      
+        <Route path="/auth" component={AuthMain} />
+        <Layout>      
         <Route path="/categories" render={(props) => <Categoryindex  {...props}/>}  />
         <Route path= '/marketplace/'  component={MarketIndex} />
         <Route path="/campaign/:id/:id/details/"  component={DonateCampaign} />
         <Route path="/about" component={About} />
-        <Route path="/auth" component={AuthMain} />
         <Route path="/contact" component={Contact} />
         <Route path="/google" component={Google} />
         <Route path="/reset-password" component={ResetPassword} />
@@ -61,9 +62,11 @@ const MainApp = () => {
           component={ResetPasswordConfirm}
         />
       </Layout>
+      <Route component={Page404} />
       </Switch>
     </>
   );
 };
+
 
 export default MainApp;

@@ -1,3 +1,6 @@
+
+
+
 import React, { useEffect, useState } from "react";
 import Snackbar from "@material-ui/core/Snackbar";
 import { Alert } from "@material-ui/lab";
@@ -12,16 +15,14 @@ import {
   fetchShippingAddress,
   fetchUserDonationsReceived,
 } from "store/actions/auth/Dashboard";
+import Page404 from "./util/pages/page404/Page404";
+import { Route, BrowserRouter, Switch } from 'react-router-dom'
 import "./styles/style.js";
-import { Route, BrowserRouter,Switch } from 'react-router-dom'
-import Page404 from './util/pages/page404/Page404';
-
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const isAuthenticated = useSelector(state => state.authReducer.isAuthenticated);
+  const isAuthenticated = useSelector((state) => state.authReducer.isAuthenticated);
   const dispatch = useDispatch();
-  
   useEffect(() => {
     document.title = "Ogadonate | Home";
     dispatch(checkAuthenticated());
@@ -37,7 +38,7 @@ const App = () => {
   }, [isAuthenticated]);
 
   // check auth state
-  const commonState = useSelector(state => state.commonReducer);
+  const commonState = useSelector((state) => state.commonReducer);
   const { showMessage, Message, error } = commonState;
 
   // alert func
@@ -49,27 +50,23 @@ const App = () => {
   };
   return (
     <>
-      <BrowserRouter>
-      <Switch>
-      {isLoading ? null : <Route exact  component={MainApp} />}
+      <BrowserRouter>  
+        {isLoading ? null : <MainApp />} 
+      </BrowserRouter>
+
       {showMessage && (
         <Snackbar
-        open={showMessage}
-        autoHideDuration={4000}
-        onClose={handleClose}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              message='message'
-        
-        />
-    )
-  }
-    <Route component={Page404}/>
-   </Switch>
-  </BrowserRouter>
-  </>
+          open={showMessage}
+          autoHideDuration={4000}
+          onClose={handleClose}
+          anchorOrigin={{ vertical: "top", horizontal: "right" }}
+        >
+          <AlertSnackBar severity={error ? "error" : "success"}>
+            {Message}
+          </AlertSnackBar>
+        </Snackbar>
+      )}
+    </>
   );
 };
 

@@ -24,8 +24,8 @@ import { updateMarketCollections } from "store/actions/MarketPlace";
   const { hidden } = hiddenState;
 
    
-  // const cartState = useSelector(state => state.cartReducer);
-  // const { cartItems } = cartState;
+  const cartState = useSelector(state => state.cartReducer);
+  const { cartItems } = cartState;
 
   // const itemCount = cartItems.reduce(
   //   (accumulatedQuantity, cartItem) => accumulatedQuantity + cartItem.quantity,
@@ -418,14 +418,20 @@ import { updateMarketCollections } from "store/actions/MarketPlace";
               </li>
             ) : (
               <li className="nav-item nav-signup-login navbar-right-hidden">
-                <NavLink
-                  to="/auth"
+                <Link
+    
                   exact
                   activeClassName="navigation-link--active"
-                  className="navigation-link text-white "
+                  className="navigation-link text-white"
+                    onClick={() => {
+                      window.scrollTo({
+                        top: 0,
+                        behavior:'smooth'
+                      }, history.push("/auth"))
+                  }}
                 >
                   Login/Signup
-                </NavLink>
+                </Link>
               </li>
             )}
 

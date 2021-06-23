@@ -8,14 +8,14 @@ const AuthMain = () => {
   const isLoading = useSelector((state) => state.authReducer.loading);
   return (
     <div>
-          {isLoading ? (
+        {isLoading ? (
         <div className="d-flex justify-content-center">
           <LoaderSpinn />
           <LoaderSpinn />
-          <LoaderSpinn />  
+          <LoaderSpinn />   
           <LoaderSpinn />
           <LoaderSpinn />
-          <LoaderSpinn />  
+          <LoaderSpinn />   
         </div>
       ) : null}
       <CollapsedNavbar />

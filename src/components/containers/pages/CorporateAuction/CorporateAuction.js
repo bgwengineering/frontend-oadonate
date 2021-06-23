@@ -2,8 +2,6 @@ import React from 'react'
 import Corporate from "assets/images/homepage/corporate.jpg";
 import { Link } from 'react-router-dom';
 import { SiWebauthn } from "react-icons/si";
-import { FaRegShareSquare } from "react-icons/fa";
-import { GiReceiveMoney } from "react-icons/gi";
 import Coorporate from './../../dashboard/views/dashboard/user/Coorporate';
 import { RiShareFill } from 'react-icons/ri'
 import { ImBoxAdd} from 'react-icons/im'
@@ -28,10 +26,14 @@ const CorporateAuction = () => {
         className="container affiliate-container"
         style={{ backgroundImage: `url(${Corporate})` }}
       >
-        <h4 className="font-weight-bold text-uppercase d-flex align-items-center boss-text">
+        <h3 className="font-weight-bolder text-uppercase d-flex align-items-center corporate-auction-text text-white">
           Corporate Auction has never been this easier.
+        </h3>
+        <h4 className="text-white mt-5 corporate-auction-sub-text text-capitalize">
+          With our highly Digitalized, Democratized and Demonetized Auction
+          process, Ogadonate Auction has eliminated the headache of setting up
+          in-person auctioneers in offices.
         </h4>
-
         <div className="mt-5">
           <button className="btn btn-lg affiliate-signup-btn">
             <Link className="link-router-inverted" to="/corporate-signup">
@@ -48,7 +50,7 @@ const CorporateAuction = () => {
             style={{ display: "inline-block", opacity: "1" }}
           >
             <span className="icon-map2 text-uppercase">
-              Create your auction in few minutes{" "}
+              Create your auction in few minutes
             </span>
           </div>
         </div>
@@ -59,19 +61,11 @@ const CorporateAuction = () => {
         </h5>
       </header>
 
-      <div className="pset">
-        <p className="container corporate-auction-p-text mt-3">
-          With our highly Digitalized, Democratized and Demonetized Auction
-          process, Ogadonate Auction has eliminated the headache of setting up
-          in-person auctioneers in offices. We’ve simplified everything to get
-          you up and running quickly without the help of your Auctioneer team
-          for FREE.
-        </p>
-
+      <div className="pset ">
         <div className="container">
           <div className="row listar-feature-items">
             <div
-              className="col-12 col-sm-6 col-md-4 listar-feature-item-wrapper listar-feature-with-image listar-height-changed"
+              className=" col-12 col-sm-6 col-md-4 listar-feature-item-wrapper listar-feature-with-image listar-height-changed"
               data-aos="fade-zoom-in"
               data-aos-group="features"
               data-line-height="25.2px"
@@ -134,7 +128,7 @@ const CorporateAuction = () => {
                     <div
                       className="listar-feature-content-wrapper"
                       style={{ paddingTop: "0px" }}
-                       >
+                    >
                       <div className="listar-feature-item-title listar-feature-counter-added">
                         <span>
                           <span>02</span>
