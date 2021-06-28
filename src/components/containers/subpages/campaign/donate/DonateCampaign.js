@@ -15,8 +15,6 @@ const DonateCampaign = ({ match }) => {
   dispatch(fetchSingleCampaign(match.params.id));
   }, []);
 
-  const isAuthenticated = useSelector(state=> state.authReducer.isAuthenticated);
-
   const singleCampaign = useSelector(state => state.fundDonateReducer.singleCampaign);
 
   const { fund_img, fund_purpose, id, fund_cash, fund_item } = singleCampaign;
@@ -39,7 +37,8 @@ const DonateCampaign = ({ match }) => {
               src={fund_img}
               alt="personal_campaign"
               style={{ width: "100%", maxHeight: "300px" }}
-            ></img>
+              >
+            </img>
 
             {/* Donat tabs */}
             <div className="mt-4">
@@ -70,7 +69,6 @@ const DonateCampaign = ({ match }) => {
               <DonatePrompt handleSwitchCurrentForm={handleSwitchCurrentForm} />
             </div>
          
-
           <div
             className="col-md-6 col-lg-6 mt-5"
             id="donate__cash__form"

@@ -22,6 +22,7 @@ const toggle = () => setModal(!modal);
   );
 
   const isAuthenticated = useSelector(state => state.authReducer.isAuthenticated);
+  
   const {
     fund_cash_amount,
     fund_created_date,

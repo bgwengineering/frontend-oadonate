@@ -7,6 +7,7 @@ import {
   FACEBOOK_AUTH_FAIL,
 } from "../ActionTypes";
 
+
 export const googleAuthenticate = (state, code) => async (dispatch) => {
     if (state && code && !localStorage.getItem("access")) {
       const config = {
@@ -75,8 +76,7 @@ export const googleAuthenticate = (state, code) => async (dispatch) => {
         dispatch({
           type: FACEBOOK_AUTH_SUCCESS,
           payload: res.data,
-        });
-  
+        }); 
         dispatch(load_user());
       } catch (err) {
         dispatch({

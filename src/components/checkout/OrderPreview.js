@@ -17,6 +17,7 @@ const Message = ({ message }) => (
   </section>
 );
 
+
 const OrderPreview = ({ nextPage, previousPage}) => {
   const [message, setMessage] = useState("");
   const [paystack, setPaystack] = useState(true);
@@ -32,6 +33,7 @@ const OrderPreview = ({ nextPage, previousPage}) => {
   const cartState = useSelector(state => state.cartReducer);
   const { cartItems,checkoutUrl } = cartState;
 
+  
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
 

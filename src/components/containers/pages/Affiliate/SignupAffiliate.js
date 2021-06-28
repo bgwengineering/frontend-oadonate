@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Field, reduxForm } from "redux-form";
 import { affiliateSignup } from 'store/actions/auth/Affiliate';
+// import { signup } from 'store/actions/auth/Auth';
 
 
 const SignupAffiliate = ({ handleSubmit, pristine, submitting }) => {
   const dispatch = useDispatch()
+
   const submit = formValues => {   
-      dispatch(affiliateSignup(formValues))
+    dispatch(affiliateSignup(formValues));
     }
 
   return (
@@ -54,7 +56,7 @@ const SignupAffiliate = ({ handleSubmit, pristine, submitting }) => {
                       <label
                         className="profile-control-label"
                         for="input-last-name"
-                      >
+                       >
                         Last name
                       </label>
                       <Field

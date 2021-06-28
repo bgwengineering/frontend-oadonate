@@ -1,18 +1,21 @@
 import React, { useState } from "react";
-import { AiOutlineFolderOpen } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { Button } from "@material-ui/core";
 import { addItem } from "store/actions/cart/cart.actions";
 import { useDispatch, useSelector } from "react-redux";
 import Snackbar from "@material-ui/core/Snackbar";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
-import { withRouter } from 'react-router-dom';
+
 
 
 var numeral = require("numeral");
 
-const ProductItem = ({ product, indx, history}) => {
+const ProductItem = ({
+  product,
+  indx,
+  history
+}) => {
   const {
     donate_item_img,
     donate_mkt_price,
@@ -21,6 +24,18 @@ const ProductItem = ({ product, indx, history}) => {
     id
   } = product;
 
+
+const [open, setOpen] = useState(false);
+  const [count, setCount] = useState(0);
+  
+const controlSingleOrMultipleItemClick = num => {
+    if (num === 1) {
+      return "item added";
+    } else {
+      return "items added";
+    }
+  };
+
   const marketPrice = numeral(donate_mkt_price).format("0,0");
   const dispatch = useDispatch();
   const cartState = useSelector(state => state.cartReducer);
@@ -28,15 +43,35 @@ const ProductItem = ({ product, indx, history}) => {
 
   const itemInCart = cartItems.find(item => item.id === id);
 
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpen(false);
+  };
+
+  const handleItemInCart = () => {
+    setOpen(true);
+    dispatch(addItem(product));
+    setCount(count + 1)
+  }
+
   return (
     <>
       <div className="col-md-6 col-lg-3 my-3" key={indx}>
         <div className="card market-card">
           <div className="img-container">
-            <Link onClick={() => window.scrollTo({
-              top: 0,
-              behavior:'smooth'
-            }, history.push(`marketplace/products/${id}/details`))}>
+            <Link
+              onClick={() =>
+                window.scrollTo(
+                  {
+                    top: 0,
+                    behavior: "smooth"
+                  },
+                  history.push(`marketplace/products/${id}/details`)
+                )
+              }
+            >
               <img
                 src={donate_item_img}
                 alt="product"
@@ -54,18 +89,44 @@ const ProductItem = ({ product, indx, history}) => {
             </h5>
           </div>
 
+          
           {/*card footer */}
           <div className="card-footer mt-5">
             <Button
               className="card-text add_cart_btn"
-              onClick={() => (!itemInCart ? dispatch(addItem(product)) : null)}
-             >
+              onClick={() => {
+                return !itemInCart ? handleItemInCart() : null;
+              }}
+            >
               {!itemInCart ? "Add to Cart" : "In Cart"}
             </Button>
           </div>
         </div>
-          </div>
+        <Snackbar
+          anchorOrigin={{
+            vertical: "bottom",
+            horizontal: "center"
+           }}
+          open={open}
+          autoHideDuration={2000}
+          onClose={handleClose}
+          message={count + " " + controlSingleOrMultipleItemClick(count)}
+          action={
+            <React.Fragment>
+              <IconButton
+                size="small"
+                aria-label="close"
+                color="inherit"
+                onClick={handleClose}
+              >
+                <CloseIcon fontSize="small" />
+              </IconButton>
+            </React.Fragment>
+          }
+        />
+      </div>
     </>
   );
 };
-export default withRouter(ProductItem);
+
+export default withRouter(ProductItem)

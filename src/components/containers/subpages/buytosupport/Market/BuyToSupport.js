@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "@material-ui/core";
 import { FaArrowRight } from "react-icons/fa";
 import { Link, withRouter } from "react-router-dom";
-import ProductList from './SlicedProductList';
+import SlicedProductList from './SlicedProductList';
 
 
 const BuyToSupport = ({history}) => {
@@ -14,7 +14,7 @@ const BuyToSupport = ({history}) => {
       </div>
       <div className="container">
         <div className="row"> 
-          <ProductList />
+          <SlicedProductList />
         </div>
       </div>
 

@@ -1,10 +1,8 @@
 import axios from 'axios';
 
-
 // const baseURL = 'https://ogadonate.herokuapp.com/api/';
 // const baseURL = 'http://ogadonate.localhost/api/';
 const baseURL = "https://bgw-api.herokuapp.com/api/";
-
 
 const axiosInstance = axios.create({
     baseURL: baseURL,

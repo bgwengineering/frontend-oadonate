@@ -16,6 +16,7 @@ const Message = ({ message }) => (
     <p>{message}</p>
   </section>
 );
+
 const DonateOgaCashForm = ({ fund_cash, setIsDonateOgaForm, setCurrentOpenForm }) => {
   const paystackUrl = useSelector((state) => state.fundDonateReducer.ogadonatePaystackUrl);
   useEffect(() => {
@@ -33,6 +34,8 @@ const DonateOgaCashForm = ({ fund_cash, setIsDonateOgaForm, setCurrentOpenForm }
       setMessage("Order canceled -- continue to shop around and checkout when you're ready.");
     }
   }, []);
+
+
 
   const [giveOgadonate, setGiveOgadonate] = useState(false);
   const [message, setMessage] = useState("");
@@ -280,7 +283,6 @@ const DonateOgaCashForm = ({ fund_cash, setIsDonateOgaForm, setCurrentOpenForm }
                     variant="contained"
                     color="primary"
                     onClick={handleNext}
-                    // disabled={true}
                   >
                     {activeStep === steps.length - 1 ? "Finish" : "Next"}
                   </Button>

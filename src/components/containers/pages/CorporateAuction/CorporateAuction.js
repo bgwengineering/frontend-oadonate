@@ -1,11 +1,10 @@
-import React from 'react'
+import React from "react";
 import Corporate from "assets/images/homepage/corporate.jpg";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import { SiWebauthn } from "react-icons/si";
-import Coorporate from './../../dashboard/views/dashboard/user/Coorporate';
-import { RiShareFill } from 'react-icons/ri'
-import { ImBoxAdd} from 'react-icons/im'
-
+import Coorporate from "./../../dashboard/views/dashboard/user/Coorporate";
+import { RiShareFill } from "react-icons/ri";
+import { ImBoxAdd } from "react-icons/im";
 
 const CorporateAuction = () => {
   const iconStyle = {
@@ -13,12 +12,12 @@ const CorporateAuction = () => {
     width: "auto",
     left: "25%",
     height: "55px",
-    color: '#0F6929'
-  }
+    color: "#0F6929"
+  };
   const iStyle = {
     height: "55px",
     width: "auto",
-    color: "#0F6929",
+    color: "#0F6929"
   };
   return (
     <>
@@ -29,12 +28,15 @@ const CorporateAuction = () => {
         <h3 className="font-weight-bolder text-uppercase d-flex align-items-center corporate-auction-text text-white">
           Corporate Auction has never been this easier.
         </h3>
-        <h4 className="text-white mt-5 corporate-auction-sub-text text-capitalize">
-          With our highly Digitalized, Democratized and Demonetized Auction
-          process, Ogadonate Auction has eliminated the headache of setting up
-          in-person auctioneers in offices.
+        <h4 className="text-white mt-5 corporate-auction-sub-text">
+          With our highly digitalized, democratized and demonetized auction
+          process, Ogadonate Auction eliminates the headaches associated with
+          setting up in-person auctioneers in your organization. You may Also
+          get your employees, shareholders, congregations and the public to
+          fundraise for a project you care about. Register today as a COMPANY,
+          RELIGIOUS ORGANIZATION, NGO or AUCTIONEER
         </h4>
-        <div className="mt-5">
+        <div className="mt-3">
           <button className="btn btn-lg affiliate-signup-btn">
             <Link className="link-router-inverted" to="/corporate-signup">
               Apply
@@ -50,7 +52,7 @@ const CorporateAuction = () => {
             style={{ display: "inline-block", opacity: "1" }}
           >
             <span className="icon-map2 text-uppercase">
-              Create your auction in few minutes
+              Create an auction or a Project in few minutes.
             </span>
           </div>
         </div>
@@ -95,8 +97,8 @@ const CorporateAuction = () => {
 
                       <div className="listar-feature-item-excerpt">
                         Answer a few questions about your Organization and your
-                        account will be created in less than 5 minutes. You can
-                        choose to make your auction public or private
+                        account and domain will be created in less than 5
+                        minutes.
                       </div>
                     </div>
                   </div>
@@ -137,8 +139,9 @@ const CorporateAuction = () => {
                       </div>
 
                       <div className="listar-feature-item-excerpt">
-                        Upload items in bulk or add them one at a time. Our item
-                        wizard will walk you through the process.
+                        Create a Project or Upload items for auction in bulk or
+                        add them one at a time. Our item wizard will walk you
+                        through the process.
                       </div>
                     </div>
                   </div>
@@ -194,9 +197,6 @@ const CorporateAuction = () => {
       </div>
     </>
   );
-}
+};
 
 export default CorporateAuction;
-
-
-
