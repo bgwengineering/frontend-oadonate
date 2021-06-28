@@ -10,23 +10,21 @@
   margin-right:10px;
   transition:transform 100ms ease-in;
  .boss-text{
-      padding-top:100px;
-     
-      @media screen and(max-width:1198px){
-        color:#EF8508;
-      }
+      padding-top:100px; 
   }
  }
 
  .corporate-auction-text{
-   padding-top:100px;
-      font-weight:3rem;
+   padding:100px 15px 0px 15px;
+    font-weight:3rem;
+      max-width:900px;
+        width:100%;
  }
 .corporate-auction-sub-text{
-  font-size:1.7rem;
+  font-size:1.5rem;
   width:100%;
-  max-width:900px;
-  
+  max-width:1100px;
+  padding:0px 15px
 }
 .step-3{
   font-size:18px;
@@ -43,7 +41,7 @@
   position: absolute;
   display: table;
   right: 0;
-  top: 680px;
+  top: 980px;
   height: 70px;
   line-height: 124px;
   white-space: nowrap;
@@ -163,8 +161,6 @@ header .footer-wave {
     box-shadow: 0 0 0 1em rgba(163, 177, 198, 0.3), 0 0 0 3em rgba(163, 177, 198, 0.03), 0 0 0 5em rgba(163, 177, 198, 0.03), 0 0 0 8em rgba(163, 177, 198, 0.01);
   }
 }
-
-
 
 .listar-feature-item .listar-feature-item-inner {
   padding: 50px 30px;
@@ -383,7 +379,6 @@ header .footer-wave {
   padding: 0;
   color: #C75A00;
 }
-
 .listar-feature-with-image .listar-feature-content-wrapper {
   top: 0;
 }
@@ -459,6 +454,7 @@ header .footer-wave {
   padding-top: 100px;
   padding-bottom: 80px;
   background-color:#F4F4F4;
+  // margin-top:200px;
 }
 
 .listar-map-button-text span {

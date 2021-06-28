@@ -63,46 +63,28 @@ const SignUpCorporateForm = ({handleSubmit, pristine, submitting}) => {
                           </div>
                         </div>
 
-                        <div className="col-lg-6">
-                          <div className="form-group ">
-                            <label
-                              className="profile-control-label"
-                              htmlFor="input-company-address"
-                            >
-                              Password
+                      <div className="col-lg-6">
+                        <div className="form-group">
+                          <label
+                            className="profile-control-label"
+                            htmlFor="input-email"
+                          >
+                            Organisational Email
                             </label>
-                            <Field
-                              type="password"
-                              id="password"
-                              className="form-control form-control-alternative"
-                              placeholder="Password"
-                              value="company_password"
-                              component="input"
-                              name="company_password"
-                            />
-                          </div>
+                          <Field
+                            type="email"
+                            id="input-email"
+                            className="form-control form-control-alternative"
+                            placeholder="email"
+                            value="myEmail"
+                            component="input"
+                            name="email"
+                          />
                         </div>
                       </div>
+                      </div>
                       <div className="row">
-                        <div className="col-lg-6">
-                          <div className="form-group">
-                            <label
-                              className="profile-control-label"
-                              htmlFor="input-email"
-                            >
-                              Organisational Email
-                            </label>
-                            <Field
-                              type="email"
-                              id="input-email"
-                              className="form-control form-control-alternative"
-                              placeholder="email"
-                              value="myEmail"
-                              component="input"
-                              name="email"
-                            />
-                          </div>
-                        </div>
+                      
                         <div className="col-lg-6">
                           <div className="form-group">
                             <label
@@ -122,6 +104,34 @@ const SignUpCorporateForm = ({handleSubmit, pristine, submitting}) => {
                             />
                           </div>
                         </div>
+                      
+                        <div className="col-lg-6">
+                          <div className="form-group">
+                            <label
+                              className="profile-control-label"
+                              htmlFor="phone"
+                             >
+                            Industry
+                            </label>
+                          <Field
+                            component="select"
+                            id="category"
+                            className="form-control form-control-alternative"
+                            value="company_category"
+                            name="company_category">
+                             <option>Banking</option>
+                             <option>Technology</option>
+                             <option>Agriculture</option>
+                             <option>Communication</option>
+                             <option>Religious Institution</option>
+                             <option>Private Institution</option>
+                             <option>Manufacturing</option>
+                             <option>Health</option>
+                            </Field>
+                          </div>
+                        </div>
+                      
+
                       </div>
                     </div>
 
@@ -227,7 +237,7 @@ const SignUpCorporateForm = ({handleSubmit, pristine, submitting}) => {
                         </div>
                       </div>
 
-                      <div className="shipping-show d-flex">
+                      <div className="d-flex">
                         <ToggleSwitch
                           checked={checked}
                           id="form"

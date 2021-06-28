@@ -24,11 +24,21 @@ const CorporateAuction = () => {
       <div
         className="container affiliate-container"
         style={{ backgroundImage: `url(${Corporate})` }}
-      >
+         >
         <h3 className="font-weight-bolder text-uppercase d-flex align-items-center corporate-auction-text text-white">
-          Corporate Auction has never been this easier.
+          The Easiest platform to Auction products and Fundraise for Projects.
         </h3>
-        <h4 className="text-white mt-5 corporate-auction-sub-text">
+        <div className="mt-3">
+          <Link className="link-router-inverted" to="/corporate-signup">
+            <button className="btn btn-lg affiliate-signup-btn ml-3">
+              Apply
+            </button>
+          </Link>
+        </div>
+      </div>
+
+      <div className='container'>
+        <h4 className="mt-5 corporate-auction-sub-text">
           With our highly digitalized, democratized and demonetized auction
           process, Ogadonate Auction eliminates the headaches associated with
           setting up in-person auctioneers in your organization. You may Also
@@ -37,14 +47,13 @@ const CorporateAuction = () => {
           RELIGIOUS ORGANIZATION, NGO or AUCTIONEER
         </h4>
         <div className="mt-3">
-          <button className="btn btn-lg affiliate-signup-btn">
-            <Link className="link-router-inverted" to="/corporate-signup">
+          <Link className="link-router-inverted" to="/corporate-signup">
+            <button className="btn btn-lg affiliate-signup-btn ml-3">
               Apply
-            </Link>
-          </button>
+            </button>
+          </Link>
         </div>
       </div>
-
       <header className="header-design">
         <div className="listar-map-button">
           <div

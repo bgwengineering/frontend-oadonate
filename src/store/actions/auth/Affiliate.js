@@ -35,7 +35,7 @@ export const affiliateSignup = ({first_name,last_name,email,password, affiliate_
         });
       err.response.data.password &&
         err.response.data.password.map(err => {
-          return dispatch({
+          return dispatch({      
             type: actionTypes.SHOW_ERROR_MESSAGE,
             payload: `Password: ${err}`
           });

@@ -52,8 +52,6 @@ export const load_user = () => async (dispatch) => {
   }
 };
 
-
-
 export const checkAuthenticated = () => async (dispatch) => {
   if (localStorage.getItem("access")) {
     const body = { token: localStorage.getItem("access") };
@@ -129,7 +127,6 @@ export const login = ({ email, password }) => async (dispatch) => {
 
 
 // signup
-
 export const signup = ({ first_name, last_name, email, password }) => async (dispatch) => {
   dispatch(setLoading())
   const body = { first_name, last_name, email, password };

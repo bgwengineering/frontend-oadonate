@@ -72,11 +72,9 @@ const SignupCorporate = () => {
   return (
     <div>
       <h2 className="text-uppercase mt-5 d-flex justify-content-center">
-    Select Category
+         Select Your Category
       </h2>
-      <h4 className="d-flex justify-content-center">Sign up as</h4>
-
-      <div className="shipping-show d-flex justify-content-center">
+      <div className="d-flex justify-content-center align-items-center corporate-category">
         <span className="d-flex ml-3">
           <ToggleNgo checked={ngoChecked} id="form" onChange={setChecked} />
           <span className="shipping-msg ml-2">NGO</span>
