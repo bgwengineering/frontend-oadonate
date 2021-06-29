@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { Field, reduxForm } from "redux-form";
 import { affiliateSignup } from 'store/actions/auth/Affiliate';
-// import { signup } from 'store/actions/auth/Auth';
+
 
 
 const SignupAffiliate = ({ handleSubmit, pristine, submitting }) => {

@@ -123,7 +123,6 @@ const DonateItemForm = ({
         Accept: "application/json"
       }
     };
-
     dispatch(setLoading());
     try {
       const res = await axiosInstance.post(
@@ -320,8 +319,8 @@ const DonateItemForm = ({
             setIsQuestionAnswerShown={setIsQuestionAnswerShown}
             handleSwitchCurrentQuestion={handleSwitchCurrentQuestion}
             isQuestionAnswerShown = {isQuestionAnswerShown}
-              currentQuestionnaireOpen = {currentQuestionnaireOpen}
-      />
+            currentQuestionnaireOpen = {currentQuestionnaireOpen}
+          />
         </div>
         <div
           id="donation__share__percentage"
@@ -332,7 +331,7 @@ const DonateItemForm = ({
                 ? "block"
                 : "none"
           }}
-        >
+          >
           {/* percentage value */}
           <div>
             <label>Percentage Value</label>
@@ -420,7 +419,6 @@ const DonateItemForm = ({
                   onChange={handleChange}
                   >
                   <option value="">select currency</option>
-                  <option value="$">$</option>
                   <option value="₦">₦</option>
                 </select>
               </div>

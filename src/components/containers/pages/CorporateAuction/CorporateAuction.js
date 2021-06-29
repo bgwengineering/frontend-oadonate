@@ -24,35 +24,31 @@ const CorporateAuction = () => {
       <div
         className="container affiliate-container"
         style={{ backgroundImage: `url(${Corporate})` }}
-         >
+      >
         <h3 className="font-weight-bolder text-uppercase d-flex align-items-center corporate-auction-text text-white">
-          The Easiest platform to Auction products and Fundraise for Projects.
+          The Best platform to Auction products and Fundraise for Projects.
         </h3>
+        <h4 className="d-flex align-items-center corporate-auction-subheading text-italics text-white">
+          Register today as A COMPANY, RELIGIOUS ORGANIZATION, NGO or AUCTIONEER
+          to create an auction or fundraise for projects.
+        </h4>
         <div className="mt-3">
           <Link className="link-router-inverted" to="/corporate-signup">
-            <button className="btn btn-lg affiliate-signup-btn ml-3">
-              Apply
+            <button className="btn btn-lg affiliate-signup-btn text-uppercase ml-3">
+              Register
             </button>
           </Link>
         </div>
       </div>
 
-      <div className='container'>
+      <div className="container">
         <h4 className="mt-5 corporate-auction-sub-text">
-          With our highly digitalized, democratized and demonetized auction
+          With our highly Digitalized, Democratized and Demonetized auction
           process, Ogadonate Auction eliminates the headaches associated with
-          setting up in-person auctioneers in your organization. You may Also
+          setting up in-person auctioneers in your organization. You may also
           get your employees, shareholders, congregations and the public to
-          fundraise for a project you care about. Register today as a COMPANY,
-          RELIGIOUS ORGANIZATION, NGO or AUCTIONEER
+          fundraise for a project you care about
         </h4>
-        <div className="mt-3">
-          <Link className="link-router-inverted" to="/corporate-signup">
-            <button className="btn btn-lg affiliate-signup-btn ml-3">
-              Apply
-            </button>
-          </Link>
-        </div>
       </div>
       <header className="header-design">
         <div className="listar-map-button">

@@ -1,7 +1,7 @@
 import axiosInstance  from 'util/api'
 import { tokenConfig } from 'util/TokenConfig';
 import * as actionTypes from '../ActionTypes';
-import { setLoading,offLoading } from './../Common';
+import { setLoading, offLoading } from './../Common';
 
 
 export const raiseCashFund = (formValues) => async(dispatch, getState) => {
@@ -49,11 +49,10 @@ export const donateToCash = (formValues) => async (dispatch, getState) => {
     } catch (error) {
       dispatch({ type: actionTypes.CREATE_DONATION_CASH_FAIL });
       dispatch(offLoading());
-        dispatch({type:actionTypes.SHOW_ERROR_MESSAGE, payload:error})
+      dispatch({type:actionTypes.SHOW_ERROR_MESSAGE, payload:error})
     }
 }
 
-// map error to donate to cash
 
 // GET DONATE TO CASH
 export const getdonateToCash = () => async(dispatch, getState) => {

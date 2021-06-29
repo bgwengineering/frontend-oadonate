@@ -17,7 +17,7 @@ const SignupCorporate = () => {
   } = checked;
 
   // toggle switch
-  const ToggleCorporate = ({ checked, onChange, id }) => (
+  const ToggleCorporate = ({ checked, onChange, id, name }) => (
     <div>
       <input
         type="checkbox"
@@ -26,11 +26,12 @@ const SignupCorporate = () => {
           onChange({ ...checked, corporateChecked: e.target.checked });
         }}
         id={id}
+        name={name}
       />
     </div>
   );
 
-  const ToggleNgo = ({ checked, onChange, id }) => (
+  const ToggleNgo = ({ checked, onChange, id, name }) => (
     <div>
       <input
         type="checkbox"
@@ -39,11 +40,12 @@ const SignupCorporate = () => {
           onChange({ ...checked, ngoChecked: e.target.checked });
         }}
         id={id}
+        name={name}
       />
     </div>
   );
 
-  const ToggleReligious = ({ checked, onChange, id }) => (
+  const ToggleReligious = ({ checked, onChange, id, name }) => (
     <div>
       <input
         type="checkbox"
@@ -52,19 +54,21 @@ const SignupCorporate = () => {
           onChange({ ...checked, religiousChecked: e.target.checked });
         }}
         id={id}
+        name={name}
       />
     </div>
   );
 
-  const ToggleAuctioneer = ({ checked, onChange, id }) => (
+  const ToggleAuctioneer = ({ checked, onChange, id, name }) => (
     <div>
       <input
         type="checkbox"
         checked={auctioneerChecked}
         onChange={e => {
-          onChange({ ...checked, auctioneerChecked: e.target.checked });
+        onChange({ ...checked, auctioneerChecked: e.target.checked });
         }}
         id={id}
+        name={name}
       />
     </div>
   );
@@ -76,7 +80,7 @@ const SignupCorporate = () => {
       </h2>
       <div className="d-flex justify-content-center align-items-center corporate-category">
         <span className="d-flex ml-3">
-          <ToggleNgo checked={ngoChecked} id="form" onChange={setChecked} />
+          <ToggleNgo checked={ngoChecked} id="form" onChange={setChecked} name="NGO"/>
           <span className="shipping-msg ml-2">NGO</span>
         </span>
 
@@ -85,6 +89,7 @@ const SignupCorporate = () => {
             checked={corporateChecked}
             id="form-ui"
             onChange={setChecked}
+            name="Corporate"
           />
           <span className="shipping-msg ml-2">Corporate</span>
         </span>
@@ -94,6 +99,7 @@ const SignupCorporate = () => {
             checked={religiousChecked}
             id="form-rel"
             onChange={setChecked}
+            name="Religious Organisation"
           />
           <span className="shipping-msg ml-2">Religious Organisation</span>
         </span>
@@ -103,6 +109,7 @@ const SignupCorporate = () => {
             checked={auctioneerChecked}
             id="form-auct"
             onChange={setChecked}
+            name="Auctioneer"
           />
           <span className="shipping-msg ml-2">Auctioneer</span>
         </span>

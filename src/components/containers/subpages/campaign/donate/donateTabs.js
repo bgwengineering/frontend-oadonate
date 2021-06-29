@@ -133,12 +133,15 @@ const SimpleTabs = ({ singleCampaign }) => {
           onChange={handleChange}
           aria-label="simple tabs example"
         >
-          <Tab label="DONATIONS" {...a11yProps(0)} />
-          <Tab label="THE STORY" {...a11yProps(1)} />
+          <Tab label="THE STORY" {...a11yProps(0)} />
+          <Tab label="DONATIONS" {...a11yProps(1)} />
           <Tab label="MESSAGES" {...a11yProps(2)} />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
+        {fund_purpose}
+      </TabPanel>
+      <TabPanel value={value} index={1}>
         {/* not done check for empty object */}
         {fund_cash ? (
           <div>{cash_donation}</div>
@@ -147,9 +150,6 @@ const SimpleTabs = ({ singleCampaign }) => {
             <h6>No donation, you can support fund by donating.</h6>
           </div>
         )}
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        {fund_purpose}
       </TabPanel>
       <TabPanel value={value} index={2}>
         {fund_cash ? (

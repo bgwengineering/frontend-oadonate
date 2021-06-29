@@ -5,7 +5,8 @@ import { stopSubmit, reset } from "redux-form";
 
 
 export const affiliateSignup = ({first_name,last_name,email,password, affiliate_user_role}) => async dispatch => {
-  const body = {first_name, last_name, email, password};
+  const body = { first_name, last_name, email, password };
+  
     dispatch(setLoading())
    try {
     const res = await axiosInstance.post("auth/users/", body);
@@ -61,7 +62,8 @@ export const affiliateSignup = ({first_name,last_name,email,password, affiliate_
             payload: `affiliate role not selected: ${err}`
           });
         });
-    }
+     }
+     
     dispatch(offLoading());
     dispatch(stopSubmit("affiliateSignup"));
     dispatch(reset("affiliateSignup"));

@@ -52,7 +52,7 @@ const RaiseCash = ({
     }
   };
 
-
+  // onSubmit
   const onSubmit = async (formValues) => {
     let formData = new FormData();
     formData.append("fund_title", formValues.fund_title);
@@ -62,6 +62,7 @@ const RaiseCash = ({
     formData.append("fund_endAt", formValues.fund_endAt);
     formData.append("fund_purpose", formValues.fund_purpose);
     formData.append("fund_img", formValues.fund_img);
+
     const config = {
       headers: {
         "Content-Type": "application/json",
@@ -146,6 +147,8 @@ const RaiseCash = ({
     
   };
   }
+
+  // stepper and steps
   const [activeStep, setActiveStep] = useState(0);
   const getSteps = () => {
     return ["Basic Information", "Add a photo"];

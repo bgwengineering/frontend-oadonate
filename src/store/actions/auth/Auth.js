@@ -23,6 +23,7 @@ import {
 } from "../ActionTypes";
 
 
+
 export const load_user = () => async (dispatch) => {
   if (localStorage.getItem("access")) {
     const config = {
@@ -111,8 +112,8 @@ export const login = ({ email, password }) => async (dispatch) => {
             payload: `Email: ${err}`,
           }))
         });
-      err.response.data.password &&
-        err.response.data.password.map((err) => { return(
+        err.response.data.password &&
+         err.response.data.password.map((err) => { return(
           dispatch({ type: SHOW_ERROR_MESSAGE, payload: `Password: ${err}` })
           )
         });

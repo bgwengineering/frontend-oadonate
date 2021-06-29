@@ -64,7 +64,7 @@ const AuctionDetails = ({ match }) => {
     setTypeBidAmount(e.target.value);
   };
 
-  const handleSubmit = () => {
+  const handleBidNowSubmit = () => {
     const bidValues = {
       auction_item: bid_id,
       bid_amount: typeBidAmount,
@@ -229,7 +229,7 @@ const AuctionDetails = ({ match }) => {
               <p className="mt-3 bid-text">
                 Auction ends:<b className="ml-2">{donate_bid_endAt} </b>
               </p>
-              <p className="lead d-flex">
+              <p className="lead auction-timer-container">
                 <div className="time-left bid-text">Time Left: </div>
                 <span className="countdown-container">
                   <Countdown
@@ -272,10 +272,10 @@ const AuctionDetails = ({ match }) => {
                       </span>
                     </p>
 
-                    <div className="bidnow-button-container d-flex mt-3">
+                    <div className="bidnow-btn-container d-flex mt-3">
                       <button
                         className="btn-bidding text-uppercase"
-                        onClick={handleSubmit}
+                        onClick={handleBidNowSubmit}
                       >
                         Bid now
                         <span>

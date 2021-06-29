@@ -60,38 +60,39 @@ const controlSingleOrMultipleItemClick = num => {
     <>
       <div className="col-md-6 col-lg-3 my-3" key={indx}>
         <div className="card market-card">
-          <div className="img-container">
-            <Link
-              onClick={() =>
-                window.scrollTo(
-                  {
-                    top: 0,
-                    behavior: "smooth"
-                  },
-                  history.push(`marketplace/products/${id}/details`)
-                )
-              }
-            >
-              <img
-                src={donate_item_img}
-                alt="product"
-                className="card-img-top mb-3"
-              />
-            </Link>
-          </div>
-          <p className="align-self-center text-uppercase  mt-1 mb-0 item-name">
-            {donate_item_name}
-          </p>
-          <div>
-            <h5 className="d-flex justify-content-center font-italic mt-2 mb-0">
-              <span className="ml-1">{donate_currency}</span>
-              {marketPrice}
-            </h5>
+          <div
+            onClick={() =>
+              window.scrollTo(
+                {
+                  top: 0,
+                  behavior: "smooth"
+                },
+                history.push(`marketplace/products/${id}/details`)
+              )
+            }
+          >
+            <div className="img-container">
+              <Link>
+                <img
+                  src={donate_item_img}
+                  alt="product"
+                  className="card-img-top mb-3"
+                />
+              </Link>
+            </div>
+            <p className="d-flex justify-content-center text-uppercase mt-1 mb-0 item-name">
+              {donate_item_name}
+            </p>
+            <div>
+              <h5 className="d-flex justify-content-center font-italic mt-2 mb-0">
+                <span className="ml-1">{donate_currency}</span>
+                {marketPrice}
+              </h5>
+            </div>
           </div>
 
-          
           {/*card footer */}
-          <div className="card-footer mt-5">
+          <div className="card-footer mt-4">
             <Button
               className="card-text add_cart_btn"
               onClick={() => {
@@ -106,7 +107,7 @@ const controlSingleOrMultipleItemClick = num => {
           anchorOrigin={{
             vertical: "bottom",
             horizontal: "center"
-           }}
+          }}
           open={open}
           autoHideDuration={2000}
           onClose={handleClose}

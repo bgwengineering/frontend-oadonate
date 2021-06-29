@@ -9,16 +9,20 @@ import { setLoading, offLoading } from "store/actions/Common";
 // fetch personal profile
 export const fetchPersonalProfile = () => async (dispatch, getState) => {
   try {
-    const res = await axiosInstance.get("accounts/profile/personal", tokenConfig(getState));
+    const res = await axiosInstance.get("accounts/profile/personal-profile", tokenConfig(getState));
     dispatch({ type: actionTypes.FETCH_PERSONAL_PROFILE_SUCCESS, payload: res.data });
   } catch (error) {
     dispatch({ type: actionTypes.FETCH_PERSONAL_PROFILE_FAIL, payload: error.message });
   }
 };
+
 // fetch single personal profile
 export const singlePersonalProfile = (id) => async (dispatch, getState) => {
   try {
-    const res = await axiosInstance.get(`/accounts/profile/personal/${id}`, tokenConfig(getState));
+    const res = await axiosInstance.get(
+      `/accounts/profile/personal-profile/${id}`,
+      tokenConfig(getState)
+    );
     dispatch({
       type: actionTypes.GET_SINGLE_PERSONAL_PROFILE_SUCCESS,
       payload: {id, res},
@@ -35,7 +39,7 @@ export const companyProfile = (formValues) => async (dispatch, getState) => {
   dispatch(setLoading());
   try {
     const res = await axiosInstance.post(
-      "accounts/profile/company",
+      "accounts/profile/company-profile",
       { ...formValues },
       tokenConfig(getState)
     );
@@ -59,7 +63,10 @@ export const companyProfile = (formValues) => async (dispatch, getState) => {
 // fetch company profile
 export const fetchCompanyProfile = () => async (dispatch, getState) => {
   try {
-    const res = await axiosInstance.get("/accounts/profile/company", tokenConfig(getState));
+    const res = await axiosInstance.get(
+      "/accounts/profile/company-profile",
+      tokenConfig(getState)
+    );
     dispatch({
       type: actionTypes.FETCH_COMPANY_PROFILE_SUCCESS,
       payload: res.data,
@@ -160,6 +167,7 @@ export const updateShippingAddressCheckout = (id, address) => async (dispatch, g
   }
 };
 
+
 //get shipping address
 export const fetchShippingAddress = () => async (dispatch, getState) => {
   try {
@@ -191,7 +199,7 @@ export const fetchOrders = () => async (dispatch, getState) => {
 };
 
 
-//  CREATE AUCTION BID+
+//  CREATE AUCTION BID
 export const auctionBid = (bidValues) => async(dispatch,getState) =>{
   dispatch(setLoading());
 try {
