@@ -1,0 +1,38 @@
+   
+      .card-item, .card-cash{
+       height:442.45px;
+      }
+      .market-card{
+          border:1px solid orange;
+          height:320px;
+      }
+        .card-img-top{
+            height:140px;           
+            z-index:300 !important;
+            cursor:pointer;
+        }
+        .card-title{
+            &:hover{
+                cursor:pointer;
+            }
+        }
+        .contributed-progress-view{
+         height:17px;
+        }
+        .donated-ws{
+            justify-content:space-between;
+        }    
+        .truncate{
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    
+     
+    #share-modal{
+        z-index:2300 !important
+    }
+    .ai-outline{
+        font-size:21px;
+        cursor:pointer;
+    }
