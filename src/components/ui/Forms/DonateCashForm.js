@@ -353,6 +353,7 @@ const DonateCashForm = ({
                 >
                   {steps.map((label, index) => {
                     return (
+                     
                       <Step
                         key={label}
                         className={`horizontal-stepper ${
@@ -469,7 +470,7 @@ const DonateCashForm = ({
                 onClick={handleReset}
                 className="mr-2 float-left"
                 color="primary"
-              >
+               >
                 Cancel
               </Button>
             </>

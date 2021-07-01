@@ -9,7 +9,7 @@ import { setLoading, offLoading } from "store/actions/Common";
 // fetch personal profile
 export const fetchPersonalProfile = () => async (dispatch, getState) => {
   try {
-    const res = await axiosInstance.get("accounts/profile/personal-profile", tokenConfig(getState));
+    const res = await axiosInstance.get("profile/personal", tokenConfig(getState));
     dispatch({ type: actionTypes.FETCH_PERSONAL_PROFILE_SUCCESS, payload: res.data });
   } catch (error) {
     dispatch({ type: actionTypes.FETCH_PERSONAL_PROFILE_FAIL, payload: error.message });
@@ -20,7 +20,7 @@ export const fetchPersonalProfile = () => async (dispatch, getState) => {
 export const singlePersonalProfile = (id) => async (dispatch, getState) => {
   try {
     const res = await axiosInstance.get(
-      `/accounts/profile/personal-profile/${id}`,
+      `profile/personal/${id}`,
       tokenConfig(getState)
     );
     dispatch({
@@ -39,7 +39,7 @@ export const companyProfile = (formValues) => async (dispatch, getState) => {
   dispatch(setLoading());
   try {
     const res = await axiosInstance.post(
-      "accounts/profile/company-profile",
+      "profile/company",
       { ...formValues },
       tokenConfig(getState)
     );
@@ -64,7 +64,7 @@ export const companyProfile = (formValues) => async (dispatch, getState) => {
 export const fetchCompanyProfile = () => async (dispatch, getState) => {
   try {
     const res = await axiosInstance.get(
-      "/accounts/profile/company-profile",
+      "profile/company",
       tokenConfig(getState)
     );
     dispatch({
@@ -81,7 +81,7 @@ export const fetchCompanyProfile = () => async (dispatch, getState) => {
 // fetch user donations received
 export const fetchUserDonationsReceived = () => async (dispatch, getState) => {
   try {
-    const res = await axiosInstance.get("/accounts/user/fundraised", tokenConfig(getState));
+    const res = await axiosInstance.get("profile/user/donations/received", tokenConfig(getState));
     dispatch({
       type: actionTypes.GET_USER_DONATIONS_RECEIVED,
       payload: res.data,

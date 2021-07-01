@@ -82,7 +82,7 @@ var numeral = require("numeral");
 
   return (
     <CRow>
-      <CCol sm="6" lg="4">
+      <CCol sm="6" lg="4" style={{marginTop:"20px"}}>
         <div
           className="pt-4 pl-3"
           style={{ height: "170px", backgroundColor: "#C75A00", color: "#fff" }}
@@ -104,7 +104,7 @@ var numeral = require("numeral");
         </div>
       </CCol>
 
-      <CCol sm="6" lg="4">
+      <CCol sm="6" lg="4" style={{ marginTop: "20px" }}>
         <div
           className="pt-4 pl-3"
           style={{ height: "170px", backgroundColor: "#0C5421", color: "#fff" }}
@@ -130,7 +130,7 @@ var numeral = require("numeral");
         </div>
       </CCol>
 
-      <CCol sm="6" lg="4">
+      <CCol sm="6" lg="4" style={{marginTop:"20px"}}>
         <div
           className="pt-4 pl-3 pr-3"
           style={{ height: "170px", backgroundColor: "#C75A00", color: "#fff" }}

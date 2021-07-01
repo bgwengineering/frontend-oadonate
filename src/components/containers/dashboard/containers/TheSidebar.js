@@ -29,33 +29,34 @@ const authState = useSelector(state => state.authReducer);
   const show = useSelector(state => state.settings)
   const {sidebarShow} = show
 
-    // const checkAffiliateType = () => {
-    //   switch (user.is_affiliate) {
-    //     case true:
-    //       return (
-    //         <CCreateElement
-    //           items={saleAffiliateNav}
-    //           components={{
-    //             CSidebarNavDivider,
-    //             CSidebarNavDropdown,
-    //             CSidebarNavItem,
-    //             CSidebarNavTitle
-    //           }}
-    //         />
-    //       )
-    //     default: return (
-    //       <CCreateElement
-    //         items={navigation}
-    //         components={{
-    //           CSidebarNavDivider,
-    //           CSidebarNavDropdown,
-    //           CSidebarNavItem,
-    //           CSidebarNavTitle
-    //         }}
-    //       />
-    //     )
-    //   }
-    // }
+
+    const checkAffiliateType = () => {
+      switch (user.is_affiliate) {
+        case true:
+          return (
+            <CCreateElement
+              items={saleAffiliateNav}
+              components={{
+                CSidebarNavDivider,
+                CSidebarNavDropdown,
+                CSidebarNavItem,
+                CSidebarNavTitle
+              }}
+            />
+          )
+        default: return (
+          <CCreateElement
+            items={navigation}
+            components={{
+              CSidebarNavDivider,
+              CSidebarNavDropdown,
+              CSidebarNavItem,
+              CSidebarNavTitle
+            }}
+          />
+        )
+      }
+    }
 
   return (
     <CSidebar
@@ -63,7 +64,7 @@ const authState = useSelector(state => state.authReducer);
       onShowChange={() => {
         dispatch(toggleDashboardSideNav());
       }}
-    >
+     >
       <CSidebarBrand className="d-md-down-none" to="/">
         <CIcon
           className="c-sidebar-brand-full"
@@ -85,7 +86,7 @@ const authState = useSelector(state => state.authReducer);
       </CSidebarBrand>
 
       <CSidebarNav>
-        <CCreateElement
+        {/* <CCreateElement
           items={navigation}
           components={{
             CSidebarNavDivider,
@@ -93,8 +94,8 @@ const authState = useSelector(state => state.authReducer);
             CSidebarNavItem,
             CSidebarNavTitle
           }}
-        />  
-       
+        />   */}
+       {checkAffiliateType()}
       </CSidebarNav>
       <CSidebarMinimizer className="c-d-md-down-none" />
     </CSidebar>
