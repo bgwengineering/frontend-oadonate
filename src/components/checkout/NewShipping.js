@@ -163,7 +163,11 @@ const NewShipping = ({ handleSubmit, pristine, submitting, nextPage }) => {
                       className="shipping-cancel-btn"
                       type="button"
                       onClick={scrollToTop}
+<<<<<<< HEAD
                   >
+=======
+                    >
+>>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
                     Cancel
                   </Button>
                   </Link>
@@ -171,7 +175,11 @@ const NewShipping = ({ handleSubmit, pristine, submitting, nextPage }) => {
                   <Button
                     className="shipping-next-btn"
                     type="submit"
+<<<<<<< HEAD
                     onClick={()=>{createShipping(); setTimeout(() => {nextPage();},10000)}}
+=======
+                    onClick={() => { createShipping(); setTimeout(() => {nextPage();},10000)}}
+>>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
                     disabled={pristine || submitting}
                     >
                     Next

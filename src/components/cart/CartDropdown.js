@@ -12,20 +12,20 @@ import CartItem from './CartItem'
    const cartState = useSelector(state=>state.cartReducer)
 
    const {cartItems} = cartState
-    // const cartItemsMap = 
-    // cartItems.length ? (
-    //    cartItems.map(cartItem =>  
-    //     {
-    //     const {id} = cartItem      
-    //     return( 
-    //      <CartItem key={id} item={cartItem}/>
-    //    )  
-    //     }
-    //    )):(<span className='empty-message'>Your Cart is empty</span>)
+    const cartItemsMap = 
+    cartItems.length ? (
+       cartItems.map(cartItem =>  
+        {
+        const {id} = cartItem      
+        return( 
+         <CartItem key={id} item={cartItem}/>
+       )  
+        }
+       )):(<span className='empty-message'>Your Cart is empty</span>)
         
      return (
          <div className="cart-dropdown">
-           {/* <div className="cart-items">{cartItemsMap}</div> */}
+           <div className="cart-items">{cartItemsMap}</div>
            <div className="d-flex flex-column justify-content-center align-items-center mt-4">
              <Button
                onClick={() => {

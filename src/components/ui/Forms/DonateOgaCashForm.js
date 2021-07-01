@@ -16,6 +16,10 @@ const Message = ({ message }) => (
     <p>{message}</p>
   </section>
 );
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
 const DonateOgaCashForm = ({ fund_cash, setIsDonateOgaForm, setCurrentOpenForm }) => {
   const paystackUrl = useSelector((state) => state.fundDonateReducer.ogadonatePaystackUrl);
   useEffect(() => {
@@ -34,6 +38,11 @@ const DonateOgaCashForm = ({ fund_cash, setIsDonateOgaForm, setCurrentOpenForm }
     }
   }, []);
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
   const [giveOgadonate, setGiveOgadonate] = useState(false);
   const [message, setMessage] = useState("");
   const [donateFields, setDonateFields] = useState({
@@ -48,6 +57,15 @@ const DonateOgaCashForm = ({ fund_cash, setIsDonateOgaForm, setCurrentOpenForm }
 
   const [paystack, setPaystack] = useState(true);
   const [stripe, setStripe] = useState(false);
+<<<<<<< HEAD
+=======
+  const [checked, setChecked] = useState(false);
+
+  const handleChecked = e => {
+    setChecked(e.target.checked);
+    setDonateFields({ ...donateFields, [e.target.name]: e.target.value });
+  }
+>>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
 
   const setPaystackBtn = () => {
     setStripe(false);
@@ -59,7 +77,11 @@ const DonateOgaCashForm = ({ fund_cash, setIsDonateOgaForm, setCurrentOpenForm }
   };
   const dispatch = useDispatch();
   const UserEmail = useSelector((state) => state.authReducer.user) || "Customer@gmail.com";
+<<<<<<< HEAD
   const { email } = UserEmail;
+=======
+  
+>>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
 
   const {
     donate_amount,
@@ -134,11 +156,19 @@ const DonateOgaCashForm = ({ fund_cash, setIsDonateOgaForm, setCurrentOpenForm }
         </h2>
         <div className="d-flex">
           <h6 className="mr-3">currency type :</h6>
+<<<<<<< HEAD
           <select name="donate_currency" className="mb-4" onChange={handleChange}>
             <option value="">select currency</option>
             <option value="$">$</option>
             <option value="₦">₦</option>
           </select>
+=======
+           <select name="donate_currency" className="mb-4" onChange={handleChange}>
+            <option value="">select currency</option>
+            <option value="$">$</option>
+            <option value="₦">₦</option>
+           </select>
+>>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
         </div>
         <input
           id="amount"
@@ -150,6 +180,10 @@ const DonateOgaCashForm = ({ fund_cash, setIsDonateOgaForm, setCurrentOpenForm }
           data-rule-required="true"
           data-msg-required="Please enter a valid number"
           onChange={handleChange}
+<<<<<<< HEAD
+=======
+          value={donate_amount}
+>>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
         />
       </fieldset>
     );
@@ -166,6 +200,10 @@ const DonateOgaCashForm = ({ fund_cash, setIsDonateOgaForm, setCurrentOpenForm }
           onChange={handleChange}
           placeholder="write a Message or Comment to the fund Raiser"
           name="donate_comment"
+<<<<<<< HEAD
+=======
+          value={donate_comment}
+>>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
         />
       </fieldset>
     );
@@ -272,7 +310,10 @@ const DonateOgaCashForm = ({ fund_cash, setIsDonateOgaForm, setCurrentOpenForm }
                     variant="contained"
                     color="primary"
                     onClick={handleNext}
+<<<<<<< HEAD
                     // disabled={true}
+=======
+>>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
                   >
                     {activeStep === steps.length - 1 ? "Finish" : "Next"}
                   </Button>
@@ -300,7 +341,12 @@ const DonateOgaCashForm = ({ fund_cash, setIsDonateOgaForm, setCurrentOpenForm }
                     required
                     className="mr-3 mt-4"
                     defaultChecked={false}
+<<<<<<< HEAD
                     onChange={handleChange}
+=======
+                    onChange={handleChecked}
+                      
+>>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
                   />
                   <p className="attest">
                     I attest that this donation is willful and I am not being forced into giving
@@ -330,7 +376,13 @@ const DonateOgaCashForm = ({ fund_cash, setIsDonateOgaForm, setCurrentOpenForm }
                     type="submit"
                     name="submit"
                     className="MuiButton-containedPrimary"
+<<<<<<< HEAD
                     onClick={handleSubmitPaystack}
+=======
+                      onClick={handleSubmitPaystack}
+                      disabled={!checked ? true : false}
+                      style={{cursor: !checked?"alias" : "pointer"}}
+>>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
                   >
                     Paystack
                   </Button>

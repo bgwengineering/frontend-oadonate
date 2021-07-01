@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import React, { useState } from "react";
+=======
+import React from "react";
+>>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
 import { FaTwitter, FaFacebook, FaLinkedinIn, FaWhatsapp } from "react-icons/fa";
 import { AiOutlineMail } from "react-icons/ai";
 import {

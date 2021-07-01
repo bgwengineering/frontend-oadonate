@@ -36,6 +36,7 @@
   }
 
   .trending-text {
+<<<<<<< HEAD
     @media screen and (max-width:991px){
       margin-top:240px;
     }
@@ -47,6 +48,36 @@
     }
   }
 
+=======
+    @media screen and (max-width:991.99px){
+      margin-top:240px;
+    }
+    @media screen and (max-width:767.99px){
+       margin-top:280px;
+  }
+  @media screen and (max-width:408px){
+       margin-top:360px;
+  }
+  @media screen and (max-width:301px){
+       margin-top:400px;
+  }
+  }
+  
+  .personal-trending-text {
+    @media screen and (max-width:991.99px){
+      margin-top:150px;
+    }
+    @media screen and (max-width:767.99px){
+       margin-top:190px;
+  }
+  @media screen and (max-width:408px){
+       margin-top:210px;
+  }
+  @media screen and (max-width:301px){
+       margin-top:230px;
+  }
+  }
+>>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
   
   
   

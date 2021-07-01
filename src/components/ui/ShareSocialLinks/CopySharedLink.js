@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, {useState} from 'react';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 
@@ -25,3 +26,38 @@ const onclicked = () =>{
 
 
 export default CopyShared
+=======
+import React, { useState } from "react";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+
+const CopyShared = ({ shareUrl }) => {
+  const [copy, setCopy] = useState("Copy");
+  const [copied, setCopied] = useState(false);
+
+  const changeCopyToCopied = () => {
+    setCopy("Copied");
+  };
+  return (
+    <>
+      <div className="input-group mb-3">
+        <input type="text" className="form-control" value={shareUrl} />
+        <CopyToClipboard
+          text={shareUrl}
+          onCopy={() => setCopied({ copied: true })}
+          >
+          <button
+            onClick={changeCopyToCopied}
+            className={
+              copied ? "green-btn text-white" : "orange-btn text-white"
+            }
+           >
+            {copy}
+          </button>
+        </CopyToClipboard>
+      </div>
+    </>
+  );
+};
+
+export default CopyShared;
+>>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad

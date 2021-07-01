@@ -39,7 +39,11 @@ const MainApp = () => {
           />
         <Route path="/auth" component={AuthMain} />
         <Layout>      
+<<<<<<< HEAD
         <Route path="/categories" render={(props) => <Categoryindex  {...props}/>}  />
+=======
+        <Route path="/categories" render={props => <Categoryindex  {...props}/>}  />
+>>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
         <Route path= '/marketplace/'  component={MarketIndex} />
         <Route path="/campaign/:id/:id/details/"  component={DonateCampaign} />
         <Route path="/about" component={About} />
@@ -47,7 +51,11 @@ const MainApp = () => {
         <Route path="/google" component={Google} />
         <Route path="/reset-password" component={ResetPassword} />
         <Route path='/donate' render={props => <MainDonateIndex {...props}/>} />
+<<<<<<< HEAD
           <Route exact path="/" component={Home} />
+=======
+        <Route exact path="/" component={Home} />
+>>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
         <Route path="/user-type" component={GetUserInfo} />
         <Route path='/cart' component={CartPage} />
         <Route path='/checkout' component={CheckoutPage} />
@@ -60,9 +68,15 @@ const MainApp = () => {
         <Route
           path="/password/reset/confirm/:uid/:token"
           component={ResetPasswordConfirm}
+<<<<<<< HEAD
         />
       </Layout>
       <Route component={Page404} />
+=======
+          />
+      {/* <Route component={Page404} /> */}
+      </Layout>
+>>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
       </Switch>
     </>
   );

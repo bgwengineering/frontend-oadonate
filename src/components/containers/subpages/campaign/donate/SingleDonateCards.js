@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import LinearProgress from "@material-ui/core/LinearProgress";
+<<<<<<< HEAD
 import Typography from "@material-ui/core/Typography";
+=======
+>>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
 import Button from "@material-ui/core/Button";
 import { AiOutlineFolderOpen } from "react-icons/ai";
 import Avatar from "@material-ui/core/Avatar";
@@ -11,18 +14,31 @@ import CopyShared from "components/ui/ShareSocialLinks/CopySharedLink";
 import { useSelector } from "react-redux";
 import { Link, withRouter } from "react-router-dom";
 
+<<<<<<< HEAD
 var numeral = require("numeral")
 
 const SingleDonateCards = ({ shareUrl, className, setIsDonateCardButtonsOpen, history }) => {
   const [modal, setModal] = useState(false);
 
   const toggle = () => setModal(!modal);
+=======
+
+var numeral = require("numeral")
+
+const SingleDonateCards = ({ shareUrl, className, setIsDonateCardButtonsOpen, history }) => {
+const [modal, setModal] = useState(false);
+const toggle = () => setModal(!modal);
+>>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
 
   const singleCampaign = useSelector(
     state => state.fundDonateReducer.singleCampaign
   );
 
   const isAuthenticated = useSelector(state => state.authReducer.isAuthenticated);
+<<<<<<< HEAD
+=======
+  
+>>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
   const {
     fund_cash_amount,
     fund_created_date,
@@ -36,9 +52,16 @@ const SingleDonateCards = ({ shareUrl, className, setIsDonateCardButtonsOpen, hi
   } = singleCampaign;
 
 
+<<<<<<< HEAD
   let fundAmount = numeral(fund_amount_raised).format("0, 0");
   const percentageCompleted = Number(fund_percentage_completed).toFixed(1);
   // const { first_name, last_name } = user;
+=======
+  const fundAmount = numeral(fund_amount_raised).format("0, 0");
+  const fundCashAmount = numeral(fund_cash_amount).format("0, 0");
+  const percentageCompleted = Number(fund_percentage_completed).toFixed(1);
+
+>>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
 
   return (
     <>
@@ -53,9 +76,12 @@ const SingleDonateCards = ({ shareUrl, className, setIsDonateCardButtonsOpen, hi
             <div className="donors-info m-b-25">
               <Avatar src="/" />
               <div className="donor-name m-l-9">
+<<<<<<< HEAD
                 <span className="mr-2">
                   {/* by <strong>{first_name + " " + last_name}</strong> */}
                 </span>
+=======
+>>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
                 <span>
                   <FiMail />
                 </span>
@@ -76,7 +102,13 @@ const SingleDonateCards = ({ shareUrl, className, setIsDonateCardButtonsOpen, hi
                 {percentageCompleted + "%"}
               </span>
             </div>
+<<<<<<< HEAD
             <p className="text-muted">raised of {fund_currency_type + fund_cash_amount}</p>
+=======
+            <p className="text-muted">
+              raised of {fund_currency_type + fundCashAmount}
+            </p>
+>>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
             <div
               className="card-donate-btn-container mt-3"
               id="donate-id-button"
@@ -86,8 +118,14 @@ const SingleDonateCards = ({ shareUrl, className, setIsDonateCardButtonsOpen, hi
                 className="card-campaign-btn"
                 id="DoncardBtn"
                 onClick={() => {
+<<<<<<< HEAD
                 
                   isAuthenticated ? setIsDonateCardButtonsOpen(true) : history.push('/auth')
+=======
+                  isAuthenticated
+                    ? setIsDonateCardButtonsOpen(true)
+                    : history.push("/auth");
+>>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
                 }}
               >
                 Donate
@@ -102,6 +140,10 @@ const SingleDonateCards = ({ shareUrl, className, setIsDonateCardButtonsOpen, hi
                 Share
               </Button>
             </div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
             <hr />
             <div className="row donated-ws">
               {/* {user.length>=1?<p className="m-l-15">by {user}</p>:null} */}

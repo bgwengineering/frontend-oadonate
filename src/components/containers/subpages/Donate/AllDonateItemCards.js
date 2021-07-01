@@ -1,15 +1,29 @@
 import React, {useState} from "react";
+<<<<<<< HEAD
 import { Link } from "react-router-dom";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import Button from "@material-ui/core/Button";
 import { AiOutlineFolderOpen } from "react-icons/ai";
+=======
+import { Link, withRouter } from "react-router-dom";
+import LinearProgress from "@material-ui/core/LinearProgress";
+import Button from "@material-ui/core/Button";
+import { ImShare2 } from "react-icons/im";
+>>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
 import { useSelector } from "react-redux";
 import { ReactComponent as LoadingSpinner } from 'assets/images/spinner.svg';
 import Pagination from "components/ui/Pagination/Pagination";
 
+<<<<<<< HEAD
 var numeral = require('numeral');
 
 const AllDonateItemCards = () => {
+=======
+
+var numeral = require('numeral');
+
+const AllDonateItemCards = ({history}) => {
+>>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
 
   const fundState = useSelector(state => state.fundDonateReducer);
   const { allCampaign } = fundState;
@@ -57,7 +71,11 @@ const AllDonateItemCards = () => {
           
               return (
                 <div className="col-sm-6 col-md-6 col-lg-4 p-t-10">
+<<<<<<< HEAD
                   <div className="card" key={id}>
+=======
+                  <div className={fund_type == "Item" ? "card card-item" : "card card-cash"} key={id}>
+>>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
                     <Link
                       to={`/campaign/${fund_category}/${id}/details`}
                       className="link-router"
@@ -71,6 +89,7 @@ const AllDonateItemCards = () => {
                     </Link>
                     <div className="card-body">
                       <div>
+<<<<<<< HEAD
                         <div className="d-flex">
                           <div className="ai-outline">
                             <AiOutlineFolderOpen />
@@ -84,13 +103,42 @@ const AllDonateItemCards = () => {
                               {fund_type}
                             </span>
                           </span>
+=======
+                        <div className="d-flex justify-content-between">
+                          <div className='d-flex'>
+                            <div
+                              className="ai-outline"
+                              title="share"
+                              onClick={() => window.scrollTo(
+                                {
+                                  top: 0,
+                                  behavior: "smooth"
+                                },
+                                history.push(`/campaign/${fund_category}/${id}/details`)
+                              )}
+                            >
+                              <ImShare2 color="#C75A00" />
+                            </div>
+                            <div className="card-text font-weight-bold ml-2 fund-category">
+                              {fund_category}
+                            </div>
+                          </div>
+                          <div>
+                            Type:
+                      <span className="font-weight-bold ml-2">{fund_type}</span>
+                          </div>
+>>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
                         </div>
                         <Link
                           to={`/campaign/${fund_category}/${id}/details`}
                           className="link-router"
                           onClick={() => scrollToTop()}
                         >
+<<<<<<< HEAD
                           <h4 className="card-title pt-2">{fund_title}</h4>
+=======
+                          <h4 className="card-title truncate">{fund_title}</h4>
+>>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
                         </Link>
                         {fund_type == "Item" ? null : (
                           <LinearProgress
@@ -98,7 +146,11 @@ const AllDonateItemCards = () => {
                             variant="determinate"
                           />
                         )}
+<<<<<<< HEAD
                         <div className="mt-3 mb-2 truncate">{fund_purpose}</div>
+=======
+                        <div className="mt-1 mb-2 truncate">{fund_purpose}</div>
+>>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
                         
                         {fund_type == "Item" ? null : (
                           <div>
@@ -113,11 +165,23 @@ const AllDonateItemCards = () => {
 
                             <p className="pt-0">
                               raised of
+<<<<<<< HEAD
                               <span>{fund_currency_type + fundCash}</span>
                             </p>
                           </div>
                         )}
                         <div className="card-donate-btn-container">
+=======
+                              <span className='ml-2'>{fund_currency_type + fundCash}</span>
+                            </p>
+                          </div>
+                        )}
+                        <div className={
+                          fund_type == "Item"
+                            ? "mt-5 card-donate-btn-container"
+                            : "mt-0 card-donate-btn-container"
+                        }>
+>>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
                           <Button
                             variant="contained"
                             className="card-donate-btn"
@@ -145,8 +209,12 @@ const AllDonateItemCards = () => {
                   </div>
                 </div>
               );
+<<<<<<< HEAD
             }
             
+=======
+            }        
+>>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
           )
         : <div className='spinner-container mx-auto'>
             <LoadingSpinner className='spinner'/>
@@ -158,4 +226,8 @@ const AllDonateItemCards = () => {
   );
 };
 
+<<<<<<< HEAD
 export default AllDonateItemCards;
+=======
+export default withRouter(AllDonateItemCards);
+>>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad

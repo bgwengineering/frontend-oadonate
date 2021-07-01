@@ -8,11 +8,19 @@ import { withRouter } from 'react-router-dom';
 
 
 const DonateItem = ({ history }) => {
+<<<<<<< HEAD
+=======
+  
+>>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
   const [data, setData] = useState({
     loading: false,
     error: null,
     result: []
   });
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
   const [searchValue, setSearchValue] = useState("");
   const [filteredData, setFilteredData] = useState([]);
 
@@ -29,7 +37,10 @@ const DonateItem = ({ history }) => {
         const searchUrl =
           "https://ogadonate.herokuapp.com/api/campaign/fundraise";
         const res = await axios.get(searchUrl);
+<<<<<<< HEAD
         console.log(res);
+=======
+>>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
         
         setData({
           ...data,

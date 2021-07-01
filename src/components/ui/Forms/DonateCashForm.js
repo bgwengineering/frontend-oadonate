@@ -19,6 +19,10 @@ const DonateCashForm = ({
   setIsDonateCardButtonsOpen
 }) => {
   const paystackUrl = useSelector(state => state.fundDonateReducer.paystackUrl);
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
   useEffect(() => {
     if (paystackUrl.length >= 1) {
       window.location = paystackUrl;
@@ -59,10 +63,18 @@ const DonateCashForm = ({
     setStripebtn(false);
     setPaystack(true);
   };
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
   const setStripeBtn = () => {
     setPaystack(false);
     setStripebtn(true);
   };
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
   const isDesktopOrLaptop = useMediaQuery({ query: '(min-width: 768px)' })
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 767px)' })
 
@@ -98,7 +110,10 @@ const DonateCashForm = ({
       fund_cash: fund_cash,
       donate_percent_amount: giveOgadonate ? fivePercent : initial_amount
     };
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
     dispatch(donateToCash(formData));
   };
 
@@ -143,6 +158,10 @@ const DonateCashForm = ({
     setDonateFields({ ...donateFields, [e.target.name]: e.target.value });
   };
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
   const ToggleSwitch = ({ checked, onChange, id, name }) => (
     <div>
       <input
@@ -216,6 +235,10 @@ const DonateCashForm = ({
       </>
     );
   };
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
   const getPersonalInformation = () => {
     return (
       <fieldset>

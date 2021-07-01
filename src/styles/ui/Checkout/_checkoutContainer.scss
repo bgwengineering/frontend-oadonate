@@ -208,7 +208,10 @@ $green_color: #0f6929;
 
     // order preview
     .orderpreview {
+<<<<<<< HEAD
       border: 1px solid blue;
+=======
+>>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
       background-color: #fff;
       border-radius: 3px;
       box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
@@ -236,8 +239,12 @@ $green_color: #0f6929;
         border: $input_border;
         @media screen and (max-width:380px){
           height:150px;
+<<<<<<< HEAD
         }
       
+=======
+        }     
+>>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
         }
           .pay-method-container {
              margin-top:0px;
@@ -248,7 +255,11 @@ $green_color: #0f6929;
            @media screen and (max-width:369px){
           margin-top:8px;
         }
+<<<<<<< HEAD
           } 
+=======
+      } 
+>>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
       }
    
       .order-payment-button-container{
@@ -300,6 +311,10 @@ $green_color: #0f6929;
       .approval-note {
         color: #000;
         font-weight: bold;
+<<<<<<< HEAD
+=======
+        cursor:pointer;
+>>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
       }
     }
   }

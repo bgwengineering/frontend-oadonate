@@ -27,9 +27,15 @@ import { updateMarketCollections } from "store/actions/MarketPlace";
   const cartState = useSelector(state => state.cartReducer);
   const { cartItems } = cartState;
 
+<<<<<<< HEAD
   // const itemCount = cartItems.reduce(
   //   (accumulatedQuantity, cartItem) => accumulatedQuantity + cartItem.quantity,
   //    0);
+=======
+  const itemCount = cartItems.reduce(
+    (accumulatedQuantity, cartItem) => accumulatedQuantity + cartItem.quantity,
+     0);
+>>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
    
   const dispatch = useDispatch();
 
@@ -454,7 +460,11 @@ import { updateMarketCollections } from "store/actions/MarketPlace";
                 </span>
                 <span className="badge-container">
                   <CBadge className="bill-badge" shape="pill">
+<<<<<<< HEAD
                     {/* {itemCount} */}
+=======
+                    {itemCount}
+>>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
                   </CBadge>
                 </span>
                 <div className="cartdropdown-hidden">

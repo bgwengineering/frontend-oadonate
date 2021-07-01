@@ -18,6 +18,10 @@ const RaiseCash = ({
   submitting,
   pristine,
 }) => {
+<<<<<<< HEAD
+=======
+  
+>>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
   const dispatch = useDispatch();
   const renderInput = ({ input, type, meta }) => {
     return (
@@ -51,7 +55,11 @@ const RaiseCash = ({
     }
   };
 
+<<<<<<< HEAD
 
+=======
+  // onSubmit
+>>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
   const onSubmit = async (formValues) => {
     let formData = new FormData();
     formData.append("fund_title", formValues.fund_title);
@@ -61,6 +69,10 @@ const RaiseCash = ({
     formData.append("fund_endAt", formValues.fund_endAt);
     formData.append("fund_purpose", formValues.fund_purpose);
     formData.append("fund_img", formValues.fund_img);
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
     const config = {
       headers: {
         "Content-Type": "application/json",
@@ -145,6 +157,11 @@ const RaiseCash = ({
     
   };
   }
+<<<<<<< HEAD
+=======
+
+  // stepper and steps
+>>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
   const [activeStep, setActiveStep] = useState(0);
   const getSteps = () => {
     return ["Basic Information", "Add a photo"];
@@ -181,7 +198,11 @@ const RaiseCash = ({
             Select fund raise categories
           </label>
           <Field name="fund_category" id="categories" component="select">
+<<<<<<< HEAD
             <option value="" disabled></option>
+=======
+            <option value="">Select Category</option>
+>>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
             <option value="Personal_need">Personal</option>
             <option value="Community">Community</option>
             <option value="Start_up">Start up</option>
@@ -194,9 +215,15 @@ const RaiseCash = ({
           </h2>
         </div>
         <span>
+<<<<<<< HEAD
           <i className="mr-3">select option for dollar, naira, euro</i>
           <Field name="fund_currency_type" component="select">
             <option value="" disabled></option>
+=======
+          <i className="mr-3">select option for dollar, naira</i>
+          <Field name="fund_currency_type" component="select">
+            <option value="">Select Currency</option>
+>>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
             <option value="$">$</option>
             <option value="₦">₦</option>
           </Field>
@@ -266,10 +293,23 @@ const RaiseCash = ({
     );
   };
 
+<<<<<<< HEAD
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
+=======
+  const handleFinish = () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      }, setActiveStep((prevActiveStep) => prevActiveStep + 1))
+  };
+
+  const handleNext = () => {
+    setActiveStep(prevActiveStep => prevActiveStep + 1);
+  }
+>>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
@@ -324,7 +364,11 @@ const RaiseCash = ({
                     className="mr-2 float-right"
                     variant="contained"
                     color="primary"
+<<<<<<< HEAD
                     onClick={handleNext}
+=======
+                    onClick={activeStep === steps.length - 1 ? handleFinish : handleNext}
+>>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
                     // disabled={true}
                   >
                     {activeStep === steps.length - 1 ? "Finish" : "Next"}
@@ -361,6 +405,13 @@ const RaiseCash = ({
                       setCurrentOpenForm(null);
                       handleReset();
                     }, 9000);
+<<<<<<< HEAD
+=======
+                    window.scrollTo({
+                      top: 0,
+                      behavior:'smooth'
+                    })
+>>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
                   }}
                   disabled={pristine || submitting}
                 >
