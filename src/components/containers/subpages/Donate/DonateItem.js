@@ -8,6 +8,7 @@ import { withRouter } from 'react-router-dom';
 
 
 const DonateItem = ({ history }) => {
+  
   const [data, setData] = useState({
     loading: false,
     error: null,
@@ -29,7 +30,6 @@ const DonateItem = ({ history }) => {
         const searchUrl =
           "https://ogadonate.herokuapp.com/api/campaign/fundraise";
         const res = await axios.get(searchUrl);
-        console.log(res);
         
         setData({
           ...data,
@@ -132,7 +132,7 @@ const DonateItem = ({ history }) => {
         <h4 className="text-uppercase text-center mt-5">
           Find a cause to donate to
         </h4>
-        <AllDonateItemCards />
+         <AllDonateItemCards />
       </div>
     </>
   );

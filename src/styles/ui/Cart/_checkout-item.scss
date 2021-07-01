@@ -14,7 +14,7 @@
         padding:15px 5px;
       }
     .image-container {
-      width: 23%;
+      width: 19%;
       padding-right: 15px;
       img {
         width: 100%;
@@ -24,18 +24,18 @@
     .checkout-name-price-container{
          display:flex;
          justify-content:space-between;
-         width:58%;
-         @media screen and (max-width:490px){
+         width:69%;
+          @media screen and (max-width:490px){
           display:flex;
           flex-direction: column;  
           justify-content: flex-end;
           align-items:flex-end;
           width:100%;
-           margin-top:14px;  
-        }
-      .name,
-    .price {
-      width: 23%;
+          margin-top:14px;  
+    }
+
+    .name, .quantity, .price {
+       width: 23%;
        @media screen and (max-width:490px){  
           width:100%;  
           display:flex;
@@ -43,7 +43,7 @@
           justify-content: flex-end;
           align-items:flex-end;  
           padding:0px  0px 15px 0px;
-          }
+      }
     }
     }  
    

@@ -1,10 +1,10 @@
-import React from 'react'
+import React from "react";
 import Corporate from "assets/images/homepage/corporate.jpg";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import { SiWebauthn } from "react-icons/si";
-import { FaRegShareSquare } from "react-icons/fa";
-import { GiReceiveMoney } from "react-icons/gi";
-import Coorporate from './../../dashboard/views/dashboard/user/Coorporate';
+import Coorporate from "./../../dashboard/views/dashboard/user/Coorporate";
+import { RiShareFill } from "react-icons/ri";
+import { ImBoxAdd } from "react-icons/im";
 
 const CorporateAuction = () => {
   const iconStyle = {
@@ -12,56 +12,73 @@ const CorporateAuction = () => {
     width: "auto",
     left: "25%",
     height: "55px",
-    color: '#0F6929'
-  }
+    color: "#0F6929"
+  };
   const iStyle = {
     height: "55px",
     width: "auto",
-    color: "#0F6929",
+    color: "#0F6929"
   };
   return (
-      <>
+    <>
       <div
         className="container affiliate-container"
         style={{ backgroundImage: `url(${Corporate})` }}
       >
-        <h4 className="font-weight-bold text-uppercase d-flex align-items-center boss-text">
-         Corporate Auction
+        <h3 className="font-weight-bolder text-uppercase d-flex align-items-center corporate-auction-text text-white">
+          The Best platform to Auction products and Fundraise for Projects.
+        </h3>
+        <h4 className="d-flex align-items-center corporate-auction-subheading text-italics text-white">
+          Register today as A COMPANY, RELIGIOUS ORGANIZATION, NGO or AUCTIONEER
+          to create an auction or fundraise for projects.
         </h4>
-        <div className="mt-5">
-          <button className="btn btn-lg affiliate-signup-btn">
-            <Link className="link-router-inverted" to="affiliate-signup">
-              Sign up
-            </Link>
-          </button>
+        <div className="mt-3">
+          <Link className="link-router-inverted" to="/corporate-signup">
+            <button className="btn btn-lg affiliate-signup-btn text-uppercase ml-3">
+              Register
+            </button>
+          </Link>
         </div>
       </div>
 
+      <div className="container">
+        <h4 className="mt-5 corporate-auction-sub-text">
+          With our highly Digitalized, Democratized and Demonetized auction
+          process, Ogadonate Auction eliminates the headaches associated with
+          setting up in-person auctioneers in your organization. You may also
+          get your employees, shareholders, congregations and the public to
+          fundraise for a project you care about
+        </h4>
+      </div>
       <header className="header-design">
         <div className="listar-map-button">
           <div
             className="listar-map-button-text"
             style={{ display: "inline-block", opacity: "1" }}
           >
-            <span className="icon-map2">How Corporate Auction Works? </span>
+            <span className="icon-map2 text-uppercase">
+              Create an auction or a Project in few minutes.
+            </span>
           </div>
         </div>
-
         {/* footer wave */}
         <div className="footer-wave"></div>
+        <h5 className="step-3 text-muted mt-3">
+          <i>Three steps is all it takes to get started</i>
+        </h5>
       </header>
 
-      <div className="pset">
+      <div className="pset ">
         <div className="container">
           <div className="row listar-feature-items">
             <div
-              className="col-12 col-sm-6 col-md-4 listar-feature-item-wrapper listar-feature-with-image listar-height-changed"
+              className=" col-12 col-sm-6 col-md-4 listar-feature-item-wrapper listar-feature-with-image listar-height-changed"
               data-aos="fade-zoom-in"
               data-aos-group="features"
               data-line-height="25.2px"
             >
               <div className="listar-feature-item listar-feature-has-link">
-                <a href='#'></a>
+                <a href="#"></a>
                 <div className="listar-feature-item-inner">
                   <div className="listar-feature-right-border"></div>
 
@@ -79,12 +96,14 @@ const CorporateAuction = () => {
                       <div className="listar-feature-item-title listar-feature-counter-added">
                         <span>
                           <span>01</span>
-                          Sign Up
+                          Register
                         </span>
                       </div>
 
                       <div className="listar-feature-item-excerpt">
-                        Sign up to start on boarding
+                        Answer a few questions about your Organization and your
+                        account and domain will be created in less than 5
+                        minutes.
                       </div>
                     </div>
                   </div>
@@ -100,7 +119,7 @@ const CorporateAuction = () => {
               data-line-height="25.2px"
             >
               <div className="listar-feature-item listar-feature-has-link">
-                <a href='#'></a>
+                <a href="#"></a>
                 <div className="listar-feature-item-inner">
                   <div className="listar-feature-right-border"></div>
 
@@ -108,7 +127,7 @@ const CorporateAuction = () => {
                     <div className="listar-feature-icon-wrapper">
                       <div className="listar-feature-icon-inner">
                         <div>
-                          <FaRegShareSquare style={iconStyle} />
+                          <ImBoxAdd style={iconStyle} />
                         </div>
                       </div>
                     </div>
@@ -120,12 +139,14 @@ const CorporateAuction = () => {
                       <div className="listar-feature-item-title listar-feature-counter-added">
                         <span>
                           <span>02</span>
-                         Create Profile
+                          Add
                         </span>
                       </div>
 
                       <div className="listar-feature-item-excerpt">
-                        Create Corporate profile
+                        Create a Project or Upload items for auction in bulk or
+                        add them one at a time. Our item wizard will walk you
+                        through the process.
                       </div>
                     </div>
                   </div>
@@ -141,7 +162,7 @@ const CorporateAuction = () => {
               data-line-height="25.2px"
             >
               <div className="listar-feature-item listar-feature-has-link">
-                <a href='#'></a>
+                <a href="#"></a>
                 <div className="listar-feature-item-inner">
                   <div className="listar-feature-right-border"></div>
 
@@ -149,7 +170,7 @@ const CorporateAuction = () => {
                     <div className="listar-feature-icon-wrapper">
                       <div className="listar-feature-icon-inner">
                         <div>
-                          <GiReceiveMoney style={iconStyle} />
+                          <RiShareFill style={iconStyle} />
                         </div>
                       </div>
                     </div>
@@ -161,12 +182,14 @@ const CorporateAuction = () => {
                       <div className="listar-feature-item-title listar-feature-counter-added">
                         <span>
                           <span>03</span>
-                          Corporate Auction
+                          Share
                         </span>
                       </div>
 
                       <div className="listar-feature-item-excerpt">
-                        Auction items for your organisations
+                        When you are ready to go live, share your auction’s
+                        custom URL through email, social media, and your
+                        website.
                       </div>
                     </div>
                   </div>
@@ -177,11 +200,8 @@ const CorporateAuction = () => {
           </div>
         </div>
       </div>
-      </>
-    );
-}
+    </>
+  );
+};
 
 export default CorporateAuction;
-
-
-

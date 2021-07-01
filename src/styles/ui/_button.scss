@@ -148,13 +148,14 @@
 .market-place-btn{
   background-color: $logo_orange !important;
   color:#fff !important;
-  padding:10px !important;
-  width:150px !important;
+  padding:5px !important;
+  width:110px !important;
   font-size:1.3rem !important;
   &:hover{
     background-color: $logo_green !important;
   }
 }
+
 .more-market-support{
   padding-left:15px;
   padding-right:15px;
@@ -371,11 +372,20 @@
     opacity:.8;
   }
 }
+.add_cart_details_btn{
+  background-color: $logo_orange !important;
+  width:40% !important;
+  color:#fff !important;
+  &:hover{
+    opacity:.8;
+  }
+}
 
 .bid_btn{
   background-color: $logo_orange !important;
   width:125px !important;
   color:#fff !important;
+  cursor:pointer;
 }
 
 .back_product{

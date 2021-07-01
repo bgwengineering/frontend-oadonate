@@ -9,9 +9,12 @@ import { useSelector } from "react-redux";
 import { FiTwitter } from 'react-icons/fi'
 import { ImFacebook } from 'react-icons/im'
 import { IoLogoInstagram } from 'react-icons/io'
-
+import { fetchAllCampaign } from 'store/actions/fund_donate/FundDonate';
+import { updateMarketCollections } from 'store/actions/MarketPlace';
+import {useDispatch} from 'react-redux'
 
 const SidenavContent = ({ handleClickAway, history }) => {
+  const dispatch = useDispatch()
   const authState = useSelector((state) => state.authReducer);
   const { isAuthenticated } = authState;
   const [showUpArrow, setShowUpArrow] = useState(false);
@@ -35,6 +38,8 @@ const SidenavContent = ({ handleClickAway, history }) => {
     handleClickAway();
   }
 
+ 
+
   return (
     <>
       <nav className='side-navbar-content'>
@@ -53,15 +58,21 @@ const SidenavContent = ({ handleClickAway, history }) => {
         {/* sidenav-content */}
           <ul className="side-nav-bullet">
             <li className="side-nav-item">
-              <NavLink
-                to="/"
-                exact
-                activeClassName="side-navigation-link--active"
-                className="side-navigation-link"
-                onClick={()=>handleClickAway()}
+              <Link
+              exact
+              activeClassName="side-navigation-link--active"
+              className="side-navigation-link"
+              onClick={() => {
+                handleClickAway(); window.scrollTo({
+                  top: 0,
+                  behavior: 'smooth'
+                }, history.push('/'));
+                dispatch(fetchAllCampaign());
+                dispatch(updateMarketCollections());
+              }}
               >
                 Home
-              </NavLink>
+              </Link>
             </li>
             <li
               className="side-nav-item fund-side-nav-item side-navigation-link"
@@ -76,64 +87,69 @@ const SidenavContent = ({ handleClickAway, history }) => {
               )}
               <ul className="side-nav__submenu">
                 <li className="side-nav__submenu-item">
-                  <NavLink
-                    to="/categories/personal-fundraising"
-                    exact
-                    activeClassName="side-navigation-link--active"
-                    className="side-subnavigation-link"
-                    id="personal"
-                    onClick={()=>handleClickAway()}
+                  <Link
+                  exact
+                  activeClassName="side-navigation-link--active"
+                  className="side-subnavigation-link"
+                  id="personal"
+                  onClick={() => {
+                    handleClickAway(); window.scrollTo({
+                      top: 0,
+                      behavior:'smooth'
+                    }, history.push("/categories/personal-fundraising")) }}
                   >
                     Personal
-                  </NavLink>
+                  </Link>
                 </li>
                 <li className="side-nav__submenu-item">
-                  <NavLink
-                    to="/categories/ngo-fundraising"
-                    exact
-                    activeClassName="side-navigation-link--active"
-                    className="side-sub-navigation-link"
-                    id="ngo"
-                    onClick={()=>handleClickAway()}
+                  <Link
+              
+                  exact
+                  activeClassName="side-navigation-link--active"
+                  className="side-sub-navigation-link"
+                  id="ngo"
+                  onClick={() => {
+                    handleClickAway(); window.scrollTo({
+                      top: 0,
+                      behavoir:'smooth'
+                    }, history.push("/categories/ngo-fundraising")) }}
                   >
                     NGO
-                  </NavLink>
+                  </Link>
                 </li>
                 <li className="side-nav__submenu-item">
-                  <NavLink
-                    to="/categories/community-fundraising"
-                    exact
-                    activeClassName="side-navigation-link--active"
-                    className="side-sub-navigation-link"
-                    id="community"
+                  <Link
+                  exact
+                  activeClassName="side-navigation-link--active"
+                  className="side-sub-navigation-link"
+                  id="community"
+                  onClick={() => { handleClickAway(); window.scrollTo({ top: 0, behavior: 'smooth' }, history.push("/categories/community-fundraising")) }}
                   >
                     Community
-                  </NavLink>
+                  </Link>
                 </li>
                 <li className="side-nav__submenu-item">
-                  <NavLink
-                    to="/categories/startup-fundraising"
-                    exact
-                    activeClassName="side-navigation-link--active"
-                    className="sub-navigation-link"
-                    id="startup"
-                    onClick={()=>handleClickAway()}
+                  <Link
+                  exact
+                  activeClassName="side-navigation-link--active"
+                  className="sub-navigation-link"
+                  id="startup"
+                  onClick={() => { handleClickAway(); window.scrollTo({ top: 0, behavior: 'smooth' }, history.push("/categories/startup-fundraising"))  }}
                   >
                     Start up
-                  </NavLink>
+                  </Link>
                 </li>
                 <hr />
                 <li className="side-nav__submenu-item">
-                  <NavLink
-                    to="/categories"
-                    exact
-                    activeClassName="side-navigation-link--active"
-                    className="side-sub-navigation-link"
-                    id="see-all"
-                    onClick={()=>handleClickAway()}
+                  <Link
+                  exact
+                  activeClassName="side-navigation-link--active"
+                  className="side-sub-navigation-link"
+                  id="see-all"
+                  onClick={() => { handleClickAway(); window.scrollTo({ top: 0, behavior: 'smooth' }, history.push("/categories")) }}
                   >
                     See all
-                  </NavLink>
+                  </Link>
                 </li>
               </ul>
             </li>
@@ -153,40 +169,38 @@ const SidenavContent = ({ handleClickAway, history }) => {
               )}
               <ul className="side-nav__submenu">
                 <li className="side-nav__submenu-item" id="about">
-                  <NavLink
-                    to="/donate/cash"
-                    exact
-                    activeClassName="side-navigation-link--active"
-                    className="side-sub-navigation-link"
-                    id="donate-cash"
-                    onClick={()=>handleClickAway()}
+                  <Link
+                  exact
+                  activeClassName="side-navigation-link--active"
+                  className="side-sub-navigation-link"
+                  id="donate-cash"
+                  onClick={() => { handleClickAway(); window.scrollTo({ top: 0, behavior: 'smooth' }, history.push("/donate/cash")) }}
                   >
                    Donate Cash
-                  </NavLink>
+                  </Link>
                 </li>
                 <li className="side-nav__submenu-item" id="contact">
-                  <NavLink
-                    to="/donate/item"
-                    exact
-                    activeClassName="navigation-link--active"
-                    className="sub-navigation-link"
-                    id="donate-item"
-                    onClick={()=>handleClickAway()}
+                  <Link
+                  exact
+                  activeClassName="navigation-link--active"
+                  className="sub-navigation-link"
+                  id="donate-item"
+                  onClick={() => { handleClickAway(); window.scrollTo({ top: 0, behavior: 'smooth' }, history.push("/donate/item")) }}
                   >
                     Donate Item
-                  </NavLink>
+                  </Link>
                 </li>
                 <li className="side-nav__submenu-item" id="contact">
-                  <NavLink
-                    to="/donate/ogadonate"
-                    exact
-                    activeClassName="side-navigation-link--active"
-                    className="side-sub-navigation-link"
-                    id="donate-ogadonate"
-                    onClick={()=>handleClickAway()}
+                  <Link
+            
+                  exact
+                  activeClassName="side-navigation-link--active"
+                  className="side-sub-navigation-link"
+                  id="donate-ogadonate"
+                  onClick={() => { handleClickAway(); window.scrollTo({ top: 0, behavior: 'smooth' }, history.push("/donate/ogadonate")) }}
                   >
                     Donate to ogadonate
-                  </NavLink>
+                  </Link>
                 </li>
               </ul>
             </li>
@@ -206,28 +220,26 @@ const SidenavContent = ({ handleClickAway, history }) => {
               )}
               <ul className="side-nav__submenu">
                 <li className="side-nav__submenu-item" id="about">
-                  <NavLink
-                    to="/about"
-                    exact
-                    activeClassName="side-navigation-link--active"
-                    className="side-sub-navigation-link"
-                    id="about"
-                    onClick={()=>handleClickAway()}
+                  <Link
+                  exact
+                  activeClassName="side-navigation-link--active"
+                  className="side-sub-navigation-link"
+                  id="about"
+                  onClick={() => { handleClickAway(); window.scrollTo({ top: 0, behavior: 'smooth' }, history.push("/about")) }}
                   >
                     About us
-                  </NavLink>
+                  </Link>
                 </li>
                 <li className="side-nav__submenu-item" id="contact">
-                  <NavLink
-                    to="/contact"
-                    exact
-                    activeClassName="side-navigation-link--active"
-                    className="side-sub-navigation-link"
-                    id="contact"
-                    onClick={()=>handleClickAway()}
+                  <Link
+                  exact
+                  activeClassName="side-navigation-link--active"
+                  className="side-sub-navigation-link"
+                  id="contact"
+                  onClick={() => { handleClickAway(); window.scrollTo({ top: 0, behavior: 'smooth' }, history.push("/contact")) }}
                   >
                     Contact us
-                  </NavLink>
+                  </Link>
                 </li>
               </ul>
             </li>
@@ -246,15 +258,14 @@ const SidenavContent = ({ handleClickAway, history }) => {
             ) : (
             
               <li className="side-nav-item">
-                <NavLink
-                  to="/auth"
+                <Link
                   exact
                   activeClassName="side-navigation-link--active"
                   className="side-navigation-link"
-                  onClick={()=>handleClickAway()}
-                >
+                  onClick={() => { handleClickAway(); window.scrollTo({ top: 0, behavior: 'smooth' }, history.push("/auth")) }}
+                 >
                   Login/Signup
-                </NavLink>
+                </Link>
               </li>
             )}
             <li className="side-nav-item navigation-btn-item">

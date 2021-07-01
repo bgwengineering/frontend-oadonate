@@ -1,10 +1,17 @@
 import React from 'react'
 import CommImg from "assets/images/homepage/community.jpg";
 import TrendingCampaignCard from '../Trending';
+import { Button } from "@material-ui/core";
+import { FUNDRAISEBUTTONCLICKED } from "store/actions/Category";
+import { useDispatch } from "react-redux";
+import AllCauseCards from '../../../Donate/AllCauseCards'
+
 
 const AllCategories = () => {
+  const dispatch = useDispatch()
     return (
-        <div>
+      <div>
+     
             <div className="container sub-category-container">
             <div className="row align-items-center">
               <div className="col-lg-6 mt-3">
@@ -15,6 +22,17 @@ const AllCategories = () => {
                   With OgaDonate, you can get immediate help with <br />
                   all your needs
                 </p>
+              
+              <div id="fund__raise_btn">
+                <div>
+                  <Button
+                    className="start-fund-raise-btn"
+                    onClick={() => dispatch(FUNDRAISEBUTTONCLICKED())}
+                  >
+                    Start FundRaise
+                </Button>
+                </div>
+              </div>
               </div>
               <div className="col-lg-6 font-weight-bold categories_img_screen_media">
                 <img 
@@ -33,8 +51,12 @@ const AllCategories = () => {
             <p>Campaign selected by our team</p>
           </div>
           <div className="trending-container mt-3">
-            <TrendingCampaignCard />
+          <div className='container'>
+            <div className='row'>
+              <AllCauseCards />
+            </div>
           </div>
+        </div>
         </div>
     )
 }

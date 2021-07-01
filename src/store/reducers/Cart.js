@@ -15,8 +15,8 @@ const cart = (state = INITIAL_STATE, action) => {
                 ...state,
                 hidden: !state.hidden
             };
-        case actionTypes.ADD_ITEM:
-            return {
+         case actionTypes.ADD_ITEM:
+             return {
                 ...state,
                 cartItems: addItemToCart(state.cartItems, action.payload)
             };
@@ -26,7 +26,7 @@ const cart = (state = INITIAL_STATE, action) => {
                 cartItems: state.cartItems.filter(
                     cartItem => cartItem.id !== action.payload.id
                 )
-            };
+        };
         case actionTypes.REMOVE_ITEM:
             return {
                 ...state,
@@ -50,4 +50,4 @@ const cart = (state = INITIAL_STATE, action) => {
     }
 }
 
-export default cart
+export default cart;

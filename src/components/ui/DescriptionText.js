@@ -10,9 +10,7 @@ const DescriptionText = () => {
   }
 
   return (
-    <div className="container description-container mt-4">
-    
-
+    <div className="container description-container mt-4">    
       <h5 className="description-text">
         The global marketplace for fundraising, item exchange, and Social
         responsibility tracking for individuals, NGOs, communities, startups, or

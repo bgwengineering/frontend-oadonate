@@ -75,8 +75,7 @@ export const googleAuthenticate = (state, code) => async (dispatch) => {
         dispatch({
           type: FACEBOOK_AUTH_SUCCESS,
           payload: res.data,
-        });
-  
+        }); 
         dispatch(load_user());
       } catch (err) {
         dispatch({

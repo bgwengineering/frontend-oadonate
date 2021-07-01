@@ -25,9 +25,8 @@ const YourFunds = () => {
         <CCol>
           <CCard>
             <CCardBody>
-
               {/* table */}
-              <table className="table table-hover table-outline mb-0 d-none d-sm-table">
+              <table className="table table-hover table-responsive table-outline mb-0 d-sm-table">
                 {/* table header */}
                 <thead className="thead-light">
                   <tr>

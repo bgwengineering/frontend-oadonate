@@ -1,9 +1,9 @@
 import axios from 'axios';
 
 
-const baseURL = 'https://ogadonate.herokuapp.com/api/';
-// const baseURL = 'http://127.0.0.1:8000/api/';
 
+const baseURL = "https://ogadonate.com.ng/api/"
+// const baseURL = "http://main.localhost:8000/api/"
 
 const axiosInstance = axios.create({
     baseURL: baseURL,

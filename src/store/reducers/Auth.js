@@ -84,11 +84,7 @@ const auth = (state = initialState, action) => {
       case actionTypes.FACEBOOK_AUTH_FAIL:
       case actionTypes.LOGIN_FAIL:
       case actionTypes.SIGNUP_FAIL:
-    case actionTypes.PASSWORD_RESET_FAIL:
-    // case actionTypes.PASSWORD_RESET_CONFIRM_SUCCESS:
-    // case actionTypes.PASSWORD_RESET_CONFIRM_FAIL:
-    // case actionTypes.ACTIVATION_SUCCESS:
-    // case actionTypes.ACTIVATION_FAIL:
+     case actionTypes.PASSWORD_RESET_FAIL:
     return {
       ...state,
       loading: true

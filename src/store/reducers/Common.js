@@ -1,10 +1,4 @@
-import {
-   SHOW_SUCCESS_MESSAGE,
-    HIDE_MESSAGE,
-    SHOW_ERROR_MESSAGE,
-    OFF_LOADING,
-    LOADING
-  } from "../actions/ActionTypes";
+import * as actionType  from "../actions/ActionTypes";
   
   const initialState = {
     error: true,
@@ -17,29 +11,39 @@ import {
     const { type, payload } = action;
 
     switch (type) {
-        case SHOW_SUCCESS_MESSAGE:
+      case actionType.SHOW_SUCCESS_MESSAGE:
         return {
-            ...state, showMessage: true, Message:payload, error: false,
-        }
-        case SHOW_ERROR_MESSAGE:
+          ...state,
+          showMessage: true,
+          Message: payload,
+          error: false
+        };
+      case actionType.SHOW_ERROR_MESSAGE:
         return {
-            ...state, showMessage: true, Message:payload, error: true,
-        }
-        case HIDE_MESSAGE:
+          ...state,
+          showMessage: true,
+          Message: payload,
+          error: true
+        };
+      case actionType.HIDE_MESSAGE:
         return {
-            ...state, showMessage: false, Message: " ", 
-        }
-        case LOADING:
+          ...state,
+          showMessage: false,
+          Message: " "
+        };
+        case actionType.LOADING:
         return {
-            ...state, loading:true
-        }
-        case OFF_LOADING:
+          ...state,
+          loading: true
+        };
+        case actionType.OFF_LOADING:
         return {
-            ...state, loading:false
-        }
-    
-        default:
-            return state;
+          ...state,
+          loading: false
+        };
+
+      default:
+        return state;
     }
   }
 

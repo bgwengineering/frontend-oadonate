@@ -73,7 +73,7 @@ const AuctionItem = ({history}) => {
                     </div>
                   </div>
 
-                  <p className="align-self-center text-uppercase mb-0 bid-item-name">
+                  <p className="align-self-center text-uppercase mt-3 mb-0 bid-item-name">
                     {donate_item_name}
                   </p>
                   

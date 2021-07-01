@@ -6,13 +6,15 @@ import { store, persistor } from 'store/store';
 import 'core-js';
 import { icons } from 'assets/icons'
 import App from './App';
+
+
 React.icons = icons
 
 ReactDOM.render(
-    <Provider store={store}>
-    <PersistGate persistor={persistor}>   
-    <App />
+  <Provider store={store}>
+    <PersistGate persistor={persistor}>
+      <App />
     </PersistGate>
-</Provider>,
-    document.getElementById('root')
+  </Provider>,
+  document.getElementById("root")
 );

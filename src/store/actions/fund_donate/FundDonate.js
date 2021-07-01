@@ -1,7 +1,7 @@
 import axiosInstance  from 'util/api'
 import { tokenConfig } from 'util/TokenConfig';
 import * as actionTypes from '../ActionTypes';
-import { setLoading,offLoading } from './../Common';
+import { setLoading, offLoading } from './../Common';
 
 
 export const raiseCashFund = (formValues) => async(dispatch, getState) => {
@@ -49,24 +49,24 @@ export const donateToCash = (formValues) => async (dispatch, getState) => {
     } catch (error) {
       dispatch({ type: actionTypes.CREATE_DONATION_CASH_FAIL });
       dispatch(offLoading());
-        dispatch({type:actionTypes.SHOW_ERROR_MESSAGE, payload:error})
+      dispatch({type:actionTypes.SHOW_ERROR_MESSAGE, payload:error})
     }
 }
-// map error to donate to cash
+
 
 // GET DONATE TO CASH
-export const getdonateToCash = () => async(dispatch,getState) =>{
+export const getdonateToCash = () => async(dispatch, getState) => {
     try{
       const res = await axiosInstance.get('campaign/create/donation-cash', tokenConfig(getState))
       dispatch({type:actionTypes.FETCH_DONATION_CASH_SUCCESS, payload:res.data})
     }catch(error){
       dispatch({type: actionTypes.FETCH_DONATION_CASH_FAIL})
-      dispatch({type:actionTypes.SHOW_ERROR_MESSAGE, payload:error.response})
+      // dispatch({type:actionTypes.SHOW_ERROR_MESSAGE, payload:error.response.message})
     }
  }
 
 // GET DONATE TO ITEM
-export const getdonateToItem = () => async(dispatch,getState) =>{
+export const getdonateToItem = () => async(dispatch, getState) =>{
     try{
       const res = await axiosInstance.get('campaign/create/donation-item', tokenConfig(getState))
       dispatch({type:actionTypes.FETCH_DONATION_ITEM_SUCCESS, payload:res.data})
@@ -114,7 +114,9 @@ export const getdonateItemToOga = () => async(dispatch, getState) => {
     dispatch({type:actionTypes.SHOW_SUCCESS_MESSAGE, payload:"successfully donated to ogadonate"})
    }catch(error){
       dispatch({type:actionTypes.CREATE_ITEM_DONATION_OGAFUND_FAIL})
-      dispatch({type:actionTypes.SHOW_ERROR_MESSAGE, payload:error})
+    dispatch({ type: actionTypes.SHOW_ERROR_MESSAGE, payload: error })
+    
+    
   }
 }
 

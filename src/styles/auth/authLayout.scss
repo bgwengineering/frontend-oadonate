@@ -268,3 +268,15 @@
     outline:none !important;
   }
 }
+
+    .reset-password-input{
+      border: 1px solid #808080;
+      outline:none;
+      padding: 12px 15px;
+      margin: 8px;
+      width:100%;
+      border-radius: 4px;
+      &:focus{
+        border: 1px solid #29752e;
+      }
+    } 

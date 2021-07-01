@@ -6,18 +6,15 @@ import { useSelector } from "react-redux";
 import { ReactComponent as LoaderSpinn } from "assets/images/244.svg";
 
 const Layout = (props) => {
-  const isLoading = useSelector((state) => state.commonReducer.loading);
+  const isLoading = useSelector(state => state.commonReducer.loading);
   return (
     <>
-          <Toolbar />
+      <Toolbar />
       {isLoading ? (
         <div className="d-flex justify-content-space-around" style={{width:"100%"}}>
           <LoaderSpinn />
           <LoaderSpinn />
           <LoaderSpinn />
-          {/* <LoaderSpinn /> */}
-          {/* <LoaderSpinn />
-          <LoaderSpinn /> */}
         </div>
       ) : null}
     <div>

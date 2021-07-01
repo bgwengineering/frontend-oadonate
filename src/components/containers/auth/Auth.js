@@ -5,6 +5,7 @@ import SignupForm from "./SignupForm";
 import LoginForm from "./LoginForm";
 import { NavLink } from "react-router-dom";
 
+
 const AuthLayout = () => {
   useEffect(() => {
     const signUpButton = document.querySelector("#signUp");

@@ -1,9 +1,10 @@
 import React from 'react'
 import { Switch, Route } from "react-router-dom";
-import Details from './ProductDetails';
-import MarketCollection from './MarketCollection'
-import AuctionDetails from './AuctionDetails';
-import AuctionCollection from './AuctionCollection';
+import Details from './Market/ProductDetails';
+import MarketCollection from './Market/MarketCollection'
+import AuctionDetails from './Auction/AuctionDetails';
+// import AuctionCollection from './Auction/AuctionCollection';
+import AllAuctionCollection from "./Auction/AllAuctionCollection";
 
 
 const MarketIndex = ({match}) => {
@@ -25,7 +26,7 @@ const MarketIndex = ({match}) => {
                 />
               <Route
               path={`${match.url}/auction`}
-              component={AuctionCollection}
+              component={AllAuctionCollection}
               />
             </Switch>
         </div>

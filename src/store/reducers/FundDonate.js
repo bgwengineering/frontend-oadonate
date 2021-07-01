@@ -1,7 +1,8 @@
 import * as actionTypes from "store/actions/ActionTypes";
 
 const initialState = {
-    fund: [],
+    fund_cash: [],
+    fund_item: [],
     allCampaign: [],
     singleCampaign: [],
     singleCampaignItem: [],
@@ -24,12 +25,12 @@ const fundDonate = (state = initialState, action) => {
         case actionTypes.CREATE_FUND_CASH_SUCCESS:
             return {
                 ...state,
-                fund: payload,
-            };
+                fund_cash: payload,
+            };  
         case actionTypes.CREATE_FUND_ITEM_SUCCESS:
             return {
                 ...state,
-                fund: payload,
+                fund_item: payload,
             };
         case actionTypes.CREATE_CASH_DONATION_OGAFUND_SUCCESS:
             return {
@@ -58,14 +59,14 @@ const fundDonate = (state = initialState, action) => {
         case actionTypes.FETCH_FUND_CASH_SUCCESS:
             return {
                 ...state,
-                fund: payload,
+                fund_cash: payload,
                 loading: false,
                 singleCampaign: payload
             };
         case actionTypes.FETCH_FUND_ITEM_SUCCESS:
             return {
                 ...state,
-                fund: payload,
+                fund_item: payload,
                 loading: false,
                 singleCampaignItem: payload
             };

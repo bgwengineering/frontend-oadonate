@@ -2,46 +2,36 @@ $black: #000;
 $text_color: #fff;
 $white: #fff;
 
+
 .image-slider{
   position:relative;
   background-position: center center;
   background-size: cover;
-  background-repeat: no-repeat;
+  background-repeat:repeat;
   width:100%;
+  padding:100px 70px 0px 70px; 
   height:450px;
   box-shadow:0px 5px 17px -7px rgba(0, 0, 0, 1);
   margin-right:10px;
   transition:transform 100ms ease-in;
-  padding-left:70px;
-  padding-top:100px;
+
   @media screen and (max-width:745px){
-    padding-top:16px;
-    padding-left:10px;
+   padding:27px 39px 0px 39px;
   }
-  @media screen and (max-width:450px){
-    padding-top:40px;
-    padding-left:10px;
-  }
-  @media screen and (max-width:321px){
-    padding-top:10px;
-    padding-left:10px;
-  }
+}
+.slider-btn{
+  margin-top:13px;
 }
 .slider-text{
   font-family: 'Tajawal', sans-serif;
   word-spacing:0px;
   letter-spacing:-2px;
   font-size:3rem;
-  @media screen and (max-width:745px){
-    font-size:3rem;
-  }
-  @media(min-width:321px) and (max-width:450px){
-    font-size:2rem;
-  }
-}
-#slider-raise-fund-text{
-  @media screen and (max-width:321px){
-    font-size:1.9rem;
+  width:100%;
+  max-width:800px;
+
+  @media screen and (max-width:500px){
+    font-size:2.3rem;
   }
 }
 

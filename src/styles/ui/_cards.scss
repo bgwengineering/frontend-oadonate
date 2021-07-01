@@ -1,6 +1,13 @@
-    .card{
+   
+      .card-item, .card-cash{
+       height:442.45px;
+      }
+      .market-card{
+          border:1px solid orange;
+          height:320px;
+      }
         .card-img-top{
-            height:170px;
+            height:140px;           
             z-index:300 !important;
             cursor:pointer;
         }
@@ -14,22 +21,18 @@
         }
         .donated-ws{
             justify-content:space-between;
-        }
-        .fund-category{
-            width:80% !important;
-        }
-        .ai-outline{
-            margin-top:-1px;
-        }
+        }    
         .truncate{
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
-    }
+    
      
-  
     #share-modal{
         z-index:2300 !important
     }
-
+    .ai-outline{
+        font-size:21px;
+        cursor:pointer;
+    }

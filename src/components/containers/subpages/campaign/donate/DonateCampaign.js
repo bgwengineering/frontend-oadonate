@@ -12,12 +12,10 @@ const DonateCampaign = ({ match }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchSingleCampaign(match.params.id));
+  dispatch(fetchSingleCampaign(match.params.id));
   }, []);
 
-  const isAuthenticated = useSelector((state) => state.authReducer.isAuthenticated);
-
-  const singleCampaign = useSelector((state) => state.fundDonateReducer.singleCampaign);
+  const singleCampaign = useSelector(state => state.fundDonateReducer.singleCampaign);
 
   const { fund_img, fund_purpose, id, fund_cash, fund_item } = singleCampaign;
 
@@ -38,7 +36,8 @@ const DonateCampaign = ({ match }) => {
               src={fund_img}
               alt="personal_campaign"
               style={{ width: "100%", maxHeight: "300px" }}
-            ></img>
+              >
+            </img>
 
             {/* Donat tabs */}
             <div className="mt-4">
@@ -51,27 +50,30 @@ const DonateCampaign = ({ match }) => {
             className="col-md-6 col-lg-6 mt-5"
             id="DonCard"
             style={{ display: isDonateCardButtonsOpen ? "none" : "block" }}
-          >
+           >
             <DonateCards
               shareUrl={shareUrl}
               setIsDonateCardButtonsOpen={setIsDonateCardButtonsOpen}
             />
           </div>
-          <div
-            className="col-md-6 col-lg-6 mt-5"
-            id="DonPrompt"
-            style={{
-              display: isDonateCardButtonsOpen && !currentOpenForm ? "block" : "none",
-            }}
-          >
-            <DonatePrompt handleSwitchCurrentForm={handleSwitchCurrentForm}  />
-          </div>
-
+     
+            <div
+              className="col-md-6 col-lg-6 mt-5"
+              id="DonPrompt"
+              style={{
+                display:
+                  isDonateCardButtonsOpen && !currentOpenForm ? "block" : "none"
+              }}
+              >
+              <DonatePrompt handleSwitchCurrentForm={handleSwitchCurrentForm} />
+            </div>
+         
           <div
             className="col-md-6 col-lg-6 mt-5"
             id="donate__cash__form"
             style={{
-              display: currentOpenForm === "donate__cash__form" ? "block" : "none",
+              display:
+                currentOpenForm === "donate__cash__form" ? "block" : "none"
             }}
           >
             <DonateCashForm
@@ -85,7 +87,8 @@ const DonateCampaign = ({ match }) => {
             className="col-md-6 col-lg-6 mt-5"
             id="donate__item__form"
             style={{
-              display: currentOpenForm === "donate__item__form" ? "block" : "none",
+              display:
+                currentOpenForm === "donate__item__form" ? "block" : "none"
             }}
           >
             <DonateItemForm

@@ -34,7 +34,7 @@ const Personal = () => {
           </div>
     
           <div className="feature-headline  text-center">
-            <h1 className="text-capitalize trending-text">Trending in Personal</h1>
+            <h1 className="text-capitalize personal-trending-text">Trending in Personal</h1>
             <p>Campaign selected by our team</p>
           </div>
           <div className='mt-3 trending-container'>

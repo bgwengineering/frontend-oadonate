@@ -22,6 +22,7 @@ import {
   SHOW_ERROR_MESSAGE
 } from "../ActionTypes";
 
+
 export const load_user = () => async (dispatch) => {
   if (localStorage.getItem("access")) {
     const config = {
@@ -51,18 +52,14 @@ export const load_user = () => async (dispatch) => {
   }
 };
 
-
-
 export const checkAuthenticated = () => async (dispatch) => {
   if (localStorage.getItem("access")) {
     const body = { token: localStorage.getItem("access") };
-
     try {
       const res = await axiosInstance.post(
         "auth/jwt/verify/",
         body
       );
-
       if (res.data.code !== "token_not_valid") {
         dispatch({
           type: AUTHENTICATED_SUCCESS,
@@ -114,8 +111,8 @@ export const login = ({ email, password }) => async (dispatch) => {
             payload: `Email: ${err}`,
           }))
         });
-      err.response.data.password &&
-        err.response.data.password.map((err) => { return(
+        err.response.data.password &&
+         err.response.data.password.map((err) => { return(
           dispatch({ type: SHOW_ERROR_MESSAGE, payload: `Password: ${err}` })
           )
         });
@@ -130,7 +127,6 @@ export const login = ({ email, password }) => async (dispatch) => {
 
 
 // signup
-
 export const signup = ({ first_name, last_name, email, password }) => async (dispatch) => {
   dispatch(setLoading())
   const body = { first_name, last_name, email, password };
@@ -175,6 +171,7 @@ export const signup = ({ first_name, last_name, email, password }) => async (dis
   }
 };
 
+
 export const verify = ({ uid, token }) => async (dispatch) => {
   const body = { uid, token };
   const config = {
@@ -194,6 +191,7 @@ export const verify = ({ uid, token }) => async (dispatch) => {
  
   }
 };
+
 
 // request password change
 export const reset_password = ({ email }) => async (dispatch) => {
@@ -240,7 +238,6 @@ export const reset_password_confirm = (
       body,
       config
     );
-
     dispatch({
       type: PASSWORD_RESET_CONFIRM_SUCCESS,
     });
@@ -250,6 +247,7 @@ export const reset_password_confirm = (
     });
   }
 };
+
 
 // logout
 export const logout = () => (dispatch) => {

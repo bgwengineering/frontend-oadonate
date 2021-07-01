@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 
 var numeral = require('numeral')
 
+
 const CartPage = () => {
   const cartItemState = useSelector(state => state.cartReducer);
   const { cartItems } = cartItemState;
@@ -16,23 +17,27 @@ const CartPage = () => {
     0
   );
 
-  let formatTotal = numeral(mapTotal).format("0,0.00");
-  // let total = 0;
+  let formatTotal = numeral(mapTotal).format("0, 0.00");
+
   let total = formatTotal
   const currency = cartItems.map(cartItem => cartItem.donate_currency)
 
+  
   return (
     <div className="cart-page">
       <div className='cart-subpage'>
       <div className="cart-header">
         <div className="header-block">
-            <span className="header-block-item">Product</span>
+          <span className="header-block-item">Product</span>
         </div>
         <div className="header-block">
-            <span className="header-block-item">Description</span>
+          <span className="header-block-item">Description</span>
         </div>
         <div className="header-block">
             <span className="header-block-item">Price</span>
+        </div>
+        <div className="header-block">
+            <span className="header-block-item">Quantity</span>
         </div>
         <div className="header-block">
             <span className="sub-total header-block-item">Sub Total</span>
@@ -46,7 +51,7 @@ const CartPage = () => {
         ))}
       </div>
       <div className="total">
-        <span>TOTAL: {currency + total}</span>
+        <span>TOTAL: {currency}  {total}</span>
       </div>
       {cartItems.length > 0 ? (
         <div className='w-100 d-flex justify-content-end mt-5'>

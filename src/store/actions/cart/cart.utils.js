@@ -10,6 +10,7 @@ export const addItemToCart = (cartItems, cartItemToAdd) => {
 }
 
 
+
    export const removeItemFromCart = (cartItems, cartItemToRemove) => {
    const existingCartItem = cartItems.find(
      cartItem => cartItem.id === cartItemToRemove.id 

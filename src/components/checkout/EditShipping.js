@@ -3,20 +3,21 @@ import { connect, useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
 import { Button } from "@material-ui/core";
 import { reduxForm, Field } from "redux-form";
-import { updateShippingAddressCheckout, singleShippingAddress } from "store/actions/auth/Dashboard";
+import {
+  updateShippingAddressCheckout,
+  singleShippingAddress
+} from "store/actions/auth/Dashboard";
 import { validateShipping, checkoutRenderField } from "util/RenderValidate";
-import {Link} from 'react-router-dom'
-
+import { Link } from "react-router-dom";
 
 const EditShipping = ({ nextPage, handleSubmit, id }) => {
-  
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(singleShippingAddress(`${id}`));
   }, []);
   const [checked, setChecked] = useState(false);
 
-  const updateShipping = (formValues) => {
+  const updateShipping = formValues => {
     dispatch(updateShippingAddressCheckout(id, formValues));
     nextPage();
   };
@@ -24,16 +25,17 @@ const EditShipping = ({ nextPage, handleSubmit, id }) => {
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behaviour: 'smooth'
-    })
-  }
+      behaviour: "smooth"
+    });
+  };
+  
   // toggle switch
   const ToggleSwitch = ({ checked, onChange, id }) => (
     <div>
       <input
         type="checkbox"
         checked={checked}
-        onChange={(e) => onChange(e.target.checked)}
+        onChange={e => onChange(e.target.checked)}
         id={id}
       />
     </div>
@@ -45,12 +47,20 @@ const EditShipping = ({ nextPage, handleSubmit, id }) => {
           <div className="card shadow">
             <div className="card-header bg-white border-0"></div>
             <div className="card-body">
-              <h6 className="heading-small text-muted all-heading mb-4">Shipping information</h6>
+              <h6 className="heading-small text-muted all-heading mb-4">
+                Shipping information
+              </h6>
               <hr className="my-4" />
 
               <div className="shipping-show d-flex">
-                <ToggleSwitch checked={checked} id="form" onChange={setChecked} />
-                <span className="shipping-msg ml-2">Ship to a different address?</span>
+                <ToggleSwitch
+                  checked={checked}
+                  id="form"
+                  onChange={setChecked}
+                />
+                <span className="shipping-msg ml-2">
+                  Ship to a different address?
+                </span>
               </div>
 
               <form onSubmit={handleSubmit(updateShipping)}>
@@ -60,7 +70,10 @@ const EditShipping = ({ nextPage, handleSubmit, id }) => {
                       <div className="row">
                         <div className="col-lg-6">
                           <div className="form-group">
-                            <label className="profile-control-label" for="input-first_name">
+                            <label
+                              className="profile-control-label"
+                              for="input-first_name"
+                            >
                               First Name<span>*</span>
                             </label>
                             <Field
@@ -74,7 +87,10 @@ const EditShipping = ({ nextPage, handleSubmit, id }) => {
                         </div>
                         <div className="col-lg-6">
                           <div className="form-group">
-                            <label className="profile-control-label" for="input-first_name">
+                            <label
+                              className="profile-control-label"
+                              for="input-first_name"
+                            >
                               Last Name<span>*</span>
                             </label>
                             <Field
@@ -90,7 +106,10 @@ const EditShipping = ({ nextPage, handleSubmit, id }) => {
                       <div className="row">
                         <div className="col-md-12">
                           <div className="form-group focused">
-                            <label className="profile-control-label" for="input-address">
+                            <label
+                              className="profile-control-label"
+                              for="input-address"
+                            >
                               Address<span>*</span>
                             </label>
                             <Field
@@ -105,7 +124,10 @@ const EditShipping = ({ nextPage, handleSubmit, id }) => {
                       <div className="row">
                         <div className="col-lg-4">
                           <div className="form-group focused">
-                            <label className="profile-control-label" for="input-city">
+                            <label
+                              className="profile-control-label"
+                              for="input-city"
+                            >
                               City<span>*</span>
                             </label>
                             <Field
@@ -119,7 +141,10 @@ const EditShipping = ({ nextPage, handleSubmit, id }) => {
                         </div>
                         <div className="col-lg-4">
                           <div className="form-group focused">
-                            <label className="profile-control-label" for="input-state">
+                            <label
+                              className="profile-control-label"
+                              for="input-state"
+                            >
                               State<span>*</span>
                             </label>
                             <Field
@@ -133,7 +158,10 @@ const EditShipping = ({ nextPage, handleSubmit, id }) => {
                         </div>
                         <div className="col-lg-4">
                           <div className="form-group focused">
-                            <label className="profile-control-label" for="input-country">
+                            <label
+                              className="profile-control-label"
+                              for="input-country"
+                            >
                               Country<span>*</span>
                             </label>
                             <Field
@@ -149,7 +177,7 @@ const EditShipping = ({ nextPage, handleSubmit, id }) => {
                     </>
                   ) : null}
                   <div className="form-group focused">
-                    <label className='mt-3'>
+                    <label className="mt-3">
                       Shipping Note<span>*</span>
                     </label>
                     <Field
@@ -163,15 +191,25 @@ const EditShipping = ({ nextPage, handleSubmit, id }) => {
                 </div>
                 <hr className="profile_hr my-4" />
                 <div className="d-flex justify-content-between">
-                  <Link className='link-router-inverted' to='/'>
-                  <Button className="shipping-cancel-btn" type="button" onClick={scrollToTop}>
-                    Cancel
-                  </Button>
+                  <Link className="link-router-inverted" to="/">
+                    <Button
+                      className="shipping-cancel-btn"
+                      type="button"
+                      onClick={scrollToTop}
+                     >
+                      Cancel
+                    </Button>
                   </Link>
-                  <Button 
-                  className="shipping-next-btn" 
-                  type="submit"
-                  onClick={()=>{updateShipping(); setTimeout(() => {nextPage();},10000)}}>
+                  <Button
+                    className="shipping-next-btn"
+                    type="submit"
+                    onClick={() => {
+                      updateShipping();
+                      setTimeout(() => {
+                        nextPage();
+                      }, 10000);
+                    }}
+                    >
                     Next
                   </Button>
                 </div>
@@ -186,16 +224,23 @@ const EditShipping = ({ nextPage, handleSubmit, id }) => {
 
 EditShipping.propTypes = {
   nextPage: PropTypes.func.isRequired,
-  previousPage: PropTypes.func.isRequired,
+  previousPage: PropTypes.func.isRequired
 };
 
 function mapStateToProps(state) {
   const { singleAddress } = state.userTypeReducer;
   return {
-    initialValues: singleAddress,
+    initialValues: singleAddress
   };
 }
 
-export default connect(mapStateToProps, { updateShippingAddressCheckout, singleShippingAddress })(
-  reduxForm({ form: "editshipping", enableReinitialize: true, validateShipping })(EditShipping)
+export default connect(
+  mapStateToProps,
+  { updateShippingAddressCheckout, singleShippingAddress }
+)(
+  reduxForm({
+    form: "editshipping",
+    enableReinitialize: true,
+    validateShipping
+  })(EditShipping)
 );

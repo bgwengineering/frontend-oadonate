@@ -19,6 +19,7 @@ const DonateCashForm = ({
   setIsDonateCardButtonsOpen
 }) => {
   const paystackUrl = useSelector(state => state.fundDonateReducer.paystackUrl);
+
   useEffect(() => {
     if (paystackUrl.length >= 1) {
       window.location = paystackUrl;
@@ -59,10 +60,12 @@ const DonateCashForm = ({
     setStripebtn(false);
     setPaystack(true);
   };
+
   const setStripeBtn = () => {
     setPaystack(false);
     setStripebtn(true);
   };
+
   const isDesktopOrLaptop = useMediaQuery({ query: '(min-width: 768px)' })
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 767px)' })
 
@@ -98,7 +101,6 @@ const DonateCashForm = ({
       fund_cash: fund_cash,
       donate_percent_amount: giveOgadonate ? fivePercent : initial_amount
     };
-
     dispatch(donateToCash(formData));
   };
 
@@ -142,6 +144,7 @@ const DonateCashForm = ({
   const handleChange = e => {
     setDonateFields({ ...donateFields, [e.target.name]: e.target.value });
   };
+
 
   const ToggleSwitch = ({ checked, onChange, id, name }) => (
     <div>
@@ -216,6 +219,7 @@ const DonateCashForm = ({
       </>
     );
   };
+
   const getPersonalInformation = () => {
     return (
       <fieldset>

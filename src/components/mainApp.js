@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Switch,withRouter } from "react-router-dom";
+import {Route, Switch } from "react-router-dom";
 import ResetPassword from "./containers/auth/ResetPassword";
 import ResetPasswordConfirm from "./containers/auth/ResetPasswordConfirm";
 import Google from "./containers/auth/Google";
@@ -23,45 +23,50 @@ import CheckoutPage from "./containers/pages/CheckoutPage";
 import Affiliate from './containers/pages/Affiliate/Affiliate';
 import SignupAffiliate from './containers/pages/Affiliate/SignupAffiliate';
 import CorporateAuction from './containers/pages/CorporateAuction/CorporateAuction';
+import SignupCorporate from "./containers/pages/CorporateAuction/SignupCorporate";
+import Page404 from './../util/pages/page404/Page404';
 
 
 const MainApp = () => {
- 
   return (
-      <>
-    <BrowserRouter>
-      <Switch>         
+    <>
+        <Switch>
+          <Route path="/activate/:uid/:token" component={Activate} />
+          <PrivateRoute
+            path="/dashboard"
+            name="Home"
+            render={props => <TheLayout {...props} />}
+          />
         <Route path="/auth" component={AuthMain} />
-        <Route path="/activate/:uid/:token" component={Activate} />
-        <PrivateRoute path='/dashboard' name='Home' render={props => <TheLayout {...props}/>} />    
-       <Layout id='content'> 
-        <Route path="/categories" render={(props) => <Categoryindex  {...props}/>}  />
+        <Layout>      
+        <Route path="/categories" render={props => <Categoryindex  {...props}/>}  />
         <Route path= '/marketplace/'  component={MarketIndex} />
         <Route path="/campaign/:id/:id/details/"  component={DonateCampaign} />
         <Route path="/about" component={About} />
-        <Route exact path="/" component={Home} />
         <Route path="/contact" component={Contact} />
-        <Route exact path="/google" component={Google} />
-        <Route exact path="/reset-password" component={ResetPassword} />
+        <Route path="/google" component={Google} />
+        <Route path="/reset-password" component={ResetPassword} />
         <Route path='/donate' render={props => <MainDonateIndex {...props}/>} />
+        <Route exact path="/" component={Home} />
         <Route path="/user-type" component={GetUserInfo} />
         <Route path='/cart' component={CartPage} />
         <Route path='/checkout' component={CheckoutPage} />
         <Route path='/payment-success/' component={PaymentSuccess} />
         <Route path='/payment-cancel/' component={PaymentCancel} />
         <Route path='/affiliate' component={Affiliate} />
-          <Route path='/affiliate-signup' component={SignupAffiliate} />
-          <Route path='/corporate-auction' component={CorporateAuction} />
+        <Route path='/affiliate-signup' component={SignupAffiliate} />
+        <Route path='/corporate-auction' component={CorporateAuction} />
+        <Route path='/corporate-signup' component={SignupCorporate} />    
         <Route
-          exact
           path="/password/reset/confirm/:uid/:token"
           component={ResetPasswordConfirm}
-        />
+          />
+      {/* <Route component={Page404} /> */}
       </Layout>
       </Switch>
-  </BrowserRouter>
-  </>
-    );
+    </>
+  );
 };
+
 
 export default MainApp;

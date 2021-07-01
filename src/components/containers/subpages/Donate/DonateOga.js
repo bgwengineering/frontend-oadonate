@@ -1,25 +1,40 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import DonateOgaCashForm from "components/ui/Forms/DonateOgaCashForm";
 import DonateOgaItemForm from "components/ui/Forms/DonateOgaItemForm";
 import { useSelector, useDispatch } from "react-redux";
-import {ReactComponent as LoaderSpinn} from 'assets/images/244.svg'
+import { ReactComponent as LoaderSpinn } from "assets/images/244.svg";
 
-const DonateOga = () => {
+const DonateOga = ({ history }) => {
   const [currentOpenForm, setCurrentOpenForm] = useState(null);
   const [isDonateOgaFormOpen, setIsDonateOgaForm] = useState(false);
 
-  const handleCurrentFormOpen = (showForm) => {
+  const handleCurrentFormOpen = showForm => {
     setCurrentOpenForm(showForm);
   };
   const isLoading = useSelector(state => state.fundDonateReducer.loading);
+  const isAuthenticated = useSelector(
+    state => state.authReducer.isAuthenticated
+  );
 
+  const openDonateItemForm = () => {
+    setIsDonateOgaForm(true);
+    handleCurrentFormOpen("donate__item__form");
+  };
+
+  const openDonateCashForm = () => {
+    setIsDonateOgaForm(true);
+    handleCurrentFormOpen("donate__cash__form");
+  };
   return (
     <>
-      {isLoading ? <div className='d-flex justify-content-center'><LoaderSpinn  />
-        <LoaderSpinn />
-        <LoaderSpinn /></div>
-        : null}
+      {isLoading ? (
+        <div className="d-flex justify-content-center">
+          <LoaderSpinn />
+          <LoaderSpinn />
+          <LoaderSpinn />
+        </div>
+      ) : null}
       <div style={{ display: isDonateOgaFormOpen ? "none" : "block" }}>
         <div className="ogaDonasi" style={{ backgroundColor: "#05591B" }}>
           <div className="ikon">
@@ -28,8 +43,10 @@ const DonateOga = () => {
               id="donate_item_btn"
               style={{ backgroundColor: "#C75A00" }}
               role="button"
-              onClick={() => {setIsDonateOgaForm(true); handleCurrentFormOpen('donate__item__form')}}
-             >
+              onClick={() => {
+                isAuthenticated ? openDonateItemForm() : history.push("/auth");
+              }}
+            >
               <span>Donate Item</span>
             </Link>
           </div>
@@ -46,7 +63,7 @@ const DonateOga = () => {
               id="donate_cash_btn"
               style={{ backgroundColor: "#C75A00" }}
               role="button"
-              onClick={() => {setIsDonateOgaForm(true); handleCurrentFormOpen('donate__cash__form')}}
+              onClick={()=>{isAuthenticated ? openDonateCashForm() : history.push('/auth')}}
             >
               <span>Donate Cash</span>
             </Link>
@@ -58,31 +75,33 @@ const DonateOga = () => {
         </div>
       </div>
 
-
       <div
         id="donate__cash__form"
         className="oga_cash_form_parent"
         style={{
-          display: currentOpenForm === 'donate__cash__form' ? "block" : "none",
+          display: currentOpenForm === "donate__cash__form" ? "block" : "none"
         }}
       >
-        <DonateOgaCashForm setIsDonateOgaForm={setIsDonateOgaForm} setCurrentOpenForm={setCurrentOpenForm}/>
+        <DonateOgaCashForm
+          setIsDonateOgaForm={setIsDonateOgaForm}
+          setCurrentOpenForm={setCurrentOpenForm}
+        />
       </div>
 
       <div
         id="donate__item__form"
         className="oga_item_form_parent"
         style={{
-          display: currentOpenForm === 'donate__item__form' ? "block" : "none",
+          display: currentOpenForm === "donate__item__form" ? "block" : "none"
         }}
-        >
+      >
         <DonateOgaItemForm
           setCurrentOpenForm={setCurrentOpenForm}
-          setIsDonateOgaForm={setIsDonateOgaForm}   
+          setIsDonateOgaForm={setIsDonateOgaForm}
         />
       </div>
     </>
   );
 };
 
-export default DonateOga;
+export default withRouter(DonateOga);

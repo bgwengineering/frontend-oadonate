@@ -7,6 +7,7 @@ import { renderField, validate } from "util/RenderValidate";
 import { BiShow } from "react-icons/bi";
 import { BiHide } from "react-icons/bi";
 
+
 const LoginForm = ({ handleSubmit, submitting, pristine }) => {
   const dispatch = useDispatch();
   const [isPasswordShown, setIsPasswordShown] = useState(false);
@@ -59,7 +60,15 @@ const LoginForm = ({ handleSubmit, submitting, pristine }) => {
             <BiHide />
           </span>
         </fieldset>
-        <button disabled={pristine || submitting} className="auth-button mt-3">
+        <button disabled={pristine || submitting} className="auth-button mt-3" onClick={() => {
+          window.scrollTo(
+            {
+              top: 0,
+              behavior: "smooth"
+            }
+          )
+        }
+        }>
           Sign In
         </button>
       </>

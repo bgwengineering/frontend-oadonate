@@ -1,11 +1,28 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { TheContent, TheSidebar, TheFooter, TheHeader } from "./index";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { ReactComponent as LoaderSpinn } from "assets/images/244.svg";
+import {
+  fetchOrders, fetchPersonalProfile,
+  fetchUserDonationsReceived, } from 'store/actions/auth/Dashboard';
+  import { load_user } from 'store/actions/auth/Auth.js';
+import {
+  getfundCashCampaigns, getfundITEMCampaigns,getdonateToCash} from "store/actions/fund_donate/FundDonate";
 
 
 const TheLayout = () => {
-  const isLoading = useSelector((state) => state.commonReducer.loading);
+  const dispatch = useDispatch();
+ useEffect(() => {
+   dispatch(load_user());
+   dispatch(fetchPersonalProfile());
+   dispatch(getfundCashCampaigns());
+   dispatch(getfundITEMCampaigns());
+   dispatch(fetchUserDonationsReceived());
+   dispatch(fetchOrders());
+   dispatch(getdonateToCash())
+  }, [])
+  
+  const isLoading = useSelector(state => state.commonReducer.loading);
   return (
     <div className="c-app c-default-layout">
       <TheSidebar />
@@ -19,7 +36,7 @@ const TheLayout = () => {
               <LoaderSpinn />
               <LoaderSpinn />
             </div>
-          ) : null}
+           ) : null}
           <TheHeader />
           <TheContent />
         </div>

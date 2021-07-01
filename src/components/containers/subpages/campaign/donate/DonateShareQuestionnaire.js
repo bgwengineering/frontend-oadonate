@@ -1,13 +1,16 @@
 import React from "react";
 
- const DonateShareQuestionnaire = ({setIsQuestionAnswerShown, handleSwitchCurrentQuestion}) => {
-
+const DonateShareQuestionnaire = ({
+  setIsQuestionAnswerShown,
+  handleSwitchCurrentQuestion,
+  currentQuestionnaireOpen,
+  isQuestionAnswerShown
+}) => {
   const handleYesAnswer = () => {
-    handleSwitchCurrentQuestion('donation__share__percentage');
-    setIsQuestionAnswerShown(true)
-  }
+    handleSwitchCurrentQuestion("donation__share__percentage");
+    setIsQuestionAnswerShown(true);
+  };
 
-  
   return (
     <div>
       <h2 className="fs-title text-uppercase font-weight-bold">
@@ -16,25 +19,41 @@ import React from "react";
       </h2>
 
       <div className="wrapper">
-        <div>
+        <div
+          onClick={handleYesAnswer}
+          style={{
+            color:
+              isQuestionAnswerShown &&
+              currentQuestionnaireOpen === "donation__share__percentage"
+                ? "#0f6929"
+                : "#000"
+          }}
+        >
           <input
-            type="radio"
+            type="checkbox"
             className="item-radio"
             name="choice"
             id="yes"
-            onClick={handleYesAnswer}
           />
-          <label className="text-dark yes-no-label" htmlFor="yes">
+          <label className="yes-label" htmlFor="yes">
             Yes
           </label>
         </div>
-        <input type="radio" className="item-radio" name="choice" id="no" />
+
+        <input type="checkbox" className="item-radio" name="choice" id="no" />
         <label
-          className="text-dark yes-no-label"
+          className="no-label"
           htmlFor="no"
           onClick={() =>
             handleSwitchCurrentQuestion("donate__item__sell__form")
           }
+          style={{
+            color:
+              isQuestionAnswerShown &&
+              currentQuestionnaireOpen === "donate__item__sell__form"
+                ? "#c75a00"
+                : "#000"
+          }}
         >
           No
         </label>

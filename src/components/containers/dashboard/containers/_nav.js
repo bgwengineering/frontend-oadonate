@@ -4,7 +4,7 @@ import { freeSet } from '@coreui/icons'
 import {CgProfile} from 'react-icons/cg'
 import { GiReceiveMoney, GiPayMoney, GiBuyCard } from "react-icons/gi";
 import { SiCampaignmonitor } from 'react-icons/si'
-import AffiliateNav from './AffiliateNav';
+
 
 
   const _nav = [
@@ -94,36 +94,6 @@ import AffiliateNav from './AffiliateNav';
           name: "orders",
           to: "/dashboard/products/orders"
         }
-      ]
-    },
-
-  
-    {
-      _tag: "CSidebarNavDropdown",
-      name: "Affiliate",
-      route: "/dashboard/affiliate",
-      icon: <GiBuyCard className="mr-3" />,
-      _children: [
-        {
-          _tag: "CSidebarNavItem",
-          name: "Sale",
-          // to: "/dashboard/products/auction"
-        },
-        {
-          _tag: "CSidebarNavItem",
-          name: "Contact Point(Warehouse)",
-          // to: "/dashboard/products/orders"
-        },
-        {
-          _tag: "CSidebarNavItem",
-          name: "Delivery Agent",
-          // to: "/dashboard/products/orders"
-        },
-        {
-          _tag: "CSidebarNavItem",
-          name: "Referrer",
-          // to: "/dashboard/products/orders"
-        },
       ]
     },
   

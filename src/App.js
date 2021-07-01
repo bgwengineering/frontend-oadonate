@@ -12,6 +12,8 @@ import {
   fetchShippingAddress,
   fetchUserDonationsReceived,
 } from "store/actions/auth/Dashboard";
+import Page404 from "./util/pages/page404/Page404";
+import { Route, BrowserRouter, Switch } from 'react-router-dom'
 import "./styles/style.js";
 
 const App = () => {
@@ -45,7 +47,10 @@ const App = () => {
   };
   return (
     <>
-      {isLoading ? null : <MainApp />}
+      <BrowserRouter>  
+        {isLoading ? null : <MainApp />} 
+      </BrowserRouter>
+
       {showMessage && (
         <Snackbar
           open={showMessage}
@@ -53,12 +58,13 @@ const App = () => {
           onClose={handleClose}
           anchorOrigin={{ vertical: "top", horizontal: "right" }}
         >
-        <AlertSnackBar severity={error ? "error" : "success"}>{Message}</AlertSnackBar>
+          <AlertSnackBar severity={error ? "error" : "success"}>
+            {Message}
+          </AlertSnackBar>
         </Snackbar>
-    )
-    }
+      )}
     </>
-    );
+  );
 };
 
 export default App;

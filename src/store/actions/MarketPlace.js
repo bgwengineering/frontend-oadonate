@@ -2,7 +2,6 @@ import * as actionTypes from "./ActionTypes"
 import axiosInstance  from 'util/api'
 
 
-
 export const updateMarketCollections = () => async(dispatch) => {
     try{
       const res = await axiosInstance.get('/buy-to-support/products');
@@ -14,10 +13,7 @@ export const updateMarketCollections = () => async(dispatch) => {
 
 export const getSingleMarketProductItem = id => async(dispatch) => {
     try{
-      const res = await axiosInstance.get(`/buy-to-support/products/${id}/details`);
-      const responseD = await res
-       console.log(responseD)
-       
+      const res = await axiosInstance.get(`/buy-to-support/products/${id}/details`);       
       dispatch({type:actionTypes.GET_SINGLE_MARKET_COLLECTIONS_SUCCESS, payload:res.data})
     }catch(error){
       dispatch({type:actionTypes.GET_SINGLE_MARKET_COLLECTIONS_FAIL});

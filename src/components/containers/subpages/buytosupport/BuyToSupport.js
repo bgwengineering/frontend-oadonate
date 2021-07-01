@@ -4,6 +4,7 @@ import {FaArrowRight} from 'react-icons/fa';
 import {Link} from 'react-router-dom'
 import MarketCollection from "./MarketCollection";
 
+
 const BuyToSupport = () => {
   return (
     <>
@@ -14,7 +15,12 @@ const BuyToSupport = () => {
          <MarketCollection/>
         <div className='more-market-support'>
        <Link className='link-router' to='/marketplace/products'>
-       <Button className='text-capitalize market-place-btn mt--10'>More <FaArrowRight style={{color:'#fff', marginLeft:'10px'}}/></Button>
+          <Button className='text-capitalize market-place-btn mt--10' onClick={() => window.scrollTo({
+            top: 0,
+           behavior:'smooth'})}>
+            More <FaArrowRight style={{ color: '#fff', marginLeft: '10px' }} />
+          
+          </Button>
        </Link>
        </div>
     </>

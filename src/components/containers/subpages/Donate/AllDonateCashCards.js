@@ -1,25 +1,18 @@
 import React, {useState} from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import Button from "@material-ui/core/Button";
-import { AiOutlineFolderOpen } from "react-icons/ai";
+import { ImShare2 } from 'react-icons/im'
 import Pagination from "components/ui/Pagination/Pagination"
 import {useSelector} from 'react-redux'
 
 var numeral = require('numeral');
 
 
-const AllDonateCashCards = () => {
+const AllDonateCashCards = ({history}) => {
   const fundState = useSelector((state) => state.fundDonateReducer);
   const { allCampaign } = fundState;
  
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
-
   const [page, setPage] = useState(1);
   const [cardPerPage, setCardPerPage] = useState(3);
 
@@ -59,12 +52,22 @@ const AllDonateCashCards = () => {
 
               return (
                 <div className="col-sm-6 col-md-6 col-lg-4 p-t-10">
-                  <div className="card card-feature" key={id}>
+                  <div
+                    className={
+                      fund_type == "Item" ? "card card-item" : "card card-cash"
+                    }
+                    key={id}
+                  >
                     <Link
-                      to={`/campaign/${fund_category}/${id}/details`}
                       className="link-router"
-                      onClick={scrollToTop}
-                     >
+                      onClick={() => window.scrollTo(
+                        {
+                          top: 0,
+                          behavior: "smooth"
+                        },
+                        history.push(`/campaign/${fund_category}/${id}/details`)
+                      )}
+                    >
                       <img
                         className="card-img-top"
                         src={fund_img}
@@ -73,26 +76,41 @@ const AllDonateCashCards = () => {
                     </Link>
                     <div className="card-body">
                       <div>
-                        <div className="d-flex">
-                          <div className="ai-outline">
-                            <AiOutlineFolderOpen />
+                        <div className="d-flex justify-content-between">
+                          <div className='d-flex'>
+                            <div
+                              className="ai-outline"
+                              title="share"
+                              onClick={() => window.scrollTo(
+                                {
+                                  top: 0,
+                                  behavior: "smooth"
+                                },
+                                history.push(`/campaign/${fund_category}/${id}/details`)
+                              )}
+                            >
+                              <ImShare2 color="#C75A00" />
+                            </div>
+                            <div className="card-text font-weight-bold ml-2 fund-category">
+                              {fund_category}
+                            </div>
                           </div>
-                          <span className="card-text text-muted ml-2 fund-category">
-                            {fund_category}
-                          </span>
-                          <span>
+                          <div>
                             Type:
-                            <span className="font-weight-bold ml-2">
-                              {fund_type}
-                            </span>
-                          </span>
+                      <span className="font-weight-bold ml-2">{fund_type}</span>
+                          </div>
                         </div>
                         <Link
-                          to={`/campaign/${fund_category}/${id}/details`}
                           className="link-router"
-                          onClick={scrollToTop}
+                          onClick={() => window.scrollTo(
+                            {
+                              top: 0,
+                              behavior: "smooth"
+                            },
+                            history.push(`/campaign/${fund_category}/${id}/details`)
+                          )}
                         >
-                          <h4 className="card-title pt-2">{fund_title}</h4>
+                          <h4 className="card-title truncate">{fund_title}</h4>
                         </Link>
                         {fund_type == "Item" ? null : (
                           <LinearProgress
@@ -112,21 +130,32 @@ const AllDonateCashCards = () => {
                               </span>
                             </div>
                             <p className="pt-0">
-                              raised of{" "}
-                              <span>{fund_currency_type + fundCash}</span>
+                              raised of
+                              <span className='ml-2'>{fund_currency_type + fundCash}</span>
                             </p>
                           </div>
                         )}
 
-                        <div className="card-donate-btn-container">
+                        <div
+                          className={
+                            fund_type == "Item"
+                              ? "mt-5 card-donate-btn-container"
+                              : "mt-0 card-donate-btn-container"
+                          }
+                        >
                           <Button
                             variant="contained"
                             className="card-donate-btn"
-                            >
+                          >
                             <Link
-                              to={`/campaign/${fund_category}/${id}/details`}
                               className="link-router-btn"
-                              onClick={scrollToTop}
+                              onClick={() => window.scrollTo(
+                                {
+                                  top: 0,
+                                  behavior: "smooth"
+                                },
+                                history.push(`/campaign/${fund_category}/${id}/details`)
+                              )}
                             >
                               Donate
                             </Link>
@@ -161,4 +190,4 @@ const AllDonateCashCards = () => {
   );
 };
 
-export default AllDonateCashCards;
+export default withRouter(AllDonateCashCards);

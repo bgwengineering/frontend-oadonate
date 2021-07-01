@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import LinearProgress from "@material-ui/core/LinearProgress";
-import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import { AiOutlineFolderOpen } from "react-icons/ai";
 import Avatar from "@material-ui/core/Avatar";
@@ -9,19 +8,20 @@ import SocialMediaButtons from "components/ui/ShareSocialLinks/SocialMediaButton
 import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import CopyShared from "components/ui/ShareSocialLinks/CopySharedLink";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-var numeral = require("numeral");
+import { Link, withRouter } from "react-router-dom";
 
 
-const SingleDonateCards = ({ shareUrl, className, setIsDonateCardButtonsOpen }) => {
-  const [modal, setModal] = useState(false);
+var numeral = require("numeral")
 
-  const toggle = () => setModal(!modal);
+const SingleDonateCards = ({ shareUrl, className, setIsDonateCardButtonsOpen, history }) => {
+const [modal, setModal] = useState(false);
+const toggle = () => setModal(!modal);
 
   const singleCampaign = useSelector(
     state => state.fundDonateReducer.singleCampaign
   );
 
+  const isAuthenticated = useSelector(state => state.authReducer.isAuthenticated);
   
   const {
     fund_cash_amount,
@@ -36,9 +36,10 @@ const SingleDonateCards = ({ shareUrl, className, setIsDonateCardButtonsOpen }) 
   } = singleCampaign;
 
 
-  let fundAmount = numeral(fund_amount_raised).format("0, 0");
+  const fundAmount = numeral(fund_amount_raised).format("0, 0");
+  const fundCashAmount = numeral(fund_cash_amount).format("0, 0");
   const percentageCompleted = Number(fund_percentage_completed).toFixed(1);
-  // const { first_name, last_name } = user;
+
 
   return (
     <>
@@ -53,9 +54,6 @@ const SingleDonateCards = ({ shareUrl, className, setIsDonateCardButtonsOpen }) 
             <div className="donors-info m-b-25">
               <Avatar src="/" />
               <div className="donor-name m-l-9">
-                <span className="mr-2">
-                  {/* by <strong>{first_name + " " + last_name}</strong> */}
-                </span>
                 <span>
                   <FiMail />
                 </span>
@@ -76,7 +74,9 @@ const SingleDonateCards = ({ shareUrl, className, setIsDonateCardButtonsOpen }) 
                 {percentageCompleted + "%"}
               </span>
             </div>
-            <p className="text-muted">raised of {fund_currency_type + fund_cash_amount}</p>
+            <p className="text-muted">
+              raised of {fund_currency_type + fundCashAmount}
+            </p>
             <div
               className="card-donate-btn-container mt-3"
               id="donate-id-button"
@@ -85,7 +85,11 @@ const SingleDonateCards = ({ shareUrl, className, setIsDonateCardButtonsOpen }) 
                 variant="contained"
                 className="card-campaign-btn"
                 id="DoncardBtn"
-                onClick={() => setIsDonateCardButtonsOpen(true)}
+                onClick={() => {
+                  isAuthenticated
+                    ? setIsDonateCardButtonsOpen(true)
+                    : history.push("/auth");
+                }}
               >
                 Donate
               </Button>
@@ -99,6 +103,7 @@ const SingleDonateCards = ({ shareUrl, className, setIsDonateCardButtonsOpen }) 
                 Share
               </Button>
             </div>
+
             <hr />
             <div className="row donated-ws">
               {/* {user.length>=1?<p className="m-l-15">by {user}</p>:null} */}
@@ -127,4 +132,4 @@ const SingleDonateCards = ({ shareUrl, className, setIsDonateCardButtonsOpen }) 
   );
 };
 
-export default SingleDonateCards;
+export default withRouter(SingleDonateCards);

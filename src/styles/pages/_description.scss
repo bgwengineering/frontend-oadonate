@@ -4,13 +4,11 @@
     max-width:890px !important;
  }
   .description-text{
-    text-align: justify;
-    text-justify: inter-character; 
-    word-wrap:break-word;
     letter-spacing: -2px;
     word-spacing:1px;  
     font-size:1.7rem;
-    line-height:40px
+    line-height:40px;
+    text-align: left;
   }
   .description-sub-text{
     font-size:1.4rem;

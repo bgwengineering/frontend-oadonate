@@ -16,21 +16,21 @@ import { fetchAllCampaign } from "store/actions/fund_donate/FundDonate";
 import { updateMarketCollections } from "store/actions/MarketPlace";
 
 
-
-const Navbar = ({ menuOpen,history}) => {
+ const Navbar = ({ menuOpen, history}) => {
   const authState = useSelector(state => state.authReducer);
   const { isAuthenticated } = authState;
 
   const hiddenState = useSelector(state => state.cartReducer);
   const { hidden } = hiddenState;
 
+   
   const cartState = useSelector(state => state.cartReducer);
   const { cartItems } = cartState;
 
   const itemCount = cartItems.reduce(
     (accumulatedQuantity, cartItem) => accumulatedQuantity + cartItem.quantity,
-    0
-  );
+     0);
+   
   const dispatch = useDispatch();
 
   const refreshState = () => {
@@ -61,7 +61,7 @@ const Navbar = ({ menuOpen,history}) => {
                 activeClassName="navigation-link--active"
                 className="navigation-link text-white"
                 onClick={refreshState}
-              >
+               >
                 Home
               </NavLink>
             </li>
@@ -151,7 +151,7 @@ const Navbar = ({ menuOpen,history}) => {
                     className="sub-navigation-link"
                     id="community"
                     onClick={() => {
-                      dispatch(FUNDRAISECATEGORIES())
+                      dispatch(FUNDRAISECATEGORIES());
                       window.scrollTo(
                         {
                           top: 0,
@@ -159,10 +159,9 @@ const Navbar = ({ menuOpen,history}) => {
                         },
                         history.push("/categories/community-fundraising")
                       );
-                    }
-                  }
-                >
-                  Community
+                    }}
+                  >
+                    Community
                   </Link>
                 </li>
                 <li className="nav__submenu-item">
@@ -172,7 +171,7 @@ const Navbar = ({ menuOpen,history}) => {
                     className="sub-navigation-link"
                     id="startup"
                     onClick={() => {
-                      dispatch(FUNDRAISECATEGORIES())
+                      dispatch(FUNDRAISECATEGORIES());
                       window.scrollTo(
                         {
                           top: 0,
@@ -180,10 +179,9 @@ const Navbar = ({ menuOpen,history}) => {
                         },
                         history.push("/categories/startup-fundraising")
                       );
-                    }
-                   }
-              >
-                  Start up
+                    }}
+                  >
+                    Start up
                   </Link>
                 </li>
                 <hr />
@@ -194,7 +192,7 @@ const Navbar = ({ menuOpen,history}) => {
                     className="sub-navigation-link"
                     id="see-all"
                     onClick={() => {
-                      dispatch(FUNDRAISECATEGORIES())              
+                      dispatch(FUNDRAISECATEGORIES());
                       window.scrollTo(
                         {
                           top: 0,
@@ -202,16 +200,14 @@ const Navbar = ({ menuOpen,history}) => {
                         },
                         history.push("/categories")
                       );
-                    }
-                 }
-                 >
-                 See all
+                    }}
+                  >
+                    See all
                   </Link>
                 </li>
               </ul>
             </li>
 
-            
             {/* donate */}
             <li className="nav-item donate-nav-item navigation-link text-white">
               <NavLink
@@ -258,14 +254,16 @@ const Navbar = ({ menuOpen,history}) => {
                     activeClassName="navigation-link--active"
                     className="sub-navigation-link"
                     id="donate-cash"
-                    onClick={() => window.scrollTo(
-                      {
-                        top: 0,
-                        behavior: "smooth"
-                      },
-                      history.push("/donate/cash")
-                    )}
-                   >
+                    onClick={() =>
+                      window.scrollTo(
+                        {
+                          top: 0,
+                          behavior: "smooth"
+                        },
+                        history.push("/donate/cash")
+                      )
+                    }
+                  >
                     Donate Cash
                   </Link>
                 </li>
@@ -275,13 +273,15 @@ const Navbar = ({ menuOpen,history}) => {
                     activeClassName="navigation-link--active"
                     className="sub-navigation-link"
                     id="donate-item"
-                    onClick={() => window.scrollTo(
-                      {
-                        top: 0,
-                        behavior: "smooth"
-                      },
-                      history.push("/donate/item")
-                    )}
+                    onClick={() =>
+                      window.scrollTo(
+                        {
+                          top: 0,
+                          behavior: "smooth"
+                        },
+                        history.push("/donate/item")
+                      )
+                    }
                   >
                     Donate Item
                   </Link>
@@ -292,14 +292,16 @@ const Navbar = ({ menuOpen,history}) => {
                     activeClassName="navigation-link--active"
                     className="sub-navigation-link"
                     id="donate-ogadonate"
-                    onClick={() => window.scrollTo(
-                      {
-                        top: 0,
-                        behavior: "smooth"
-                      },
-                      history.push("/donate/ogadonate")
-                    )}
-                    >
+                    onClick={() =>
+                      window.scrollTo(
+                        {
+                          top: 0,
+                          behavior: "smooth"
+                        },
+                        history.push("/donate/ogadonate")
+                      )
+                    }
+                  >
                     Donate to ogadonate
                   </Link>
                 </li>
@@ -352,13 +354,15 @@ const Navbar = ({ menuOpen,history}) => {
                     activeClassName="navigation-link--active"
                     className="sub-navigation-link"
                     id="about"
-                    onClick={() => window.scrollTo(
-                      {
-                        top: 0,
-                        behavior: "smooth"
-                      },
-                      history.push("/about")
-                    )}
+                    onClick={() =>
+                      window.scrollTo(
+                        {
+                          top: 0,
+                          behavior: "smooth"
+                        },
+                        history.push("/about")
+                      )
+                    }
                   >
                     About us
                   </Link>
@@ -369,13 +373,15 @@ const Navbar = ({ menuOpen,history}) => {
                     activeClassName="navigation-link--active"
                     className="sub-navigation-link"
                     id="contact"
-                    onClick={() => window.scrollTo(
-                      {
-                        top: 0,
-                        behavior: "smooth"
-                      },
-                      history.push("/contact")
-                    )}
+                    onClick={() =>
+                      window.scrollTo(
+                        {
+                          top: 0,
+                          behavior: "smooth"
+                        },
+                        history.push("/contact")
+                      )
+                    }
                   >
                     Contact us
                   </Link>
@@ -412,14 +418,20 @@ const Navbar = ({ menuOpen,history}) => {
               </li>
             ) : (
               <li className="nav-item nav-signup-login navbar-right-hidden">
-                <NavLink
-                  to="/auth"
+                <Link
+    
                   exact
                   activeClassName="navigation-link--active"
-                  className="navigation-link text-white "
+                  className="navigation-link text-white"
+                    onClick={() => {
+                      window.scrollTo({
+                        top: 0,
+                        behavior:'smooth'
+                      }, history.push("/auth"))
+                  }}
                 >
                   Login/Signup
-                </NavLink>
+                </Link>
               </li>
             )}
 
@@ -435,9 +447,9 @@ const Navbar = ({ menuOpen,history}) => {
             </li>
 
             {/* cart icons and count */}
-            <li className="nav-item navigation-btn-item">
+            <li className="nav-item navigation-btn-item cart-container">
               <div className="cart-badge">
-                <span onMouseEnter={() => dispatch(toggleCartHidden())}>
+                <span>
                   <FiShoppingCart color="#fff" className="shopping-cart" />
                 </span>
                 <span className="badge-container">
@@ -445,9 +457,11 @@ const Navbar = ({ menuOpen,history}) => {
                     {itemCount}
                   </CBadge>
                 </span>
+                <div className="cartdropdown-hidden">
+                  <CartDropdown />
+                </div>
               </div>
             </li>
-            {hidden ? null : <CartDropdown />}
           </ul>
         </div>
       </nav>

@@ -13,23 +13,56 @@ import {
   CSidebarNavItem,
 } from '@coreui/react'
 import Logo from "assets/images/ogdonate-logo.jpeg";
-
 import CIcon from '@coreui/icons-react'
+
 
 // sidebar nav config
 import navigation from './_nav'
-import AdminNavigation from './adminNav'
+import saleAffiliateNav from './affiliateNav/saleAffiliateNav'
+
 
 const TheSidebar = () => {
-  const dispatch = useDispatch()
-  const isAdmin = useSelector(state => state.userTypeReducer.profile_user)
-   const show = useSelector(state => state.settings)
+const dispatch = useDispatch()
+const authState = useSelector(state => state.authReducer);
+  const { user } = authState;
+
+  const show = useSelector(state => state.settings)
   const {sidebarShow} = show
+
+    // const checkAffiliateType = () => {
+    //   switch (user.is_affiliate) {
+    //     case true:
+    //       return (
+    //         <CCreateElement
+    //           items={saleAffiliateNav}
+    //           components={{
+    //             CSidebarNavDivider,
+    //             CSidebarNavDropdown,
+    //             CSidebarNavItem,
+    //             CSidebarNavTitle
+    //           }}
+    //         />
+    //       )
+    //     default: return (
+    //       <CCreateElement
+    //         items={navigation}
+    //         components={{
+    //           CSidebarNavDivider,
+    //           CSidebarNavDropdown,
+    //           CSidebarNavItem,
+    //           CSidebarNavTitle
+    //         }}
+    //       />
+    //     )
+    //   }
+    // }
 
   return (
     <CSidebar
       show={sidebarShow}
-      onShowChange={() =>{dispatch(toggleDashboardSideNav())}}
+      onShowChange={() => {
+        dispatch(toggleDashboardSideNav());
+      }}
     >
       <CSidebarBrand className="d-md-down-none" to="/">
         <CIcon
@@ -37,26 +70,21 @@ const TheSidebar = () => {
           name="logo-negative"
           height={35}
         />
-        <img src ={Logo} alt= 'logo' className="logo c-sidebar-brand-full"
-              style={{ width: "150px" }}  name="logo-negative"/>
+        <img
+          src={Logo}
+          alt="logo"
+          className="logo c-sidebar-brand-full"
+          style={{ width: "150px" }}
+          name="logo-negative"
+        />
         <CIcon
           className="c-sidebar-brand-minimized"
           name="sygnet"
           height={35}
         />
       </CSidebarBrand>
-      <CSidebarNav>
 
-       {/* <CCreateElement
-          items={AdminNavigation}
-          components={{
-            CSidebarNavDivider,
-            CSidebarNavDropdown,
-            CSidebarNavItem,
-            CSidebarNavTitle
-          }}
-          /> */}
-          
+      <CSidebarNav>
         <CCreateElement
           items={navigation}
           components={{
@@ -65,11 +93,12 @@ const TheSidebar = () => {
             CSidebarNavItem,
             CSidebarNavTitle
           }}
-        />
+        />  
+       
       </CSidebarNav>
-      <CSidebarMinimizer className="c-d-md-down-none"/>
+      <CSidebarMinimizer className="c-d-md-down-none" />
     </CSidebar>
-  )
+  );
 }
 
 export default React.memo(TheSidebar)
