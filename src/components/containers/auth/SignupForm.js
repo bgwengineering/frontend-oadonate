@@ -52,7 +52,11 @@ const SignupForm = ({ handleSubmit, submitting, pristine }) => {
             component={renderField}
             className="input"
             label="Referral Code(Optional)"
+<<<<<<< HEAD
             name="affiliate_user_code"
+=======
+            name="affiliate_code"
+>>>>>>> fe8859802d29bad8de9f8af4f0dcde2c9c32cb38
             type="text"
           />
         </fieldset>
