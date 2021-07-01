@@ -12,10 +12,15 @@ export const corporate = ({
          rep_email,
          rep_fullname,
          company_category,
-         address,
-         email,
+         company_address,
+         company_email,
          company_name,
-         state
+         company_phone,
+         state,
+         country,
+         about_us,
+         city,
+         company_type
        }) => async dispatch => {
          const formBody = {
            otherAdmin_email,
@@ -25,15 +30,20 @@ export const corporate = ({
            rep_email,
            rep_fullname,
            company_category,
-           address,
-           email,
-           company_name,
-           state
+           company_address,
+           company_email,
+         company_name,
+         state,
+         country,
+         about_us,
+         company_phone,
+         city,
+         company_type
          };
 
          dispatch(setLoading());
          try {
-           const res = await axiosInstance.post("https://ogadonate.com.ng/api/", formBody);
+           const res = await axiosInstance.post("profile/company", formBody);
            dispatch({
              type: actionTypes.CREATE_CORPORATE_SUCCESS,
              payload: res.data

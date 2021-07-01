@@ -41,7 +41,6 @@ const EditShipping = ({ nextPage, handleSubmit, id }) => {
       />
     </div>
   );
-
   return (
     <div className="container-fluid mt--7">
       <div className="row">

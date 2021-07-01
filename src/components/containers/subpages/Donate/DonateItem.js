@@ -14,7 +14,6 @@ const DonateItem = ({ history }) => {
     error: null,
     result: []
   });
-
   const [searchValue, setSearchValue] = useState("");
   const [filteredData, setFilteredData] = useState([]);
 

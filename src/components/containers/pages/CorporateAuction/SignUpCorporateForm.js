@@ -27,15 +27,7 @@ const SignUpCorporateForm = ({ pristine, submitting }) => {
           {/* account info */}
           <div className="col-xl-8 order-xl-1 mx-auto">
             <div className="card shadow">
-              <div className="card-header bg-white border-0">
-                <div className="row align-items-center">
-                  <div className="col-8">
-                    <h3 className="all-heading mb-0 mx-auto text-capitalize">
-                      Create Your Organisational Account
-                    </h3>
-                  </div>
-                </div>
-              </div>
+              
               <div className="card-body">
                 <h6 className="heading-small text-muted mb-4">
                   Basic information
@@ -77,7 +69,7 @@ const SignUpCorporateForm = ({ pristine, submitting }) => {
                             className="form-control form-control-alternative"
                             placeholder="email"
                             component="input"
-                            name="email"
+                            name="company_email"
                           />
                         </div>
                       </div>
@@ -141,6 +133,24 @@ const SignUpCorporateForm = ({ pristine, submitting }) => {
                             className="profile-control-label"
                             htmlFor="state"
                           >
+                            Country
+                          </label>
+                          <Field
+                            type="text"
+                            id="phone"
+                            className="form-control form-control-alternative"
+                            placeholder="Enter yoyr state"
+                            component="input"
+                            name="country"
+                          />
+                        </div>
+                      </div>
+                      <div className="col-lg-6">
+                        <div className="form-group">
+                          <label
+                            className="profile-control-label"
+                            htmlFor="state"
+                          >
                             State
                           </label>
                           <Field
@@ -167,7 +177,7 @@ const SignUpCorporateForm = ({ pristine, submitting }) => {
                             type="text"
                             id="category"
                             className="form-control form-control-alternative"
-                            name="company_category"
+                            name="city"
                           />
                         </div>
                       </div>
@@ -185,8 +195,28 @@ const SignUpCorporateForm = ({ pristine, submitting }) => {
                             Address
                           </label>
                           <Field
-                            name="address"
+                            name="company_address"
                             component="input"
+                            type="text"
+                            className="form-control form-control-alternative"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="pl-lg-4">
+                    <div className="row">
+                      <div className="col-md-12">
+                        <div className="form-group ">
+                          <label
+                            className="profile-control-label"
+                            htmlFor="input-address"
+                          >
+                            About Us
+                          </label>
+                          <Field
+                            name="about_us"
+                            component="textarea"
                             type="text"
                             className="form-control form-control-alternative"
                           />
