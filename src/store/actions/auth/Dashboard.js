@@ -167,7 +167,6 @@ export const updateShippingAddressCheckout = (id, address) => async (dispatch, g
   }
 };
 
-
 //get shipping address
 export const fetchShippingAddress = () => async (dispatch, getState) => {
   try {

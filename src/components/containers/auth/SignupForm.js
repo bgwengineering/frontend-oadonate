@@ -93,7 +93,6 @@ const SignupForm = ({ handleSubmit, submitting, pristine }) => {
   );
 };
 
-
 export default reduxForm({
   form: "SignupForm",
   validate

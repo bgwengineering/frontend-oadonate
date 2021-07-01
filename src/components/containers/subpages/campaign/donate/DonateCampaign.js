@@ -25,7 +25,6 @@ const DonateCampaign = ({ match }) => {
   const handleSwitchCurrentForm = (formToShow) => {
     setCurrentOpenForm(formToShow);
   };
-
   const shareUrl = window.location.href;
 
   return (

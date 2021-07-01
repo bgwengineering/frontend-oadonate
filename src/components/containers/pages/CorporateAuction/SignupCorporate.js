@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import SignUpCorporateForm from "./SignUpCorporateForm";
-import { reduxForm } from "redux-form";
+import { Field,reduxForm } from "redux-form";
 import { corporate } from 'store/actions/auth/Corporate';
 import { useDispatch } from 'react-redux';
 const SignupCorporate = ({ handleSubmit, pristine, submitting }) => {
   const [checked, setChecked] = useState({
-    ngoChecked: false,
+    ngoChecked: true,
     corporateChecked: false,
     religiousChecked: false,
     auctioneerChecked: false
@@ -24,61 +24,37 @@ const SignupCorporate = ({ handleSubmit, pristine, submitting }) => {
   }
 
   // toggle switch
-  const ToggleCorporate = ({ checked, onChange, id, name }) => (
-    <div>
-      <input
-        type="checkbox"
-        checked={corporateChecked}
-        onChange={e => {
-          onChange({ ...checked, corporateChecked: e.target.checked });
-        }}
-        id={id}
-        name={name}
-      />
-    </div>
+  const ToggleCorporate = () => (
+    setChecked({...checked,
+      ngoChecked: false,
+      corporateChecked: true,
+      religiousChecked: false,
+      auctioneerChecked: false  })
+  );
+  const ToggleNgo = () => (
+    setChecked({...checked,
+      ngoChecked: true,
+      corporateChecked: false,
+      religiousChecked: false,
+      auctioneerChecked: false  })
+    
+  );
+  const ToggleReligious = () => (
+    setChecked({...checked,
+      ngoChecked: false,
+      corporateChecked: false,
+      religiousChecked: true,
+      auctioneerChecked: false  })
+  );
+  const ToggleAuctioneer = () => (
+    setChecked({...checked,
+      ngoChecked: false,
+      corporateChecked: false,
+      religiousChecked: false,
+      auctioneerChecked: true  })
   );
 
-  const ToggleNgo = ({ checked, onChange, id, name }) => (
-    <div>
-      <input
-        type="checkbox"
-        checked={ngoChecked}
-        onChange={e => {
-          onChange({ ...checked, ngoChecked: e.target.checked });
-        }}
-        id={id}
-        name={name}
-      />
-    </div>
-  );
-
-  const ToggleReligious = ({ checked, onChange, id, name }) => (
-    <div>
-      <input
-        type="checkbox"
-        checked={religiousChecked}
-        onChange={e => {
-          onChange({ ...checked, religiousChecked: e.target.checked });
-        }}
-        id={id}
-        name={name}
-      />
-    </div>
-  );
-
-  const ToggleAuctioneer = ({ checked, onChange, id, name }) => (
-    <div>
-      <input
-        type="checkbox"
-        checked={auctioneerChecked}
-        onChange={e => {
-          onChange({ ...checked, auctioneerChecked: e.target.checked });
-        }}
-        id={id}
-        name={name}
-      />
-    </div>
-  );
+  
 
   return (
     <div>
@@ -88,46 +64,64 @@ const SignupCorporate = ({ handleSubmit, pristine, submitting }) => {
       <form onSubmit={handleSubmit(Submit)}>
         <div className="d-flex justify-content-center align-items-center corporate-category">
           <span className="d-flex ml-3">
-            <ToggleNgo
-              checked={ngoChecked}
+            <Field
               id="form"
-              onChange={setChecked}
-              name="NGO"
+              onClick={ToggleNgo}
+              value="NGO"
+              name="company_type"
+              component="input"
+              type="radio"
             />
             <span className="shipping-msg ml-2">NGO</span>
           </span>
 
           <span className="d-flex ml-3">
-            <ToggleCorporate
-              checked={corporateChecked}
+            <Field
               id="form-ui"
-              onChange={setChecked}
-              name="Corporate"
+              onClick={ToggleCorporate}
+              value="Corporate"
+              name="company_type"
+              component="input"
+              type="radio"
             />
             <span className="shipping-msg ml-2">Corporate</span>
           </span>
 
           <span className="d-flex ml-3">
-            <ToggleReligious
-              checked={religiousChecked}
+            <Field
               id="form-rel"
-              onChange={setChecked}
-              name="Religious Organisation"
+              onClick={ToggleReligious}
+              value="Religious Organisation"
+              name="company_type"
+              component="input"
+              type="radio"
             />
             <span className="shipping-msg ml-2">Religious Organisation</span>
           </span>
 
           <span className="d-flex ml-3">
-            <ToggleAuctioneer
-              checked={auctioneerChecked}
+            <Field
               id="form-auct"
-              onChange={setChecked}
-              name="Auctioneer"
+              component="input"
+              onClick={ToggleAuctioneer}
+              value="Auctioneer"
+              name="company_type"
+              type="radio"
             />
             <span className="shipping-msg ml-2">Auctioneer</span>
           </span>
         </div>
-
+        <div className="card-header bg-white border-0">
+                <div className="row align-items-center">
+                  <div className="col-8">
+                    <h3 className="all-heading mb-0 mx-auto text-capitalize">
+                      Create Your {ngoChecked ? "NGO" :
+                       corporateChecked ? "Corperate": religiousChecked ? "Religious" :
+                       auctioneerChecked? "Auctioneer" : "NGO"}Account
+                    </h3>
+                  </div>
+                </div>
+              </div>
         {ngoChecked && <SignUpCorporateForm pristine={pristine} submitting={submitting} />}
         {corporateChecked && <SignUpCorporateForm />}
         {religiousChecked && <SignUpCorporateForm />}
