@@ -23,11 +23,6 @@ const DonateItemForm = ({
   pristine,
   submitting
 }) => {
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
   const [postData, setPostData] = useState({
     donate_item_name: "",
     donate_item_desc: "",
@@ -47,39 +42,6 @@ const DonateItemForm = ({
   });
 
   const [itemImage, setItemImage] = useState(null);
-<<<<<<< HEAD
-    const checkFieldEmpty = () => {
-      return (  
-        postData.donate_item_name == "" ||
-        postData.donate_item_desc == "" ||
-        postData.donate_item_condition == "select_condition" ||
-        postData.donate_product_category == "select_category"
-      );
-  };
-  
-  const [activeStep, setActiveStep] = useState(0);
-  const isDesktopOrLaptop = useMediaQuery({ query: "(min-width: 768px)" });
-  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 767px)" });
-
-  const [isPriceOgadonate, setIsPriceOgadonate] = useState(false);
-  const [isPriceAuction, setIsPriceAuction] = useState(false);
-
-  const handlePriceForOgadonate = () => {
-    setIsPriceOgadonate(prevState => ({isPriceOgadonate:!prevState.isPriceOgadonate}));
-    setIsPriceAuction(false);
-  };
-
-
-  const handleDetermineAuctionPrice = () => {
-    setIsPriceAuction(prevState => ({ isPriceAuction: !prevState.isPriceAuction }));
-    setIsPriceOgadonate(false);
-  };
-
-  const [currentQuestionnaireOpen, setCurrentQuestionnaireOpen] = useState(null);
-  const [isQuestionAnswerShown, setIsQuestionAnswerShown] = useState(false);
-
-
-=======
   const checkFieldEmpty = () => {
     return (
       postData.donate_item_name == "" ||
@@ -100,7 +62,6 @@ const DonateItemForm = ({
   );
   const [isQuestionAnswerShown, setIsQuestionAnswerShown] = useState(false);
 
->>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
   const handleSwitchCurrentQuestion = formToShow => {
     setCurrentQuestionnaireOpen(formToShow);
   };
@@ -116,11 +77,7 @@ const DonateItemForm = ({
     let imageFile = event.target.files[0];
     if (imageFile) {
       const localImageUrl = URL.createObjectURL(imageFile);
-<<<<<<< HEAD
-      const imageObject = new window.Image()
-=======
       const imageObject = new window.Image();
->>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
       imageObject.onload = () => {
         imageFile.width = imageObject.naturalWidth;
         imageFile.height = imageObject.naturalHeight;
@@ -166,10 +123,6 @@ const DonateItemForm = ({
         Accept: "application/json"
       }
     };
-<<<<<<< HEAD
-
-=======
->>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
     dispatch(setLoading());
     try {
       const res = await axiosInstance.post(
@@ -185,11 +138,7 @@ const DonateItemForm = ({
       dispatch(stopSubmit("donateItemForm"));
       dispatch(reset("donateItemForm"));
       dispatch(offLoading());
-<<<<<<< HEAD
-     } catch (error) {
-=======
     } catch (error) {
->>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
       if (error.response.data) {
         error.response.data.donate_item_name.map(err => {
           return dispatch({
@@ -224,13 +173,9 @@ const DonateItemForm = ({
     }
   };
 
-<<<<<<< HEAD
-  
-=======
   const [auctionChecked, setAuctionChecked] = useState(false);
   const [ogadonateChecked, setOgadonateChecked] = useState(false);
 
->>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
   const getSteps = () => {
     return [
       "Item Information",
@@ -306,14 +251,10 @@ const DonateItemForm = ({
             <h2 className="fs-title mr-2 text-uppercase font-weight-bold ">
               Item Condition <span className="text-danger ml-1">*</span>
             </h2>
-<<<<<<< HEAD
-            <select component="select" name="donate_item_condition">
-=======
             <select
               onChange={handleChange}
               name="donate_item_condition"
             >
->>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
               <option value="select_condition">select condition</option>
               <option value="New">New</option>
               <option value="Good">Good</option>
@@ -373,22 +314,12 @@ const DonateItemForm = ({
   const getItems = () => {
     return (
       <fieldset>
-<<<<<<< HEAD
-        <div
-          id="donate__share__questionnaire"
-          style={{ display: !currentQuestionnaireOpen ? "block" : "none" }}
-         >
-          <DonateShareQuestionnaire
-            setIsQuestionAnswerShown={setIsQuestionAnswerShown}
-            handleSwitchCurrentQuestion={handleSwitchCurrentQuestion}
-=======
         <div id="donate__share__questionnaire">
           <DonateShareQuestionnaire
             setIsQuestionAnswerShown={setIsQuestionAnswerShown}
             handleSwitchCurrentQuestion={handleSwitchCurrentQuestion}
             isQuestionAnswerShown = {isQuestionAnswerShown}
             currentQuestionnaireOpen = {currentQuestionnaireOpen}
->>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
           />
         </div>
         <div
@@ -400,11 +331,7 @@ const DonateItemForm = ({
                 ? "block"
                 : "none"
           }}
-<<<<<<< HEAD
-        >
-=======
           >
->>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
           {/* percentage value */}
           <div>
             <label>Percentage Value</label>
@@ -436,11 +363,7 @@ const DonateItemForm = ({
                 ? "block"
                 : "none"
           }}
-<<<<<<< HEAD
-        >
-=======
          >
->>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
           {/* donate items market form */}
           <>
             {/* item sell*/}
@@ -450,24 +373,6 @@ const DonateItemForm = ({
             <label className="mr-3">
               Price Determined by <span className="text-danger">*</span>
             </label>
-<<<<<<< HEAD
-            <select
-              name="donate_determine_by"
-              className="mb-4"
-              onChange={handleChange}
-            >
-              <option value="">select market</option>
-              <option value="Market" onClick={handleDetermineAuctionPrice}>
-                Auction Market
-              </option>
-              <option value="Ogadonate" onClick={handlePriceForOgadonate}>
-                Ogadonate
-              </option>
-            </select>
-
-            {/* currency-auction-type */}
-            <div className="d-flex justify-content-between flex-wrap">
-=======
 
             <div className='d-flex flex-wrap'>
               <div className='d-flex price-check-auction'>
@@ -504,7 +409,6 @@ const DonateItemForm = ({
         
             {/* currency-auction-type */}
             <div className="d-flex justify-content-between flex-wrap mt-3">
->>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
               <div>
                 <label className="mr-3">
                   Currency <span className="text-danger">*</span>
@@ -513,23 +417,13 @@ const DonateItemForm = ({
                   name="donate_currency"
                   className="mb-4"
                   onChange={handleChange}
-<<<<<<< HEAD
-                >
-                  <option value="">select currency</option>
-                  <option value="$">$</option>
-=======
                   >
                   <option value="">select currency</option>
->>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
                   <option value="₦">₦</option>
                 </select>
               </div>
 
-<<<<<<< HEAD
-              {isPriceAuction && (
-=======
               {auctionChecked && (
->>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
                 <div>
                   <label className="mr-3">
                     Auction Type <span className="text-danger">*</span>
@@ -543,11 +437,7 @@ const DonateItemForm = ({
               )}
             </div>
 
-<<<<<<< HEAD
-            {isPriceOgadonate &&
-=======
             {ogadonateChecked && (
->>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
               <div>
                 <label>
                   Item Cash Value <span className="text-danger">*</span>
@@ -565,43 +455,6 @@ const DonateItemForm = ({
                   value={postData.donate_determine_price}
                 />
               </div>
-<<<<<<< HEAD
-            }
-
-            
-            {isPriceAuction &&
-            <div>
-              <label>
-                Auction Price <span className="text-danger">*</span>
-              </label>
-              <input
-                id="price_determination"
-                name="donate_bid_min_val"
-                onChange={handleChange}
-                data-msg-required="Please enter a valid number"
-                type="number"
-                normalize={val => (val || "").replace(/[^\d]/g, "")}
-                className="input-number"
-                placeholder="What's the minimum value of the item for auction bid(e.g 50,000)"
-                value={postData.donate_bid_min_val}
-              />
-            </div>
-            }
-            
-            <div className="item-cash-value">
-              <label>
-                Auction End Date <span className="text-danger">*</span>
-              </label>
-              <input
-                id="donate_bid_endAt"
-                name="donate_bid_endAt"
-                onChange={handleChange}
-                type="date"
-                className="input-date"
-                value={postData.donate_bid_endAt}
-              />
-            </div>
-=======
             )}
 
             {auctionChecked && (
@@ -638,7 +491,6 @@ const DonateItemForm = ({
                 </div>
               </>
             )}
->>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
           </>
         </div>
       </fieldset>
@@ -709,11 +561,7 @@ const DonateItemForm = ({
                       className={`horizontal-stepper ${
                         index === activeStep ? "active" : ""
                       }`}
-<<<<<<< HEAD
-                    >
-=======
                      >
->>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
                       <StepLabel className="stepperlabel">{label}</StepLabel>
                     </Step>
                   );
@@ -738,11 +586,7 @@ const DonateItemForm = ({
                       style={{ width: 24, padding: 0 }}
                       key={label}
                       {...props}
-<<<<<<< HEAD
-                    >
-=======
                       >
->>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
                       {/* <StepLabel {...labelProps}></StepLabel> */}
                     </Step>
                   );
@@ -775,11 +619,7 @@ const DonateItemForm = ({
                       }}
                       className="mr-2 ml-2"
                       color="primary"
-<<<<<<< HEAD
-                    >
-=======
                       >
->>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
                       Cancel
                     </Button>
                   </div>
@@ -808,13 +648,6 @@ const DonateItemForm = ({
                   type="submit"
                   name="submit"
                   className="MuiButton-containedPrimary"
-<<<<<<< HEAD
-                    disabled={pristine || submitting}
-                    onClick={() => window.scrollTo({
-                      top: 0,
-                      behavior:'smooth'
-                    })}
-=======
                   disabled={pristine || submitting}
                   onClick={() =>
                     window.scrollTo({
@@ -822,7 +655,6 @@ const DonateItemForm = ({
                       behavior: "smooth"
                     })
                   }
->>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
                 >
                   Submit
                 </Button>

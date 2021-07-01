@@ -52,11 +52,7 @@ const SignupForm = ({ handleSubmit, submitting, pristine }) => {
             component={renderField}
             className="input"
             label="Referral Code(Optional)"
-<<<<<<< HEAD
-            name="affiliate_code"
-=======
             name="affiliate_user_code"
->>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
             type="text"
           />
         </fieldset>
@@ -97,10 +93,6 @@ const SignupForm = ({ handleSubmit, submitting, pristine }) => {
   );
 };
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
 export default reduxForm({
   form: "SignupForm",
   validate

@@ -5,10 +5,6 @@ import * as actionTypes from "store/actions/ActionTypes"
 const INITIAL_STATE = {
     collections: [],
     singleCollections:[],
-<<<<<<< HEAD
-    // loading:true
-=======
->>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
 }
 const marketPlace = (state=INITIAL_STATE, action) => {
   switch(action.type){

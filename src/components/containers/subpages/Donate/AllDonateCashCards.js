@@ -1,39 +1,18 @@
 import React, {useState} from "react";
-<<<<<<< HEAD
-import { Link } from "react-router-dom";
-import LinearProgress from "@material-ui/core/LinearProgress";
-import Button from "@material-ui/core/Button";
-import { AiOutlineFolderOpen } from "react-icons/ai";
-=======
 import { Link, withRouter } from "react-router-dom";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import Button from "@material-ui/core/Button";
 import { ImShare2 } from 'react-icons/im'
->>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
 import Pagination from "components/ui/Pagination/Pagination"
 import {useSelector} from 'react-redux'
 
 var numeral = require('numeral');
 
 
-<<<<<<< HEAD
-const AllDonateCashCards = () => {
-  const fundState = useSelector((state) => state.fundDonateReducer);
-  const { allCampaign } = fundState;
- 
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
-
-=======
 const AllDonateCashCards = ({history}) => {
   const fundState = useSelector((state) => state.fundDonateReducer);
   const { allCampaign } = fundState;
  
->>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
   const [page, setPage] = useState(1);
   const [cardPerPage, setCardPerPage] = useState(3);
 
@@ -73,14 +52,6 @@ const AllDonateCashCards = ({history}) => {
 
               return (
                 <div className="col-sm-6 col-md-6 col-lg-4 p-t-10">
-<<<<<<< HEAD
-                  <div className="card card-feature" key={id}>
-                    <Link
-                      to={`/campaign/${fund_category}/${id}/details`}
-                      className="link-router"
-                      onClick={scrollToTop}
-                     >
-=======
                   <div
                     className={
                       fund_type == "Item" ? "card card-item" : "card card-cash"
@@ -97,7 +68,6 @@ const AllDonateCashCards = ({history}) => {
                         history.push(`/campaign/${fund_category}/${id}/details`)
                       )}
                     >
->>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
                       <img
                         className="card-img-top"
                         src={fund_img}
@@ -106,28 +76,6 @@ const AllDonateCashCards = ({history}) => {
                     </Link>
                     <div className="card-body">
                       <div>
-<<<<<<< HEAD
-                        <div className="d-flex">
-                          <div className="ai-outline">
-                            <AiOutlineFolderOpen />
-                          </div>
-                          <span className="card-text text-muted ml-2 fund-category">
-                            {fund_category}
-                          </span>
-                          <span>
-                            Type:
-                            <span className="font-weight-bold ml-2">
-                              {fund_type}
-                            </span>
-                          </span>
-                        </div>
-                        <Link
-                          to={`/campaign/${fund_category}/${id}/details`}
-                          className="link-router"
-                          onClick={scrollToTop}
-                        >
-                          <h4 className="card-title pt-2">{fund_title}</h4>
-=======
                         <div className="d-flex justify-content-between">
                           <div className='d-flex'>
                             <div
@@ -163,7 +111,6 @@ const AllDonateCashCards = ({history}) => {
                           )}
                         >
                           <h4 className="card-title truncate">{fund_title}</h4>
->>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
                         </Link>
                         {fund_type == "Item" ? null : (
                           <LinearProgress
@@ -183,28 +130,12 @@ const AllDonateCashCards = ({history}) => {
                               </span>
                             </div>
                             <p className="pt-0">
-<<<<<<< HEAD
-                              raised of{" "}
-                              <span>{fund_currency_type + fundCash}</span>
-=======
                               raised of
                               <span className='ml-2'>{fund_currency_type + fundCash}</span>
->>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
                             </p>
                           </div>
                         )}
 
-<<<<<<< HEAD
-                        <div className="card-donate-btn-container">
-                          <Button
-                            variant="contained"
-                            className="card-donate-btn"
-                            >
-                            <Link
-                              to={`/campaign/${fund_category}/${id}/details`}
-                              className="link-router-btn"
-                              onClick={scrollToTop}
-=======
                         <div
                           className={
                             fund_type == "Item"
@@ -225,7 +156,6 @@ const AllDonateCashCards = ({history}) => {
                                 },
                                 history.push(`/campaign/${fund_category}/${id}/details`)
                               )}
->>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
                             >
                               Donate
                             </Link>
@@ -260,8 +190,4 @@ const AllDonateCashCards = ({history}) => {
   );
 };
 
-<<<<<<< HEAD
-export default AllDonateCashCards;
-=======
 export default withRouter(AllDonateCashCards);
->>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad

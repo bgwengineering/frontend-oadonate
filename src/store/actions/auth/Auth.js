@@ -23,10 +23,6 @@ import {
 } from "../ActionTypes";
 
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
 export const load_user = () => async (dispatch) => {
   if (localStorage.getItem("access")) {
     const config = {
@@ -56,11 +52,6 @@ export const load_user = () => async (dispatch) => {
   }
 };
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
 export const checkAuthenticated = () => async (dispatch) => {
   if (localStorage.getItem("access")) {
     const body = { token: localStorage.getItem("access") };
@@ -120,13 +111,8 @@ export const login = ({ email, password }) => async (dispatch) => {
             payload: `Email: ${err}`,
           }))
         });
-<<<<<<< HEAD
-      err.response.data.password &&
-        err.response.data.password.map((err) => { return(
-=======
         err.response.data.password &&
          err.response.data.password.map((err) => { return(
->>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
           dispatch({ type: SHOW_ERROR_MESSAGE, payload: `Password: ${err}` })
           )
         });
@@ -141,10 +127,6 @@ export const login = ({ email, password }) => async (dispatch) => {
 
 
 // signup
-<<<<<<< HEAD
-
-=======
->>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
 export const signup = ({ first_name, last_name, email, password }) => async (dispatch) => {
   dispatch(setLoading())
   const body = { first_name, last_name, email, password };

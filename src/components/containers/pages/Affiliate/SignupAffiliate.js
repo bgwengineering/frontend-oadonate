@@ -1,26 +1,15 @@
-<<<<<<< HEAD
-import React, { useState } from "react";
-=======
 import React from "react";
->>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
 import { useDispatch } from "react-redux";
 import { Field, reduxForm } from "redux-form";
 import { affiliateSignup } from 'store/actions/auth/Affiliate';
 
 
-<<<<<<< HEAD
-const SignupAffiliate = ({ handleSubmit, pristine, submitting }) => {
-  const dispatch = useDispatch()
-  const submit = formValues => {   
-      dispatch(affiliateSignup(formValues))
-=======
 
 const SignupAffiliate = ({ handleSubmit, pristine, submitting }) => {
   const dispatch = useDispatch()
 
   const submit = formValues => {   
     dispatch(affiliateSignup(formValues));
->>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
     }
 
   return (
@@ -67,11 +56,7 @@ const SignupAffiliate = ({ handleSubmit, pristine, submitting }) => {
                       <label
                         className="profile-control-label"
                         for="input-last-name"
-<<<<<<< HEAD
-                      >
-=======
                        >
->>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
                         Last name
                       </label>
                       <Field
@@ -166,11 +151,7 @@ const SignupAffiliate = ({ handleSubmit, pristine, submitting }) => {
                   <button
                     disabled={pristine || submitting}
                     className="btn btn-sm profile-sbm-btn ml-3"
-<<<<<<< HEAD
-                  >
-=======
                     >
->>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
                     Submit
                   </button>
                 </div>

@@ -9,18 +9,12 @@ import { useSelector } from "react-redux";
 import { FiTwitter } from 'react-icons/fi'
 import { ImFacebook } from 'react-icons/im'
 import { IoLogoInstagram } from 'react-icons/io'
-<<<<<<< HEAD
-
-
-const SidenavContent = ({ handleClickAway, history }) => {
-=======
 import { fetchAllCampaign } from 'store/actions/fund_donate/FundDonate';
 import { updateMarketCollections } from 'store/actions/MarketPlace';
 import {useDispatch} from 'react-redux'
 
 const SidenavContent = ({ handleClickAway, history }) => {
   const dispatch = useDispatch()
->>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
   const authState = useSelector((state) => state.authReducer);
   const { isAuthenticated } = authState;
   const [showUpArrow, setShowUpArrow] = useState(false);
@@ -44,11 +38,8 @@ const SidenavContent = ({ handleClickAway, history }) => {
     handleClickAway();
   }
 
-<<<<<<< HEAD
-=======
  
 
->>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
   return (
     <>
       <nav className='side-navbar-content'>
@@ -74,15 +65,10 @@ const SidenavContent = ({ handleClickAway, history }) => {
               onClick={() => {
                 handleClickAway(); window.scrollTo({
                   top: 0,
-<<<<<<< HEAD
-                  behavior:'smooth'
-                },history.push('/'))
-=======
                   behavior: 'smooth'
                 }, history.push('/'));
                 dispatch(fetchAllCampaign());
                 dispatch(updateMarketCollections());
->>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
               }}
               >
                 Home

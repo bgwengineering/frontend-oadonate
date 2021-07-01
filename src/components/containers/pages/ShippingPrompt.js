@@ -5,10 +5,7 @@ import EditShipping from "../../checkout/EditShipping";
 
 export const ShippingPrompt = ({ nextPage, previousPage, id, shippingState }) => {
   const { shippingAddress } = shippingState;
-<<<<<<< HEAD
-=======
   
->>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
   return (
     <>
       {shippingAddress.length ? (

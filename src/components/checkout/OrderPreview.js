@@ -3,12 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import axiosInstance from "util/api";
 import { clearCartItems, placeOrder } from "store/actions/cart/cart.actions";
 import { Link } from 'react-router-dom';
-<<<<<<< HEAD
-=======
 import { Modal, ModalBody} from "reactstrap";
 import TermsCondition from './TermsCondition';
 
->>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
 
 const stripePromise = window.Stripe(
   "pk_test_51Ihz1EJtAhKBp45zJXZLT2RmTKQLDbpZRPerC1uKcnQ69N1R1IchlmRhCBMp3cwJ4DIVpSf9iHe4Hnq9wUdAC6OA00DNznJtw5"
@@ -20,12 +17,8 @@ const Message = ({ message }) => (
   </section>
 );
 
-<<<<<<< HEAD
-const OrderPreview = ({ nextPage, previousPage, history }) => {
-=======
 
 const OrderPreview = ({ nextPage, previousPage}) => {
->>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
   const [message, setMessage] = useState("");
   const [paystack, setPaystack] = useState(true);
   const [Stripebtn, setStripebtn] = useState(false);
@@ -36,11 +29,6 @@ const OrderPreview = ({ nextPage, previousPage}) => {
     payment_method: "",
     delivery_method: "",
   });
-<<<<<<< HEAD
-  const cartState = useSelector((state) => state.cartReducer);
-  const { cartItems,checkoutUrl } = cartState;
-
-=======
 
   const cartState = useSelector(state => state.cartReducer);
   const { cartItems,checkoutUrl } = cartState;
@@ -55,7 +43,6 @@ const OrderPreview = ({ nextPage, previousPage}) => {
     setChecked(e.target.checked)
   }
 
->>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
   useEffect(() => {
     if (checkoutUrl && checkoutUrl.length) {
       window.location = checkoutUrl;
@@ -80,17 +67,11 @@ const OrderPreview = ({ nextPage, previousPage}) => {
     })
   }
   const dispatch = useDispatch();
-<<<<<<< HEAD
-  let subTotal = 0;
-  let orders = cartItems.map((cart) => {
-    subTotal += cart.donate_mkt_price * cart.quantity;
-=======
 
   let subTotal = 0;
   let orders = cartItems.map(cart => {
     subTotal += cart.donate_mkt_price * cart.quantity;
 
->>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
     return (
       <ul className="order-product-total d-flex mt-3">
         <ul key={cart.id} className=" d-flex order-details">
@@ -98,10 +79,6 @@ const OrderPreview = ({ nextPage, previousPage}) => {
           <li className="order-list ml-3 font-weight-bold">x</li>
           <li className="order-list mr-4 font-weight-bold">{cart.quantity}</li>
         </ul>
-<<<<<<< HEAD
-
-=======
->>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
         <li className="d-flex justify-content-end order-subtotal-price order-list">
           {cart.donate_currency + cart.donate_mkt_price}
         </li>
@@ -111,15 +88,9 @@ const OrderPreview = ({ nextPage, previousPage}) => {
   const flatTotal = (subTotal + 1000)
   const storeTotal = (subTotal + 0)
   const { payment_method, delivery_method } = orderFields;
-<<<<<<< HEAD
-  // submit with paystack gateway
-  const PayWithPaystack = () => {
-    // e.preventDefault();
-=======
   
   // submit with paystack gateway
   const PayWithPaystack = () => {  
->>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
     const formData = {
       payment_method,
       delivery_method,
@@ -136,14 +107,9 @@ const OrderPreview = ({ nextPage, previousPage}) => {
     cartItems.forEach(items => {
       productsArr.push(items.donate_item_name);
       quantitiesArr.push(items.quantity);
-<<<<<<< HEAD
-      });
-    const formData = {
-=======
     });
     
        const formData = {
->>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
           products: productsArr,
           quantities: quantitiesArr,
           total_price: flatrate ? flatTotal : storeTotal,
@@ -151,10 +117,7 @@ const OrderPreview = ({ nextPage, previousPage}) => {
           payment_method,
           delivery_method 
     };
-<<<<<<< HEAD
-=======
 
->>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
     const config = {
       headers: {
         "Content-Type": "application/json",
@@ -163,10 +126,7 @@ const OrderPreview = ({ nextPage, previousPage}) => {
       },
     };
     const stripe = stripePromise;
-<<<<<<< HEAD
-=======
     
->>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
     axiosInstance
       .post("buy-to-support/orders", formData, config)
       .then((res) => {
@@ -184,19 +144,12 @@ const OrderPreview = ({ nextPage, previousPage}) => {
   const handleChange = (e) => {
     setOrderFields({ ...orderFields, [e.target.name]: e.target.value });
   };
-<<<<<<< HEAD
-  const setPaystackBtn = () => {
-    setStripebtn(false);
-    setPaystack(true);
-  };
-=======
 
   const setPaystackBtn = () => {
     setPaystack(true);
     setStripebtn(false);
   };
 
->>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
   const setStripeBtn = () => {
     setStripebtn(true);
     setPaystack(false);
@@ -243,10 +196,7 @@ const OrderPreview = ({ nextPage, previousPage}) => {
             </div>
             <span className="order-flatrate-amount">₦1,000</span>
           </div>
-<<<<<<< HEAD
-=======
 
->>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
           {/* store-pickup */}
           <div className="d-flex justify-content-between">
             <div className="d-flex store-pickup-container">
@@ -281,29 +231,6 @@ const OrderPreview = ({ nextPage, previousPage}) => {
             Make payment using your debit and credit cards
           </p>
           <div className="pay-method-container">
-<<<<<<< HEAD
-            <div className='mr-3'>
-            <input
-              name="payment_method"
-              type="radio"
-              className="mr-1 ml-2 border-alert-secondary"
-              onChange={handleChange}
-              value="PayStack"
-              onClick={setPaystackBtn}
-            />
-              <span className='paystack-text'>PayStack Gateway</span>
-            </div>
-            <div className='stripe-paytext'>
-            <input
-              name="payment_method"
-              type="radio"
-              className="mr-1 ml-2"
-              onChange={handleChange}
-              value="Stripe"
-              onClick={setStripeBtn}
-               />
-              <span >Stripe Gateway</span>
-=======
             <div className="mr-3">
               <input
                 name="payment_method"
@@ -325,7 +252,6 @@ const OrderPreview = ({ nextPage, previousPage}) => {
                 onClick={setStripeBtn}
               />
               <span>Stripe Gateway</span>
->>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
             </div>
           </div>
         </div>
@@ -338,12 +264,6 @@ const OrderPreview = ({ nextPage, previousPage}) => {
       </div>
 
       <div className="d-flex order-approval">
-<<<<<<< HEAD
-        <input type="checkbox" />
-        <p className="order-approval-note mt-3 ml-3">
-          I have read and agreed to the website
-          <span className="approval-note  ml-3">terms and conditions *</span>
-=======
         <input
           type="checkbox"
           checked={checked}
@@ -355,7 +275,6 @@ const OrderPreview = ({ nextPage, previousPage}) => {
           <span className="approval-note  ml-3" onClick={toggle}>
             terms and conditions <span className="text-danger">*</span>
           </span>
->>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
         </p>
       </div>
       <div className="order-payment-button-container">
@@ -364,10 +283,6 @@ const OrderPreview = ({ nextPage, previousPage}) => {
             onClick={() => {
               PayWithPaystack();
               clearCartItems();
-<<<<<<< HEAD
-            }}
-            className="order-payment-button"
-=======
               window.scrollTo({
                 top: 0,
                 behavior: "smooth"
@@ -379,7 +294,6 @@ const OrderPreview = ({ nextPage, previousPage}) => {
               cursor: !checked || !PayWithPaystack ? "alias" : "pointer",
               opacity: !checked || !PayWithPaystack ? "1" : "0.8"
             }}
->>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
           >
             Pay Now
           </button>
@@ -388,13 +302,10 @@ const OrderPreview = ({ nextPage, previousPage}) => {
             onClick={() => {
               PayWithStripe();
               clearCartItems();
-<<<<<<< HEAD
-=======
               window.scrollTo({
                 top: 0,
                 behavior: "smooth"
               });
->>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
             }}
             className="order-payment-button"
           >
@@ -419,11 +330,6 @@ const OrderPreview = ({ nextPage, previousPage}) => {
           >
             Previous
           </button>
-<<<<<<< HEAD
-          <button className="next-action-btn">Back to cart</button>
-        </div>
-      </div>
-=======
           <Link to='/cart'>
             <button className="next-action-btn" onClick={scrollToTop}>Back to cart</button>
           </Link>
@@ -441,7 +347,6 @@ const OrderPreview = ({ nextPage, previousPage}) => {
           <TermsCondition />
         </ModalBody>
       </Modal>
->>>>>>> 5ee521180f26cd5a1b7e9c8b021b479ad5ff1dad
     </div>
   );
 };
