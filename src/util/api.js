@@ -1,7 +1,5 @@
 import axios from 'axios';
 
-
-
 const baseURL = "https://ogadonate.com.ng/api/"
 // const baseURL = "http://main.localhost:8000/api/"
 // const baseURL = "https://bgw-api.herokuapp.com/api/";
@@ -64,7 +62,6 @@ axiosInstance.interceptors.response.use(
                 window.location.href = '/auth';
             }
         }
-
         // specific error handling done elsewhere
         return Promise.reject(error);
     }

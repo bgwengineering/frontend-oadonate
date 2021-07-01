@@ -3,6 +3,8 @@ import SignUpCorporateForm from "./SignUpCorporateForm";
 import { Field,reduxForm } from "redux-form";
 import { corporate } from 'store/actions/auth/Corporate';
 import { useDispatch } from 'react-redux';
+
+
 const SignupCorporate = ({ handleSubmit, pristine, submitting }) => {
   const [checked, setChecked] = useState({
     ngoChecked: true,
@@ -54,13 +56,26 @@ const SignupCorporate = ({ handleSubmit, pristine, submitting }) => {
       auctioneerChecked: true  })
   );
 
-  
-
   return (
     <div>
-      <h2 className="text-uppercase mt-5 d-flex justify-content-center">
-        Select Your Category
-      </h2>
+      <div className="card-header bg-white border-0">     
+          <div className="row justify-content-center align-items-center corporate-form-header w-100 border-primary">
+            <h3 className="all-heading mb-0 mx-auto text-capitalize">
+              Create Your {}
+              {ngoChecked
+                ? "NGO"
+                : corporateChecked
+                  ? "Corperate"
+                  : religiousChecked
+                    ? "Religious"
+                    : auctioneerChecked
+                      ? "Auctioneer"
+                      : "NGO"} {}
+              Account
+              </h3>
+          </div>    
+      </div>
+      {/* form category */}
       <form onSubmit={handleSubmit(Submit)}>
         <div className="d-flex justify-content-center align-items-center corporate-category">
           <span className="d-flex ml-3">
@@ -111,23 +126,20 @@ const SignupCorporate = ({ handleSubmit, pristine, submitting }) => {
             <span className="shipping-msg ml-2">Auctioneer</span>
           </span>
         </div>
-        <div className="card-header bg-white border-0">
-                <div className="row align-items-center">
-                  <div className="col-8">
-                    <h3 className="all-heading mb-0 mx-auto text-capitalize">
-                      Create Your {ngoChecked ? "NGO" :
-                       corporateChecked ? "Corperate": religiousChecked ? "Religious" :
-                       auctioneerChecked? "Auctioneer" : "NGO"}Account
-                    </h3>
-                  </div>
-                </div>
-              </div>
-        {ngoChecked && <SignUpCorporateForm pristine={pristine} submitting={submitting} />}
-        {corporateChecked && <SignUpCorporateForm />}
-        {religiousChecked && <SignUpCorporateForm />}
-        {auctioneerChecked && <SignUpCorporateForm />}
+        
+        {ngoChecked && (
+          <SignUpCorporateForm pristine={pristine} submitting={submitting} />
+        )}
+        {corporateChecked && (
+          <SignUpCorporateForm pristine={pristine} submitting={submitting} />
+        )}
+        {religiousChecked && (
+          <SignUpCorporateForm pristine={pristine} submitting={submitting} />
+        )}
+        {auctioneerChecked && <SignUpCorporateForm pristine={pristine} submitting={submitting}/>}
       </form>
-    </div>
+      </div>
+   
   );
 };
 

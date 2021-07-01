@@ -81,7 +81,7 @@ export const fetchCompanyProfile = () => async (dispatch, getState) => {
 // fetch user donations received
 export const fetchUserDonationsReceived = () => async (dispatch, getState) => {
   try {
-    const res = await axiosInstance.get("profile/user/donations/received", tokenConfig(getState));
+    const res = await axiosInstance.get("profile/donations/received", tokenConfig(getState));
     dispatch({
       type: actionTypes.GET_USER_DONATIONS_RECEIVED,
       payload: res.data,

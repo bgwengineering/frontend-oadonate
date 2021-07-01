@@ -67,7 +67,7 @@ const SignUpCorporateForm = ({ pristine, submitting }) => {
                             type="email"
                             id="input-email"
                             className="form-control form-control-alternative"
-                            placeholder="email"
+                            
                             component="input"
                             name="company_email"
                           />
@@ -87,7 +87,6 @@ const SignUpCorporateForm = ({ pristine, submitting }) => {
                             type="text"
                             id="phone"
                             className="form-control form-control-alternative"
-                            placeholder="phone number"
                             component="input"
                             name="company_phone"
                           />
@@ -139,7 +138,7 @@ const SignUpCorporateForm = ({ pristine, submitting }) => {
                             type="text"
                             id="phone"
                             className="form-control form-control-alternative"
-                            placeholder="Enter yoyr state"
+                          
                             component="input"
                             name="country"
                           />
@@ -157,7 +156,7 @@ const SignUpCorporateForm = ({ pristine, submitting }) => {
                             type="text"
                             id="phone"
                             className="form-control form-control-alternative"
-                            placeholder="Enter yoyr state"
+                          
                             component="input"
                             name="state"
                           />
@@ -239,7 +238,7 @@ const SignUpCorporateForm = ({ pristine, submitting }) => {
                           type="text"
                           id="phone"
                           className="form-control form-control-alternative"
-                          placeholder="Representative Name"
+                       
                           component="input"
                           name="rep_fullname"
                         />
@@ -257,7 +256,7 @@ const SignUpCorporateForm = ({ pristine, submitting }) => {
                           type="email"
                           id="input-email"
                           className="form-control form-control-alternative"
-                          placeholder="email"
+                       
                           component="input"
                           name="rep_email"
                         />
