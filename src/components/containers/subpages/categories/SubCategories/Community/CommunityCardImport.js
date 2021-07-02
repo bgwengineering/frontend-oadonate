@@ -4,7 +4,7 @@ import LinearProgress from "@material-ui/core/LinearProgress";
 import Button from "@material-ui/core/Button";
 import { AiOutlineFolderOpen } from "react-icons/ai";
 import { useSelector } from "react-redux";
-import {ReactComponent as LoadingSpinner} from 'assets/images/spinner.svg'
+
 var numeral = require('numeral');
 
 
@@ -121,7 +121,7 @@ const CommunityCardImport = () => {
             
           })
         : <div className='spinner-container mx-auto'>
-            <LoadingSpinner className='spinner'/>
+            <h4>No community cause available, please create one</h4>
         </div>}
     </>
   );

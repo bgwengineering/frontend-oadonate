@@ -2,6 +2,7 @@ import axiosInstance  from 'util/api'
 import { setLoading,offLoading } from './../Common';
 import { stopSubmit, reset } from "redux-form";
 
+import { tokenConfig } from 'util/TokenConfig';
 import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
@@ -23,18 +24,9 @@ import {
 } from "../ActionTypes";
 
 
-export const load_user = () => async (dispatch) => {
-  if (localStorage.getItem("access")) {
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `JWT ${localStorage.getItem("access")}`,
-        Accept: "application/json",
-      },
-    };
-
+export const load_user = () => async(dispatch, getState) => {
     try {
-      const res = await axiosInstance.get("auth/users/me/", config);
+      const res = await axiosInstance.get("auth/users/me/", tokenConfig(getState));
 
       dispatch({
         type: USER_LOADED_SUCCESS,
@@ -45,11 +37,6 @@ export const load_user = () => async (dispatch) => {
         type: USER_LOADED_FAIL,
       });
     }
-  } else {
-    dispatch({
-      type: USER_LOADED_FAIL,
-    });
-  }
 };
 
 export const checkAuthenticated = () => async (dispatch) => {
@@ -88,7 +75,6 @@ export const login = ({ email, password }) => async (dispatch) => {
   const body = { email, password };
   try {
     const res = await axiosInstance.post("auth/jwt/create/", body);
-    dispatch(load_user());
     dispatch({
       type: LOGIN_SUCCESS,
       payload: res.data,
@@ -98,6 +84,7 @@ export const login = ({ email, password }) => async (dispatch) => {
       type: SHOW_SUCCESS_MESSAGE,
       payload: "You've successfully logged in",
     });
+    dispatch(load_user());
     dispatch(stopSubmit("LoginForm"));
     dispatch(reset("LoginForm"));
   } catch (err) {

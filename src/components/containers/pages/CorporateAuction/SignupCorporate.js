@@ -57,24 +57,7 @@ const SignupCorporate = ({ handleSubmit, pristine, submitting }) => {
   );
 
   return (
-    <div>
-      <div className="card-header bg-white border-0">     
-          <div className="row justify-content-center align-items-center corporate-form-header w-100 border-primary">
-            <h3 className="all-heading mb-0 mx-auto text-capitalize">
-              Create Your {}
-              {ngoChecked
-                ? "NGO"
-                : corporateChecked
-                  ? "Corperate"
-                  : religiousChecked
-                    ? "Religious"
-                    : auctioneerChecked
-                      ? "Auctioneer"
-                      : "NGO"} {}
-              Account
-              </h3>
-          </div>    
-      </div>
+    <div>   
       {/* form category */}
       <form onSubmit={handleSubmit(Submit)}>
         <div className="d-flex justify-content-center align-items-center corporate-category">
@@ -126,7 +109,23 @@ const SignupCorporate = ({ handleSubmit, pristine, submitting }) => {
             <span className="shipping-msg ml-2">Auctioneer</span>
           </span>
         </div>
-        
+        <div className="card-header bg-white border-0">
+          <div className="row justify-content-center align-items-center corporate-form-header w-100">
+            <h3 className="all-heading mb-0 mx-auto text-capitalize">
+              Create Your {}
+              {ngoChecked
+                ? "NGO"
+                : corporateChecked
+                  ? "Corperate"
+                  : religiousChecked
+                    ? "Religious"
+                    : auctioneerChecked
+                      ? "Auctioneer"
+                      : "NGO"} {}
+              Account
+              </h3>
+          </div>
+        </div>
         {ngoChecked && (
           <SignUpCorporateForm pristine={pristine} submitting={submitting} />
         )}

@@ -23,39 +23,42 @@ import saleAffiliateNav from './affiliateNav/saleAffiliateNav'
 
 const TheSidebar = () => {
 const dispatch = useDispatch()
-const authState = useSelector(state => state.authReducer);
-  const { user } = authState;
+const authState = useSelector(state => state.authReducer.user.is_affiliate);
+
+ 
+
 
   const show = useSelector(state => state.settings)
   const {sidebarShow} = show
 
+  const checkAffiliateType = () => {
 
-    const checkAffiliateType = () => {
-      switch (user.is_affiliate) {
-        case true:
-          return (
-            <CCreateElement
-              items={saleAffiliateNav}
-              components={{
-                CSidebarNavDivider,
-                CSidebarNavDropdown,
-                CSidebarNavItem,
-                CSidebarNavTitle
-              }}
-            />
-          )
-        default: return (
-          <CCreateElement
-            items={navigation}
-            components={{
-              CSidebarNavDivider,
-              CSidebarNavDropdown,
-              CSidebarNavItem,
-              CSidebarNavTitle
-            }}
-          />
-        )
-      }
+        
+      switch (authState) {
+         case true:
+           return (
+             <CCreateElement
+               items={saleAffiliateNav}
+               components={{
+                 CSidebarNavDivider,
+                 CSidebarNavDropdown,
+                 CSidebarNavItem,
+                 CSidebarNavTitle
+               }}
+             />
+           )
+         default: return (
+           <CCreateElement
+             items={navigation}
+             components={{
+               CSidebarNavDivider,
+               CSidebarNavDropdown,
+               CSidebarNavItem,
+               CSidebarNavTitle
+             }}
+           />
+         )
+       }
     }
 
   return (

@@ -46,7 +46,25 @@
   width: 100%;
   max-width: 400px;
 }
-.ogaDonasi .ikon a {
+.affiliate-link-bounce {
+  color: #000;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  margin: 60px auto;
+  padding: 15px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  border-radius: 7px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.ogaDonasi .ikon a, .affiliate-link-bounce .ikon a{
   background-color: #05591b;
   color: #fff;
   text-decoration: none;
@@ -98,6 +116,7 @@
     transform: scale3d(1.05, 0.95, 1);
   }
 }
+
 @-webkit-keyframes ogaBounce {
   0%,
   100% {
@@ -212,7 +231,6 @@
 label[for="yes"] {
   left: 30px;
 }
-
 label[for="no"] {
   right: 30px;
 }
