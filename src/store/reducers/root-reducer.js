@@ -28,7 +28,6 @@ import { LOGOUT } from 'store/actions/ActionTypes';
     marketPlaceReducer: marketPlace,
     orderReducer: dashboard,
 });
-
 const persistConfig = {
   key: 'root',
   storage,

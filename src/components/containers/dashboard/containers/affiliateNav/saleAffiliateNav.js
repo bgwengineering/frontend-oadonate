@@ -36,21 +36,21 @@ const AffiliateNav = [
     route: "/dashboard/affiliate",
     icon: <GiBuyCard className="mr-3" />,
     _children: [
-      {
-        _tag: "CSidebarNavItem",
-        name: "Sale",
-        to: "/dashboard/affiliate/sale"
-      },
+      // {
+      //   _tag: "CSidebarNavItem",
+      //   name: "Sale",
+      //   to: "/dashboard/affiliate/sale"
+      // },
       {
         _tag: "CSidebarNavItem",
         name: "Referrer",
         to: "/dashboard/affiliate/referrer"
       },
-      {
-        _tag: "CSidebarNavItem",
-        name: "Delivery",
-        to: "/dashboard/affiliate/delivery"
-      },
+      // {
+      //   _tag: "CSidebarNavItem",
+      //   name: "Delivery",
+      //   to: "/dashboard/affiliate/delivery"
+      // },
       {
         _tag: "CSidebarNavItem",
         name: "Contact",

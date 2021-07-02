@@ -1,18 +1,17 @@
 import React, { lazy, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import GetUserType from "components/containers/dashboard/views/dashboard/main/GetUserType";
+import { load_user } from 'store/actions/auth/Auth.js';
 
 const WidgetsDropdown = lazy(() => import("../../widgets/WidgetsDropdown.js"));
 
 const Dashboard = () => {
+  const dispatch = useDispatch()
   const userState = useSelector(state => state.userTypeReducer);
   const { profile_user, company_user } = userState;
  
   
-  useEffect(() => {
-    document.title = "Ogadonate | Dashboard";
-  }, []);
-
+  
 
   return (
     <>

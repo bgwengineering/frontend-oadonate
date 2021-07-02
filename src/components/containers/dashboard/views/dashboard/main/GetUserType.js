@@ -1,11 +1,21 @@
 import React from 'react'
 import {Button} from '@material-ui/core'
 import {Link} from 'react-router-dom' 
+import { useSelector } from 'react-redux'
 
 const GetUserType = () => {
 
-    return (
-        <div className="user-type-container">
+  // user state
+  // const authState = useSelector(state => state.authReducer);
+  // const { user } = authState;
+  // const { is_affiliate } = user
+  const userState = useSelector(state => state.authReducer.user);
+  return (
+  <>
+  {
+    userState ? 
+      null :
+          <div className="user-type-container">
                    <div>
                     <h4 className='text-center fs-2 mt-5'>Create an individual profile or register for corporate auction?</h4> 
                     <p className='text-center'>Choose below </p>  
@@ -23,8 +33,10 @@ const GetUserType = () => {
                     </Link>
                      </div>
                      </div>                 
-               </div>     
-    )
+            </div>   
+      }  
+      </>
+)
 }
 
 export default GetUserType

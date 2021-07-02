@@ -124,7 +124,7 @@ const scrollToTop = () => {
             
           })
         : <div className='spinner-container mx-auto'>
-            <LoadingSpinner className='spinner'/>
+          <h4>No personal cause available, please create one</h4>
         </div>}
     </>
   );

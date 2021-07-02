@@ -17,6 +17,7 @@ const SignupForm = ({ handleSubmit, submitting, pristine }) => {
     dispatch(signup(values));
   };
   
+
   return (
     <form onSubmit={handleSubmit(submit)}>
       <>
@@ -29,6 +30,7 @@ const SignupForm = ({ handleSubmit, submitting, pristine }) => {
             type="text"
           />
         </fieldset>
+
         <fieldset>
           <Field
             component={renderField}
@@ -38,6 +40,7 @@ const SignupForm = ({ handleSubmit, submitting, pristine }) => {
             type="text"
           />
         </fieldset>
+
         <fieldset>
           <Field
             component={renderField}
@@ -47,6 +50,7 @@ const SignupForm = ({ handleSubmit, submitting, pristine }) => {
             type="email"
           />
         </fieldset>
+
         <fieldset>
           <Field
             component={renderField}
@@ -57,7 +61,7 @@ const SignupForm = ({ handleSubmit, submitting, pristine }) => {
           />
         </fieldset>
 
-        <fieldset className="d-flex form-eye-field">
+        <fieldset className="form-eye-field">
           <Field
             type={isPasswordShown ? "text" : "password"}
             className="input"
@@ -65,17 +69,23 @@ const SignupForm = ({ handleSubmit, submitting, pristine }) => {
             component={renderField}
             label="password"
           />
-          <span className="password-icon" onClick={handleShowPassword}>
-            <BiShow />
-          </span>
-          <span
+
+          <span>
+            <span
             className="password-icon"
             onClick={handleShowPassword}
             style={{ display: isPasswordShown ? "none" : "block" }}
-          >
+            >
             <BiHide />
           </span>
+          <span onClick={handleShowPassword} className="password-icon">
+            <BiShow />
+          </span>
+            
+            
+          </span>
         </fieldset>
+        
         <button
           disabled={pristine || submitting}
           className="auth-button mt-2"
@@ -85,7 +95,7 @@ const SignupForm = ({ handleSubmit, submitting, pristine }) => {
               behavior: "smooth"
             });
           }}
-        >
+          >
           Sign Up
         </button>
       </>
