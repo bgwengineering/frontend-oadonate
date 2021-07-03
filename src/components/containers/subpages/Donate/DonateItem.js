@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 // import DonateCardImport from "../campaign/CampaignCardImport";
 import SearchSvg from "components/ui/Svg/SearchSvg";
 import ArrowSvg from "components/ui/Svg/ArrowSvg";
-import axios from "axios";
+import axiosInstance from 'util/api';
 import AllDonateItemCards from "./AllDonateItemCards";
 import { withRouter } from 'react-router-dom';
 
@@ -28,8 +28,8 @@ const DonateItem = ({ history }) => {
       setFilteredData([]);
       try {
         const searchUrl =
-          "https://ogadonate.herokuapp.com/api/campaign/fundraise";
-        const res = await axios.get(searchUrl);
+          "campaign/fundraise";
+        const res = await axiosInstance.get(searchUrl);
         
         setData({
           ...data,

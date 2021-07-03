@@ -1,8 +1,8 @@
 import * as actionTypes from "../actions/ActionTypes";
 
 const initialState = {
-    corporateUser = [],
-    loading:false
+    corporateUser:[],
+    companySuccess:false
 }
 
 const corporate = (state = initialState, action) => {
@@ -11,7 +11,9 @@ const corporate = (state = initialState, action) => {
             return {
                 ...state,
                 corporateUser: action.payload,
-                loading: false
+                companySuccess:true
             }
+    default: return state;
    }
 }
+export default corporate

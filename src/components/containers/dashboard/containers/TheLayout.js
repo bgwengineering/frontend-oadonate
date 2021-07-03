@@ -20,7 +20,7 @@ const TheLayout = () => {
    dispatch(getfundITEMCampaigns());
    dispatch(fetchUserDonationsReceived());
    dispatch(fetchOrders());
-   dispatch(getdonateToCash())
+   // dispatch(getdonateToCash())
   }, [])
 
   const isLoading = useSelector(state => state.commonReducer.loading);
