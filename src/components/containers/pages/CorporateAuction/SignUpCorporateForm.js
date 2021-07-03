@@ -1,7 +1,6 @@
 import React,{useState} from 'react'
 import { Field} from "redux-form";
-// import { corporate } from './../../../../store/actions/auth/Corporate';
-// import { useDispatch } from 'react-redux';
+
 
 
 const SignUpCorporateForm = ({ pristine, submitting }) => {
@@ -286,7 +285,7 @@ const SignUpCorporateForm = ({ pristine, submitting }) => {
                         <label className="ml-4">Admin</label>
                         <Field
                           name="company_role"
-                          value="ADMIN"
+                          value="Admin"
                           component="input"
                           type="radio"
                           className="field-inputs ml-2"
@@ -297,7 +296,7 @@ const SignUpCorporateForm = ({ pristine, submitting }) => {
                         <label className="ml-4">Human Resources</label>
                         <Field
                           name="company_role"
-                          value="human_resources"
+                          value="Human Resources"
                           component="input"
                           type="radio"
                           className="field-inputs ml-2"                  
