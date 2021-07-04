@@ -7,6 +7,7 @@ import common from './Common';
 import toggleDashboard from './ToggleDashboard'
 import fundDonate from './FundDonate'
 import fundSubCategories from './Category';
+import corperate from './Corporate';
 import cart from './Cart';
 import marketPlace from './MarketPlace';
 import storage from 'redux-persist/lib/storage';
@@ -27,6 +28,7 @@ import { LOGOUT } from 'store/actions/ActionTypes';
     cartReducer: cart,
     marketPlaceReducer: marketPlace,
     orderReducer: dashboard,
+    corperateReducer : corperate
 });
 const persistConfig = {
   key: 'root',

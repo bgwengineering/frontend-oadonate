@@ -32,7 +32,7 @@ const EditProfile = ({ handleSubmit, pristine, submitting, history, profileId })
                 Authorization: `JWT ${localStorage.getItem("access")}`,
             },
         };
-        const url = `accounts/profile/personal/${profileId}`;
+        const url = `profile/personal/${profileId}`;
         dispatch(setLoading());
         axiosInstance
             .patch(url, formData, config)

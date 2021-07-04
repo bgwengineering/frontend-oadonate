@@ -48,14 +48,19 @@ export const corporate = ({
              type: actionTypes.CREATE_CORPORATE_SUCCESS,
              payload: res.data
            });
+           dispatch(stopSubmit("corporateSignup"));
+           dispatch(reset("corporateSignup"));
+            dispatch(offLoading());
+            dispatch({ type: actionTypes.SHOW_SUCCESS_MESSAGE, payload: "Company Profile Created" });
          } catch (error) {
            dispatch({
              type: actionTypes.CREATE_CORPORATE_FAIL,
              payload: error.message
            });
-           dispatch(offLoading());
            dispatch(stopSubmit("corporateSignup"));
            dispatch(reset("corporateSignup"));
+           dispatch(offLoading());
+           dispatch({ type: actionTypes.SHOW_ERROR_MESSAGE, payload: error.response.message});
          }
        };
 

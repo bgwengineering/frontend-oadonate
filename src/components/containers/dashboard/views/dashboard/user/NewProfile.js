@@ -29,7 +29,7 @@ const NewProfile = ({ handleSubmit, pristine, submitting, mime }) => {
         Authorization: `JWT ${localStorage.getItem("access")}`,
       },
     };
-    const url = "accounts/profile/personal";
+    const url = "profile/personal";
     dispatch(setLoading());
     axiosInstance
       .post(url, formData, config)

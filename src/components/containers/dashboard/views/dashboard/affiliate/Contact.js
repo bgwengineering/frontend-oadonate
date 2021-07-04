@@ -8,7 +8,7 @@ const Contact = () => {
     const dispatch = useDispatch();
     return (
         <>
-            <h4 className="text-uppercase text-center mb-4 mt-4">Affiliate</h4>
+            <h4 className="text-uppercase text-center mb-4 mt-4">Logistics WhareHouse</h4>
             <CRow>
                 <CCol>
                     <CCard>
@@ -25,7 +25,6 @@ const Contact = () => {
                                 </thead>
 
                                 {/* table body */}
-                                return (
                                     <tbody>
                                     <tr>
                                         <td className="text-center">
@@ -42,7 +41,6 @@ const Contact = () => {
                                         </td>
                                     </tr>
                                 </tbody>
-                                );
                             </table>
                         </CCardBody>
                     </CCard>
