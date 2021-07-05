@@ -17,6 +17,7 @@ import PrivateRoute from "util/PrivateRoute";
 import TheLayout from './containers/dashboard/containers/TheLayout'
 import CartPage from "./containers/pages/CartPage";
 import PaymentSuccess from "util/PaymentSuccess";
+import CompanySuccess from "util/CompanySuccess";
 import PaymentCancel from "util/PaymentCancel";
 import MarketIndex from './containers/subpages/buytosupport/MarketIndex';
 import CheckoutPage from "./containers/pages/CheckoutPage";
@@ -52,6 +53,7 @@ const MainApp = () => {
         <Route path='/cart' component={CartPage} />
         <Route path='/checkout' component={CheckoutPage} />
         <Route path='/payment-success/' component={PaymentSuccess} />
+        <Route path='/corperate-success/' component={CompanySuccess} />
         <Route path='/payment-cancel/' component={PaymentCancel} />
         <Route path='/affiliate' component={Affiliate} />
         <Route path='/affiliate-signup' component={SignupAffiliate} />

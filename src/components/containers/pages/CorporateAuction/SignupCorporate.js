@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import SignUpCorporateForm from "./SignUpCorporateForm";
 import { Field,reduxForm } from "redux-form";
 import { corporate } from 'store/actions/auth/Corporate';
-import { useDispatch } from 'react-redux';
+import { useDispatch,useSelector } from 'react-redux';
 
 
-const SignupCorporate = ({ handleSubmit, pristine, submitting }) => {
+const SignupCorporate = ({ history,handleSubmit, pristine, submitting }) => {
   const [checked, setChecked] = useState({
     ngoChecked: true,
     corporateChecked: false,
@@ -20,10 +20,15 @@ const SignupCorporate = ({ handleSubmit, pristine, submitting }) => {
     religiousChecked
   } = checked;
   const dispatch = useDispatch()
-
+  const submitted = useSelector(state=>state.corperateReducer.companySuccess)
   const Submit = formValues => {
-    dispatch(corporate(formValues))
+    dispatch(corporate(formValues));  
   }
+if(submitted){
+  setTimeout(()=>{
+  history.push("/corperate-success")
+  },3000)
+}
 
   // toggle switch
   const ToggleCorporate = () => (

@@ -1,7 +1,13 @@
+<<<<<<< HEAD
 import React, { useState } from "react";
 import { Field } from "redux-form";
 // import { corporate } from './../../../../store/actions/auth/Corporate';
 // import { useDispatch } from 'react-redux';
+=======
+import React,{useState} from 'react'
+import { Field} from "redux-form";
+
+>>>>>>> da546d297d9f6a787e88bac385ea6fc56d931810
 
 const SignUpCorporateForm = ({ pristine, submitting }) => {
   const [checked, setChecked] = useState(false);
@@ -288,9 +294,168 @@ const SignUpCorporateForm = ({ pristine, submitting }) => {
                         </div>
                       </div>
                     </div>
+<<<<<<< HEAD
                   </>
                 )}
               </div>
+=======
+                  </div>
+                  <div className="pl-lg-4">
+                    <div className="row">
+                      <div className="col-md-12">
+                        <div className="form-group ">
+                          <label
+                            className="profile-control-label"
+                            htmlFor="input-address"
+                          >
+                            About Us
+                          </label>
+                          <Field
+                            name="about_us"
+                            component="textarea"
+                            type="text"
+                            className="form-control form-control-alternative"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <hr className="my-4" />
+
+                  <div className="row">
+                    <div className="col-lg-6">
+                      <div className="form-group">
+                        <label
+                          className="profile-control-label"
+                          htmlFor="Representative_Name"
+                        >
+                          Representative Name
+                        </label>
+                        <Field
+                          type="text"
+                          id="phone"
+                          className="form-control form-control-alternative"
+                       
+                          component="input"
+                          name="rep_fullname"
+                        />
+                      </div>
+                    </div>
+                    <div className="col-lg-6">
+                      <div className="form-group">
+                        <label
+                          className="profile-control-label"
+                          htmlFor="input-email"
+                        >
+                          Representative Email
+                        </label>
+                        <Field
+                          type="email"
+                          id="input-email"
+                          className="form-control form-control-alternative"
+                       
+                          component="input"
+                          name="rep_email"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <label
+                      className="profile-control-label"
+                      htmlFor="input-contact"
+                    >
+                      Representative Roles:
+                    </label>
+                    <div className="row">
+                      <div className="form-group">
+                        <label className="ml-3">CEO</label>
+                        <Field
+                          name="company_role"
+                          component="input"
+                          type="radio"
+                          value="CEO"
+                          className="field-inputs ml-2"
+                       
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label className="ml-4">Admin</label>
+                        <Field
+                          name="company_role"
+                          value="Admin"
+                          component="input"
+                          type="radio"
+                          className="field-inputs ml-2"
+                        
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label className="ml-4">Human Resources</label>
+                        <Field
+                          name="company_role"
+                          value="Human Resources"
+                          component="input"
+                          type="radio"
+                          className="field-inputs ml-2"                  
+                        />
+                      </div>
+                    </div>
+
+                    <div className="d-flex">
+                      <ToggleSwitch
+                        checked={checked}
+                        id="form"
+                        name="otherAdmin"
+                      />
+                      <span className="shipping-msg ml-2">Add Supervisor</span>
+                    </div>
+
+                    {checked && (
+                      <>
+                        <div className="row">
+                          <div className="col-lg-6">
+                            <div className="form-group">
+                              <label
+                                className="profile-control-label"
+                                htmlFor="phone"
+                              >
+                                Supervisor's Name
+                              </label>
+                              <Field
+                                type="text"
+                                id="phone"
+                                className="form-control form-control-alternative"
+                                placeholder="supervisor's name"
+                                component="input"
+                                name="otherAdmin_fullname"
+                              />
+                            </div>
+                          </div>
+
+                          <div className="col-lg-6">
+                            <div className="form-group">
+                              <label
+                                className="profile-control-label"
+                                htmlFor="input-email"
+                              >
+                                Supervisor's Email
+                              </label>
+                              <Field
+                                type="email"
+                                id="input-email"
+                                className="form-control form-control-alternative"
+                                placeholder="email"
+                                component="input"
+                                name="otherAdmin_email"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </>
+                    )}
+                  </div>
+>>>>>>> da546d297d9f6a787e88bac385ea6fc56d931810
 
               {/* SUBMIT */}
               <hr className="profile_hr my-4" />

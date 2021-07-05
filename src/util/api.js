@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const baseURL = "https://ogadonate.com.ng/api/"
-// const baseURL = "http://main.localhost:8000/api/"
+// const baseURL = "http://main.ogadonate.com.ng/api/"
+const baseURL = "http://ogadonate.com.ng/api"
 // const baseURL = "https://bgw-api.herokuapp.com/api/";
 
 const axiosInstance = axios.create({
@@ -20,21 +20,21 @@ axiosInstance.interceptors.response.use(
     async function(error) {
         const originalRequest = error.config;
 
-        if (
+        if(
             error.response.data.code === 'token_not_valid' &&
             error.response.status === 401 &&
             error.response.statusText === 'Unauthorized'
         ) {
             const refreshToken = localStorage.getItem('refresh');
 
-            if (refreshToken) {
+            if(refreshToken) {
                 const tokenParts = JSON.parse(atob(refreshToken.split('.')[1]));
 
                 // exp date in token is expressed in seconds, while now() returns milliseconds:
                 const now = Math.ceil(Date.now() / 1000);
                 console.log(tokenParts.exp);
 
-                if (tokenParts.exp > now) {
+                if(tokenParts.exp > now) {
                     return axiosInstance
                         .post('auth/jwt/refresh/', {
                             refresh: refreshToken,

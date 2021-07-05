@@ -2,7 +2,6 @@ import React from "react";
 import Corporate from "assets/images/homepage/corporate.jpg";
 import { Link } from "react-router-dom";
 import { SiWebauthn } from "react-icons/si";
-import Coorporate from "./../../dashboard/views/dashboard/user/Coorporate";
 import { RiShareFill } from "react-icons/ri";
 import { ImBoxAdd } from "react-icons/im";
 

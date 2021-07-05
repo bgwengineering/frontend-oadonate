@@ -34,31 +34,6 @@ export const singlePersonalProfile = (id) => async (dispatch, getState) => {
   }
 };
 
-// create comapny profile
-export const companyProfile = (formValues) => async (dispatch, getState) => {
-  dispatch(setLoading());
-  try {
-    const res = await axiosInstance.post(
-      "profile/company",
-      { ...formValues },
-      tokenConfig(getState)
-    );
-    dispatch({
-      type: actionTypes.CREATE_COMPANY_PROFILE_SUCCESS,
-      payload: res.data,
-    });
-    dispatch(stopSubmit("Form"));
-    dispatch(reset("Form"));
-    dispatch({ type: actionTypes.SHOW_SUCCESS_MESSAGE, payload: "Company Profile Created" });
-  } catch (err) {
-    dispatch({
-      type: actionTypes.CREATE_COMPANY_PROFILE_FAIL,
-    });
-    dispatch(stopSubmit("companyForm"));
-    dispatch(reset("companyForm"));
-    dispatch({ type: actionTypes.SHOW_ERROR_MESSAGE, payload: err.response.data.detail });
-  }
-};
 
 // fetch company profile
 export const fetchCompanyProfile = () => async (dispatch, getState) => {
@@ -81,7 +56,7 @@ export const fetchCompanyProfile = () => async (dispatch, getState) => {
 // fetch user donations received
 export const fetchUserDonationsReceived = () => async (dispatch, getState) => {
   try {
-    const res = await axiosInstance.get("profile/donations/recieved", tokenConfig(getState));
+    const res = await axiosInstance.get("profile/user/donations/received", tokenConfig(getState));
     dispatch({
       type: actionTypes.GET_USER_DONATIONS_RECEIVED,
       payload: res.data,
