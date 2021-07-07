@@ -31,9 +31,7 @@ const authState = useSelector(state => state.authReducer.user.is_affiliate);
   const show = useSelector(state => state.settings)
   const {sidebarShow} = show
 
-  const checkAffiliateType = () => {
-
-        
+  const checkAffiliateType = () => {   
       switch (authState) {
          case true:
            return (
