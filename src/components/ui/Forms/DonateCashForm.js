@@ -9,15 +9,16 @@ import axiosInstance from "util/api";
 import { setLoading } from "store/actions/Common";
 import { useMediaQuery } from "react-responsive";
 
-const stripePromise = window.Stripe(
-  "pk_test_51Ihz1EJtAhKBp45zJXZLT2RmTKQLDbpZRPerC1uKcnQ69N1R1IchlmRhCBMp3cwJ4DIVpSf9iHe4Hnq9wUdAC6OA00DNznJtw5"
-);
+// const stripePromise = window.Stripe(
+//   "pk_test_51Ihz1EJtAhKBp45zJXZLT2RmTKQLDbpZRPerC1uKcnQ69N1R1IchlmRhCBMp3cwJ4DIVpSf9iHe4Hnq9wUdAC6OA00DNznJtw5"
+// );
 
 const DonateCashForm = ({
   fund_cash,
   setCurrentOpenForm,
   setIsDonateCardButtonsOpen
 }) => {
+  console.log(fund_cash)
   const paystackUrl = useSelector(state => state.fundDonateReducer.paystackUrl);
 
   useEffect(() => {
@@ -26,18 +27,18 @@ const DonateCashForm = ({
     }
   }, [paystackUrl]);
 
-  useEffect(() => {
-    // Check to see if this is a redirect back from Checkout
-    const query = new URLSearchParams(window.location.search);
-    if (query.get("success")) {
-      setMessage("Order placed! You will receive an email confirmation.");
-    }
-    if (query.get("canceled")) {
-      setMessage(
-        "Order canceled -- continue to shop around and checkout when you're ready."
-      );
-    }
-  }, []);
+  // useEffect(() => {
+  //   // Check to see if this is a redirect back from Checkout
+  //   const query = new URLSearchParams(window.location.search);
+  //   if (query.get("success")) {
+  //     setMessage("Order placed! You will receive an email confirmation.");
+  //   }
+  //   if (query.get("canceled")) {
+  //     setMessage(
+  //       "Order canceled -- continue to shop around and checkout when you're ready."
+  //     );
+  //   }
+  // }, []);
 
   const [giveOgadonate, setGiveOgadonate] = useState(true);
   const [message, setMessage] = useState(false);
@@ -104,42 +105,6 @@ const DonateCashForm = ({
     dispatch(donateToCash(formData));
   };
 
-  const Message = ({ message }) => (
-    <section>
-      <p>{message}</p>
-    </section>
-  );
-  const handleClick = async e => {
-    e.preventDefault();
-    const formData = {
-      donate_amount: giveOgadonate ? tol_5_percentage : amount_given,
-      donate_payment_method,
-      donate_comment,
-      donate_currency,
-      donate_collect_per: giveOgadonate,
-      donate_as_unknown,
-      donate_percentage_value,
-      donate_accept,
-      fund_cash: fund_cash,
-      donate_percent_amount: giveOgadonate ? fivePercent : initial_amount
-    };
-
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `JWT ${localStorage.getItem("access")}`,
-        Accept: "application/json"
-      }
-    };
-    const stripe = stripePromise;
-      const res = await axiosInstance.post("campaign/create/donation-cash", formData, config)
-      const session = res.data;
-      const result = stripe.redirectToCheckout({ sessionId: session });
-      if(result.error){
-        setMessage(true);
-        return message ? <Message message={result.error.message} /> : null;
-      }
-  };
 
   const handleChange = e => {
     setDonateFields({ ...donateFields, [e.target.name]: e.target.value });
@@ -234,7 +199,7 @@ const DonateCashForm = ({
             onChange={handleChange}
           >
             <option value="">select currency</option>
-            <option value="$">$</option>
+            {/* <option value="$">$</option> */}
             <option value="₦">₦</option>
           </select>
         </div>
@@ -312,7 +277,7 @@ const DonateCashForm = ({
               onClick={setPaystackBtn}
             />
             <p className="mt-2">PayStack</p>
-            <input
+            {/* <input
               name="donate_payment_method"
               type="radio"
               className="mr-1 ml-3 mt-2"
@@ -320,7 +285,7 @@ const DonateCashForm = ({
               value="Stripe"
               onClick={setStripeBtn}
             />
-            <p className="mt-2">Stripe</p>
+            <p className="mt-2">Stripe</p> */}
           </div>
         </fieldset>
       </>
@@ -446,15 +411,16 @@ const DonateCashForm = ({
                   Donate With Paystack
                 </Button>
               ) : (
-                <Button
-                  onClick={handleClick}
-                  type="submit"
-                  name="submit"
-                  color="primary"
-                  variant="contained"
-                >
-                  Donate With Stripe
-                </Button>
+                // <Button
+                //   onClick={handleClick}
+                //   type="submit"
+                //   name="submit"
+                //   color="primary"
+                //   variant="contained"
+                // >
+                //   Donate With Stripe
+                // </Button>
+                null
               )}
 
               <Button

@@ -7,9 +7,9 @@ import StepLabel from "@material-ui/core/StepLabel";
 import Button from "@material-ui/core/Button";
 import { setLoading } from "store/actions/Common";
 
-const stripePromise = window.Stripe(
-  "pk_test_51Ihz1EJtAhKBp45zJXZLT2RmTKQLDbpZRPerC1uKcnQ69N1R1IchlmRhCBMp3cwJ4DIVpSf9iHe4Hnq9wUdAC6OA00DNznJtw5"
-);
+// const stripePromise = window.Stripe(
+//   "pk_test_51Ihz1EJtAhKBp45zJXZLT2RmTKQLDbpZRPerC1uKcnQ69N1R1IchlmRhCBMp3cwJ4DIVpSf9iHe4Hnq9wUdAC6OA00DNznJtw5"
+// );
 
 const Message = ({ message }) => (
   <section>
@@ -24,21 +24,21 @@ const DonateOgaCashForm = ({ fund_cash, setIsDonateOgaForm, setCurrentOpenForm }
       window.location = paystackUrl;
     }
   }, [paystackUrl]);
-  useEffect(() => {
-    // Check to see if this is a redirect back from Checkout
-    const query = new URLSearchParams(window.location.search);
-    if (query.get("success")) {
-      setMessage("Order placed! You will receive an email confirmation.");
-    }
-    if (query.get("canceled")) {
-      setMessage("Order canceled -- continue to shop around and checkout when you're ready.");
-    }
-  }, []);
+  // useEffect(() => {
+  //   // Check to see if this is a redirect back from Checkout
+  //   const query = new URLSearchParams(window.location.search);
+  //   if (query.get("success")) {
+  //     setMessage("Order placed! You will receive an email confirmation.");
+  //   }
+  //   if (query.get("canceled")) {
+  //     setMessage("Order canceled -- continue to shop around and checkout when you're ready.");
+  //   }
+  // }, []);
 
 
 
   const [giveOgadonate, setGiveOgadonate] = useState(false);
-  const [message, setMessage] = useState("");
+  // const [message, setMessage] = useState("");
   const [donateFields, setDonateFields] = useState({
     donate_amount: "",
     donate_payment_method: "",
