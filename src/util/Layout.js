@@ -7,8 +7,8 @@ import { ReactComponent as LoaderSpinn } from "assets/images/244.svg";
 
 const Layout = (props) => {
     const isLoading = useSelector(state => state.commonReducer.loading);
-    return ( <
-        >
+    return ( 
+    <>
         <Toolbar /> {
             isLoading ? (
                 <div className="d-flex justify-content-space-around">
@@ -24,8 +24,8 @@ const Layout = (props) => {
       <main>{props.children}</main>
       <Scroll />
       <Footer />
-    </div> <
-        />
+    </div> 
+    </>
     );
 };
 
