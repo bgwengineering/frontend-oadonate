@@ -7,9 +7,9 @@ import { Modal, ModalBody} from "reactstrap";
 import TermsCondition from './TermsCondition';
 
 
-const stripePromise = window.Stripe(
-  "pk_test_51Ihz1EJtAhKBp45zJXZLT2RmTKQLDbpZRPerC1uKcnQ69N1R1IchlmRhCBMp3cwJ4DIVpSf9iHe4Hnq9wUdAC6OA00DNznJtw5"
-);
+// const stripePromise = window.Stripe(
+//   "pk_test_51Ihz1EJtAhKBp45zJXZLT2RmTKQLDbpZRPerC1uKcnQ69N1R1IchlmRhCBMp3cwJ4DIVpSf9iHe4Hnq9wUdAC6OA00DNznJtw5"
+// );
 
 const Message = ({ message }) => (
   <section>
@@ -101,46 +101,46 @@ const OrderPreview = ({ nextPage, previousPage}) => {
   };
 
   // submit with stripe gateway
-  const PayWithStripe = () => {
-    let productsArr = [];
-    let quantitiesArr = [];
-    cartItems.forEach(items => {
-      productsArr.push(items.donate_item_name);
-      quantitiesArr.push(items.quantity);
-    });
+  // const PayWithStripe = () => {
+  //   let productsArr = [];
+  //   let quantitiesArr = [];
+  //   cartItems.forEach(items => {
+  //     productsArr.push(items.donate_item_name);
+  //     quantitiesArr.push(items.quantity);
+  //   });
     
-       const formData = {
-          products: productsArr,
-          quantities: quantitiesArr,
-          total_price: flatrate ? flatTotal : storeTotal,
-          ordered: true,
-          payment_method,
-          delivery_method 
-    };
+  //      const formData = {
+  //         products: productsArr,
+  //         quantities: quantitiesArr,
+  //         total_price: flatrate ? flatTotal : storeTotal,
+  //         ordered: true,
+  //         payment_method,
+  //         delivery_method 
+  //   };
 
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `JWT ${localStorage.getItem("access")}`,
-        Accept: "application/json",
-      },
-    };
-    const stripe = stripePromise;
+  //   const config = {
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Authorization: `JWT ${localStorage.getItem("access")}`,
+  //       Accept: "application/json",
+  //     },
+  //   };
+  //   const stripe = stripePromise;
     
-    axiosInstance
-      .post("buy-to-support/orders", formData, config)
-      .then((res) => {
-        const session = res.data;
-        const result = stripe.redirectToCheckout({ sessionId: session });
-        if (result.error) {
-          setMessage(result.error.message);
-        }
-        return message ? <Message message={message} /> : null;
-      })
-      .catch((error) => {
-        console.log(error.message);
-      });
-  };
+  //   axiosInstance
+  //     .post("buy-to-support/orders", formData, config)
+  //     .then((res) => {
+  //       const session = res.data;
+  //       const result = stripe.redirectToCheckout({ sessionId: session });
+  //       if (result.error) {
+  //         setMessage(result.error.message);
+  //       }
+  //       return message ? <Message message={message} /> : null;
+  //     })
+  //     .catch((error) => {
+  //       console.log(error.message);
+  //     });
+  // };
   const handleChange = (e) => {
     setOrderFields({ ...orderFields, [e.target.name]: e.target.value });
   };
@@ -150,10 +150,10 @@ const OrderPreview = ({ nextPage, previousPage}) => {
     setStripebtn(false);
   };
 
-  const setStripeBtn = () => {
-    setStripebtn(true);
-    setPaystack(false);
-  };
+  // const setStripeBtn = () => {
+  //   setStripebtn(true);
+  //   setPaystack(false);
+  // };
   const FlatRateBtn = () => {
     setStorepickup(false);
     setFlatrate(true);
@@ -242,7 +242,7 @@ const OrderPreview = ({ nextPage, previousPage}) => {
               />
               <span className="paystack-text">PayStack Gateway</span>
             </div>
-            <div className="stripe-paytext">
+            {/* <div className="stripe-paytext">
               <input
                 name="payment_method"
                 type="radio"
@@ -252,7 +252,7 @@ const OrderPreview = ({ nextPage, previousPage}) => {
                 onClick={setStripeBtn}
               />
               <span>Stripe Gateway</span>
-            </div>
+            </div> */}
           </div>
         </div>
 
@@ -298,19 +298,20 @@ const OrderPreview = ({ nextPage, previousPage}) => {
             Pay Now
           </button>
         ) : (
-          <button
-            onClick={() => {
-              PayWithStripe();
-              clearCartItems();
-              window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-              });
-            }}
-            className="order-payment-button"
-          >
-            Pay Now
-          </button>
+          // <button
+          //   onClick={() => {
+          //     PayWithStripe();
+          //     clearCartItems();
+          //     window.scrollTo({
+          //       top: 0,
+          //       behavior: "smooth"
+          //     });
+          //   }}
+          //   className="order-payment-button"
+          // >
+          //   Pay Now
+          // </button>
+          null
         )}
       </div>
       <hr className="profile_hr my-4" />
