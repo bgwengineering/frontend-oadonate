@@ -1,9 +1,11 @@
 import React from "react";
 import NewShipping from "../../checkout/NewShipping";
 import EditShipping from "../../checkout/EditShipping";
+import {useSelector } from "react-redux";
 
 
-export const ShippingPrompt = ({ nextPage, previousPage, id, shippingState }) => {
+export const ShippingPrompt = ({ nextPage, previousPage, id}) => {
+  const shippingState = useSelector((state) => state.userTypeReducer);
   const { shippingAddress } = shippingState;
   
   return (

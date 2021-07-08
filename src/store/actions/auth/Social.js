@@ -30,7 +30,7 @@ export const googleAuthenticate = (state, code) => async (dispatch) => {
   
       try {
         const res = await axiosInstance.post(
-          `${process.env.REACT_APP_API_URL}/auth/o/google-oauth2/?${formBody}`,
+          `/auth/o/google-oauth2/?${formBody}`,
           config
         );
   
@@ -69,7 +69,7 @@ export const googleAuthenticate = (state, code) => async (dispatch) => {
         .join("&");
       try {
         const res = await axiosInstance.post(
-          `${process.env.REACT_APP_API_URL}/auth/o/facebook/?${formBody}`,
+          `/auth/o/facebook/?${formBody}`,
           config
         );
   

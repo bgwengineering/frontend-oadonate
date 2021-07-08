@@ -9,7 +9,7 @@ var numeral = require('numeral');
 
 const NGOCardImport = () => {
    const [featuredPage, setFeaturedPage] = useState(0)
-  const [featuredCardPerPage] = useState(3)
+  const [featuredCardPerPage] = useState(18)
 
   const indexOfLastCard = featuredPage * featuredCardPerPage
   const indexOfFirstCard = indexOfLastCard + featuredCardPerPage

@@ -153,7 +153,6 @@ const Cards = ({ history, className }) => {
                   >
                     <Button
                       variant="contained"
-                      className="card-donate-btn"
                       className="card-title pt-2 card-donate-btn"
                       onClick={() => {
                         window.scrollTo(

@@ -19,7 +19,7 @@ const MoreFeaturedCategoriesButton = ({history}) => {
                     window.scrollTo({
                         top: 0,
                         behavior: "smooth"
-                    }, history.push("/categories"))
+                    }, history.push("/donate/all"))
                     }}
                   >
                     More <FaArrowRight style={{ color: "#fff", marginLeft: "10px" }} />

@@ -13,7 +13,7 @@ var numeral = require("numeral");
 
 const AllCauseCards = ({ history }) => {
   const [featuredPage, setFeaturedPage] = useState(1);
-  const [featuredCardPerPage] = useState(3);
+  const [featuredCardPerPage] = useState(18);
   const indexOfLastCard = featuredPage * featuredCardPerPage;
   const indexOfFirstCard = indexOfLastCard - featuredCardPerPage;
   const fundState = useSelector(state => state.fundDonateReducer);
@@ -126,7 +126,6 @@ const AllCauseCards = ({ history }) => {
                     <div className="card-donate-btn-container">
                       <Button
                         variant="contained"
-                        className="card-donate-btn"
                         className="card-title pt-2 card-donate-btn"
                         onClick={() => {
                           window.scrollTo(

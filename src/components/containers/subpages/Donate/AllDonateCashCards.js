@@ -13,7 +13,7 @@ const AllDonateCashCards = ({history}) => {
   const { allCampaign } = fundState;
  
   const [page, setPage] = useState(1);
-  const [cardPerPage, setCardPerPage] = useState(3);
+  const [cardPerPage, setCardPerPage] = useState(18);
 
   const indexOfLastCard = page * cardPerPage
   const indexOfFirstCard = indexOfLastCard - cardPerPage
