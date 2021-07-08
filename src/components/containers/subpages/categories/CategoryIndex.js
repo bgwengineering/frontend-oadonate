@@ -6,23 +6,23 @@ import RaiseFundQuestionnaire from "components/ui/Forms/RaiseFundQuestionnaire";
 import Community from "./SubCategories/Community/Community";
 import Ngo from "./SubCategories/NGO/NGO";
 import StartUp from "./SubCategories/Startup/Startup";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector} from "react-redux";
 import AllCategories from "./SubCategories/AllCategories/AllCategories";
-import { FUNDRAISEBUTTONCLICKED } from "store/actions/Category";
 import AuthLayout from "components/containers/auth/Auth";
+
 
 const Categoryindex = ({ match }) => {
   const isAuthenticated = useSelector(
     (state) => state.authReducer.isAuthenticated
   );
-  const dispatch = useDispatch()
   const startFundRaiseButtonState = useSelector(state=>state.fundSubCategoriesReducer)
   const {startFundRaise} = startFundRaiseButtonState
  
   return (
    <>
-        <div className="fund-raise-category" id='fund__raise__category' style={{display:startFundRaise?'none':'block'}}>
-          <Switch>
+        <div className="fund-raise-category" id='fund__raise__category'>
+        { startFundRaise ? null :         
+        <Switch>
             <Route
               exact
               path={`${match.url}`}
@@ -42,8 +42,7 @@ const Categoryindex = ({ match }) => {
               component={StartUp}
             />
           </Switch>
-
-        
+        }
         </div>   
         
           <div id="RaiseFundQuestionnaire" style={{display: startFundRaise ? 'block' : 'none' }}>

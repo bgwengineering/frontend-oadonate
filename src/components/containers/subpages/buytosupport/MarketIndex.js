@@ -3,7 +3,6 @@ import { Switch, Route } from "react-router-dom";
 import Details from './Market/ProductDetails';
 import MarketCollection from './Market/MarketCollection'
 import AuctionDetails from './Auction/AuctionDetails';
-// import AuctionCollection from './Auction/AuctionCollection';
 import AllAuctionCollection from "./Auction/AllAuctionCollection";
 
 

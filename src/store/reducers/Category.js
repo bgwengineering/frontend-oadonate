@@ -4,6 +4,7 @@ const initialState = {
     startFundRaise:false
 }
 
+
 const fundSubCategories = (state = initialState, action) => {
   switch(action.type){
      case FUND_RAISE_BUTTON_CLICKED:
@@ -19,8 +20,6 @@ const fundSubCategories = (state = initialState, action) => {
              return state
   }
 }
-
-
 
 
 export default fundSubCategories;

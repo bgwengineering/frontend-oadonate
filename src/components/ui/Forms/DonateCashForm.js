@@ -18,7 +18,7 @@ const DonateCashForm = ({
   setCurrentOpenForm,
   setIsDonateCardButtonsOpen
 }) => {
-  console.log(fund_cash)
+
   const paystackUrl = useSelector(state => state.fundDonateReducer.paystackUrl);
 
   useEffect(() => {

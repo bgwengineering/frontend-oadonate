@@ -59,7 +59,7 @@ const AuthLayout = () => {
           <div className="create-account">
             <div id="choose-signup">
               <h1>Create Account</h1>
-              <span>Using any social link</span>
+              {/* <span>Using any social link</span>
               <div className="social-container">
                 <button className="social" onClick={continueWithGoogle}>
                   <FaGoogle />
@@ -76,7 +76,7 @@ const AuthLayout = () => {
               </div>
               <span className="soc-span">
                 or use your email for registration
-              </span>
+              </span> */}
               <SignupForm />
             </div>
           </div>
@@ -86,8 +86,8 @@ const AuthLayout = () => {
         <div className="form-authentication-container sign-in-container">
           <div className="login-details">
             <h1>Sign in</h1>
-            <span className="soc-span">Using any social link</span>
-            <div className="social-container">
+            {/* <span className="soc-span">Using any social link</span> */}
+            {/* <div className="social-container">
               <button className="social" onClick={continueWithGoogle}>
                 <FaGoogle />
               </button>
@@ -100,8 +100,8 @@ const AuthLayout = () => {
               <button className="social" onClick={continueWithGoogle}>
                 <FaLinkedinIn />
               </button>
-            </div>
-            <span>or use your account</span>
+            </div> */}
+            {/* <span>or use your account</span> */}
             <LoginForm />
             <NavLink
               to="/reset-password"
@@ -128,7 +128,7 @@ const AuthLayout = () => {
             <div className="overlay-panel overlay-right">
               <h1>Hello, Friend!</h1>
               <p className="auth-p-text">
-                Enter your personal details and start journey with us
+                Enter your personal details and start your journey with us
               </p>
               <div className="auth_button_container">
                 <button className="auth-signup-button" id="signUp">

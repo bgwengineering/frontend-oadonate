@@ -79,6 +79,7 @@ const RaiseCash = ({
       dispatch(reset("cashfund"));
       dispatch(offLoading());
     } catch (error) {
+    
       dispatch(setLoading());
       dispatch({ type: actionTypes.CREATE_FUND_CASH_FAIL });
       if (error.response === "undefined") {

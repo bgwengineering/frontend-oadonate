@@ -11,7 +11,6 @@ import { FiShoppingCart } from "react-icons/fi";
 import { FUNDRAISECATEGORIES } from "store/actions/Category";
 import { CBadge } from "@coreui/react";
 import CartDropdown from "components/cart/CartDropdown";
-import { toggleCartHidden } from "store/actions/cart/cart.actions";
 import { fetchAllCampaign } from "store/actions/fund_donate/FundDonate";
 import { updateMarketCollections } from "store/actions/MarketPlace";
 
@@ -22,14 +21,12 @@ import { updateMarketCollections } from "store/actions/MarketPlace";
 
   const hiddenState = useSelector(state => state.cartReducer);
   const { hidden } = hiddenState;
-
-   
+  
   const cartState = useSelector(state => state.cartReducer);
   const { cartItems } = cartState;
 
   const itemCount = cartItems.reduce(
-    (accumulatedQuantity, cartItem) => accumulatedQuantity + cartItem.quantity,
-     0);
+    (accumulatedQuantity, cartItem) => accumulatedQuantity + cartItem.quantity, 0);
    
   const dispatch = useDispatch();
 

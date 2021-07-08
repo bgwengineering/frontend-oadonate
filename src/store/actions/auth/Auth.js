@@ -182,7 +182,7 @@ export const verify = ({ uid, token }) => async (dispatch) => {
 
 // request password change
 export const reset_password = ({ email }) => async (dispatch) => {
-  dispatch(setLoading());
+   dispatch(setLoading());
   const body = { email };
   try {
     await axiosInstance.post('auth/users/reset_password/',
@@ -194,6 +194,7 @@ export const reset_password = ({ email }) => async (dispatch) => {
     dispatch(stopSubmit("resetForm"));
     dispatch(reset("resetForm"));
     dispatch({ type: SHOW_SUCCESS_MESSAGE, payload: "Password Reset: Please check your email if you have an account to reset your password."})
+    dispatch(offLoading());
   } catch (err) {
     dispatch({
       type: PASSWORD_RESET_FAIL,

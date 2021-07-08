@@ -40,7 +40,7 @@ const MainApp = () => {
           />
         <Route path="/auth" component={AuthMain} />
         <Layout>      
-        <Route path="/categories" render={props => <Categoryindex  {...props}/>}  />
+          <Route path="/categories" component={Categoryindex}  />
         <Route path= '/marketplace/'  component={MarketIndex} />
         <Route path="/campaign/:id/:id/details/"  component={DonateCampaign} />
         <Route path="/about" component={About} />

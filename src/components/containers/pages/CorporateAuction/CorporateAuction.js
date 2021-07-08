@@ -67,11 +67,12 @@ const CorporateAuction = () => {
         </h5>
       </header>
 
-      <div className="pset ">
+      <div className="pset">
         <div className="container">
           <div className="row listar-feature-items">
             <div
-              className=" col-12 col-sm-6 col-md-4 listar-feature-item-wrapper listar-feature-with-image listar-height-changed"
+              className=" col-12 col-sm-6 col-md-4 listar-feature-item-wrapper 
+              listar-feature-with-image listar-height-changed"
               data-aos="fade-zoom-in"
               data-aos-group="features"
               data-line-height="25.2px"

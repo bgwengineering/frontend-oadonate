@@ -9,10 +9,11 @@ import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import CopyShared from "components/ui/ShareSocialLinks/CopySharedLink";
 
 
-
 var numeral = require('numeral');
 
-const Cards = ({history, className}) => {
+
+const Cards = ({ history, className }) => {
+  
    const [featuredPage, setFeaturedPage] = useState(0)
   const [featuredCardPerPage] = useState(3)
   const indexOfLastCard = featuredPage * featuredCardPerPage
@@ -51,6 +52,7 @@ const Cards = ({history, className}) => {
             1
           );
         
+           
         return (
           <div className="col-sm-6 col-md-6 col-lg-4 p-t-10">
             <div

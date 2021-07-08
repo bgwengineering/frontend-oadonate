@@ -47,11 +47,10 @@ const AllAuctionItems = ({ history, match }) => {
               <div className="col-md-6 col-lg-3 my-3" key={id}>
                 <div className="card auction-card">
                   <div className="img-container">
-               
-                      <img
-                        src={donate_item_img}
-                        alt="product"
-                        className="card-img-top mb-3"
+                    <img
+                      src={donate_item_img}
+                      alt="product"
+                      className="card-img-top mb-3"
                       onClick={() =>
                         window.scrollTo(
                           {
@@ -61,8 +60,7 @@ const AllAuctionItems = ({ history, match }) => {
                           history.push(`${match.url}/${id}/details`)
                         )
                       }
-                      />
-           
+                    />
 
                     <div className="bid-btn-container">
                       <div className="bid-btn-subdiv">
@@ -77,14 +75,14 @@ const AllAuctionItems = ({ history, match }) => {
                               history.push(`${match.url}/${id}/details`)
                             )
                           }
-                         >
+                        >
                           Bid Now
                         </Button>
                       </div>
                     </div>
                   </div>
 
-                  <p className="align-self-center text-uppercase mt-3 mb-0 bid-item-name">
+                  <p className="mx-auto truncate text-uppercase mt-3 mb-0  bid-item-name">
                     {donate_item_name}
                   </p>
 

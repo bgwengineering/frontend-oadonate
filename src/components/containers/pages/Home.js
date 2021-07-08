@@ -12,7 +12,7 @@ import MoreFeaturedCategoriesButton from './../subpages/categories/MoreFeaturedC
 
 const Home = () => {
     return (
-      <>
+      <div>
         <ImageSlider /> 
         <DescriptionText/>
         <CategoriesMainSwiper /> 
@@ -21,7 +21,7 @@ const Home = () => {
         <BuyToSupport /> 
         <BidAuction />
         <Counter /> 
-      </>
+      </div>
     );
  
 }

@@ -1,3 +1,4 @@
+
 const FeaturedPagination = ({ featuredCardPerPage, allCampaign, paginate }) => {
 
   const pageNumbers = [];
@@ -7,12 +8,7 @@ const FeaturedPagination = ({ featuredCardPerPage, allCampaign, paginate }) => {
 
   return (
     <nav aria-label="page-numbers">
-      <ul className="pagination justify-content-center">
-        <li className="page-item disabled">
-          <a className="page-link" href="#" tabindex="-1">
-            Previous
-          </a>
-        </li>
+      <ul className="pagination justify-content-center">   
         {pageNumbers.map(number => (
           <li key={number} className="page-item">
             <a onClick={() => paginate(number)} className="page-link">
@@ -20,11 +16,7 @@ const FeaturedPagination = ({ featuredCardPerPage, allCampaign, paginate }) => {
             </a>
           </li>
         ))}
-        <li className="page-item">
-          <a className="page-link" href="#">
-            Next
-          </a>
-        </li>
+       
       </ul>
     </nav>
   );

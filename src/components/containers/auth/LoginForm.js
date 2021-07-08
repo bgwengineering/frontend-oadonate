@@ -38,7 +38,7 @@ const LoginForm = ({ handleSubmit, submitting, pristine }) => {
             label="Email"
             name="email"
             type="email"
-            className='input'
+            className="input"
           />
         </fieldset>
         <fieldset className="d-flex form-eye-field">
@@ -47,28 +47,29 @@ const LoginForm = ({ handleSubmit, submitting, pristine }) => {
             name="password"
             component={renderField}
             label="password"
-            className='input'
+            className="input"
           />
-          <span className="password-icon" onClick={handleShowPassword}>
+          <span className="password-icon-login" onClick={handleShowPassword}>
             <BiShow />
           </span>
           <span
-            className="password-icon"
+            className="password-icon-login"
             onClick={handleShowPassword}
             style={{ display: isPasswordShown ? "none" : "block" }}
           >
             <BiHide />
           </span>
         </fieldset>
-        <button disabled={pristine || submitting} className="auth-button mt-3" onClick={() => {
-          window.scrollTo(
-            {
+        <button
+          disabled={pristine || submitting}
+          className="auth-button mt-3"
+          onClick={() => {
+            window.scrollTo({
               top: 0,
               behavior: "smooth"
-            }
-          )
-        }
-        }>
+            });
+          }}
+        >
           Sign In
         </button>
       </>

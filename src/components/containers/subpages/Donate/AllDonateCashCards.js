@@ -8,7 +8,6 @@ import {useSelector} from 'react-redux'
 
 var numeral = require('numeral');
 
-
 const AllDonateCashCards = ({history}) => {
   const fundState = useSelector((state) => state.fundDonateReducer);
   const { allCampaign } = fundState;
@@ -19,7 +18,6 @@ const AllDonateCashCards = ({history}) => {
   const indexOfLastCard = page * cardPerPage
   const indexOfFirstCard = indexOfLastCard - cardPerPage
 
-
   const paginate = pageNumber => setPage(pageNumber)
 
   return (
@@ -27,7 +25,8 @@ const AllDonateCashCards = ({history}) => {
       <div className="container">
         <div className="row">
           {allCampaign.length > 0 ? (
-            allCampaign.slice(indexOfFirstCard, indexOfLastCard).map(funds => {
+            allCampaign.slice(indexOfFirstCard, indexOfLastCard).map(funds => {   
+              console.log(allCampaign);
               const {
                 fund_img,
                 fund_category,
@@ -35,6 +34,7 @@ const AllDonateCashCards = ({history}) => {
                 fund_title,
                 fund_currency_type,
                 fund_endAt,
+                donate_amount,
                 id,
                 fund_type,
                 user,
@@ -42,9 +42,10 @@ const AllDonateCashCards = ({history}) => {
                 fund_percentage_completed,
                 fund_amount_raised
               } = funds;
-
+              
               const { first_name, last_name } = user;
-              let fundCash = numeral(fund_cash_amount).format("0, 0");
+              
+              let fundCash = numeral(donate_amount).format("0, 0");
               let fundAmount = numeral(fund_amount_raised).format("0, 0");
               const percentageCompleted = Number(
                 fund_percentage_completed
@@ -97,7 +98,7 @@ const AllDonateCashCards = ({history}) => {
                           </div>
                           <div>
                             Type:
-                      <span className="font-weight-bold ml-2">{fund_type}</span>
+                         <span className="font-weight-bold ml-2">{fund_type}</span>
                           </div>
                         </div>
                         <Link

@@ -22,7 +22,7 @@ const ImageSlider = ({ history }) => {
               style={{ backgroundImage: `url(${donate})` }}
             >
               <h4 className="fw-bold text-white slider-text">
-                Donate your IDLE items to fund a personal social or
+                Donate your IDLE items to fund a personal, social or
                 community need
               </h4>
               <Button

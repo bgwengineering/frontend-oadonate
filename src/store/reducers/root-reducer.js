@@ -15,7 +15,6 @@ import {persistReducer} from 'redux-persist';
 import { LOGOUT } from 'store/actions/ActionTypes';
 
 
-
   const appReducer = combineReducers({
     form:formReducer,
     authReducer:auth,
@@ -30,6 +29,7 @@ import { LOGOUT } from 'store/actions/ActionTypes';
     orderReducer: dashboard,
     corperateReducer : corperate
 });
+
 const persistConfig = {
   key: 'root',
   storage,

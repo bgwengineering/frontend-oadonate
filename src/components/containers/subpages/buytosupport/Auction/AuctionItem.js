@@ -80,14 +80,14 @@ const AuctionItem = ({history}) => {
                               history.push(`marketplace/auction/${id}/details`)
                             )
                           }
-                          >
+                        >
                           Bid Now
                         </Button>
                       </div>
                     </div>
                   </div>
 
-                  <p className="align-self-center text-uppercase mt-3 mb-0 bid-item-name">
+                  <p className="mx-auto truncate text-uppercase mt-3 mb-0 bid-item-name">
                     {donate_item_name}
                   </p>
 
