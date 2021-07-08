@@ -193,7 +193,9 @@ export const reset_password = ({ email }) => async (dispatch) => {
     });
     dispatch(stopSubmit("resetForm"));
     dispatch(reset("resetForm"));
-    dispatch({ type: SHOW_SUCCESS_MESSAGE, payload: "Password Reset: Please check your email if you have an account to reset your password."})
+    dispatch({ type: SHOW_SUCCESS_MESSAGE,
+       payload: 
+       "Password Reset:Please check your email if you have an account to reset your password."})
     dispatch(offLoading());
   } catch (err) {
     dispatch({
@@ -222,17 +224,21 @@ export const reset_password_confirm = (
   dispatch(setLoading())
   try {
     await axiosInstance.post(
-      `${process.env.REACT_APP_API_URL}/auth/users/reset_password_confirm/`,
+      '/auth/users/reset_password_confirm/',
       body,
       config
     );
     dispatch({
       type: PASSWORD_RESET_CONFIRM_SUCCESS,
     });
+    dispatch(offLoading());
+    dispatch({ type: SHOW_SUCCESS_MESSAGE, payload: "Password Change Successfully"})
   } catch (err) {
+    dispatch(offLoading());
     dispatch({
       type: PASSWORD_RESET_CONFIRM_FAIL,
     });
+    dispatch({ type: SHOW_SUCCESS_MESSAGE, payload: "Password Change Fail"})
   }
 };
 

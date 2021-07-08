@@ -9,7 +9,6 @@ import { Button } from "@material-ui/core";
 import {FcCallback} from 'react-icons/fc'
 import {GoMail} from 'react-icons/go'
 
-
 const TopNav = () => {
   const [showUpArrow, setShowUpArrow] = useState({
     deskArrow: false,

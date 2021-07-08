@@ -28,7 +28,7 @@ const AuthLayout = () => {
   const continueWithGoogle = async () => {
     try {
       const res = await get(
-        "https://ogadonate-api.herokuapp.com/api/auth/o/google-oauth2/?redirect_uri=http://localhost:3000/google"
+        "https://ogadonate.com.ng/api/social/o/google-oauth2/?redirect_uri=http://localhost:3000/google"
       );
 
       window.location.replace(res.data.authorization_url);

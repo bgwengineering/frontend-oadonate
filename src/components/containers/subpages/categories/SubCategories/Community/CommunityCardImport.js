@@ -18,7 +18,6 @@ const CommunityCardImport = ({history}) => {
   const fundState = useSelector((state) => state.fundDonateReducer);
   const { allCampaign } = fundState;
 
-
   return (
     <>
       {allCampaign.length > 0

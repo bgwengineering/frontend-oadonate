@@ -21,7 +21,6 @@ const PersonalCardImport = ({history}) => {
   const { allCampaign } = fundState;
 
 
-
   return (
     <>
       {allCampaign.length > 0
