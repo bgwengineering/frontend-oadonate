@@ -23,6 +23,7 @@ const NewProfile = ({ handleSubmit, pristine, submitting, mime }) => {
     formData.append("gender", formValues.gender);
     formData.append("about_me", formValues.about_me);
     formData.append("contact_method", formValues.contact_method);
+    
     const config = {
       headers: {
         "content-type": "multipart/form-data",
@@ -215,7 +216,7 @@ const NewProfile = ({ handleSubmit, pristine, submitting, mime }) => {
             <div className="col-lg-4">
               <div className="form-group focused">
                 <label className="profile-control-label" for="input-country">
-                  Profile Image <span style={{ color: "red" }}>*</span>
+                  Profile Image
                 </label>
                 <Field
                   className="form-control form-control-alternative"
@@ -244,12 +245,21 @@ const NewProfile = ({ handleSubmit, pristine, submitting, mime }) => {
         <div className="pl-lg-4">
           <div className="d-flex justify-content-between">
             <Button type="button">
-              <Link to="/dashboard">Cancel</Link>
+              <Link to="/dashboard" className="link-router-darkcolor">
+                Cancel
+              </Link>
             </Button>
+
             <Button
               type="submit"
               style={{ backgroundColor: "#C75A00", color: "#fff" }}
               disabled={pristine || submitting}
+              onClick={() =>
+                window.scrollTo({
+                  top: 0,
+                  behavior: "smooth"
+                })
+              }
             >
               Save
             </Button>

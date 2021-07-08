@@ -245,7 +245,7 @@ import { updateMarketCollections } from "store/actions/MarketPlace";
                   }))
                 }
               >
-                <li className="nav__submenu-item" id="about">
+                <li className="nav__submenu-item">
                   <Link
                     exact
                     activeClassName="navigation-link--active"
@@ -260,11 +260,11 @@ import { updateMarketCollections } from "store/actions/MarketPlace";
                         history.push("/donate/cash")
                       )
                     }
-                  >
+                   >
                     Donate Cash
                   </Link>
                 </li>
-                <li className="nav__submenu-item" id="contact">
+                <li className="nav__submenu-item">
                   <Link
                     exact
                     activeClassName="navigation-link--active"
@@ -283,7 +283,7 @@ import { updateMarketCollections } from "store/actions/MarketPlace";
                     Donate Item
                   </Link>
                 </li>
-                <li className="nav__submenu-item" id="contact">
+                <li className="nav__submenu-item">
                   <Link
                     exact
                     activeClassName="navigation-link--active"
@@ -344,7 +344,28 @@ import { updateMarketCollections } from "store/actions/MarketPlace";
                     howWorksArrow: false
                   }))
                 }
-              >
+                >
+           
+                <li className="nav__submenu-item">
+                  <Link
+                    exact
+                    activeClassName="navigation-link--active"
+                    className="sub-navigation-link"
+                    id="how-works"
+                     onClick={() =>
+                      window.scrollTo(
+                        {
+                          top: 0,
+                          behavior: "smooth"
+                        },
+                        history.push("/how-it-works")
+                      )
+                    }
+                  >
+                    How it works
+                  </Link>
+                </li>
+
                 <li className="nav__submenu-item" id="about">
                   <Link
                     exact
@@ -379,7 +400,7 @@ import { updateMarketCollections } from "store/actions/MarketPlace";
                         history.push("/contact")
                       )
                     }
-                  >
+                   >
                     Contact us
                   </Link>
                 </li>
@@ -396,7 +417,7 @@ import { updateMarketCollections } from "store/actions/MarketPlace";
             activeClassName="navigation-link--active"
             className="navigation-link text-white"
             onClick={refreshState}
-          >
+            >
             <img
               src={Logo}
               alt="log"
@@ -416,7 +437,6 @@ import { updateMarketCollections } from "store/actions/MarketPlace";
             ) : (
               <li className="nav-item nav-signup-login navbar-right-hidden">
                 <Link
-    
                   exact
                   activeClassName="navigation-link--active"
                   className="navigation-link text-white"

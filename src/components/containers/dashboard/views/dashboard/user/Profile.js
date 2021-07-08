@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import ProfilePrompt from "./ProfilePrompt";
 import placeholder_image from '../../../../../../assets/images//homepage/user.png'
 
@@ -29,25 +29,35 @@ const Profile = () => {
             <div className="card card-profile shadow">
               <div className="row justify-content-center">
                 <div className="col-lg-3 order-lg-2">
-                  <div className="card-profile-image">
-                    {
-                      profile_img ?
-                        <img src={profile_img} alt="rounded-circle" className="rounded-circle-img" />
-                        : 
-                        <img src={placeholder_image} alt="rounded-circle" className="rounded-circle-img" />
-                    }
+                  <div
+                    className="card-profile-image"
+                    style={{ height: "30px" }}
+                  >
+                    {profile_img ? (
+                      <img
+                        src={profile_img}
+                        alt="rounded-circle"
+                        className="rounded-circle-img"
+                      />
+                    ) : (
+                      <img
+                        src={placeholder_image}
+                        alt="rounded-circle"
+                        className="rounded-circle-img"
+                      />
+                    )}
                   </div>
                 </div>
               </div>
 
               <div className="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
                 <div className="d-flex justify-content-between">
-                  <Link to="/dashboard/profile/edit" className="btn btn-sm edit-btn  mr-4">
+                  <Link
+                    to="/dashboard/profile/edit"
+                    className="btn btn-sm edit-btn  mr-4"
+                  >
                     Change Password
                   </Link>
-                  <a href="/#" className="btn btn-sm btn-default float-right">
-                    Message
-                  </a>
                 </div>
               </div>
 
@@ -56,7 +66,9 @@ const Profile = () => {
                   <div className="col">
                     <div className="card-profile-stats d-flex justify-content-center mt-md-5">
                       <div>
-                        <h3 className="all-heading">{first_name + " " + last_name}</h3>
+                        <h3 className="all-heading">
+                          {first_name + " " + last_name}
+                        </h3>
                         <div className="h5 font-weight-300">
                           <i className="ni location_pin mr-2"></i>
                         </div>
@@ -73,23 +85,33 @@ const Profile = () => {
             <div className="card shadow">
               <div className="card-header bg-white border-0">
                 <div className="row">
-                  <div className="col-8">
+                  <div className="col-12 col-xs-8 col-md-8">
                     <h3 className="all-heading mb-0">My account</h3>
                   </div>
-                  <div className="col-3">
-                    <Link to="/dashboard/profile/shipping" className="main-link">
-                      <Button className="shipping-btn">Add Shipping Address</Button>
+                  <div className="col-12 col-xs-4 col-md-4">
+                    <Link
+                      to="/dashboard/profile/shipping"
+                      className="main-link"
+                    >
+                      <Button className="shipping-btn">
+                        Add Shipping Address
+                      </Button>
                     </Link>
                   </div>
                 </div>
               </div>
               <div className="card-body">
-                <h6 className="heading-small text-muted mb-4">User information</h6>
+                <h6 className="heading-small text-muted all-heading mb-4 font-weight-bold">
+                  User information
+                </h6>
                 <div className="pl-lg-4">
                   <div className="row">
                     <div className="col-lg-6">
                       <div className="form-group">
-                        <label className="profile-control-label" for="input-email">
+                        <label
+                          className="profile-control-label"
+                          for="input-email"
+                        >
                           Email address
                         </label>
                         <input
@@ -119,7 +141,10 @@ const Profile = () => {
                   <div className="row">
                     <div className="col-lg-6">
                       <div className="form-group focused">
-                        <label className="profile-control-label" for="input-first-name">
+                        <label
+                          className="profile-control-label"
+                          for="input-first-name"
+                        >
                           First name
                         </label>
                         <input
@@ -133,7 +158,10 @@ const Profile = () => {
                     </div>
                     <div className="col-lg-6">
                       <div className="form-group focused">
-                        <label className="profile-control-label" for="input-last-name">
+                        <label
+                          className="profile-control-label"
+                          for="input-last-name"
+                        >
                           Last name
                         </label>
                         <input
@@ -151,7 +179,9 @@ const Profile = () => {
                 <hr className="my-4" />
 
                 {/* contact information */}
-                <h6 className="heading-small text-muted all-heading mb-4">Create Profile</h6>
+                <h6 className="heading-small text-muted all-heading mb-4 font-weight-bold">
+                  Create Profile
+                </h6>
                 <ProfilePrompt />
               </div>
             </div>

@@ -26,8 +26,6 @@ const dispatch = useDispatch()
 const authState = useSelector(state => state.authReducer.user.is_affiliate);
 
  
-
-
   const show = useSelector(state => state.settings)
   const {sidebarShow} = show
 

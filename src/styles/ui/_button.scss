@@ -15,6 +15,14 @@
   width:120px !important;
   color:#fff !important;
 }
+.shipping-btn{
+  background-color: $logo_green !important;
+  padding:8px 15px 8px 15px !important;
+  color:#fff !important;
+   &:hover{
+  opacity:.8
+  }
+}
 .shipping-cancel-btn{
     background-color:none;
   padding:9px 5px 9px 5px !important;

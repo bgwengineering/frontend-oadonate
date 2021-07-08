@@ -26,6 +26,7 @@ import SignupAffiliate from './containers/pages/Affiliate/SignupAffiliate';
 import CorporateAuction from './containers/pages/CorporateAuction/CorporateAuction';
 import SignupCorporate from "./containers/pages/CorporateAuction/SignupCorporate";
 import Page404 from './../util/pages/page404/Page404';
+import HowOgadonateWorks from './containers/pages/HowOgadonateWorks';
 
 
 const MainApp = () => {
@@ -59,6 +60,7 @@ const MainApp = () => {
         <Route path='/affiliate-signup' component={SignupAffiliate} />
         <Route path='/corporate-auction' component={CorporateAuction} />
         <Route path='/corporate-signup' component={SignupCorporate} />    
+        <Route path='/how-it-works' component={HowOgadonateWorks} />    
         <Route
           path="/password/reset/confirm/:uid/:token"
           component={ResetPasswordConfirm}

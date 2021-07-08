@@ -9,64 +9,111 @@ import { singlePersonalProfile } from "store/actions/auth/Dashboard";
 import { setLoading, offLoading } from "store/actions/Common";
 import { renderField } from "util/RenderValidate";
 
-const EditProfile = ({ handleSubmit, pristine, submitting, history, profileId }) => {
-    const [submit, setSubmit] = useState(false);
-    const dispatch = useDispatch();
-    useEffect(() => {
-        document.title = "Ogadonate | Profile";
-        dispatch(singlePersonalProfile(profileId));
-    }, []);
-    const onFormSubmit = (formValues) => {
-        let formData = new FormData();
-        formData.append("address", formValues.address);
-        formData.append("city", formValues.city);
-        formData.append("state", formValues.state);
-        formData.append("country", formValues.country);
-        formData.append("phone", formValues.phone);
-        formData.append("gender", formValues.gender);
-        formData.append("about_me", formValues.about_me);
-        formData.append("contact_method", formValues.contact_method);
-        const config = {
-            headers: {
-                "content-type": "multipart/form-data",
-                Authorization: `JWT ${localStorage.getItem("access")}`,
-            },
-        };
-        const url = `profile/personal/${profileId}`;
-        dispatch(setLoading());
-        axiosInstance
-            .patch(url, formData, config)
-            .then(function(response) {
-                dispatch({
-                    type: actionTypes.UPDATE_PERSONAL_PROFILE_SUCCESS,
-                    payload: response.data,
-                });
-                dispatch(stopSubmit("editpersonalForm"));
-                dispatch(reset("editpersonalForm"));
-                dispatch(offLoading());
-                dispatch({ type: actionTypes.SHOW_SUCCESS_MESSAGE, payload: "Personal Profile Updated" });
-                setTimeout(() => {
-                    setSubmit(true)
-                }, 2000)
-            })
-            .catch(function(error) {
-                console.log(error.response);
-                dispatch({
-                    type: actionTypes.UPDATE_PERSONAL_PROFILE_FAIL,
-                });
-                dispatch(setLoading());
-                dispatch(stopSubmit("editpersonalForm"));
-                dispatch(reset("editpersonalForm"));
-                dispatch(offLoading());
-                dispatch({ type: actionTypes.SHOW_ERROR_MESSAGE, payload: error.response.message });
-            });
+
+const EditProfile = ({
+  handleSubmit,
+  pristine,
+  submitting,
+  history,
+  profileId,
+  mime
+}) => {
+  const [submit, setSubmit] = useState(false);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    document.title = "Ogadonate | Profile";
+    dispatch(singlePersonalProfile(profileId));
+  }, []);
+  const onFormSubmit = formValues => {
+    let formData = new FormData();
+    formData.append("address", formValues.address);
+    formData.append("city", formValues.city);
+    formData.append("state", formValues.state);
+    formData.append("country", formValues.country);
+    formData.append("phone", formValues.phone);
+    formData.append("gender", formValues.gender);
+    formData.append("about_me", formValues.about_me);
+    formData.append("contact_method", formValues.contact_method);
+    const config = {
+      headers: {
+        "content-type": "multipart/form-data",
+        Authorization: `JWT ${localStorage.getItem("access")}`
+      }
     };
-    if (submit) {
-        history.push("/dashboard")
+    const url = `profile/personal/${profileId}`;
+    dispatch(setLoading());
+    axiosInstance
+      .patch(url, formData, config)
+      .then(function(response) {
+        dispatch({
+          type: actionTypes.UPDATE_PERSONAL_PROFILE_SUCCESS,
+          payload: response.data
+        });
+        dispatch(stopSubmit("editpersonalForm"));
+        dispatch(reset("editpersonalForm"));
+        dispatch(offLoading());
+        dispatch({
+          type: actionTypes.SHOW_SUCCESS_MESSAGE,
+          payload: "Personal Profile Updated"
+        });
+        setTimeout(() => {
+          setSubmit(true);
+        }, 2000);
+      })
+      .catch(function(error) {
+        console.log(error.response);
+        dispatch({
+          type: actionTypes.UPDATE_PERSONAL_PROFILE_FAIL
+        });
+        dispatch(setLoading());
+        dispatch(stopSubmit("editpersonalForm"));
+        dispatch(reset("editpersonalForm"));
+        dispatch(offLoading());
+        dispatch({
+          type: actionTypes.SHOW_ERROR_MESSAGE,
+          payload: error.response.message
+        });
+      });
+  };
+  if (submit) {
+    history.push("/dashboard");
+  }
+
+  const renderInput = ({ input, type, meta }) => {
+    return (
+      <div>
+        <input
+          name={input.name}
+          type={type}
+          accept={mime}
+          onChange={event => handleChange(event, input)}
+        />
+        {meta && meta.invalid && meta.error && (
+          <p style={{ color: "red", fontSize: "10px" }}>{meta.error}</p>
+        )}
+      </div>
+    );
+  };
+   
+    const handleChange = (event, input) => {
+    event.preventDefault();
+    let imageFile = event.target.files[0];
+    if (imageFile) {
+      const localImageUrl = URL.createObjectURL(imageFile);
+      const imageObject = new window.Image();
+
+      imageObject.onload = () => {
+        imageFile.width = imageObject.naturalWidth;
+        imageFile.height = imageObject.naturalHeight;
+        input.onChange(imageFile);
+        URL.revokeObjectURL(imageFile);
+      };
+      imageObject.src = localImageUrl;
     }
-    return ( 
-      <>
-        <form onSubmit={handleSubmit(onFormSubmit)}>
+  };
+  return (
+    <>
+      <form onSubmit={handleSubmit(onFormSubmit)}>
         <div className="pl-lg-4">
           <div className="row">
             <div className="col-md-12">
@@ -191,6 +238,20 @@ const EditProfile = ({ handleSubmit, pristine, submitting, history, profileId })
                 </div>
               </div>
             </div>
+
+            {/* <div className="col-lg-4">
+              <div className="form-group focused">
+                <label className="profile-control-label" for="input-country">
+                  Profile Image
+                </label>
+                <Field
+                  className="form-control form-control-alternative"
+                  name="profile_image"
+                  type="file"
+                  component={renderInput}
+                />
+              </div>
+            </div> */}
           </div>
         </div>
         {/* description */}
@@ -210,20 +271,28 @@ const EditProfile = ({ handleSubmit, pristine, submitting, history, profileId })
         <div className="pl-lg-4">
           <div className="d-flex justify-content-between">
             <Button type="button">
-              <Link to="/dashboard">Cancel</Link>
+              <Link to="/dashboard" className="link-router-darkcolor">
+                Cancel
+              </Link>
             </Button>
             <Button
               type="submit"
               style={{ backgroundColor: "#C75A00", color: "#fff" }}
               disabled={pristine || submitting}
+              onClick={() =>
+                window.scrollTo({
+                  top: 0,
+                  behavior: "smooth"
+                })
+              }
             >
               Update
             </Button>
           </div>
         </div>
-      </form> 
-      </>
-    );
+      </form>
+    </>
+  );
 };
 
 function mapStateToProps(state) {

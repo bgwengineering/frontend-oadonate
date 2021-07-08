@@ -288,6 +288,15 @@
                 background-color: $logo_orange;
             }
           }
+          #how-works{    
+            color:#000; 
+            padding: 7px 99px 7px 4px;
+            &:hover{
+               color:#fff;
+                background-color: $logo_orange;
+            }
+          }
+
           #auction{
             color:#000; 
             padding: 7px 68px 7px 4px;
