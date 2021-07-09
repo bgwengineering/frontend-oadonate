@@ -157,7 +157,7 @@ const DonateCash = ({history}) => {
       </div>
       <div className="all_donate_item_cards">
         <h4 className="text-uppercase text-center mt-5">
-           Find a cause to donate to
+           Find a cause to donate to Cash
         </h4>
         <AllDonateCashCards />
     

@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { Button } from "@material-ui/core";
 import { reduxForm, Field } from "redux-form";
 import {
-  updateShippingAddressCheckout,
+  updateShippingAddress,
   singleShippingAddress
 } from "store/actions/auth/Dashboard";
 import { validateShipping, checkoutRenderField } from "util/RenderValidate";
@@ -19,7 +19,8 @@ const EditShipping = ({ nextPage, handleSubmit, id }) => {
   const [checked, setChecked] = useState(false);
 
   const updateShipping = formValues => {
-    dispatch(updateShippingAddressCheckout(id, formValues));
+    dispatch(updateShippingAddress(id, formValues));
+    console.log(formValues)
     nextPage();
   };
 
@@ -237,7 +238,7 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { updateShippingAddressCheckout, singleShippingAddress }
+  { updateShippingAddress, singleShippingAddress }
 )(
   reduxForm({
     form: "editshipping",

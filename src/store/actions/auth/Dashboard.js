@@ -73,6 +73,7 @@ export const fetchUserDonationsReceived = () => async (dispatch, getState) => {
 
 // create shipping address
 export const createShippingAddress = (address) => async (dispatch, getState) => {
+  console.log(address)
   dispatch(setLoading());
   try {
     const res = await axiosInstance.post(
@@ -98,6 +99,7 @@ export const createShippingAddress = (address) => async (dispatch, getState) => 
 
 //update shipping address
 export const updateShippingAddress = (id, address) => async (dispatch, getState) => {
+  console.log(address)
   dispatch(setLoading());
   try {
     const res = await axiosInstance.patch(
@@ -115,27 +117,6 @@ export const updateShippingAddress = (id, address) => async (dispatch, getState)
     dispatch(stopSubmit("editshipping"));
     dispatch(reset("editshipping"));
     dispatch({ type: actionTypes.SHOW_ERROR_MESSAGE, payload: "Shipping Address Fail!" });
-    setTimeout(() => {
-      dispatch(offLoading());
-    }, 5000);
-  }
-};
-export const updateShippingAddressCheckout = (id, address) => async (dispatch, getState) => {
-  dispatch(setLoading());
-  try {
-    const res = await axiosInstance.patch(
-      `buy-to-support/shipping/${id}`,
-      { ...address },
-      tokenConfig(getState)
-    );
-    dispatch({ type: actionTypes.UPDATE_SHIPPING_ADDRESS_SUCCESS, payload: res.data });
-    dispatch(reset("editshipping"));
-    dispatch(stopSubmit("editshipping"));
-    dispatch(offLoading());
-  } catch (error) {
-    dispatch({ type: actionTypes.UPDATE_SHIPPING_ADDRESS_FAIL });
-    dispatch(stopSubmit("editshipping"));
-    dispatch(reset("editshipping"));
     setTimeout(() => {
       dispatch(offLoading());
     }, 5000);

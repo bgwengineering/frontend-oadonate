@@ -6,8 +6,10 @@ import {
   GOOGLE_AUTH_FAIL,
   FACEBOOK_AUTH_SUCCESS,
   FACEBOOK_AUTH_FAIL,
+  SHOW_SUCCESS_MESSAGE,
+  SHOW_ERROR_MESSAGE
 } from "../ActionTypes";
-
+import { setLoading, offLoading } from "store/actions/Common";
 export const googleAuthenticate = (state, code) => async (dispatch) => {
     if (state && code && !localStorage.getItem("access")) {
       const config = {
@@ -27,10 +29,10 @@ export const googleAuthenticate = (state, code) => async (dispatch) => {
             encodeURIComponent(key) + "=" + encodeURIComponent(details[key])
         )
         .join("&");
-  
+        dispatch(setLoading());
       try {
         const res = await axiosInstance.post(
-          `/auth/o/google-oauth2/?${formBody}`,
+          `/social/o/google-oauth2/?${formBody}`,
           config
         );
   
@@ -38,12 +40,14 @@ export const googleAuthenticate = (state, code) => async (dispatch) => {
           type: GOOGLE_AUTH_SUCCESS,
           payload: res.data,
         });
-  
+        dispatch({ type: SHOW_SUCCESS_MESSAGE, payload: "You've successfully logged in" });
+        dispatch(offLoading());
         dispatch(load_user());
       } catch (err) {
         dispatch({
           type: GOOGLE_AUTH_FAIL,
         });
+        dispatch(offLoading());
       }
     }
   };
@@ -69,7 +73,7 @@ export const googleAuthenticate = (state, code) => async (dispatch) => {
         .join("&");
       try {
         const res = await axiosInstance.post(
-          `/auth/o/facebook/?${formBody}`,
+          `/social/o/facebook/?${formBody}`,
           config
         );
   

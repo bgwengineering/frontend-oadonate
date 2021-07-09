@@ -4,7 +4,7 @@ import { FaGoogle, FaTwitter, FaFacebook, FaLinkedinIn } from "react-icons/fa";
 import SignupForm from "./SignupForm";
 import LoginForm from "./LoginForm";
 import { NavLink } from "react-router-dom";
-
+import axiosInstance from 'util/api'
 
 const AuthLayout = () => {
   useEffect(() => {
@@ -27,8 +27,8 @@ const AuthLayout = () => {
 
   const continueWithGoogle = async () => {
     try {
-      const res = await get(
-        "https://ogadonate.com.ng/api/social/o/google-oauth2/?redirect_uri=http://localhost:3000/google"
+      const res = await axiosInstance.get(
+        "social/o/google-oauth2/?redirect_uri=http://localhost:3000/google"
       );
 
       window.location.replace(res.data.authorization_url);
@@ -59,12 +59,12 @@ const AuthLayout = () => {
           <div className="create-account">
             <div id="choose-signup">
               <h1>Create Account</h1>
-              {/* <span>Using any social link</span>
+              <span>Using any social link</span>
               <div className="social-container">
-                <button className="social" onClick={continueWithGoogle}>
+                {/* <button className="social" onClick={continueWithGoogle}>
                   <FaGoogle />
-                </button>
-                <button className="social" onClick={continueWithGoogle}>
+                </button> */}
+                {/* <button className="social" onClick={continueWithGoogle}>
                   <FaTwitter />
                 </button>
                 <button className="social" onClick={continueWithGoogle}>
@@ -72,11 +72,11 @@ const AuthLayout = () => {
                 </button>
                 <button className="social" onClick={continueWithGoogle}>
                   <FaLinkedinIn />
-                </button>
+                </button> */}
               </div>
               <span className="soc-span">
                 or use your email for registration
-              </span> */}
+              </span>
               <SignupForm />
             </div>
           </div>
@@ -86,12 +86,12 @@ const AuthLayout = () => {
         <div className="form-authentication-container sign-in-container">
           <div className="login-details">
             <h1>Sign in</h1>
-            {/* <span className="soc-span">Using any social link</span> */}
-            {/* <div className="social-container">
-              <button className="social" onClick={continueWithGoogle}>
+            <span className="soc-span">Using any social link</span>
+             <div className="social-container">
+              {/* <button className="social" onClick={continueWithGoogle}>
                 <FaGoogle />
-              </button>
-              <button className="social" onClick={continueWithGoogle}>
+              </button> */}
+              {/* <button className="social" onClick={continueWithGoogle}>
                 <FaTwitter />
               </button>
               <button className="social" onClick={continueWithGoogle}>
@@ -99,9 +99,9 @@ const AuthLayout = () => {
               </button>
               <button className="social" onClick={continueWithGoogle}>
                 <FaLinkedinIn />
-              </button>
-            </div> */}
-            {/* <span>or use your account</span> */}
+              </button> */}
+            </div> 
+            <span>or use your account</span>
             <LoginForm />
             <NavLink
               to="/reset-password"

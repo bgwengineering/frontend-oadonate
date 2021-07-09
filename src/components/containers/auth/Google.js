@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { googleAuthenticate } from 'store/actions/auth/Social';
 import queryString from 'query-string';
 
-const Google = ({ googleAuthenticate }) => {
+const Google = () => {
+    const dispatch = useDispatch();
     let location = useLocation();
 
     useEffect(() => {
@@ -16,16 +17,13 @@ const Google = ({ googleAuthenticate }) => {
         console.log('Code: ' + code);
 
         if (state && code) {
-            googleAuthenticate(state, code);
+            dispatch(googleAuthenticate(state, code));
         }
     }, [location]);
 
     return (
         <div className='container'>
             <div class='jumbotron mt-5'>
-                <h1 class='display-4'>Welcome to Auth System!</h1>
-                <p class='lead'>This is an incredible authentication system with production level features!</p>
-                <hr class='my-4' />
                 <p>Click the Log In button</p>
                 <Link class='btn btn-primary btn-lg' to='/login' role='button'>Login</Link>
             </div>
@@ -33,4 +31,4 @@ const Google = ({ googleAuthenticate }) => {
     );
 };
 
-export default connect(null, { googleAuthenticate })(Google);
+export default Google;

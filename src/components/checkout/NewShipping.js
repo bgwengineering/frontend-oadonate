@@ -11,7 +11,8 @@ const NewShipping = ({ handleSubmit, pristine, submitting, nextPage }) => {
   const dispatch = useDispatch();
 
   const createShipping = (formValues) => {
-    dispatch(createShippingAddress(formValues));
+    dispatch(createShippingAddress(...formValues));
+    console.log(...formValues)
   };
 
   const scrollToTop = () => {

@@ -10,14 +10,14 @@ const Pagination = ({ cardPerPage, allCampaign, paginate }) => {
     return (
       <nav aria-label="page-numbers">
         <ul className="pagination justify-content-center">
-          {/* <li className="page-item disabled">
-            <a className="page-link" href="#" tabindex="-1">
+          <li className="page-item disabled">
+            {/* <a className="page-link" href="#" tabindex="-1">
               Previous
-            </a>
-          </li> */}
+            </a> */}
+          </li>
           {pageNumbers.map(number => (
             <li key={number} className="page-item">
-              <a onClick={() => paginate(number)} className="page-link">
+              <a  onClick={() => paginate(number)} className="page-link">
                 {number}
               </a>
             </li>
