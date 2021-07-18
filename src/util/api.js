@@ -1,8 +1,14 @@
 import axios from 'axios';
+import {useDispatch} from 'react-redux' 
+import history from './history'
+import {
+  SHOW_SUCCESS_MESSAGE,
+  SHOW_ERROR_MESSAGE
+} from "store/actions/ActionTypes";
 
-const baseURL = "https://ogadonate.com.ng/api/"
 
-
+const baseURL = "https://main.ogadonate.com.ng/api/"
+// const baseURL = "http://localhost:8000/api/"
 
 
 const axiosInstance = axios.create({
@@ -13,7 +19,6 @@ const axiosInstance = axios.create({
         Accept: "application/json",
     },
 });
-
 axiosInstance.interceptors.response.use(
     (response) => {
         return response;
@@ -27,13 +32,13 @@ axiosInstance.interceptors.response.use(
             error.response.statusText === 'Unauthorized'
         ) {
             const refreshToken = localStorage.getItem('refresh');
+            const dispatch = useDispatch()
 
             if(refreshToken) {
                 const tokenParts = JSON.parse(atob(refreshToken.split('.')[1]));
 
                 // exp date in token is expressed in seconds, while now() returns milliseconds:
                 const now = Math.ceil(Date.now() / 1000);
-                console.log(tokenParts.exp);
 
                 if(tokenParts.exp > now) {
                     return axiosInstance
@@ -52,15 +57,16 @@ axiosInstance.interceptors.response.use(
                             return axiosInstance(originalRequest);
                         })
                         .catch((err) => {
-                            console.log(err);
+                            dispatch({ type: SHOW_ERROR_MESSAGE, payload: 'Your session has expired. Please log in again.' });
+                            history.push('/auth');
                         });
                 } else {
-                    console.log('Refresh token is expired', tokenParts.exp, now);
-                    window.location.href = '/auth';
+                    dispatch({ type: SHOW_ERROR_MESSAGE, payload: 'Your session has expired. Please log in again.' })
+                    history.push('/auth');
                 }
             } else {
-                console.log('Refresh token not available.');
-                window.location.href = '/auth';
+                dispatch({ type: SHOW_ERROR_MESSAGE, payload: 'Your session has expired. Please log in again.' })
+                history.push('/auth');
             }
         }
         // specific error handling done elsewhere
