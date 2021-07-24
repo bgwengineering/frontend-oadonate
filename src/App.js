@@ -26,11 +26,6 @@ const App = () => {
     dispatch(load_user());
     dispatch(fetchAllCampaign());
     dispatch(updateMarketCollections());
-    if (isAuthenticated) {
-      dispatch(fetchShippingAddress());
-      dispatch(fetchPersonalProfile());
-      dispatch(fetchUserDonationsReceived());
-    }
     setIsLoading(false);
   }, [isAuthenticated]);
 
@@ -58,9 +53,6 @@ const App = () => {
           onClose={handleClose}
           anchorOrigin={{ vertical: "top", horizontal: "right" }}
         >
-          <AlertSnackBar severity={error ? "error" : "success"}>
-            {Message}
-          </AlertSnackBar>
         </Snackbar>
       )}
     </>

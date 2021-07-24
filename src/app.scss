@@ -1,11 +1,3 @@
-@import "pages/_pages-dir";
-@import "auth/auth-dir";
-@import "Layout";
-@import "ui/_ui-dir";
-@import "bootstrap";
-@import "global/global-dir";
-@import "base/base-dir";
-@import "dashboard/dashboard-dir";
 @import "../../node_modules/react-slideshow-image/dist/styles.css";
 @import "../../node_modules/swiper/swiper-bundle.css";
 @import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
@@ -22,4 +14,3 @@
 .c-main{
     background-color: #f4f4f4 !important;
 }
-

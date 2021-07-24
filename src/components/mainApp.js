@@ -16,16 +16,12 @@ import MainDonateIndex from "./containers/subpages/Donate/MainDonateIndex";
 import PrivateRoute from "util/PrivateRoute";
 import TheLayout from './containers/dashboard/containers/TheLayout'
 import CartPage from "./containers/pages/CartPage";
-import PaymentSuccess from "util/PaymentSuccess";
-import CompanySuccess from "util/CompanySuccess";
-import PaymentCancel from "util/PaymentCancel";
 import MarketIndex from './containers/subpages/buytosupport/MarketIndex';
 import CheckoutPage from "./containers/pages/CheckoutPage";
 import Affiliate from './containers/pages/Affiliate/Affiliate';
 import SignupAffiliate from './containers/pages/Affiliate/SignupAffiliate';
 import CorporateAuction from './containers/pages/CorporateAuction/CorporateAuction';
 import SignupCorporate from "./containers/pages/CorporateAuction/SignupCorporate";
-import Page404 from './../util/pages/page404/Page404';
 import HowOgadonateWorks from './containers/pages/HowOgadonateWorks';
 
 
@@ -47,25 +43,16 @@ const MainApp = () => {
         <Route path="/about" component={About} />
         <Route path="/contact" component={Contact} />
         <Route path="/google" component={Google} />
-        <Route path="/reset-password" component={ResetPassword} />
         <Route path='/donate' render={props => <MainDonateIndex {...props}/>} />
         <Route exact path="/" component={Home} />
         <Route path="/user-type" component={GetUserInfo} />
         <Route path='/cart' component={CartPage} />
         <Route path='/checkout' component={CheckoutPage} />
-        <Route path='/payment-success/' component={PaymentSuccess} />
-        <Route path='/corperate-success/' component={CompanySuccess} />
-        <Route path='/payment-cancel/' component={PaymentCancel} />
         <Route path='/affiliate' component={Affiliate} />
         <Route path='/affiliate-signup' component={SignupAffiliate} />
         <Route path='/corporate-auction' component={CorporateAuction} />
         <Route path='/corporate-signup' component={SignupCorporate} />    
         <Route path='/how-it-works' component={HowOgadonateWorks} />    
-        <Route
-          path="/password/reset/confirm/:uid/:token"
-          component={ResetPasswordConfirm}
-          />
-          {/* <Route component={Page404} /> */}
       </Layout>
       </Switch>
     </>

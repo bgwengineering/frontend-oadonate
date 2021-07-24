@@ -5,11 +5,9 @@ const allCampaign = React.lazy(() => import('./views/dashboard/donation/donation
 const raiseCash = React.lazy(() => import('./views/dashboard/funds/raiseCash/raiseCash'));
 const raiseItem = React.lazy(() => import('./views/dashboard/funds/raiseItem/raiseItem'));
 const Profile = React.lazy(() => import('./views/dashboard/user/Profile'))
-const ChangePassword = React.lazy(() => import('./views/dashboard/user/ChangePassword'))
 const donationReceived = React.lazy(() => import('./views/dashboard/donation/donationReceived/DonationReceived'))
 const cashDistribution = React.lazy(() => import('./views/dashboard/funds/yourFunds/cashDistribution'));
 const itemDistribution = React.lazy(() => import('./views/dashboard/funds/yourFunds/itemDistribution'))
-const withdrawal = React.lazy(() => import('./views/dashboard/withdrawal/Withdrawal'))
 const shipping = React.lazy(() => import('./views/dashboard/user/ShippingIndex'))
 const auction = React.lazy(() => import('./views/dashboard/products/Auction'))
 const order = React.lazy(() => import('./views/dashboard/products/Orders'))
@@ -46,11 +44,6 @@ const routes = [
     exact: true
   },
   {
-    path: "/dashboard/profile/edit/",
-    name: "Change Password",
-    component: ChangePassword
-  },
-  {
     path: "/dashboard/profile/shipping",
     name: "Add shipping",
     component: shipping
@@ -71,7 +64,6 @@ const routes = [
     name: "Item Fund",
     component: itemDistribution
   },
-  { path: "/dashboard/withdrawal", name: "Withdrawal", component: withdrawal },
   { path: "/dashboard/products/auction", name: "Auction", component: auction },
   {path: '/dashboard/products/orders', name:'Order', component: order},
   {
